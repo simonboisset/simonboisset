@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Présentation
 
-[Aplitude Laser](https://amplitude-laser.com/fr/) est un fabricant de lasers leader dans le domaine des lasers à impulsion ultra brèves. Les applications de ces laser s'étendent dans le domaine médical, scientifique et industriel.
+[Amplitude Laser](https://amplitude-laser.com/fr/) est un fabricant de lasers leader dans le domaine des lasers à impulsion ultra brèves. Les applications de ces laser s'étendent dans le domaine médical, scientifique et industriel.
 
 ## Mon parcours
 

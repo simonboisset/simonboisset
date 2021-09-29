@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## Introduction
 
-[Aplitude Laser](https://amplitude-laser.com/fr/) is a leading laser manufacturer in the field of ultra fast lasers. The applications of these lasers extend to the medical, scientific and industrial fields.
+[Amplitude Laser](https://amplitude-laser.com/fr/) is a leading laser manufacturer in the field of ultra fast lasers. The applications of these lasers extend to the medical, scientific and industrial fields.
 
 ## My background
 
