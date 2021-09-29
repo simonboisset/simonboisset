@@ -1,38 +1,43 @@
 {
-  "name": "simonboisset-website",
-  "version": "0.1.0",
+  "name": "web",
+  "version": "0.0.0",
   "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@testing-library/jest-dom": "^5.11.10",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^13.1.5",
-    "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.41",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "typescript": "^4.2.4",
-    "web-vitals": "^1.1.1"
-  },
   "scripts": {
-    "up": "yarn upgrade-interactive --latest",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "start:fr": "yarn start -- --locale fr",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@docusaurus/core": "2.0.0-beta.6",
+    "@docusaurus/preset-classic": "2.0.0-beta.6",
+    "@mdx-js/react": "^1.6.21",
+    "@svgr/webpack": "^5.5.0",
+    "clsx": "^1.1.1",
+    "file-loader": "^6.2.0",
+    "prism-react-renderer": "^1.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "url-loader": "^4.1.1"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "2.0.0-beta.6",
+    "@tsconfig/docusaurus": "^1.0.4",
+    "@types/react": "^17.0.14",
+    "@types/react-helmet": "^6.1.2",
+    "@types/react-router-dom": "^5.1.8",
+    "typescript": "^4.3.5"
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.5%",
       "not dead",
       "not op_mini all"
     ],

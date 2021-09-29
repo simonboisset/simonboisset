@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Simon Boisset",
+    "description": "The title in the navbar"
+  },
+  "item.label.Projects": {
+    "message": "Projets",
+    "description": "Navbar item with label Projects"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
