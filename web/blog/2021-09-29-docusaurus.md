@@ -26,7 +26,7 @@ yarn start
 
 ## Project structure
 
-In the same philosophy as [Gatsby](https://www.gatsbyjs.com/) you will be able to generate a static site based on markdown files but you can also create pages directly in jsx.
+In the same philosophy as [Jekyll](https://jekyllrb.com/) you will be able to generate a static site based on markdown files but you can also create pages directly in jsx.
 
 :::tip Docs file
 The docs file contains all the chapters of your documentation. We will see how to configure it to have two distinct documentations.

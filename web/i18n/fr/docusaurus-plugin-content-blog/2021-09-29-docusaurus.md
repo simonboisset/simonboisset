@@ -26,7 +26,7 @@ yarn start
 
 ## Structure du projet
 
-Dans la même philosophie que Gatsby vous allez pouvoir générer un site statique à base de fichiers en markdown mais vous pourrez également créer des page directement en jsx.
+Dans la même philosophie que [Jekyll](https://jekyllrb.com/) vous allez pouvoir générer un site statique à base de fichiers en markdown mais vous pourrez également créer des page directement en jsx.
 
 :::tip Fichier docs
 Le fichier docs regroupe l'ensemble des chapitres de votre documentation. Nous allons voir comment le configurer pour avoir deux documentations distinctes.
