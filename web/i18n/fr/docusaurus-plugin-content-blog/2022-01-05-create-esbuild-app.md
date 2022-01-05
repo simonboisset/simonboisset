@@ -1,6 +1,6 @@
 ---
 slug: create-esbuild-app
-title: Create react app with esbuild
+title: Créer une app react avec esbuild
 authors: simon
 tags: [esbuild, create-react-app, typescript]
 ---
