@@ -9,7 +9,7 @@
     "deploy": "yarn build:css && netlify build && netlify deploy --prod",
     "test": "jest",
     "build:css": "tailwindcss -o ./app/Styles/tailwind.css",
-    "dev": "concurrently \"tailwindcss -o ./app/Styles/tailwind.css --watch\" \"cross-env NODE_ENV=development netlify dev\"",
+    "dev": "concurrently \"tailwindcss -o ./app/Styles/tailwind.css --watch\" \"cross-env NODE_ENV=development netlify dev\" \"tsc --noEmit --watch\"",
     "postinstall": "remix setup node"
   },
   "dependencies": {

@@ -2,13 +2,33 @@ import { Client } from '@notionhq/client';
 import { useEffect, useRef, useState } from 'react';
 import { Link, LoaderFunction, useLoaderData } from 'remix';
 import { Footer, Header } from '~/features';
+import {
+  FilesData,
+  MultiSelectData,
+  NumberData,
+  RichTextData,
+  TitleData,
+  UrlData,
+} from '~/features/blog/types/database';
+import { DatabaseResult, QueryDatabaseResponse } from '~/features/blog/types/QueryDatabaseResponse';
 import { Body, Main } from '~/ui';
 
-type NotionResponse = {
-  result:{
+type RealisationDatas = {
+  logo: FilesData;
+  github: UrlData;
+  link: UrlData;
+  description: RichTextData;
+  stack: MultiSelectData;
+  name: TitleData;
+};
 
-  }[]
-}
+type ParcoursDatas = {
+  link: UrlData;
+  image: FilesData;
+  year: NumberData;
+  title: TitleData;
+  description: RichTextData;
+};
 
 export const loader: LoaderFunction = async () => {
   const notion = new Client({
@@ -18,37 +38,17 @@ export const loader: LoaderFunction = async () => {
   const parcoursDatabaseId = '1e7146adb1bf4405a5f518c48bc4170c';
   const notionResponse = (await notion.databases.query({
     database_id: projectsDatabaseId,
-  })) as any;
+  })) as QueryDatabaseResponse<RealisationDatas>;
   const parcoursResponse = (await notion.databases.query({
     database_id: parcoursDatabaseId,
-  })) as any;
+  })) as QueryDatabaseResponse<ParcoursDatas>;
 
-  const realisations = await Promise.all(
-    notionResponse.results.map(async ({ properties }: any) => await api.notion.getNotionData(properties)),
-  );
-  const parcours = await Promise.all(
-    parcoursResponse.results.map(async ({ properties }: any) => await api.notion.getNotionData(properties)),
-  );
-
-  return { realisations, parcours };
+  return { realisations: notionResponse.results, parcours: parcoursResponse.results };
 };
 
 type Data = {
-  realisations: {
-    logo: [string];
-    github: string;
-    link: string;
-    description: string;
-    stack: string[];
-    name: string;
-  }[];
-  parcours: {
-    image: [string];
-    year: number;
-    link: string;
-    description: string;
-    title: string;
-  }[];
+  realisations: DatabaseResult<RealisationDatas>[];
+  parcours: DatabaseResult<ParcoursDatas>[];
 };
 export default function Index() {
   const { realisations, parcours } = useLoaderData<Data>();
@@ -70,6 +70,8 @@ export default function Index() {
     return () => removeEventListener('resize', handleResize);
   }, []);
 
+  console.log(realisations, parcours);
+
   return (
     <Body>
       <Header extended />
@@ -79,18 +81,22 @@ export default function Index() {
           <div className='flex flex-row space-x-40  justify-center'>
             {realisations.map((data) => (
               <Link
-                to={data.link}
-                key={data.name}
+                to={data.url}
+                key={data.id}
                 className='flex flex-col space-y-2 w-60 items-center hover:bg-slate-100 rounded-xl p-4 transition-all '>
                 <img
-                  alt={data.name}
-                  src={`data:image/png;base64,${data.logo[0]}`}
+                  alt={data.properties.name.title[0].plain_text}
+                  src={
+                    (data.properties.logo.files[0].type === 'external' && data.properties.logo.files[0].external.url) ||
+                    (data.properties.logo.files[0].type === 'file' && data.properties.logo.files[0].file.url) ||
+                    undefined
+                  }
                   className='h-44 rounded-3xl shadow-lg'
                 />
 
                 <div className='flex flex-col space-y-4 items-center text-justify'>
-                  <h5 className='font-semibold text-lg'>{data.name}</h5>
-                  <span>{data.description}</span>
+                  <h5 className='font-semibold text-lg'>{data.properties.name.title[0].plain_text}</h5>
+                  <span>{data.properties.description.rich_text[0].plain_text}</span>
                 </div>
               </Link>
             ))}
@@ -104,36 +110,48 @@ export default function Index() {
               style={{ top: timelinePosition[0], bottom: timelinePosition[1] }}
             />
             {parcours
-              .sort((a, b) => a.year - b.year)
+              .sort((a, b) => (a.properties.year.number || 0) - (b.properties.year.number || 0))
               .map((data, i) => (
-                <div key={data.title} className='w-full flex flex-col items-center space-y-12'>
+                <div key={data.id} className='w-full flex flex-col items-center space-y-12'>
                   <h4 className='z-10 flex items-center justify-center font-semibold text-lg text-blue-500 border-blue-500 ring-1 ring-blue-500 rounded-full h-16 w-16 bg-white'>
-                    {data.year}
+                    {data.properties.year.number}
                   </h4>
                   {(i + 1) % 2 ? (
                     <div className='flex flex-row w-full justify-between items-center'>
                       <div className='w-80 flex justify-center'>
                         <img
-                          alt={data.title}
-                          src={`data:image/png;base64,${data.image[0]}`}
+                          alt={data.properties.title.title[0].plain_text}
+                          src={
+                            (data.properties.image.files[0].type === 'external' &&
+                              data.properties.image.files[0].external.url) ||
+                            (data.properties.image.files[0].type === 'file' &&
+                              data.properties.image.files[0].file.url) ||
+                            undefined
+                          }
                           className='max-w-xs max-h-40 rounded-3xl'
                         />
                       </div>
                       <div className='w-80 flex flex-col space-y-2'>
-                        <h3 className='font-semibold text-xl'>{data.title}</h3>
-                        <p className='text-justify'>{data.description}</p>
+                        <h3 className='font-semibold text-xl'>{data.properties.title.title[0].plain_text}</h3>
+                        <p className='text-justify'>{data.properties.description.rich_text[0].plain_text}</p>
                       </div>
                     </div>
                   ) : (
                     <div className='flex flex-row w-full justify-between items-center'>
                       <div className='w-80 flex flex-col space-y-2'>
-                        <h3 className='font-semibold text-xl'>{data.title}</h3>
-                        <p className='text-justify'>{data.description}</p>
+                        <h3 className='font-semibold text-xl'>{data.properties.title.title[0].plain_text}</h3>
+                        <p className='text-justify'>{data.properties.description.rich_text[0].plain_text}</p>
                       </div>
                       <div className='w-80 flex justify-center'>
                         <img
-                          alt={data.title}
-                          src={`data:image/png;base64,${data.image[0]}`}
+                          alt={data.properties.title.title[0].plain_text}
+                          src={
+                            (data.properties.image.files[0].type === 'external' &&
+                              data.properties.image.files[0].external.url) ||
+                            (data.properties.image.files[0].type === 'file' &&
+                              data.properties.image.files[0].file.url) ||
+                            undefined
+                          }
                           className='max-w-xs max-h-40 rounded-3xl'
                         />
                       </div>

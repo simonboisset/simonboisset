@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client';
 import { LoaderFunction, redirect, useLoaderData } from 'remix';
 import Page from '~/features/blog/Page';
-import { BlockProps } from '~/features/blog/types';
+import { BlockObjectResponse } from '~/features/blog/types';
 import { ListBlockChildrenResponse } from '~/features/blog/types/ListBlockChildrenResponse';
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -26,12 +26,8 @@ export const loader: LoaderFunction = async ({ params }) => {
   };
 };
 
-const code = `const fnc () => {
-    return 1
-}`;
-
 export default function Blog() {
-  const data = useLoaderData<{ title: string; createdAt: string; blocks: BlockProps[] }>();
+  const data = useLoaderData<{ title: string; createdAt: string; blocks: BlockObjectResponse[] }>();
 
   return <Page {...data} />;
 }
