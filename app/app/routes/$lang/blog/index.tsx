@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client';
 import { LoaderFunction, redirect } from 'remix';
+import { t } from '~/features/traduction';
 
 type BlockType = 'child_page' | 'paragraph';
 type Block = {
@@ -15,11 +16,12 @@ type Block = {
   child_page: { title: string };
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ params }) => {
+  const lang = params.lang as keyof typeof t;
   const notion = new Client({
     auth: 'secret_OQIuYXSUFdR5pilVUjtbXdaXcsNCzh8KlmZxl9xtPZ0',
   });
-  const pageId = '38890d957b694fe9b7c081979982ef4c';
+  const pageId = t[lang || 'fr'].blogId;
   const notionResponse = (await notion.blocks.children.list({
     block_id: pageId,
   })) as any;

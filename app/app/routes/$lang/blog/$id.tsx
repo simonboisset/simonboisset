@@ -10,7 +10,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   });
   const pageId = params.id;
   if (!pageId) {
-    return redirect('/fr/blog');
+    return redirect('/fr-FR/blog');
   }
   const notionResponse = (await notion.blocks.children.list({
     block_id: pageId,

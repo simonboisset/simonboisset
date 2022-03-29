@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'remix';
+import { Link, useLocation, useParams } from 'remix';
+import { t } from '~/features/traduction';
 import portrait from './portrait.jpg';
 
 const getProfilePictureHeight = () => {
@@ -12,6 +13,9 @@ const getProfilePictureHeight = () => {
 
 export const Header = ({ extended }: { extended?: boolean }) => {
   const [profilePictureHeight, setProfilePictureHeight] = useState(extended ? 178 : 40);
+  const location = useLocation();
+  const params = useParams<{ lang: keyof typeof t }>();
+  console.log(location.pathname);
 
   useEffect(() => {
     if (extended) {
@@ -60,9 +64,7 @@ export const Header = ({ extended }: { extended?: boolean }) => {
             }>
             Développeur full stack
           </h4>
-          <Link className='hover:underline' to='mailto:simonboisset.dev@gmail.com'>
-            Contact
-          </Link>
+          <div>{t[params.lang || 'fr'].lang}</div>
         </div>
       </div>
     </>
