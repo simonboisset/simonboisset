@@ -17,18 +17,18 @@ export const Footer = () => {
       </div>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
         <h5 className='font-semibold text-lg'>Sources</h5>
-        <Link className='hover:underline text-sm' to='https://github.com/simonboisset'>
+        <a className='hover:underline text-sm' href='https://github.com/simonboisset'>
           Github
-        </Link>
-        <Link className='hover:underline text-sm' to='https://github.com/simonboisset/website'>
+        </a>
+        <a className='hover:underline text-sm' href='https://github.com/simonboisset/website'>
           Code
-        </Link>
+        </a>
       </div>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
         <h5 className='font-semibold text-lg'>Contact</h5>
-        <Link className='hover:underline text-sm' to='https://www.linkedin.com/in/simon-boisset-733445138/'>
+        <a className='hover:underline text-sm' href='https://www.linkedin.com/in/simon-boisset-733445138/'>
           Linkedin
-        </Link>
+        </a>
       </div>
     </footer>
   );
