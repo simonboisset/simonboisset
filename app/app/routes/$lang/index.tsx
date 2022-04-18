@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client';
 import { useEffect, useRef, useState } from 'react';
-import { Link, LoaderFunction, useLoaderData } from 'remix';
+import { Link, LoaderFunction, useLoaderData, useParams } from 'remix';
 import { Footer, Header } from '~/features';
 import {
   FilesData,
@@ -56,7 +56,8 @@ export default function Index() {
   const { realisations, parcours } = useLoaderData<Data>();
   const parcoursRef = useRef<HTMLDivElement>(null);
   const [timelinePosition, setTimelinePosition] = useState([0, 0]);
-
+  const params = useParams();
+  const lang = (params.lang as keyof typeof t) || 'en';
   useEffect(() => {
     const handleResize = () => {
       const body = document.getElementById('main-body');
@@ -77,7 +78,7 @@ export default function Index() {
       <Header extended />
       <Main>
         <div className='py-10 flex flex-col items-center space-y-16 bg-opacity-5'>
-          <h2 className='font-semibold text-3xl'>Réalisations</h2>
+          <h2 className='font-semibold text-3xl'>{t[lang].achievements}</h2>
           <div className='flex flex-row space-x-40  justify-center'>
             {realisations.map((data) => (
               <Link
@@ -103,7 +104,7 @@ export default function Index() {
           </div>
         </div>
         <div className='py-10 flex flex-col items-center space-y-16'>
-          <h2 className='font-semibold text-3xl'>Parcours</h2>
+          <h2 className='font-semibold text-3xl'>{t[lang].background}</h2>
           <div ref={parcoursRef} className='flex flex-col space-y-28 w-full max-w-4xl items-center'>
             <div
               className='w-px bg-blue-500 rounded-full absolute z-0'

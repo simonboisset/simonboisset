@@ -16,8 +16,8 @@ const getProfilePictureHeight = () => {
 export const Header = ({ extended }: { extended?: boolean }) => {
   const [profilePictureHeight, setProfilePictureHeight] = useState(extended ? 178 : 40);
   const location = useLocation();
-  const { lang } = useParams<{ lang: keyof typeof t }>();
-
+  const params = useParams<{ lang: keyof typeof t }>();
+  const lang = params.lang || 'en';
   const pathWithoutLang = location.pathname.split('/').slice(2).join('/');
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Header = ({ extended }: { extended?: boolean }) => {
       {extended && (
         <header className='z-20 flex flex-col bg-blue-500  text-white'>
           <div className='flex flex-col justify-center space-y-2 pl-4 pr-4 pt-2 pb-2 items-center h-72'>
-            <h1 className='font-semibold text-5xl'>Développeur full stack</h1>
+            <h1 className='font-semibold text-5xl'>{t[lang].fullStack}</h1>
             <h3 className='font-semibold text-2xl'>React, Node, Typescript ...</h3>
           </div>
         </header>
