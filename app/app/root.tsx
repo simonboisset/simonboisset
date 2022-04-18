@@ -1,7 +1,13 @@
+import { HeadersFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { MetaFunction } from '@remix-run/react/routeModules';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
+
+export const headers: HeadersFunction = ({}) => {
+  return {
+    'Cache-Control': 'max-age=36000, s-maxage=36000',
+  };
+};
 
 export const meta: MetaFunction = () => {
   return { title: 'Simon Boisset', description: 'Full stack developer' };

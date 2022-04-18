@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import { LoaderFunction, redirect } from '@remix-run/node';
+import { LoaderFunction, MetaFunction, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import Page from '~/features/blog/Page';
 import { BlockObjectResponse } from '~/features/blog/types';
@@ -27,6 +27,10 @@ export const loader: LoaderFunction = async ({ params }) => {
     createdAt: retrieve.created_time,
     blocks: notionResponse.results,
   };
+};
+
+export const meta: MetaFunction = ({ data }) => {
+  return { title: `Simon Boisset | ${data.title}`, description: data.title };
 };
 
 export default function Blog() {
