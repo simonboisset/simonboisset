@@ -1,5 +1,6 @@
 import { Client } from '@notionhq/client';
-import { LoaderFunction, redirect, useLoaderData } from 'remix';
+import { LoaderFunction, redirect } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 import Page from '~/features/blog/Page';
 import { BlockObjectResponse } from '~/features/blog/types';
 import { ListBlockChildrenResponse } from '~/features/blog/types/ListBlockChildrenResponse';

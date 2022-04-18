@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'remix';
+import { useLocation, useParams } from '@remix-run/react';
 import { t } from '~/features/traduction';
 import { classNames, Link, Menu, MenuItem } from '~/features/ui';
 
