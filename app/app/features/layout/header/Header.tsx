@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'remix';
 import { t } from '~/features/traduction';
+import { Menu, MenuItem } from '~/features/ui';
+
 import portrait from './portrait.jpg';
 
 const getProfilePictureHeight = () => {
@@ -14,8 +16,9 @@ const getProfilePictureHeight = () => {
 export const Header = ({ extended }: { extended?: boolean }) => {
   const [profilePictureHeight, setProfilePictureHeight] = useState(extended ? 178 : 40);
   const location = useLocation();
-  const params = useParams<{ lang: keyof typeof t }>();
-  console.log(location.pathname);
+  const { lang } = useParams<{ lang: keyof typeof t }>();
+
+  const pathWithoutLang = location.pathname.split('/').slice(2).join('/');
 
   useEffect(() => {
     if (extended) {
@@ -51,10 +54,10 @@ export const Header = ({ extended }: { extended?: boolean }) => {
         <div
           style={{ marginLeft: profilePictureHeight }}
           className='flex flex-row items-center space-x-4 flex-1 transition-all'>
-          <Link className='hover:underline' to='/fr'>
-            Accueil
+          <Link className='hover:underline' to={`/${lang}`}>
+            {t[lang || 'en'].home}
           </Link>
-          <Link to='/fr/blog' className='flex-1 hover:underline'>
+          <Link to={`/${lang}/blog`} className='flex-1 hover:underline'>
             Blog
           </Link>
           <h4
@@ -62,9 +65,12 @@ export const Header = ({ extended }: { extended?: boolean }) => {
               'font-light text-xl transition-opacity duration-300' +
               (profilePictureHeight < 50 ? ' opacity-100' : ' opacity-0')
             }>
-            Développeur full stack
+            Simon Boisset
           </h4>
-          <div>{t[params.lang || 'fr'].lang}</div>
+          <Menu title={t[lang || 'fr'].lang} placement='bottom-start'>
+            <MenuItem href={`/fr/${pathWithoutLang}`}>{t.fr.lang}</MenuItem>
+            <MenuItem href={`/en/${pathWithoutLang}`}>{t.en.lang}</MenuItem>
+          </Menu>
         </div>
       </div>
     </>

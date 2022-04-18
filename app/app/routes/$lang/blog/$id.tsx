@@ -3,14 +3,16 @@ import { LoaderFunction, redirect, useLoaderData } from 'remix';
 import Page from '~/features/blog/Page';
 import { BlockObjectResponse } from '~/features/blog/types';
 import { ListBlockChildrenResponse } from '~/features/blog/types/ListBlockChildrenResponse';
+import { t } from '~/features/traduction';
 
 export const loader: LoaderFunction = async ({ params }) => {
   const notion = new Client({
-    auth: 'secret_OQIuYXSUFdR5pilVUjtbXdaXcsNCzh8KlmZxl9xtPZ0',
+    auth: process.env.NOTION_TOKEN,
   });
+  const lang = (params.lang as keyof typeof t) || 'en';
   const pageId = params.id;
   if (!pageId) {
-    return redirect('/fr-FR/blog');
+    return redirect(`/${lang}/blog`);
   }
   const notionResponse = (await notion.blocks.children.list({
     block_id: pageId,

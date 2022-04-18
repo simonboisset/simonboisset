@@ -1,6 +1,7 @@
 import { Client } from '@notionhq/client';
-import { Link, LoaderFunction, Outlet, useLoaderData } from 'remix';
+import { Link, LoaderFunction, Outlet, redirect, useLoaderData } from 'remix';
 import { Footer, Header } from '~/features';
+import { t } from '~/features/traduction';
 import { Body, Main } from '~/ui';
 
 type BlockType = 'child_page' | 'paragraph';
@@ -17,20 +18,26 @@ type Block = {
   child_page: { title: string };
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ params }) => {
   const notion = new Client({
-    auth: 'secret_OQIuYXSUFdR5pilVUjtbXdaXcsNCzh8KlmZxl9xtPZ0',
+    auth: process.env.NOTION_TOKEN,
   });
-  const pageId = '38890d957b694fe9b7c081979982ef4c';
+  const lang = (params.lang as keyof typeof t) || 'en';
+  const pageId = t[lang].blogId;
   const notionResponse = (await notion.blocks.children.list({
     block_id: pageId,
   })) as any;
   const pages: Block[] = notionResponse.results;
 
-  return pages
+  const loadedPage = pages
     .filter((page) => page.type === 'child_page')
     .map(({ child_page, id, created_time }) => ({ id, title: child_page.title, createdAt: new Date(created_time) }))
     .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+  const id = params.id;
+  if (!id || !loadedPage.map(({ id }) => id).includes(id)) {
+    return redirect(`/${lang}/blog/${pages[0].id}`);
+  }
+  return loadedPage;
 };
 
 export default function Blog() {

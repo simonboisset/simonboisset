@@ -11,6 +11,7 @@ import {
   UrlData,
 } from '~/features/blog/types/database';
 import { DatabaseResult, QueryDatabaseResponse } from '~/features/blog/types/QueryDatabaseResponse';
+import { t } from '~/features/traduction';
 import { Body, Main } from '~/ui';
 
 type RealisationDatas = {
@@ -30,17 +31,18 @@ type ParcoursDatas = {
   description: RichTextData;
 };
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ params }) => {
   const notion = new Client({
-    auth: 'secret_OQIuYXSUFdR5pilVUjtbXdaXcsNCzh8KlmZxl9xtPZ0',
+    auth: process.env.NOTION_TOKEN,
   });
-  const projectsDatabaseId = 'c8b8541d153148869736bb76f1239455';
-  const parcoursDatabaseId = '1e7146adb1bf4405a5f518c48bc4170c';
+  const { lang } = params as { lang: keyof typeof t };
+  const achievementsId = t[lang].achievementsId;
+  const backgroundId = t[lang].backgroundId;
   const notionResponse = (await notion.databases.query({
-    database_id: projectsDatabaseId,
+    database_id: achievementsId,
   })) as QueryDatabaseResponse<RealisationDatas>;
   const parcoursResponse = (await notion.databases.query({
-    database_id: parcoursDatabaseId,
+    database_id: backgroundId,
   })) as QueryDatabaseResponse<ParcoursDatas>;
 
   return { realisations: notionResponse.results, parcours: parcoursResponse.results };
@@ -69,8 +71,6 @@ export default function Index() {
     addEventListener('resize', handleResize);
     return () => removeEventListener('resize', handleResize);
   }, []);
-
-  console.log(realisations, parcours);
 
   return (
     <Body>
