@@ -45,19 +45,18 @@ export default function Blog() {
   return (
     <Body>
       <Header />
-      <Main className='flex flex-row items-stretch w-full max-w-screen-2xl self-center'>
-        <nav className='flex-1 w-full max-w-sm flex flex-col space-y-2 py-4 px-12'>
+      <Main className='flex flex-row items-stretch w-full self-center'>
+        <nav className='flex-1 w-full max-w-xs hidden sm:flex flex-col space-y-2 py-4 px-12 '>
           {pages.map((page) => (
             <Link to={page.id} key={page.id} className='text-sm hover:text-blue-400'>
               {page.title}
             </Link>
           ))}
         </nav>
-        <div className='flex-1 '>
+        <div className='flex-1 w-full px-4'>
           <Outlet />
         </div>
-
-        <nav className='flex-1 w-full max-w-xs'></nav>
+        <nav className='flex-1 sm:flex hidden w-full max-w-xs'></nav>
       </Main>
       <Footer />
     </Body>
