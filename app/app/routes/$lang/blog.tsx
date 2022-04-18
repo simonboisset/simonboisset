@@ -1,8 +1,8 @@
 import { Client } from '@notionhq/client';
-import { Link, LoaderFunction, Outlet, redirect, useLoaderData } from 'remix';
+import { LoaderFunction, redirect } from '@remix-run/node';
+import { Link, Outlet, useLoaderData } from '@remix-run/react';
 import { Footer, Header } from '~/features';
 import { t } from '~/features/traduction';
-import { Body, Main } from '~/ui';
 
 type BlockType = 'child_page' | 'paragraph';
 type Block = {
@@ -43,9 +43,9 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function Blog() {
   const pages = useLoaderData<{ id: string; title: string; createdAt: Date }[]>();
   return (
-    <Body>
+    <div id='main-body' className='flex flex-col font-sans min-h-screen'>
       <Header />
-      <Main className='flex flex-row items-stretch w-full self-center'>
+      <main className='flex flex-1 flex-row items-stretch w-full self-center'>
         <nav className='flex-1 w-full max-w-xs hidden sm:flex flex-col space-y-2 py-4 px-12 '>
           {pages.map((page) => (
             <Link to={page.id} key={page.id} className='text-sm hover:text-blue-400'>
@@ -57,8 +57,8 @@ export default function Blog() {
           <Outlet />
         </div>
         <nav className='flex-1 sm:flex hidden w-full max-w-xs'></nav>
-      </Main>
+      </main>
       <Footer />
-    </Body>
+    </div>
   );
 }

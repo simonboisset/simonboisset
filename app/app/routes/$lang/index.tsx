@@ -1,6 +1,7 @@
 import { Client } from '@notionhq/client';
+import { LoaderFunction } from '@remix-run/node';
+import { useLoaderData, useParams } from '@remix-run/react';
 import { useEffect, useRef, useState } from 'react';
-import { LoaderFunction, useLoaderData, useParams } from 'remix';
 import { Footer, Header } from '~/features';
 import {
   FilesData,
@@ -12,7 +13,6 @@ import {
 } from '~/features/blog/types/database';
 import { DatabaseResult, QueryDatabaseResponse } from '~/features/blog/types/QueryDatabaseResponse';
 import { t } from '~/features/traduction';
-import { Body, Main } from '~/ui';
 
 type RealisationDatas = {
   logo: FilesData;
@@ -74,9 +74,9 @@ export default function Index() {
   }, []);
 
   return (
-    <Body>
+    <div id='main-body' className='flex flex-col font-sans min-h-screen'>
       <Header extended />
-      <Main>
+      <main className='flex-1'>
         <div className='py-10 flex flex-col items-center space-y-16 bg-opacity-5'>
           <h2 className='font-semibold text-3xl'>{t[lang].achievements}</h2>
           <div className='flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-40 justify-center px-10'>
@@ -162,8 +162,8 @@ export default function Index() {
               ))}
           </div>
         </div>
-      </Main>
+      </main>
       <Footer />
-    </Body>
+    </div>
   );
 }

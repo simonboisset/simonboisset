@@ -1,5 +1,5 @@
+import { Link } from '@remix-run/react';
 import { ReactElement } from 'react';
-import { Link } from 'remix';
 import { buttonClasses, buttonColors } from '../input/Button';
 import { classNames } from '../utils';
 

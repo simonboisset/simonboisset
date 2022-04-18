@@ -1,4 +1,4 @@
-import { Link, useParams } from 'remix';
+import { Link, useParams } from '@remix-run/react';
 import { t } from '../traduction';
 
 export const Footer = () => {
