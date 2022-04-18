@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client';
 import { useEffect, useRef, useState } from 'react';
-import { Link, LoaderFunction, useLoaderData, useParams } from 'remix';
+import { LoaderFunction, useLoaderData, useParams } from 'remix';
 import { Footer, Header } from '~/features';
 import {
   FilesData,
@@ -79,12 +79,12 @@ export default function Index() {
       <Main>
         <div className='py-10 flex flex-col items-center space-y-16 bg-opacity-5'>
           <h2 className='font-semibold text-3xl'>{t[lang].achievements}</h2>
-          <div className='flex flex-row space-x-40  justify-center'>
+          <div className='flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-40 justify-center px-10'>
             {realisations.map((data) => (
-              <Link
-                to={data.url}
+              <a
+                href={data.properties.link.url || ''}
                 key={data.id}
-                className='flex flex-col space-y-2 w-60 items-center hover:bg-slate-100 rounded-xl p-4 transition-all '>
+                className='flex flex-col space-y-2 w-full sm:w-72 items-center hover:bg-slate-100 rounded-xl p-4 transition-all '>
                 <img
                   alt={data.properties.name.title[0].plain_text}
                   src={
@@ -99,11 +99,11 @@ export default function Index() {
                   <h5 className='font-semibold text-lg'>{data.properties.name.title[0].plain_text}</h5>
                   <span>{data.properties.description.rich_text[0].plain_text}</span>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
-        <div className='py-10 flex flex-col items-center space-y-16'>
+        <div className='p-10 flex flex-col items-center space-y-16'>
           <h2 className='font-semibold text-3xl'>{t[lang].background}</h2>
           <div ref={parcoursRef} className='flex flex-col space-y-28 w-full max-w-4xl items-center'>
             <div
@@ -119,7 +119,7 @@ export default function Index() {
                   </h4>
                   {(i + 1) % 2 ? (
                     <div className='flex flex-row w-full justify-between items-center'>
-                      <div className='w-80 flex justify-center'>
+                      <div className='sm:w-80 w-2/5 flex justify-center'>
                         <img
                           alt={data.properties.title.title[0].plain_text}
                           src={
@@ -129,21 +129,21 @@ export default function Index() {
                               data.properties.image.files[0].file.url) ||
                             undefined
                           }
-                          className='max-w-xs max-h-40 rounded-3xl'
+                          className='max-w-full max-h-40 rounded-3xl'
                         />
                       </div>
-                      <div className='w-80 flex flex-col space-y-2'>
+                      <div className='sm:w-80 w-2/5 flex flex-col space-y-2'>
                         <h3 className='font-semibold text-xl'>{data.properties.title.title[0].plain_text}</h3>
                         <p className='text-justify'>{data.properties.description.rich_text[0].plain_text}</p>
                       </div>
                     </div>
                   ) : (
                     <div className='flex flex-row w-full justify-between items-center'>
-                      <div className='w-80 flex flex-col space-y-2'>
+                      <div className='sm:w-80 w-2/5 flex flex-col space-y-2'>
                         <h3 className='font-semibold text-xl'>{data.properties.title.title[0].plain_text}</h3>
                         <p className='text-justify'>{data.properties.description.rich_text[0].plain_text}</p>
                       </div>
-                      <div className='w-80 flex justify-center'>
+                      <div className='sm:w-80 w-2/5 flex justify-center'>
                         <img
                           alt={data.properties.title.title[0].plain_text}
                           src={
@@ -153,7 +153,7 @@ export default function Index() {
                               data.properties.image.files[0].file.url) ||
                             undefined
                           }
-                          className='max-w-xs max-h-40 rounded-3xl'
+                          className='max-w-full max-h-40 rounded-3xl'
                         />
                       </div>
                     </div>

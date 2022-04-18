@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { Placement } from '@popperjs/core';
 import { ReactNode } from 'react';
 import { buttonClasses, buttonColors } from '../../input/Button';
-import { usePopper } from '../../utils';
+import { classNames, usePopper } from '../../utils';
 
 type MenuProps = {
   children: ReactNode;
@@ -20,7 +20,9 @@ export default function MenuUi({ children, placement = 'bottom-end', title }: Me
   return (
     <Menu>
       <span className='rounded-md'>
-        <Menu.Button ref={trigger} className={buttonClasses.default + buttonColors.light}>
+        <Menu.Button
+          ref={trigger}
+          className={classNames(buttonClasses.default, buttonColors.light, 'whitespace-nowrap')}>
           <span>{title}</span>
           <svg className='ml-2 -mr-1 h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
             <path
@@ -32,7 +34,7 @@ export default function MenuUi({ children, placement = 'bottom-end', title }: Me
         </Menu.Button>
       </span>
 
-      <div ref={container} className='w-56 rounded-md overflow-hidden'>
+      <div ref={container} className='sm:w-56 px-4 sm:px-0 w-full rounded-md overflow-hidden'>
         <Transition
           enter='transition duration-100 ease-out'
           enterFrom='transform scale-95 opacity-0'

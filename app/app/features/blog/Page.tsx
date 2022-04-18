@@ -11,7 +11,7 @@ type PageProps = {
 export default function Page({ blocks, createdAt, title }: PageProps) {
   const formatedCreatedAt = dayjs(createdAt).format('DD-MM-YYYY');
   return (
-    <div className='py-12 flex flex-col space-y-0 max-w-2xl'>
+    <div className='py-12 flex flex-col space-y-0 w-full max-w-2xl'>
       <h1 className='text-4xl font-bold pb-6'>{title}</h1>
       <p className='text-slate-500 text-sm pb-8'>{formatedCreatedAt}</p>
       {blocks.map((props) => (
