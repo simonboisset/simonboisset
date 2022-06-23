@@ -21,7 +21,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     select: { name: true, id: true, title: true, language: true, publish: true },
     orderBy: { slug: 'asc' },
   });
-  if (params.name) {
+  if (params.name && params.name !== 'new') {
     redirect(`/fr/edition/${pages[0].name}`);
   }
   return pages;

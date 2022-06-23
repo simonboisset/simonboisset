@@ -13,9 +13,7 @@ import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { HeadingNode, QuoteNode } from '@lexical/rich-text';
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
-import ToolbarPlugin from './plugins/ToolbarPlugin';
-import ExampleTheme from './themes/ExampleTheme';
-
+import type { Language } from '@prisma/client';
 import { Form } from '@remix-run/react';
 import { useTsvAction } from '@ts-v/remix';
 import type { EditorState, LexicalEditor } from 'lexical';
@@ -24,7 +22,9 @@ import { Button, TextField } from '../layout';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin';
+import ToolbarPlugin from './plugins/ToolbarPlugin';
 import { saveEditorSchema } from './schema';
+import ExampleTheme from './themes/ExampleTheme';
 
 const editorConfig = {
   theme: ExampleTheme,
@@ -47,7 +47,21 @@ const editorConfig = {
   ],
 };
 
-export default function Editor({ content, description, title }: { title: string; description: string; content: any }) {
+export default function Editor({
+  content,
+  description,
+  title,
+  lang,
+  name,
+  slug,
+}: {
+  title: string;
+  description: string;
+  content: string;
+  slug: string;
+  lang: Language;
+  name: string;
+}) {
   const { onSubmit, errors } = useTsvAction(saveEditorSchema);
   const [editorTosave, setEditor] = useState<string>('');
 
@@ -60,10 +74,14 @@ export default function Editor({ content, description, title }: { title: string;
 
   return (
     <Form onSubmit={onSubmit} method='post' className='flex flex-1 flex-col space-y-4 p-8'>
-      <TextField placeholder='Title' name='title' defaultValue={title} />
-      {errors?.title}
-      <TextField placeholder='Description' name='description' defaultValue={description} />
-      {errors?.description}
+      <div className='flex flex-row space-x-2'>
+        <TextField className='flex-1' label='Langue' defaultValue={lang} name='language' error={errors?.language} />
+        <TextField className='flex-1' label='Slug' defaultValue={slug} name='slug' error={errors?.slug} />
+        <TextField className='flex-1' label='Id' defaultValue={name} name='name' error={errors?.name} />
+      </div>
+      <TextField label='Titre' name='title' defaultValue={title} error={errors?.title} />
+      <TextField label='Description' name='description' defaultValue={description} error={errors?.description} />
+
       <LexicalComposer initialConfig={editorConfig}>
         <div className='bg-white text-slate-600 rounded-xl overflow-hidden border'>
           <ToolbarPlugin />

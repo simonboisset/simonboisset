@@ -42,10 +42,31 @@ export const saveEditorAction: ActionFunction = async ({ request, params }) => {
       });
       return null;
     }
-    const { description, editor, title } = await validateRequest(request, saveEditorSchema);
+    if (name === 'new') {
+      const {
+        description,
+        editor,
+        title,
+        language,
+        name: nextName,
+        slug,
+      } = await validateRequest(request, saveEditorSchema);
+      await db.post.create({
+        data: { description, title, content: editor, language, slug, name: nextName, type: 'BLOG' },
+      });
+      return null;
+    }
+    const {
+      description,
+      editor,
+      title,
+      language,
+      name: nextName,
+      slug,
+    } = await validateRequest(request, saveEditorSchema);
     await db.post.update({
       where: { name },
-      data: { description, title, content: editor },
+      data: { description, title, content: editor, language, slug, name: nextName },
     });
     return null;
   } catch (error) {
