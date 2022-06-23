@@ -1,9 +1,9 @@
-import { HeadersFunction, MetaFunction } from '@remix-run/node';
+import type { HeadersFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
 
-export const headers: HeadersFunction = ({}) => {
+export const headers: HeadersFunction = () => {
   return {
     'Cache-Control': 'max-age=36000, s-maxage=36000',
   };
