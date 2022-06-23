@@ -1,22 +1,14 @@
 import type { ActionFunction } from '@remix-run/node';
-import { redirect } from '@remix-run/node';
 import { isValid } from '@ts-v/core';
 import { string } from '@ts-v/kit';
 import { validateRequest } from '@ts-v/remix/dist/node';
 import db from '../db.server';
-import { sessionStorage, USER_SESSION_KEY } from '../sessionStorage';
+import { requireSession } from '../sessionStorage';
 import { saveEditorSchema } from './schema';
 
 export const saveEditorAction: ActionFunction = async ({ request, params }) => {
-  const cookie = request.headers.get('Cookie');
-  const session = await sessionStorage.getSession(cookie);
-
-  const username = session?.get(USER_SESSION_KEY);
-
-  if (username !== 'sbDev') {
-    return redirect('/');
-  }
   try {
+    await requireSession(request);
     const { name } = params;
 
     if (!isValid(name, string())) {

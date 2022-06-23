@@ -10,7 +10,6 @@ export const Header = () => {
   const params = useParams<{ lang: keyof typeof t }>();
   const lang = params.lang || 'en';
   const pathWithoutLang = location.pathname.split('/').slice(2).join('/');
-  console.log(pathWithoutLang);
 
   return (
     <header

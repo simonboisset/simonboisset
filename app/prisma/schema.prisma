@@ -7,12 +7,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  username String @unique
-  password String
-}
-
 enum Language {
   fr
   en
@@ -20,7 +14,6 @@ enum Language {
 
 model Post {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  type        PostType
   publish     Boolean  @default(false)
   name        String   @unique
   language    Language
@@ -33,10 +26,4 @@ model Post {
   image       String?
 
   @@unique([slug, language])
-}
-
-enum PostType {
-  ACHIEVEMENT
-  CAREER
-  BLOG
 }
