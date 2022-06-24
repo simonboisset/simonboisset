@@ -1,4 +1,4 @@
-import type { HeadersFunction, MetaFunction } from '@remix-run/node';
+import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
@@ -29,7 +29,10 @@ export function links() {
     },
   ];
 }
-
+export const loader: LoaderFunction = ({ request }) => {
+  const lang = request.headers.get('Accept-Language')?.split(',')[0].split('-')[0];
+  return lang || 'en';
+};
 export default function App() {
   return (
     <html lang='fr'>

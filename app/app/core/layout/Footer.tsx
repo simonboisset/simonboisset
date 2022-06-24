@@ -1,15 +1,14 @@
-import { Link, useParams } from '@remix-run/react';
-import { t } from '../traduction';
+import { Link } from '@remix-run/react';
+import { useTraduction } from '../traduction/useTraduction';
 
 export const Footer = () => {
-  const params = useParams<{ lang: keyof typeof t }>();
-  const lang = params.lang || 'en';
+  const { t, lang } = useTraduction();
   return (
     <footer className='px-20 py-8 flex flex-col sm:flex-row sm:space-x-60 sm:space-y-0 space-y-10 justify-evenly border-t bg-blue-600 text-slate-100'>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
         <h5 className='font-semibold text-lg'>Site</h5>
         <Link className='hover:underline text-sm' to={`/${lang}`}>
-          {t[lang].home}
+          {t.home}
         </Link>
         <Link className='hover:underline text-sm' to={`/${lang}/blog`}>
           Blog

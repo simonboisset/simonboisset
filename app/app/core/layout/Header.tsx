@@ -1,14 +1,16 @@
-import { useLocation, useParams } from '@remix-run/react';
-import { t } from '~/core/traduction';
+import { useLocation } from '@remix-run/react';
+
 import { Link } from '../layout';
+import { traduction } from '../traduction';
+import { useTraduction } from '../traduction/useTraduction';
 import { Menu, MenuItem } from './Menu';
 import portrait from './portrait.jpg';
 import { classNames } from './utils';
 
 export const Header = () => {
   const location = useLocation();
-  const params = useParams<{ lang: keyof typeof t }>();
-  const lang = params.lang || 'en';
+
+  const { t, lang } = useTraduction();
   const pathWithoutLang = location.pathname.split('/').slice(2).join('/');
 
   return (
@@ -19,13 +21,13 @@ export const Header = () => {
       <img src={portrait} alt='portait' className='rounded-3xl absolute shadow-lg transition-all h-10' />
       <div className='w-4' />
       <div className='flex flex-row items-center space-x-4 flex-1'>
-        <Link to={`/${lang}`}>{t[lang || 'en'].home}</Link>
+        <Link to={`/${lang}`}>{t.home}</Link>
         <Link to={`/${lang}/blog`}>Blog</Link>
       </div>
       <h4 className={'font-light text-xl duration-300 sm:inline hidden'}>Simon Boisset</h4>
-      <Menu title={t[lang || 'fr'].lang} placement='bottom-start'>
-        <MenuItem href={`/fr/${pathWithoutLang}`}>{t.fr.lang}</MenuItem>
-        <MenuItem href={`/en/${pathWithoutLang}`}>{t.en.lang}</MenuItem>
+      <Menu title={t.lang} placement='bottom-start'>
+        <MenuItem href={`/fr/${pathWithoutLang}`}>{traduction.fr.lang}</MenuItem>
+        <MenuItem href={`/en/${pathWithoutLang}`}>{traduction.en.lang}</MenuItem>
       </Menu>
     </header>
   );
