@@ -35,19 +35,7 @@ export const loader = async () => {
               <priority>0.9</priority>
             </url>
             <url>
-              <loc>https://simonboisset.com/fr/blog/</loc>
-              <lastmod>2022-06-24</lastmod>
-              <changefreq>monthly</changefreq>
-              <priority>0.9</priority>
-            </url>
-            <url>
               <loc>https://simonboisset.com/en/</loc>
-              <lastmod>2022-06-24</lastmod>
-              <changefreq>monthly</changefreq>
-              <priority>0.9</priority>
-            </url>
-            <url>
-              <loc>https://simonboisset.com/en/blog/</loc>
               <lastmod>2022-06-24</lastmod>
               <changefreq>monthly</changefreq>
               <priority>0.9</priority>

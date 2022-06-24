@@ -1,8 +1,11 @@
 export const loader = () => {
   const robotText = `
         User-agent: Googlebot
-        Disallow: /nogooglebot/
-    
+        Disallow: /fr/auth/
+        Disallow: /en/auth/
+        Disallow: /fr/edition/
+        Disallow: /en/edition/
+
         User-agent: *
         Allow: /
     
