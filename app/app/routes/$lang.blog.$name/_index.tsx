@@ -59,7 +59,7 @@ export default function Blog() {
     <div className='flex flex-col space-y-4 py-8 text-slate-600 max-w-4xl'>
       <div className='flex flex-row justify-between'>
         <h1 className='text-4xl'>{activePage.title}</h1>
-        <div className='italic'>{dayjs(activePage.date).format('MM/YYYY')}</div>
+        <div className='italic'>{dayjs(activePage.date).format('DD-MM-YYYY')}</div>
       </div>
       <h2 className='text-xl'>{activePage.description}</h2>
       <PreviewEditor content={activePage.content} />
