@@ -6,14 +6,14 @@ import type { MetaFunction } from '@remix-run/react/routeModules';
 import db from '~/core/db.server';
 import { Link } from '~/core/layout';
 import { saveEditorAction } from '~/core/lexical/action.servers';
-import lexical from '~/core/lexical/lexical.css';
 import PreviewEditor from '~/core/lexical/Preview';
+import markdown from './markdown.css';
 
 export function links() {
   return [
     {
       rel: 'stylesheet',
-      href: lexical,
+      href: markdown,
     },
   ];
 }
@@ -42,7 +42,7 @@ export default function EditPage() {
   return (
     <div>
       <Link to={`/fr/edition/${activePage.name}`}>Retour</Link>
-      <PreviewEditor content={activePage.content} description={activePage.description} title={activePage.title} />
+      <PreviewEditor content={activePage.content} />
     </div>
   );
 }

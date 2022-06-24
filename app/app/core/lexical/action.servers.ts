@@ -44,7 +44,7 @@ export const saveEditorAction: ActionFunction = async ({ request, params }) => {
         slug,
       } = await validateRequest(request, saveEditorSchema);
       await db.post.create({
-        data: { description, title, content: editor, language, slug, name: nextName, type: 'BLOG' },
+        data: { description, title, content: editor, language, slug, name: nextName },
       });
       return null;
     }

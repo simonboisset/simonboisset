@@ -6,14 +6,14 @@ import { isValid } from '@ts-v/core';
 import { oneOf } from '@ts-v/kit';
 import dayjs from 'dayjs';
 import db from '~/core/db.server';
-import lexical from '~/core/lexical/lexical.css';
 import PreviewEditor from '~/core/lexical/Preview';
+import markdown from './markdown.css';
 
 export function links() {
   return [
     {
       rel: 'stylesheet',
-      href: lexical,
+      href: markdown,
     },
   ];
 }
@@ -51,14 +51,13 @@ export default function Blog() {
   const activePage = useLoaderData<Post>();
 
   return (
-    <div className='flex flex-col space-y-4 py-8 text-slate-600'>
+    <div className='flex flex-col space-y-4 py-8 text-slate-600 max-w-4xl'>
       <div className='flex flex-row justify-between'>
         <h1 className='text-4xl'>{activePage.title}</h1>
         <div className='italic'>{dayjs(activePage.date).format('MM/YYYY')}</div>
       </div>
       <h2 className='text-xl'>{activePage.description}</h2>
-      <div className='h-px bg-slate-400 w-full' />
-      <PreviewEditor content={activePage.content} description={activePage.description} title={activePage.title} />
+      <PreviewEditor content={activePage.content} />
     </div>
   );
 }
