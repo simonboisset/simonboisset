@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Language {
+  fr
+  en
+}
+
+model Post {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  publish     Boolean  @default(false)
+  name        String   @unique
+  language    Language
+  slug        String
+  title       String   @default("My new post")
+  description String   @default("Description of my post")
+  date        DateTime @default(now())
+  tags        String[]
+  content     String?
+  image       String?
+
+  @@unique([slug, language])
+}

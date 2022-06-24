@@ -1,11 +1,14 @@
-/**
- * @type {import('@remix-run/dev/config').AppConfig}
- */
+const { flatRoutes } = require('remix-flat-routes');
+/** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  appDirectory: "app",
-  assetsBuildDirectory: "public/build",
-  publicPath: "/build/",
-  serverBuildDirectory: "netlify/functions/server/build",
-  devServerPort: 8002,
-  ignoredRouteFiles: [".*"]
+  serverBuildTarget: 'netlify',
+  server: './server.js',
+  ignoredRouteFiles: ['**/*'],
+  routes: async (defineRoutes) => {
+    return flatRoutes('routes', defineRoutes);
+  },
+  // appDirectory: "app",
+  // assetsBuildDirectory: "public/build",
+  // serverBuildPath: ".netlify/functions-internal/server.js",
+  // publicPath: "/build/",
 };
