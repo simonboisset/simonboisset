@@ -7,13 +7,17 @@ import db from '~/core/db.server';
 import { Link } from '~/core/layout';
 import { saveEditorAction } from '~/core/lexical/action.servers';
 import PreviewEditor from '~/core/lexical/Preview';
-import markdown from './markdown.css';
+import markdown from '~/styles/markdown.css';
 
 export function links() {
   return [
     {
       rel: 'stylesheet',
       href: markdown,
+    },
+    {
+      rel: 'stylesheet',
+      href: '//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/a11y-dark.min.css',
     },
   ];
 }

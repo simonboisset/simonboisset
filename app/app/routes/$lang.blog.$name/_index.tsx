@@ -7,7 +7,7 @@ import { oneOf } from '@ts-v/kit';
 import dayjs from 'dayjs';
 import db from '~/core/db.server';
 import PreviewEditor from '~/core/lexical/Preview';
-import markdown from './markdown.css';
+import markdown from '~/styles/markdown.css';
 
 export function links() {
   return [
