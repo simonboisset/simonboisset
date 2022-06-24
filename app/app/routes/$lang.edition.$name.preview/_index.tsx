@@ -33,7 +33,12 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export const meta: MetaFunction = ({ data }) => {
-  return { title: `${data.title}`, description: data.description };
+  return {
+    charset: 'utf-8',
+    viewport: 'width=device-width,initial-scale=1',
+    title: `${data.title}`,
+    description: data.description,
+  };
 };
 export const action = saveEditorAction;
 export default function EditPage() {

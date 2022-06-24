@@ -10,7 +10,12 @@ export const headers: HeadersFunction = () => {
 };
 
 export const meta: MetaFunction = () => {
-  return { title: 'Simon Boisset', description: 'Full stack developer' };
+  return {
+    charset: 'utf-8',
+    viewport: 'width=device-width,initial-scale=1',
+    title: 'Simon Boisset',
+    description: 'Full stack developer',
+  };
 };
 
 export function links() {

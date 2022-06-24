@@ -12,7 +12,7 @@ export default function Index() {
   const parcoursRef = useRef<HTMLDivElement>(null);
   const [timelinePosition, setTimelinePosition] = useState([0, 0]);
 
-  const { t, lang } = useTraduction();
+  const { t } = useTraduction();
   useEffect(() => {
     const handleResize = () => {
       const body = document.getElementById('main-body');
