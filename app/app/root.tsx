@@ -13,8 +13,8 @@ export const meta: MetaFunction = () => {
   return {
     charset: 'utf-8',
     viewport: 'width=device-width,initial-scale=1',
-    title: 'Simon Boisset',
-    description: 'Full stack developer',
+    title: 'Simon Boisset | Full stack developer',
+    description: 'Full stack developer, React Typescript Node',
   };
 };
 
