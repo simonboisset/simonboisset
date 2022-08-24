@@ -28,6 +28,9 @@ export const Footer = () => {
         <a className='hover:underline text-sm' href='https://www.linkedin.com/in/simon-boisset-733445138/'>
           Linkedin
         </a>
+        <a className='hover:underline text-sm' href='https://twitter.com/simonboisset'>
+          Twitter
+        </a>
       </div>
     </footer>
   );
