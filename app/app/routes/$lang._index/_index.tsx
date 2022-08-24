@@ -51,7 +51,7 @@ export default function Index() {
               title={t.achievements.chaban.title}
               description={t.achievements.chaban.description}
               img={chaban}
-              link='https://horaires-pont-chaban-delmas.simonboisset.com/'
+              link='https://pont-chaban-delmas.com/'
             />
           </div>
         </div>

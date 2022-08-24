@@ -12,7 +12,7 @@ export const fr = {
       description: 'La plateforme de gestion des flux patients',
     },
     chaban: {
-      title: 'Mon Pont Chaban',
+      title: 'Horaires pont Chaban-Delmas',
       description:
         'Web app et application android permettant de visualiser les prochaines fermetures du pont et de recevoir des notifications pour en être prévenu',
     },
