@@ -4,7 +4,12 @@ export const fr = {
   achievementsId: 'c8b8541d153148869736bb76f1239455',
   backgroundId: '1e7146adb1bf4405a5f518c48bc4170c',
   home: 'Accueil',
+  links: 'Liens',
   fullStack: 'Développeur full stack',
+  blog: {
+    followMe: 'Vous pouvez suivre mes articles tech sur',
+    myPosts: 'Mes posts',
+  },
   achievements: {
     label: 'Réalisations',
     silbo: {

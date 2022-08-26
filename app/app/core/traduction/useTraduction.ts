@@ -1,6 +1,6 @@
-import type { Language } from '@prisma/client';
 import { useMatches, useParams } from '@remix-run/react';
 import { useMemo } from 'react';
+import type { Language } from '.';
 import { traduction } from '.';
 
 export const useTraduction = () => {
