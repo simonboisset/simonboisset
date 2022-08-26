@@ -3,10 +3,10 @@ import { Footer, Header } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
 import { AchievementItem } from './AchievementItem';
 import amplitude from './assets/amplitude.png';
-import bordeaux from './assets/bordeaux.jpeg';
+import bordeaux from './assets/bordeaux.webp';
 import chaban from './assets/chaban.jpeg';
-import lille from './assets/lille.jpeg';
-import silbo from './assets/silbo.jpeg';
+import lille from './assets/lille.webp';
+import silbo from './assets/silbo.webp';
 import { BackgroundItem } from './BackgroundItem';
 export default function Index() {
   const parcoursRef = useRef<HTMLDivElement>(null);

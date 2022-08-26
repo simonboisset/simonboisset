@@ -24,12 +24,15 @@ export const Footer = () => {
         </a>
       </div>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
-        <h5 className='font-semibold text-lg'>Contact</h5>
+        <h5 className='font-semibold text-lg'>{t.links}</h5>
         <a className='hover:underline text-sm' href='https://www.linkedin.com/in/simon-boisset-733445138/'>
           Linkedin
         </a>
         <a className='hover:underline text-sm' href='https://twitter.com/simonboisset'>
           Twitter
+        </a>
+        <a className='hover:underline text-sm' href='https://dev.to/simonboisset'>
+          Dev
         </a>
       </div>
     </footer>
