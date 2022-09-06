@@ -22,7 +22,7 @@ export const loader: LoaderFunction = async () => {
 
   return json(posts, {
     headers: {
-      'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+      'Cache-Control': 'public, max-age=36000, s-maxage=36000',
     },
   });
 };
