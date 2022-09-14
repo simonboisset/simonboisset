@@ -1,5 +1,5 @@
-import type { LoaderFunction } from '@remix-run/node';
-import { fetch, json } from '@remix-run/node';
+import type { LoaderFunction } from '@remix-run/cloudflare';
+import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import { Footer, Header } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
@@ -11,7 +11,7 @@ type Post = {
   url: string;
 };
 export const loader: LoaderFunction = async () => {
-  const devResponse = await (await fetch('https://dev.to/api/articles?username=simonboisset')).json();
+  const devResponse: any = await (await fetch('https://dev.to/api/articles?username=simonboisset')).json();
 
   const posts: Post[] = devResponse.map((article: any) => ({
     id: article.id,
