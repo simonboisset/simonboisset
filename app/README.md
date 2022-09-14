@@ -2,51 +2,36 @@
 
 - [Remix Docs](https://remix.run/docs)
 
-## Netlify Setup
-
-1. Install the [Netlify CLI](https://www.netlify.com/products/dev/):
-
-```sh
-npm i -g netlify-cli
-```
-
-If you have previously installed the Netlify CLI, you should update it to the latest version:
-
-```sh
-npm i -g netlify-cli@latest
-```
-
-2. Sign up and log in to Netlify:
-
-```sh
-netlify login
-```
-
-3. Create a new site:
-
-```sh
-netlify init
-```
-
 ## Development
 
-The Netlify CLI starts your app in development mode, rebuilding assets on file changes.
+You will be running two processes during development:
+
+- The Miniflare server (miniflare is a local environment for Cloudflare Workers)
+- The Remix development server
+
+Both are started with one command:
 
 ```sh
 npm run dev
 ```
 
-Open up [http://localhost:3000](http://localhost:3000), and you should be ready to go!
+Open up [http://127.0.0.1:8787](http://127.0.0.1:8787) and you should be ready to go!
 
-## Deployment
-
-There are two ways to deploy your app to Netlify, you can either link your app to your git repo and have it auto deploy changes to Netlify, or you can deploy your app manually. If you've followed the setup instructions already, all you need to do is run this:
+If you want to check the production build, you can stop the dev server and run following commands:
 
 ```sh
 npm run build
-# preview deployment
-netlify deploy
+npm start
+```
 
-# production deployment
-netlify deploy --prod
+Then refresh the same URL in your browser (no live reload for production builds).
+
+## Deployment
+
+If you don't already have an account, then [create a cloudflare account here](https://dash.cloudflare.com/sign-up) and after verifying your email address with Cloudflare, go to your dashboard and set up your free custom Cloudflare Workers subdomain.
+
+Once that's done, you should be able to deploy your app:
+
+```sh
+npm run deploy
 ```
