@@ -38,7 +38,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: registry.fly.io
-          username: simonboisset
+          username: x
           password: ${{ secrets.FLY_API_TOKEN }}
 
       - name: 🐳 Docker build
