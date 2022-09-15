@@ -2,21 +2,40 @@
 
 - [Remix Docs](https://remix.run/docs)
 
-## Development
+## Fly Setup
 
-You will be utilizing Wrangler for local development to emulate the Cloudflare runtime. This is already wired up in your package.json as the `dev` script:
+1. [Install `flyctl`](https://fly.io/docs/getting-started/installing-flyctl/)
+
+2. Sign up and log in to Fly
 
 ```sh
-# start the remix dev server and wrangler
+flyctl auth signup
+```
+
+3. Setup Fly. It might ask if you want to deploy, say no since you haven't built the app yet.
+
+```sh
+flyctl launch
+```
+
+## Development
+
+From your terminal:
+
+```sh
 npm run dev
 ```
 
-Open up [http://127.0.0.1:8788](http://127.0.0.1:8788) and you should be ready to go!
+This starts your app in development mode, rebuilding assets on file changes.
 
 ## Deployment
 
-Cloudflare Pages are currently only deployable through their Git provider integrations.
+If you've followed the setup instructions already, all you need to do is run this:
 
-If you don't already have an account, then [create a Cloudflare account here](https://dash.cloudflare.com/sign-up/pages) and after verifying your email address with Cloudflare, go to your dashboard and follow the [Cloudflare Pages deployment guide](https://developers.cloudflare.com/pages/framework-guides/deploy-anything).
+```sh
+npm run deploy
+```
 
-Configure the "Build command" should be set to `npm run build`, and the "Build output directory" should be set to `public`.
+You can run `flyctl info` to get the url and ip address of your server.
+
+Check out the [fly docs](https://fly.io/docs/getting-started/node/) for more information.

@@ -3,28 +3,26 @@
   "sideEffects": false,
   "scripts": {
     "build": "tailwindcss -o ./app/styles/tailwind.css && remix build",
-    "dev:remix": "remix watch",
+    "dev:remix": "remix dev",
     "dev:ts": "tsc --noEmit --watch",
     "dev:css": "tailwindcss -o ./app/styles/tailwind.css --watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
     "dev": "yarn build && run-p \"dev:*\"",
-    "start": "cross-env NODE_ENV=production npm run dev:wrangler"
+    "deploy": "fly deploy --remote-only",
+    "start": "remix-serve build"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.5",
     "@popperjs/core": "^2.11.5",
-    "@remix-run/cloudflare": "^1.7.0",
-    "@remix-run/cloudflare-pages": "^1.7.0",
+    "@remix-run/node": "^1.7.0",
     "@remix-run/react": "^1.7.0",
+    "@remix-run/serve": "^1.7.0",
     "@ts-v/kit": "^0.4.1",
     "@ts-v/remix": "^0.4.1",
-    "cross-env": "^7.0.3",
     "dayjs": "^1.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.14.1",
     "@remix-run/dev": "^1.7.0",
     "@remix-run/eslint-config": "^1.7.0",
     "@swc/core": "^1.2.204",
@@ -38,10 +36,9 @@
     "remix-flat-routes": "^0.4.3",
     "tailwindcss": "^3.1.4",
     "ts-node": "^10.8.1",
-    "typescript": "^4.7.4",
-    "wrangler": "^2.0.27"
+    "typescript": "^4.7.4"
   },
   "engines": {
-    "node": ">=16.13"
+    "node": ">=14"
   }
 }

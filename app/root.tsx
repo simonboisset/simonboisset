@@ -1,4 +1,4 @@
-import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/cloudflare';
+import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
@@ -34,7 +34,7 @@ export function links() {
     },
   ];
 }
-export const loader: LoaderFunction = ({ request }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   const lang = request.headers.get('Accept-Language')?.split(',')[0].split('-')[0];
   return lang || 'en';
 };
