@@ -1,8 +1,8 @@
 import { useLocation } from '@remix-run/react';
 
-import { Link } from '../layout';
 import { traduction } from '../traduction';
 import { useTraduction } from '../traduction/useTraduction';
+import { Link } from './Link';
 import { Menu, MenuItem } from './Menu';
 import portrait from './portrait.webp';
 import { classNames } from './utils';
