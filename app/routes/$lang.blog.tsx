@@ -10,8 +10,12 @@ type Post = {
   description: string;
   url: string;
 };
-export const loader: LoaderFunction = async () => {
-  const devResponse: any = await (await fetch('https://dev.to/api/articles?username=simonboisset')).json();
+export const loader: LoaderFunction = async ({ context }) => {
+console.log(context.ASSETS);
+
+  const devResponse: any = await (
+    await fetch('https://dev.to/api/articles?username=simonboisset')
+  ).json();
 
   const posts: Post[] = devResponse.map((article: any) => ({
     id: article.id,
