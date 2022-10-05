@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { Footer, SkillSection, Text, View } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
 import { AchievementItem } from './AchievementItem';
@@ -14,24 +13,7 @@ import silbo from './assets/silbo.webp';
 import { BackgroundItem } from './BackgroundItem';
 
 export default function Index() {
-  const parcoursRef = useRef<HTMLDivElement>(null);
-  const [timelinePosition, setTimelinePosition] = useState([0, 0]);
-
   const { t } = useTraduction();
-  useEffect(() => {
-    const handleResize = () => {
-      const body = document.getElementById('main-body');
-      setTimelinePosition([
-        (parcoursRef.current?.getBoundingClientRect().top || 0) - (body?.getBoundingClientRect().top || 0),
-        window.innerHeight -
-          (body?.getBoundingClientRect().height || 0) -
-          ((parcoursRef.current?.getBoundingClientRect().bottom || 0) - (body?.getBoundingClientRect().bottom || 0)),
-      ]);
-    };
-    handleResize();
-    addEventListener('resize', handleResize);
-    return () => removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <View>
@@ -95,11 +77,8 @@ export default function Index() {
           <Text As='h3' color='gradient' font='extrabold'>
             {t.background.label}
           </Text>
-          <div ref={parcoursRef} className='flex flex-col space-y-28 w-full max-w-4xl items-center'>
-            <div
-              className='w-px bg-gradient-to-b via-primary-500 to-secondary-500 from-secondary-500 rounded-full absolute z-0'
-              style={{ top: timelinePosition[0], bottom: timelinePosition[1] }}
-            />
+          <div className='flex flex-col space-y-28 w-full max-w-4xl items-center relative'>
+            <div className='w-px bg-gradient-to-b via-primary-500 to-secondary-500 from-secondary-500 rounded-full absolute z-0 top-0 bottom-0' />
             <BackgroundItem
               alt={t.background.licence.alt}
               description={t.background.licence.description}
