@@ -1446,6 +1446,18 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
   integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
+"@remix-routes/core@*":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@remix-routes/core/-/core-0.2.0.tgz#10a65e156cb9c4bbebc825bf792816e1416d49f6"
+  integrity sha512-5wZsaxxIavzd2INZwCathzW7Uf8929bFf6wigrC588V9klRYoG1C2J15AYNqApdbupndKKCK1dO//0WmhaQFyw==
+
+"@remix-routes/feature@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@remix-routes/feature/-/feature-0.2.0.tgz#a94f569c8393dd70552144544bd96a166e326fa3"
+  integrity sha512-iJMxHity6NxMXsATyTQoa3Wnff7cYa5Gs7BkbROibZ408GtJIMpgALzq8M7HFyZGlQS7Vx2BsVHBZ+bRqB4VtA==
+  dependencies:
+    "@remix-routes/core" "*"
+
 "@remix-run/dev@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@remix-run/dev/-/dev-1.7.0.tgz#a9a251af86d79d0b46348565c888b394c755cead"
@@ -2670,13 +2682,6 @@ brace-expansion@^1.1.7:
   dependencies:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
-
-brace-expansion@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-2.0.1.tgz#1edc459e0f0c548486ecf9fc99f2221364b9a0ae"
-  integrity sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==
-  dependencies:
-    balanced-match "^1.0.0"
 
 braces@^2.3.1:
   version "2.3.2"
@@ -6322,13 +6327,6 @@ minimatch@^3.0.2, minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.0.tgz#1717b464f4971b144f6aabe8f2d0b8e4511e09c7"
-  integrity sha512-9TPBGGak4nHfGZsPBohm9AWg6NoT7QTCehS3BIJABslyZbzxfV78QM2Y6+i741OPZIafFAaiiEMh5OyIrJPgtg==
-  dependencies:
-    brace-expansion "^2.0.1"
-
 minimist@^1.2.0, minimist@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
@@ -7321,13 +7319,6 @@ remark-rehype@^9.0.0:
     "@types/mdast" "^3.0.0"
     mdast-util-to-hast "^11.0.0"
     unified "^10.0.0"
-
-remix-flat-routes@^0.4.3:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/remix-flat-routes/-/remix-flat-routes-0.4.4.tgz#03a7f8a524ac10f2236abf3c8296f52c966e1ee3"
-  integrity sha512-DmdOm50nXvksW6cX2m+IJIYb9TLus9SgfhgRO/trwkvVIB9NusN/VkiYP/vclGMFWEJky/Z3L2C3BbkNIYGCqg==
-  dependencies:
-    minimatch "^5.1.0"
 
 repeat-element@^1.1.2:
   version "1.1.4"

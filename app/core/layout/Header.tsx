@@ -1,7 +1,7 @@
 import { useLocation } from '@remix-run/react';
 
-import { traduction } from '../traduction';
-import { useTraduction } from '../traduction/useTraduction';
+import { traduction } from '../../routes/$lang/traduction';
+import { useTraduction } from '../../routes/$lang/traduction/useTraduction';
 import { Link } from './Link';
 import { Menu, MenuItem } from './Menu';
 import { classNames } from './utils';

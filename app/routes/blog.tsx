@@ -1,4 +1,4 @@
-import Index, { loader } from './$lang.blog';
+import Index, { loader } from './$lang/routes/blog';
 
 export { loader };
 export default Index;

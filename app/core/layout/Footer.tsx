@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import { useTraduction } from '../traduction/useTraduction';
+import { useTraduction } from '../../routes/$lang/traduction/useTraduction';
 
 export const Footer = () => {
   const { t, lang } = useTraduction();

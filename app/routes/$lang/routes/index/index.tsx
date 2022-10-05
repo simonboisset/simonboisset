@@ -1,7 +1,7 @@
 import { useOutletContext } from '@remix-run/react';
 import { Footer, SkillSection, Text, View } from '~/core/layout';
-import { useTraduction } from '~/core/traduction/useTraduction';
 import type { RootContext } from '~/root';
+import { useTraduction } from '~/routes/$lang/traduction/useTraduction';
 import { AchievementItem } from './AchievementItem';
 import amplitude from './assets/amplitude.png';
 import server from './assets/backend.svg';

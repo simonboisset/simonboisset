@@ -1,9 +1,11 @@
 import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { isValid, oneOf } from '@ts-v/kit';
 import { useEffect, useState } from 'react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
 import { Header } from './core/layout';
+import { languages, traduction } from './routes/$lang/traduction';
 
 export const headers: HeadersFunction = () => {
   return {
@@ -11,12 +13,14 @@ export const headers: HeadersFunction = () => {
   };
 };
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction = ({ params }) => {
+  const lang = isValid(params.lang, oneOf(languages)) ? params.lang : 'en';
+  const t = traduction[lang];
   return {
     charset: 'utf-8',
     viewport: 'width=device-width,initial-scale=1',
-    title: 'Simon Boisset | Full stack developer',
-    description: 'Full stack developer, React Typescript Node',
+    title: `Simon Boisset | ${t.fullStack}`,
+    description: `${t.fullStack}, ${t.freelance} | Typescript, React, React Native`,
   };
 };
 
