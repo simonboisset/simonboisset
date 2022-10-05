@@ -81,29 +81,12 @@ export default function Index() {
           <div className='flex flex-col space-y-28 w-full max-w-4xl items-center relative'>
             <div className='w-px bg-gradient-to-b via-primary-500 to-secondary-500 from-secondary-500 rounded-full absolute z-0 top-0 bottom-0' />
             <BackgroundItem
-              alt={t.background.licence.alt}
-              description={t.background.licence.description}
-              year={2012}
-              title={t.background.licence.title}
-              link='https://www.u-bordeaux.fr/'
-              img={bordeaux}
-            />
-            <BackgroundItem
-              alt={t.background.master.alt}
-              description={t.background.master.description}
-              year={2014}
-              title={t.background.master.title}
-              link='https://www.univ-lille.fr/'
-              img={lille}
-              reverse
-            />
-            <BackgroundItem
-              alt={t.background.amplitude.alt}
-              description={t.background.amplitude.description}
-              year={2015}
-              title={t.background.amplitude.title}
-              link='https://amplitude-laser.com/'
-              img={amplitude}
+              alt={t.background.freelance.alt}
+              description={t.background.freelance.description}
+              year={2023}
+              title={t.background.freelance.title}
+              link='/'
+              img={web}
             />
             <BackgroundItem
               alt={t.background.silbo.alt}
@@ -115,12 +98,29 @@ export default function Index() {
               reverse
             />
             <BackgroundItem
-              alt={t.background.freelance.alt}
-              description={t.background.freelance.description}
-              year={2023}
-              title={t.background.freelance.title}
-              link='/'
-              img={web}
+              alt={t.background.amplitude.alt}
+              description={t.background.amplitude.description}
+              year={2015}
+              title={t.background.amplitude.title}
+              link='https://amplitude-laser.com/'
+              img={amplitude}
+            />
+            <BackgroundItem
+              alt={t.background.master.alt}
+              description={t.background.master.description}
+              year={2014}
+              title={t.background.master.title}
+              link='https://www.univ-lille.fr/'
+              img={lille}
+              reverse
+            />
+            <BackgroundItem
+              alt={t.background.licence.alt}
+              description={t.background.licence.description}
+              year={2012}
+              title={t.background.licence.title}
+              link='https://www.u-bordeaux.fr/'
+              img={bordeaux}
             />
           </div>
         </div>
