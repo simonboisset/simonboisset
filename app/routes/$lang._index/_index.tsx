@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Footer, Header, SkillSection, Text } from '~/core/layout';
+import { Footer, SkillSection, Text, View } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
 import { AchievementItem } from './AchievementItem';
 import amplitude from './assets/amplitude.png';
@@ -34,9 +34,7 @@ export default function Index() {
   }, []);
 
   return (
-    <div id='main-body' className='flex flex-col font-sans min-h-screen'>
-      <Header />
-
+    <View>
       <main className='flex-1 mt-24 px-20'>
         <Text As='div' color='gradient' className='flex flex-col justify-center space-y-8 pl-4 pr-4 pb-60 items-center'>
           <Text font='black' As='h1' color='gradient'>
@@ -149,6 +147,6 @@ export default function Index() {
       </main>
       <div className='mt-24 w-full h-px rounded-full bg-gradient-to-l from-primary-500 to-secondary-500' />
       <Footer />
-    </div>
+    </View>
   );
 }

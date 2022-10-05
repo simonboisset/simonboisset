@@ -1,7 +1,7 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { Footer, Header, Text } from '~/core/layout';
+import { Footer, Text, View } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
 
 type Post = {
@@ -32,8 +32,8 @@ export default function Blog() {
   const posts = useLoaderData<Post[]>();
 
   return (
-    <div id='main-body' className='flex flex-col font-sans min-h-screen'>
-      <Header />
+    <View>
+      {' '}
       <main className='flex flex-1 flex-col w-full items-center space-y-4 sm:p-8 p-4'>
         <Text As='h3' color='gradient' font='black'>
           {t.blog.myPosts}
@@ -61,6 +61,6 @@ export default function Blog() {
         </div>
       </main>
       <Footer />
-    </div>
+    </View>
   );
 }

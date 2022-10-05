@@ -2,6 +2,7 @@ import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/n
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
+import { Header } from './core/layout';
 
 export const headers: HeadersFunction = () => {
   return {
@@ -43,8 +44,11 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900'>
-        <Outlet />
+      <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900 min-h-screen'>
+        <div id='main-body' className='flex flex-col font-sans min-h-screen'>
+          <Header />
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === 'development' && <LiveReload />}
