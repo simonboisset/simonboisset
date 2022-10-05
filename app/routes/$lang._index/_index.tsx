@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import { Footer, Header } from '~/core/layout';
+import { Footer, Header, SkillSection, Text } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
 import { AchievementItem } from './AchievementItem';
 import amplitude from './assets/amplitude.png';
-import bordeaux from './assets/bordeaux.webp';
+import bordeaux from './assets/bordeaux.png';
 import chaban from './assets/chaban.jpeg';
-import lille from './assets/lille.webp';
+import devops from './assets/docker.svg';
+import lille from './assets/lille.svg';
+import server from './assets/node.svg';
+import mobile from './assets/react-native.svg';
+import web from './assets/react.svg';
 import silbo from './assets/silbo.webp';
 import { BackgroundItem } from './BackgroundItem';
+
 export default function Index() {
   const parcoursRef = useRef<HTMLDivElement>(null);
   const [timelinePosition, setTimelinePosition] = useState([0, 0]);
@@ -31,15 +36,48 @@ export default function Index() {
   return (
     <div id='main-body' className='flex flex-col font-sans min-h-screen'>
       <Header />
-      <main className='flex-1'>
-        <div className='z-20 flex-col bg-blue-100  text-blue-600 hidden sm:flex rounded-xl m-8'>
-          <div className='flex flex-col justify-center space-y-2 pl-4 pr-4 pt-2 pb-2 items-center h-72'>
-            <h1 className='font-semibold text-5xl'>{t.fullStack}</h1>
-            <h3 className='font-semibold text-2xl'>React, Node, Typescript ...</h3>
-          </div>
+
+      <main className='flex-1 mt-24 px-20'>
+        <Text As='div' color='gradient' className='flex flex-col justify-center space-y-8 pl-4 pr-4 pb-60 items-center'>
+          <Text font='black' As='h1' color='gradient'>
+            {t.fullStack}
+          </Text>
+          <Text As='h2' font='black'>
+            Freelance
+          </Text>
+        </Text>
+        <div className='flex justify-between'>
+          <SkillSection
+            src={web}
+            alt='frontend-skill'
+            title={t.skills.frontend.title}
+            description={t.skills.frontend.description}
+          />
+          <SkillSection
+            src={mobile}
+            alt='mobile-skill'
+            title={t.skills.mobile.title}
+            description={t.skills.mobile.description}
+          />
+          <SkillSection
+            src={devops}
+            alt='devops-skill'
+            title={t.skills.devops.title}
+            description={t.skills.devops.description}
+          />
+          <SkillSection
+            src={server}
+            alt='backend-skill'
+            title={t.skills.backend.title}
+            description={t.skills.backend.description}
+          />
         </div>
-        <div className='py-10 flex flex-col items-center space-y-16 bg-opacity-5'>
-          <h2 className='font-semibold text-3xl'>{t.achievements.label}</h2>
+
+        <div className='mt-8 w-full h-px rounded-full bg-gradient-to-l from-primary-500 to-secondary-500' />
+        <div className='py-24 flex flex-col items-center space-y-16 bg-opacity-5'>
+          <Text As='h3' color='gradient' font='extrabold'>
+            {t.achievements.label}
+          </Text>
           <div className='flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-40 justify-center px-10'>
             <AchievementItem
               title={t.achievements.silbo.title}
@@ -56,10 +94,12 @@ export default function Index() {
           </div>
         </div>
         <div className='p-10 flex flex-col items-center space-y-16'>
-          <h2 className='font-semibold text-3xl'>{t.background.label}</h2>
+          <Text As='h3' color='gradient' font='extrabold'>
+            {t.background.label}
+          </Text>
           <div ref={parcoursRef} className='flex flex-col space-y-28 w-full max-w-4xl items-center'>
             <div
-              className='w-px bg-blue-500 rounded-full absolute z-0'
+              className='w-px bg-gradient-to-b via-primary-500 to-secondary-500 from-secondary-500 rounded-full absolute z-0'
               style={{ top: timelinePosition[0], bottom: timelinePosition[1] }}
             />
             <BackgroundItem
@@ -96,9 +136,18 @@ export default function Index() {
               img={silbo}
               reverse
             />
+            <BackgroundItem
+              alt={t.background.freelance.alt}
+              description={t.background.freelance.description}
+              year={2023}
+              title={t.background.freelance.title}
+              link='/'
+              img={web}
+            />
           </div>
         </div>
       </main>
+      <div className='mt-24 w-full h-px rounded-full bg-gradient-to-l from-primary-500 to-secondary-500' />
       <Footer />
     </div>
   );

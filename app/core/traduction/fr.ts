@@ -8,7 +8,26 @@ export const fr = {
   fullStack: 'Développeur full stack',
   blog: {
     followMe: 'Vous pouvez suivre mes articles tech sur',
-    myPosts: 'Mes posts',
+    myPosts: 'Mes articles',
+  },
+  skills: {
+    frontend: {
+      title: 'Frontend',
+      description: "Spécialiste dans l'ecosysteme React pour le dévelopement d'interfaces frontend complexes",
+    },
+    mobile: {
+      title: 'Mobile',
+      description: "Dévelopement et déploement sur les store d'application ios et android grace à React Native",
+    },
+    devops: {
+      title: 'Devops',
+      description:
+        "Gestion de l'infrastructure, automatisation des tests et déploiement en utiliisant par exemple GCP, AWS, Docker, Github Actions ...",
+    },
+    backend: {
+      title: 'Backend',
+      description: "Création de serveur, api rest, graphql avec l'ecosysteme Node: Express, Fastify, Apollo ...",
+    },
   },
   achievements: {
     label: 'Réalisations',
@@ -44,6 +63,11 @@ export const fr = {
       title: 'Silbo',
       description: 'Développeur full stack sur la plateforme Silbo de gestion de flux patient.',
       alt: 'Silbo',
+    },
+    freelance: {
+      title: 'Freelance',
+      description: 'Je lance mon activité de développeur full stack freelance',
+      alt: 'Freelance',
     },
   },
 };

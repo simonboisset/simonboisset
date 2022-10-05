@@ -22,10 +22,6 @@ export function links() {
   return [
     {
       rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap',
-    },
-    {
-      rel: 'stylesheet',
       href: styles,
     },
     {
@@ -47,7 +43,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900'>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

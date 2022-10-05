@@ -12,6 +12,25 @@ export const en: Traduction = {
     followMe: 'You can follow me on',
     myPosts: 'My posts',
   },
+  skills: {
+    frontend: {
+      title: 'Frontend',
+      description: "Spécialiste dans l'ecosysteme React pour le dévelopement d'interfaces frontend complexes",
+    },
+    mobile: {
+      title: 'Mobile',
+      description: "Dévelopement et déploement sur les store d'application ios et android grace à React Native",
+    },
+    devops: {
+      title: 'Devops',
+      description:
+        "Gestion de l'infrastructure, automatisation des tests et déploiement en utiliisant par exemple GCP, AWS, Docker, Github Actions ...",
+    },
+    backend: {
+      title: 'Backend',
+      description: "Création de serveur, api rest, graphql avec l'ecosysteme Node: Express, Fastify, Apollo ...",
+    },
+  },
   achievements: {
     label: 'Achievements',
     silbo: {
@@ -44,6 +63,11 @@ export const en: Traduction = {
       title: 'Silbo',
       description: 'Full stack developer on the Silbo patient flow management platform.',
       alt: 'Silbo',
+    },
+    freelance: {
+      title: 'Freelance',
+      description: 'I start freelance as a full stack developer',
+      alt: 'Freelance',
     },
   },
 };
