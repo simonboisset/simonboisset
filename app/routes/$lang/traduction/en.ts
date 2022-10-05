@@ -63,7 +63,8 @@ export const en: Traduction = {
     },
     silbo: {
       title: 'Silbo',
-      description: 'Full stack developer on the Silbo patient flow management platform.',
+      description:
+        'Full stack developer on the Silbo patient flow management platform. Stack : Node Typescript, Mongodb, AWS, GCP, Github, React, styled-components, storybook, React Native, Expo, jest, Docker',
       alt: 'Silbo',
     },
     freelance: {

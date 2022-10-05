@@ -1,18 +1,18 @@
 import { useOutletContext } from '@remix-run/react';
-import { Footer, SkillSection, Text, View } from '~/core/layout';
+import { Footer, Text, View } from '~/core/layout';
 import type { RootContext } from '~/root';
 import { useTraduction } from '~/routes/$lang/traduction/useTraduction';
-import { AchievementItem } from './AchievementItem';
 import amplitude from './assets/amplitude.png';
 import server from './assets/backend.svg';
 import bordeaux from './assets/bordeaux.png';
 import chaban from './assets/chaban.jpeg';
 import devops from './assets/docker.svg';
 import lille from './assets/lille.svg';
+import profile from './assets/profile.png';
 import mobile from './assets/react-native.svg';
 import web from './assets/react.svg';
 import silbo from './assets/silbo.webp';
-import { BackgroundItem } from './BackgroundItem';
+import { AchievementItem, BackgroundItem, SkillSection } from './components';
 
 export default function Index() {
   const { t } = useTraduction();
@@ -23,12 +23,17 @@ export default function Index() {
         <Text
           As='div'
           color='gradient'
-          className='flex flex-col justify-center space-y-8 pb-40 sm:pb-60 items-center font-black'>
+          className='flex flex-col justify-center space-y-8 pb-12 items-center font-black'>
           <Text As='h1' color='gradient' className='text-center'>
             {t.fullStack}
           </Text>
           <Text As='h2'>{t.freelance}</Text>
         </Text>
+        <img
+          alt='simon-boisset'
+          src={profile}
+          className='h-44 w-44 rounded-full overflow-hidden bg-gradient-to-l from-primary-600 to-secondary-300 mx-auto mb-40'
+        />
         <div className='flex justify-between flex-col sm:flex-row items-center space-y-40 sm:space-y-0'>
           <SkillSection
             src={web}
