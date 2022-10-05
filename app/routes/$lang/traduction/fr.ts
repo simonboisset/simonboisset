@@ -65,7 +65,7 @@ export const fr = {
     silbo: {
       title: 'Silbo',
       description:
-        'Développeur full stack sur la plateforme Silbo de gestion de flux patient. Stack : Node Typescript, Mongodb, AWS, GCP, Github, React, styled-components, storybook, React Native, Expo, jest, Docker',
+        'Développeur full stack chez Silbo, plateforme de gestion de flux patient. Stack : Node Typescript, Mongodb, AWS, GCP, Github, React, styled-components, storybook, React Native, Expo, jest, Docker',
       alt: 'Silbo',
     },
     freelance: {
