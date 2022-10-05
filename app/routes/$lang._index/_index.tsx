@@ -17,16 +17,17 @@ export default function Index() {
 
   return (
     <View>
-      <main className='flex-1 mt-24 px-20'>
-        <Text As='div' color='gradient' className='flex flex-col justify-center space-y-8 pl-4 pr-4 pb-60 items-center'>
-          <Text font='black' As='h1' color='gradient'>
+      <main className='flex-1 mt-12 sm:mt-24 px-8 sm:px-20'>
+        <Text
+          As='div'
+          color='gradient'
+          className='flex flex-col justify-center space-y-8 pb-40 sm:pb-60 items-center font-black'>
+          <Text As='h1' color='gradient' className='text-center'>
             {t.fullStack}
           </Text>
-          <Text As='h2' font='black'>
-            {t.freelance}
-          </Text>
+          <Text As='h2'>{t.freelance}</Text>
         </Text>
-        <div className='flex justify-between'>
+        <div className='flex justify-between flex-col sm:flex-row items-center space-y-40 sm:space-y-0'>
           <SkillSection
             src={web}
             alt='frontend-skill'
@@ -54,11 +55,11 @@ export default function Index() {
         </div>
 
         <div className='mt-8 w-full h-px rounded-full bg-gradient-to-l from-primary-500 to-secondary-500' />
-        <div className='py-24 flex flex-col items-center space-y-16 bg-opacity-5'>
+        <div className='py-16 sm:py-24 flex flex-col items-center space-y-16 bg-opacity-5'>
           <Text As='h3' color='gradient' font='extrabold'>
             {t.achievements.label}
           </Text>
-          <div className='flex flex-col sm:flex-row space-y-10 sm:space-y-0 sm:space-x-40 justify-center px-10'>
+          <div className='flex flex-col sm:flex-row space-y-20 sm:space-y-0 sm:space-x-40 justify-center '>
             <AchievementItem
               title={t.achievements.silbo.title}
               description={t.achievements.silbo.description}
@@ -73,7 +74,7 @@ export default function Index() {
             />
           </div>
         </div>
-        <div className='p-10 flex flex-col items-center space-y-16'>
+        <div className=' flex flex-col items-center space-y-16'>
           <Text As='h3' color='gradient' font='extrabold'>
             {t.background.label}
           </Text>

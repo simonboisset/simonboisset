@@ -36,11 +36,11 @@ const fonts: Record<TextFont, string> = {
 };
 
 const textSizes: Record<TextElement, string> = {
-  h1: 'text-7xl',
-  h2: 'text-6xl',
-  h3: 'text-4xl',
-  h4: 'text-2xl',
-  h5: 'text-xl',
+  h1: 'text-6xl sm:text-7xl',
+  h2: 'text-4xl sm:text-6xl',
+  h3: 'text-3xl sm:text-4xl',
+  h4: 'text-2xl sm:text-2xl',
+  h5: 'text-xl sm:text-xl',
   h6: 'text-lg',
   p: '',
   span: '',

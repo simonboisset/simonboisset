@@ -15,15 +15,14 @@ export const Header = () => {
   return (
     <header
       className={classNames(
-        'z-20 flex flex-row sm:px-8 px-4 py-4 backdrop-blur-md items-center sticky top-0 sm:space-x-6 space-x-2',
+        'z-20 flex flex-row sm:px-8 px-2 py-4 backdrop-blur-md items-center sticky top-0 sm:space-x-6 space-x-2',
       )}>
-      <div className='sm:w-4 w-8' />
       <div className='flex flex-row items-center space-x-1 sm:space-x-4 flex-1'>
         <Link active={pathWithoutLang === ''} to={`/${lang}`}>
           {t.home}
         </Link>
         <Link active={pathWithoutLang === 'blog'} to={`/${lang}/blog`}>
-          Blog
+          {t.blog.page}
         </Link>
       </div>
       <Menu flag={t.flag} title={t.lang} placement='bottom-start'>

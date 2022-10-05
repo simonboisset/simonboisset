@@ -9,6 +9,7 @@ export const fr = {
   fullStack: 'Développeur full stack',
   freelance: 'Freelance',
   blog: {
+    page: 'Blog',
     followMe: 'Vous pouvez suivre mes articles tech sur',
     myPosts: 'Mes articles',
   },

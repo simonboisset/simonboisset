@@ -11,6 +11,7 @@ export const en: Traduction = {
   fullStack: 'Full stack developer',
   freelance: 'Freelance',
   blog: {
+    page: 'Blog',
     followMe: 'You can follow me on',
     myPosts: 'My posts',
   },
