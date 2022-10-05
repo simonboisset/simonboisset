@@ -1,5 +1,7 @@
+import { useOutletContext } from '@remix-run/react';
 import { Footer, SkillSection, Text, View } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
+import type { RootContext } from '~/root';
 import { AchievementItem } from './AchievementItem';
 import amplitude from './assets/amplitude.png';
 import server from './assets/backend.svg';
@@ -14,9 +16,9 @@ import { BackgroundItem } from './BackgroundItem';
 
 export default function Index() {
   const { t } = useTraduction();
-
+  const { isFirstRender } = useOutletContext<RootContext>();
   return (
-    <View>
+    <View isFirstRender={isFirstRender}>
       <main className='flex-1 mt-12 sm:mt-24 px-8 sm:px-20'>
         <Text
           As='div'

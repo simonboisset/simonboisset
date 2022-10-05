@@ -3,9 +3,10 @@ import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 type ViewProps = {
   children: ReactNode;
+  isFirstRender: boolean;
 };
-export const View = ({ children }: ViewProps) => {
-  const [show, setShow] = useState(false);
+export const View = ({ children, isFirstRender }: ViewProps) => {
+  const [show, setShow] = useState(isFirstRender);
   useEffect(() => {
     setShow(true);
     return () => setShow(false);

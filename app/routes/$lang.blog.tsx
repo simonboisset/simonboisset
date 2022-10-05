@@ -1,8 +1,9 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { useLoaderData, useOutletContext } from '@remix-run/react';
 import { Footer, Text, View } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
+import type { RootContext } from '~/root';
 
 type Post = {
   id: string;
@@ -30,9 +31,9 @@ export const loader: LoaderFunction = async () => {
 export default function Blog() {
   const { t } = useTraduction();
   const posts = useLoaderData<Post[]>();
-
+  const { isFirstRender } = useOutletContext<RootContext>();
   return (
-    <View>
+    <View isFirstRender={isFirstRender}>
       <main className='flex flex-1 flex-col w-full items-center space-y-4 sm:p-8 p-4'>
         <Text As='h3' color='gradient' font='black'>
           {t.blog.myPosts}

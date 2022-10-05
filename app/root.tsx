@@ -1,5 +1,6 @@
 import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { useEffect, useState } from 'react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
 import { Header } from './core/layout';
@@ -35,7 +36,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   const lang = request.headers.get('Accept-Language')?.split(',')[0].split('-')[0];
   return lang || 'en';
 };
+
+export type RootContext = { isFirstRender: boolean };
+
 export default function App() {
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  useEffect(() => {
+    setIsFirstRender(false);
+  }, []);
   return (
     <html lang='fr'>
       <head>
@@ -47,7 +55,7 @@ export default function App() {
       <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900 min-h-screen'>
         <div id='main-body' className='flex flex-col font-sans min-h-screen'>
           <Header />
-          <Outlet />
+          <Outlet context={{ isFirstRender }} />
         </div>
         <ScrollRestoration />
         <Scripts />

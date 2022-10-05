@@ -26,8 +26,14 @@ export const Header = () => {
         </Link>
       </div>
       <Menu flag={t.flag} title={t.lang} placement='bottom-start'>
-        <MenuItem href={`/fr/${pathWithoutLang}`}>{traduction.fr.lang}</MenuItem>
-        <MenuItem href={`/en/${pathWithoutLang}`}>{traduction.en.lang}</MenuItem>
+        <MenuItem href={`/fr/${pathWithoutLang}`}>
+          <span className='pr-4'>{traduction.fr.flag}</span>
+          <span>{traduction.fr.lang}</span>
+        </MenuItem>
+        <MenuItem href={`/en/${pathWithoutLang}`}>
+          <span className='pr-4'>{traduction.en.flag}</span>
+          <span>{traduction.en.lang}</span>
+        </MenuItem>
       </Menu>
     </header>
   );
