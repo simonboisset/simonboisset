@@ -34,6 +34,9 @@ export const Footer = () => {
         <a className='hover:underline text-sm' href='https://dev.to/simonboisset'>
           Dev
         </a>
+        <a className='hover:underline text-sm' href='https://www.malt.fr/profile/simonboisset'>
+          Malt
+        </a>
       </div>
     </footer>
   );

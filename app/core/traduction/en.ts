@@ -9,6 +9,7 @@ export const en: Traduction = {
   home: 'Home',
   links: 'Links',
   fullStack: 'Full stack developer',
+  freelance: 'Freelance',
   blog: {
     followMe: 'You can follow me on',
     myPosts: 'My posts',
@@ -16,20 +17,19 @@ export const en: Traduction = {
   skills: {
     frontend: {
       title: 'Frontend',
-      description: "Spécialiste dans l'ecosysteme React pour le dévelopement d'interfaces frontend complexes",
+      description: 'Frontend development for complex interfaces with React',
     },
     mobile: {
       title: 'Mobile',
-      description: "Dévelopement et déploement sur les store d'application ios et android grace à React Native",
+      description: 'Mobile development and deployment on iOs and Android stores using React Native',
     },
     devops: {
       title: 'Devops',
-      description:
-        "Gestion de l'infrastructure, automatisation des tests et déploiement en utiliisant par exemple GCP, AWS, Docker, Github Actions ...",
+      description: 'Infrastructure management, test and deployments automation (Github Actions, GCP, AWS, Docker ...)',
     },
     backend: {
       title: 'Backend',
-      description: "Création de serveur, api rest, graphql avec l'ecosysteme Node: Express, Fastify, Apollo ...",
+      description: 'Backend development, api rest, graphql with Node and Typescript (Express, Fastify, Apollo...)',
     },
   },
   achievements: {

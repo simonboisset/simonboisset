@@ -23,7 +23,7 @@ export default function Index() {
             {t.fullStack}
           </Text>
           <Text As='h2' font='black'>
-            Freelance
+            {t.freelance}
           </Text>
         </Text>
         <div className='flex justify-between'>
