@@ -5,7 +5,7 @@ import { classNames } from '../utils';
 function resolveClass({ active, disabled }: { active: boolean; disabled: boolean }) {
   return classNames(
     'flex justify-between w-full px-4 py-2 text-sm leading-5 text-left rounded-md',
-    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+    active ? 'text-transparent bg-clip-text bg-gradient-to-l from-primary-500 to-secondary-500' : 'text-white',
     disabled && 'cursor-not-allowed opacity-50',
   );
 }

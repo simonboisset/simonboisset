@@ -1,16 +1,37 @@
 import type { Traduction } from './fr';
 
 export const en: Traduction = {
-  lang: '🇬🇧 English',
+  flag: '🇬🇧',
+  lang: 'English',
   blogId: '51f0a44d190e4fcf803a7b55efa41738',
   achievementsId: 'b57b0eae91684a349b34c31966840e91',
   backgroundId: '45130664bd744e2b9d08dfd10499bb91',
   home: 'Home',
   links: 'Links',
   fullStack: 'Full stack developer',
+  freelance: 'Freelance',
   blog: {
+    page: 'Blog',
     followMe: 'You can follow me on',
     myPosts: 'My posts',
+  },
+  skills: {
+    frontend: {
+      title: 'Frontend',
+      description: 'Frontend development for complex interfaces with React',
+    },
+    mobile: {
+      title: 'Mobile',
+      description: 'Mobile development and deployment on iOs and Android stores using React Native',
+    },
+    devops: {
+      title: 'Devops',
+      description: 'Infrastructure management, test and deployments automation (Github Actions, GCP, AWS, Docker ...)',
+    },
+    backend: {
+      title: 'Backend',
+      description: 'Backend development, api rest, graphql with Node and Typescript (Express, Fastify, Apollo...)',
+    },
   },
   achievements: {
     label: 'Achievements',
@@ -44,6 +65,11 @@ export const en: Traduction = {
       title: 'Silbo',
       description: 'Full stack developer on the Silbo patient flow management platform.',
       alt: 'Silbo',
+    },
+    freelance: {
+      title: 'Freelance',
+      description: 'I start freelance as a full stack developer',
+      alt: 'Freelance',
     },
   },
 };

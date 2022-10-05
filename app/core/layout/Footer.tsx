@@ -4,7 +4,7 @@ import { useTraduction } from '../traduction/useTraduction';
 export const Footer = () => {
   const { t, lang } = useTraduction();
   return (
-    <footer className='px-20 py-8 flex flex-col sm:flex-row sm:space-x-60 sm:space-y-0 space-y-10 justify-evenly border-t bg-blue-600 text-slate-100'>
+    <footer className='px-20 py-8 flex flex-col sm:flex-row sm:space-x-60 sm:space-y-0 space-y-10 justify-evenly text-slate-100'>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
         <h5 className='font-semibold text-lg'>Site</h5>
         <Link className='hover:underline text-sm' to={`/${lang}`}>
@@ -33,6 +33,9 @@ export const Footer = () => {
         </a>
         <a className='hover:underline text-sm' href='https://dev.to/simonboisset'>
           Dev
+        </a>
+        <a className='hover:underline text-sm' href='https://www.malt.fr/profile/simonboisset'>
+          Malt
         </a>
       </div>
     </footer>

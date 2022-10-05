@@ -1,7 +1,7 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { Footer, Header } from '~/core/layout';
+import { Footer, Text, View } from '~/core/layout';
 import { useTraduction } from '~/core/traduction/useTraduction';
 
 type Post = {
@@ -32,27 +32,34 @@ export default function Blog() {
   const posts = useLoaderData<Post[]>();
 
   return (
-    <div id='main-body' className='flex flex-col font-sans min-h-screen'>
-      <Header />
+    <View>
       <main className='flex flex-1 flex-col w-full items-center space-y-4 sm:p-8 p-4'>
-        <h1 className='text-4xl font-bold'>{t.blog.myPosts}</h1>
-        <h2 className='text-lg pb-12'>
-          {t.blog.followMe}{' '}
+        <Text As='h3' color='gradient' font='black'>
+          {t.blog.myPosts}
+        </Text>
+        <Text As='h6' font='light' color='white' className='pb-12'>
+          <Text As='span'>{t.blog.followMe} </Text>
           <a className='text-blue-500' href='https://dev.to/simonboisset'>
             Dev.to
           </a>
-        </h2>
-        {posts.map(({ id, description, title, url }) => (
-          <a
-            key={id}
-            href={url}
-            className='w-full max-w-lg border border-blue-500 py-4 px-8 rounded-lg hover:shadow-md hover:bg-slate-100 transition-all'>
-            <h3 className='text-lg font-semibold text-blue-500'>{title}</h3>
-            <p>{description}</p>
-          </a>
-        ))}
+        </Text>
+        <div className='flex justify-center flex-wrap'>
+          {posts.map(({ id, description, title, url }) => (
+            <a
+              key={id}
+              href={url}
+              className='w-full max-w-sm py-4 px-8 bg-primary-700 h-48 rounded-2xl sm:mr-6 mb-6 hover:-translate-y-2 hover:scale-105 transition-all ease-in-out hover:bg-primary-600'>
+              <Text As='h5' color='gradient' font='extrabold' className='pb-2 hover:bg-pr'>
+                {title}
+              </Text>
+              <Text className='text-sm italic' color='white'>
+                {description}
+              </Text>
+            </a>
+          ))}
+        </div>
       </main>
       <Footer />
-    </div>
+    </View>
   );
 }

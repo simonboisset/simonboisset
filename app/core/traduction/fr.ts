@@ -1,14 +1,36 @@
 export const fr = {
-  lang: '🇫🇷 Français',
+  flag: '🇫🇷',
+  lang: 'Français',
   blogId: '38890d957b694fe9b7c081979982ef4c',
   achievementsId: 'c8b8541d153148869736bb76f1239455',
   backgroundId: '1e7146adb1bf4405a5f518c48bc4170c',
   home: 'Accueil',
   links: 'Liens',
   fullStack: 'Développeur full stack',
+  freelance: 'Freelance',
   blog: {
+    page: 'Blog',
     followMe: 'Vous pouvez suivre mes articles tech sur',
-    myPosts: 'Mes posts',
+    myPosts: 'Mes articles',
+  },
+  skills: {
+    frontend: {
+      title: 'Frontend',
+      description: "Développement d'interfaces frontend complexes dans l'écosystème React",
+    },
+    mobile: {
+      title: 'Mobile',
+      description: "Développement d'applications et déploiement sur les stores iOs et Android grâce à React Native",
+    },
+    devops: {
+      title: 'Devops',
+      description:
+        "Gestion de l'infrastructure, automatisation des tests et des déploiements (Github Actions, GCP, AWS, Docker ...)",
+    },
+    backend: {
+      title: 'Backend',
+      description: 'Création de serveur, api rest, graphql avec Node et Typescript (Express, Fastify, Apollo...)',
+    },
   },
   achievements: {
     label: 'Réalisations',
@@ -44,6 +66,11 @@ export const fr = {
       title: 'Silbo',
       description: 'Développeur full stack sur la plateforme Silbo de gestion de flux patient.',
       alt: 'Silbo',
+    },
+    freelance: {
+      title: 'Freelance',
+      description: 'Je lance mon activité de développeur full stack freelance',
+      alt: 'Freelance',
     },
   },
 };
