@@ -7,6 +7,7 @@ export const en: Traduction = {
   achievementsId: 'b57b0eae91684a349b34c31966840e91',
   backgroundId: '45130664bd744e2b9d08dfd10499bb91',
   home: 'Home',
+  legal: 'Legal',
   links: 'Links',
   fullStack: 'Full stack developer',
   freelance: 'Freelance',

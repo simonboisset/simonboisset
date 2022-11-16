@@ -1,7 +1,7 @@
 import { useOutletContext } from '@remix-run/react';
-import { Footer, Text, View } from '~/core/layout';
+import { Text, View } from '~/core/layout';
+import { useTraduction } from '~/core/traduction/useTraduction';
 import type { RootContext } from '~/root';
-import { useTraduction } from '~/routes/$lang/traduction/useTraduction';
 import amplitude from './assets/amplitude.png';
 import server from './assets/backend.svg';
 import bordeaux from './assets/bordeaux.png';
@@ -133,7 +133,6 @@ export default function Index() {
         </div>
       </main>
       <div className='mt-24 w-full h-px rounded-full bg-gradient-to-l from-primary-500 to-secondary-500' />
-      <Footer />
     </View>
   );
 }

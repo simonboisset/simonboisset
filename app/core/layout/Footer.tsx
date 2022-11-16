@@ -1,16 +1,16 @@
 import { Link } from '@remix-run/react';
-import { useTraduction } from '../../routes/$lang/traduction/useTraduction';
+import { useTraduction } from '../traduction/useTraduction';
 
 export const Footer = () => {
-  const { t, lang } = useTraduction();
+  const { t } = useTraduction();
   return (
     <footer className='px-20 py-8 flex flex-col sm:flex-row sm:space-x-60 sm:space-y-0 space-y-10 justify-evenly text-slate-100'>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
         <h5 className='font-semibold text-lg'>Site</h5>
-        <Link className='hover:underline text-sm' to={`/${lang}`}>
+        <Link className='hover:underline text-sm' to={`/`}>
           {t.home}
         </Link>
-        <Link className='hover:underline text-sm' to={`/${lang}/blog`}>
+        <Link className='hover:underline text-sm' to={`/blog`}>
           Blog
         </Link>
       </div>
@@ -22,6 +22,15 @@ export const Footer = () => {
         <a className='hover:underline text-sm' href='https://github.com/simonboisset/website'>
           Code
         </a>
+      </div>
+      <div className='flex flex-col space-y-2 items-center sm:items-start'>
+        <h5 className='font-semibold text-lg'>{t.legal}</h5>
+        <Link className='hover:underline text-sm' to='/docs/legal'>
+          Mentions légales
+        </Link>
+        <Link className='hover:underline text-sm' to='/docs/privacy'>
+          Politique de confidentialité
+        </Link>
       </div>
       <div className='flex flex-col space-y-2 items-center sm:items-start'>
         <h5 className='font-semibold text-lg'>{t.links}</h5>

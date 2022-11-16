@@ -6,6 +6,7 @@ export const fr = {
   backgroundId: '1e7146adb1bf4405a5f518c48bc4170c',
   home: 'Accueil',
   links: 'Liens',
+  legal: 'Documents',
   fullStack: 'Développeur full stack',
   freelance: 'Freelance',
   blog: {

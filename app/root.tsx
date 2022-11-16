@@ -4,8 +4,8 @@ import { isValid, oneOf } from '@ts-v/kit';
 import { useEffect, useState } from 'react';
 import styles from '~/styles/root.css';
 import tailwind from '~/styles/tailwind.css';
-import { Header } from './core/layout';
-import { languages, traduction } from './routes/$lang/traduction';
+import { Footer, Header } from './core/layout';
+import { languages, traduction } from './core/traduction';
 
 export const headers: HeadersFunction = () => {
   return {
@@ -60,6 +60,7 @@ export default function App() {
         <div id='main-body' className='flex flex-col font-sans min-h-screen'>
           <Header />
           <Outlet context={{ isFirstRender }} />
+          <Footer />
         </div>
         <ScrollRestoration />
         <Scripts />

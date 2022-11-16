@@ -1,9 +1,9 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData, useOutletContext } from '@remix-run/react';
-import { Footer, Text, View } from '~/core/layout';
+import { Text, View } from '~/core/layout';
+import { useTraduction } from '~/core/traduction/useTraduction';
 import type { RootContext } from '~/root';
-import { useTraduction } from '~/routes/$lang/traduction/useTraduction';
 
 type Post = {
   id: string;
@@ -60,7 +60,6 @@ export default function Blog() {
           ))}
         </div>
       </main>
-      <Footer />
     </View>
   );
 }
