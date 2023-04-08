@@ -19,6 +19,7 @@
     "@ts-v/kit": "^0.4.1",
     "@ts-v/remix": "^0.4.1",
     "dayjs": "^1.11.3",
+    "marked": "^4.2.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -30,6 +31,7 @@
     "@swc/jest": "^0.2.21",
     "@tailwindcss/typography": "^0.5.8",
     "@types/jest": "^29.0.2",
+    "@types/marked": "^4.0.8",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
     "eslint": "^8.20.0",
