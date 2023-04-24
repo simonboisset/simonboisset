@@ -33,8 +33,7 @@ ci-après l'"Editeur".
 
 ## L'hébergeur
 
-L'hébergeur du Site est la société Fly.io, dont le siège social est situé au 2045 West Grand Avenue
-Suite B PMB 69109 Chicago, IL 60612 United States , avec l'adresse mail de contact support@fly.io
+L'hébergeur du Site est la société Vercel, dont le site web est www.vercel.com et dont le siège social est situé au 340 S Lemon Ave #4133 Walnut, CA 91789, United States, avec l'adresse mail de contact privacy@vercel.com et le numéro de télephone (559) 288-7060.
 
 ## Accès au site
 

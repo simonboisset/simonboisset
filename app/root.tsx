@@ -1,40 +1,29 @@
-import type { HeadersFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
+import type { HeadersFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { isValid, oneOf } from '@ts-v/kit';
+import { Analytics } from '@vercel/analytics/react';
 import { useEffect, useState } from 'react';
 import styles from '~/styles/root.css';
-import tailwind from '~/styles/tailwind.css';
 import { Footer, Header } from './core/layout';
-import { languages, traduction } from './core/traduction';
-
+import { traduction } from './core/traduction';
 export const headers: HeadersFunction = () => {
   return {
     'Cache-Control': 'max-age=36000, s-maxage=36000',
   };
 };
 
-export const meta: MetaFunction = ({ params }) => {
-  const lang = isValid(params.lang, oneOf(languages)) ? params.lang : 'en';
+export const meta: V2_MetaFunction = () => {
+  const lang = 'fr';
   const t = traduction[lang];
-  return {
-    charset: 'utf-8',
-    viewport: 'width=device-width,initial-scale=1',
-    title: `Simon Boisset | ${t.fullStack}`,
-    description: `${t.fullStack}, ${t.freelance} | Typescript, React, React Native`,
-  };
+  return [
+    { title: `Simon Boisset | ${t.fullStack}` },
+    { name: 'description', content: `${t.fullStack}, ${t.freelance} | Typescript, React, React Native` },
+    { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+    { charset: 'utf-8' },
+  ];
 };
 
 export function links() {
-  return [
-    {
-      rel: 'stylesheet',
-      href: styles,
-    },
-    {
-      rel: 'stylesheet',
-      href: tailwind,
-    },
-  ];
+  return [{ rel: 'stylesheet', href: styles }];
 }
 export const loader: LoaderFunction = async ({ request }) => {
   const lang = request.headers.get('Accept-Language')?.split(',')[0].split('-')[0];
@@ -55,11 +44,9 @@ export default function App() {
         <meta name='viewport' content='width=device-width,initial-scale=1' />
         <Meta />
         <Links />
-        {process.env.NODE_ENV === 'production' && (
-          <script defer data-domain='simonboisset.com' src='https://plausible.io/js/script.js'></script>
-        )}
       </head>
       <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900 min-h-screen'>
+        <Analytics />
         <div id='main-body' className='flex flex-col font-sans min-h-screen'>
           <Header />
           <Outlet context={{ isFirstRender }} />

@@ -17,7 +17,7 @@ type TextFont = 'thin' | 'extralight' | 'light' | 'medium' | 'bold' | 'extrabold
 const colors: Record<TextColor, string> = {
   inherit: '',
   black: 'text-black',
-  gradient: 'text-transparent bg-clip-text bg-gradient-to-l from-primary-500 to-secondary-500',
+  gradient: 'text-primary-500',
   primary: 'text-primary-500',
   secondary: 'text-secondary-500',
   tertiary: 'text-tertiary-500',

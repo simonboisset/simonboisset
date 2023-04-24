@@ -1,9 +1,12 @@
-const { defineFeatureRoutes } = require('@remix-routes/feature');
-
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  ignoredRouteFiles: ['**/*'],
-  routes: async (defineRoutes) => {
-    return defineFeatureRoutes('app', 'routes', 'routes', defineRoutes);
+  ignoredRouteFiles: ['**/.*'],
+  future: {
+    v2_errorBoundary: true,
+    v2_meta: true,
+    unstable_tailwind: true,
+    unstable_postcss: true,
+    v2_normalizeFormMethod: true,
+    v2_routeConvention: true,
   },
 };
