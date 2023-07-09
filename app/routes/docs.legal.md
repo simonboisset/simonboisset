@@ -46,11 +46,9 @@ En cas de modification, interruption ou suspension du Site, l'Editeur ne saurait
 ## Collecte des données
 
 Le Site assure à l'Utilisateur une collecte et un traitement d'informations personnelles dans le respect
-de la vie privée conformément à la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers
-et aux libertés.
+de la vie privée.
 
-En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur dispose d'un droit
-d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur
+L'Utilisateur dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur
 exerce ce droit :
 
 - par mail à l'adresse email support@lezo.dev
