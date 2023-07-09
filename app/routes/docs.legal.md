@@ -1,14 +1,16 @@
 ---
 meta:
-  title: Mentions légales | Simon Boisset
-  description: Mentions légales de Simon Boisset
+  - name: 'title'
+    content: 'Mentions légales | Simon Boisset'
+  - name: 'description'
+    content: 'Mentions légales de Simon Boisset'
 headers:
   Cache-Control: no-cache
 ---
 
 # Mentions légales
 
-Dernière mise à jour au 08/04/2023
+Dernière mise à jour au 09/07/2023
 
 ## Introduction
 
@@ -33,7 +35,7 @@ ci-après l'"Editeur".
 
 ## L'hébergeur
 
-L'hébergeur du Site est la société Vercel, dont le site web est www.vercel.com et dont le siège social est situé au 340 S Lemon Ave #4133 Walnut, CA 91789, United States, avec l'adresse mail de contact privacy@vercel.com et le numéro de télephone (559) 288-7060.
+L'hébergeur du Site est la société Scaleway, dont le site web est www.scaleway.com et dont le siège social est situé au 8 rue de la Ville l’Evêque, 75008 Paris France, avec l'adresse de contact SCALEWAY SAS BP 438 75366 PARIS CEDEX 08 FRANCE et le service support https://console.scaleway.com/support/tickets.
 
 ## Accès au site
 

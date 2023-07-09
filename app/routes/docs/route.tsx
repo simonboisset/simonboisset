@@ -1,6 +1,7 @@
 import { Outlet, useOutletContext } from '@remix-run/react';
 import { View } from '~/core/layout';
 import type { RootContext } from '~/root';
+
 export default function Docs() {
   const { isFirstRender } = useOutletContext<RootContext>();
   return (

@@ -1,6 +1,5 @@
 import type { HeadersFunction, LoaderFunction, V2_MetaFunction } from '@remix-run/node';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { Analytics } from '@vercel/analytics/react';
 import { useEffect, useState } from 'react';
 import styles from '~/styles/root.css';
 import { Footer, Header } from './core/layout';
@@ -46,7 +45,6 @@ export default function App() {
         <Links />
       </head>
       <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900 min-h-screen'>
-        <Analytics />
         <div id='main-body' className='flex flex-col font-sans min-h-screen'>
           <Header />
           <Outlet context={{ isFirstRender }} />
