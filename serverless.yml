@@ -1,0 +1,17 @@
+service: remix-app
+configValidationMode: off
+singleSource: false
+
+provider:
+  name: scaleway
+  runtime: node16
+
+functions:
+  simonboisset-app:
+    handler: server.handler
+    events:
+      - httpApi:
+          method: any
+          path: '/{proxy+}'
+plugins:
+  - serverless-scaleway-functions
