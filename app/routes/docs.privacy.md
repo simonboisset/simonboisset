@@ -33,6 +33,10 @@ Veuillez noter que nous ne modifions pas la collecte de données de notre Site e
 
 Si vous êtes résident(e) européen(ne), vous disposez d'un droit d'accès aux informations personnelles que nous détenons à votre sujet et vous pouvez demander à ce qu'elles soient corrigées, mises à jour ou supprimées. Si vous souhaitez exercer ce droit, veuillez nous contacter au moyen des coordonnées précisées ci-dessous.
 
+## Délégué à la Protection des Données (DPO)
+
+Si vous avez des questions concernant notre utilisation de vos Informations Personnelles, ou si vous souhaitez exercer vos droits en matière de protection des données, vous pouvez contacter notre Délégué à la Protection des Données (DPO) à l'adresse suivante : dpo@lezo.dev. Vous avez également le droit de déposer une plainte auprès de l'autorité de contrôle de la protection des données dans votre pays si vous n'êtes pas satisfait de la manière dont nous traitons vos Informations Personnelles.
+
 ## CHANGEMENTS
 
 Nous pouvons être amenés à modifier la présente politique de confidentialité de temps à autre afin d'y refléter, par exemple, les changements apportés à nos pratiques ou pour d'autres motifs opérationnels, juridiques ou réglementaires.
