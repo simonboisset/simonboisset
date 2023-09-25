@@ -43,6 +43,7 @@ export default function App() {
         <meta name='viewport' content='width=device-width,initial-scale=1' />
         <Meta />
         <Links />
+        <script defer data-domain='simonboisset.com' src='https://analytics.lezo.app/js/script.js'></script>
       </head>
       <body className='bg-gradient-to-tr from-primary-500 via-primary-800 to-primary-900 min-h-screen'>
         <div id='main-body' className='flex flex-col font-sans min-h-screen'>
