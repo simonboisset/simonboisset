@@ -19,7 +19,7 @@ export default async function Pricing({ params: { lang } }: { params: { lang: Lo
           </Link>
         </Button>
       </div>
-      <div className='flex flex-row gap-12 items-stretch'>
+      <div className='flex sm:flex-row flex-col gap-12 items-stretch'>
         <div className='flex flex-1 flex-col gap-4 items-center shadow-md rounded-lg p-4 bg-primary/5 hover:bg-primary/10 hover:scale-105 transition-all duration-300'>
           <h2 className='sm:text-2xl text-xl font-black'>{t.pricing.daily_rate.title}</h2>
           {/* <Button variant='secondary'>
