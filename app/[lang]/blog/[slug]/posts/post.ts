@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation';
 import z from 'zod';
 import { Locale } from '../../../dictionaries';
 
-const postSlugs = [
+export const postSlugs = [
   'next-static-blog-tailwind',
   'share-packages-monorepo',
   'share-react-native-monorepo',
