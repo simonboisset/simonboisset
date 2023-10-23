@@ -1,6 +1,19 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { Locale, getDictionary } from '../dictionaries';
 import { getPostList } from './[slug]/posts/post';
+
+type Params = { lang: Locale };
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const t = await getDictionary(params.lang);
+
+  return {
+    title: `Simon Boisset | ${t.blog.title}`,
+    description: t.home.description,
+    viewport: 'width=device-width, initial-scale=1',
+  };
+}
 
 export default async function BlogPage({ params: { lang } }: { params: { lang: Locale } }) {
   const t = await getDictionary(lang);

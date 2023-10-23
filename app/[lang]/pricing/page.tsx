@@ -1,10 +1,23 @@
 import { Alert, AlertDescription, AlertTitle } from '@/ui/alert';
 import { Button } from '@/ui/button';
 import { Info, Mail } from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Locale, getDictionary } from '../dictionaries';
 
-export default async function Pricing({ params: { lang } }: { params: { lang: Locale } }) {
+type Params = { lang: Locale };
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const t = await getDictionary(params.lang);
+
+  return {
+    title: `Simon Boisset | ${t.pricing.title}`,
+    description: t.pricing.description,
+    viewport: 'width=device-width, initial-scale=1',
+  };
+}
+
+export default async function Pricing({ params: { lang } }: { params: Params }) {
   const t = await getDictionary(lang);
 
   return (

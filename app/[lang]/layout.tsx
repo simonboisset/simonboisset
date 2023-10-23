@@ -1,24 +1,24 @@
 import { cn } from '@/ui/utils';
 import type { Metadata } from 'next';
-import { Locale } from './dictionaries';
+import { Locale, getDictionary } from './dictionaries';
 import './globals.css';
 import { getTheme } from './theme';
 import { Footer } from './ui/footer';
 import { Header } from './ui/header';
 
-export const metadata: Metadata = {
-  title: 'Simon Boisset',
-  description: 'Simon Boisset full stack developer',
-  viewport: 'width=device-width, initial-scale=1',
-};
+type Params = { lang: Locale };
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: { lang: Locale };
-}) {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const t = await getDictionary(params.lang);
+
+  return {
+    title: `Simon Boisset | ${t.home.title}`,
+    description: t.home.description,
+    viewport: 'width=device-width, initial-scale=1',
+  };
+}
+
+export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Params }) {
   const theme = await getTheme();
 
   return (

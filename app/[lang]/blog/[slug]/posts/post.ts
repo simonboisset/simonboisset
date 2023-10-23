@@ -38,6 +38,17 @@ export const getPostList = async (locale: Locale) => {
   return posts;
 };
 
+export const postMetadata = async (slug: string, locale: Locale) => {
+  const post = await getPost(slug, locale);
+  return {
+    slug,
+    title: getTitleFromMarkdown(post),
+    preview: getPreviewFromMarkdown(post),
+    img: getImgFromMarkdown(post),
+    date: getDateFromMarkdown(post),
+  };
+};
+
 export const getTitleFromMarkdown = (markdown: string) => {
   const title = markdown.match(/# (.*)/)?.[1];
   return title;

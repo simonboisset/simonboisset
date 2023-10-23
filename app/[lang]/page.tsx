@@ -1,9 +1,22 @@
 import { Button } from '@/ui/button';
 import { Mail } from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Locale, getDictionary } from './dictionaries';
 
-export default async function Home({ params: { lang } }: { params: { lang: Locale } }) {
+type Params = { lang: Locale };
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const t = await getDictionary(params.lang);
+
+  return {
+    title: `Simon Boisset | ${t.home.title}`,
+    description: t.home.description,
+    viewport: 'width=device-width, initial-scale=1',
+  };
+}
+
+export default async function Home({ params: { lang } }: { params: Params }) {
   const t = await getDictionary(lang);
 
   return (
