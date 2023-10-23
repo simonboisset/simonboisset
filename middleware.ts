@@ -19,5 +19,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  // not match for public folder ans sitemap.xml
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml).*)'],
 };
