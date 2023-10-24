@@ -16,53 +16,22 @@ export const dictionary = {
     how_i_work: 'How I work?',
     how_i_work_description:
       "I work remotely. I am available to work on your project part-time or full-time depending on your need and my availability. My work don't stop after my first mission. My concern is to build a long-term relationship with my clients and to help them to scale their products. I like product too so I can help you to define your product and to work closely with your product team. My main goal is to deliver the best return on investment for my clients and for that I can help you to prioritize the features to implement considering the value for your users and the technical complexity.",
-    they_trust_me: 'They trust me',
+    achievements: 'Achievements',
+    achievements_description:
+      "Here are some of my achievements. Some are personnal projects and some are projects I've worked on as a freelance.",
     silbo: 'Silbo',
-    silbo_review:
-      'Simon is a very talented developer. He is very autonomous and he is able to deliver high quality code. He is also very good at understanding the business needs and to propose solutions to solve them. He is a great team player and he is always willing to help his teammates.',
-    silbo_description:
-      'Silbo is a platform that connects companies with freelance developers. I worked on the platform as a full stack developer. I worked on the frontend with React and on the backend with Node.js and MongoDB.',
+    silbo_description: 'The first centralized decision support solution to support caregivers on a daily basis.',
     linote: 'Linote',
-    linote_review:
-      'Simon is a very talented developer. He is very autonomous and he is able to deliver high quality code. He is also very good at understanding the business needs and to propose solutions to solve them. He is a great team player and he is always willing to help his teammates.',
-    linote_description:
-      'Linote is a platform that connects companies with freelance developers. I worked on the platform as a full stack developer. I worked on the frontend with React and on the backend with Node.js and MongoDB.',
+    linote_description: 'The easiest way to call an elderly relative in video',
     vaerdi: 'Vaerdi',
-    vaerdi_review:
-      'Simon is a very talented developer. He is very autonomous and he is able to deliver high quality code. He is also very good at understanding the business needs and to propose solutions to solve them. He is a great team player and he is always willing to help his teammates.',
-    vaerdi_description:
-      'Vaerdi is a platform that connects companies with freelance developers. I worked on the platform as a full stack developer. I worked on the frontend with React and on the backend with Node.js and MongoDB.',
+    vaerdi_description: 'Vaerdi is a wealth management consulting company.',
     atypique_radio: 'Atypique Radio',
-    atypique_radio_review:
-      'Simon is a very talented developer. He is very autonomous and he is able to deliver high quality code. He is also very good at understanding the business needs and to propose solutions to solve them. He is a great team player and he is always willing to help his teammates.',
-    atypique_radio_description:
-      'Atypique Radio is a platform that connects companies with freelance developers. I worked on the platform as a full stack developer. I worked on the frontend with React and on the backend with Node.js and MongoDB.',
-    my_projects: 'My projects',
+    atypique_radio_description: 'Atypique Radio is an independent web radio that broadcasts eclectic positive music.',
     mon_pont_chaban: 'Mon Pont Chaban',
-    mon_pont_chaban_description:
-      'Mon Pont Chaban is a platform that connects companies with freelance developers. I worked on the platform as a full stack developer. I worked on the frontend with React and on the backend with Node.js and MongoDB.',
+    mon_pont_chaban_description: 'The schedules of the Chaban-Delmas bridge in Bordeaux in real time.',
     questovery: 'Questovery',
     questovery_description:
-      'Questovery is a platform that connects companies with freelance developers. I worked on the platform as a full stack developer. I worked on the frontend with React and on the backend with Node.js and MongoDB.',
-    my_skills: 'My skills',
-    typescript: 'TypeScript',
-    typescript_description:
-      'I love TypeScript. I take care of the type definitions to have a better developer experience.',
-    react: 'React',
-    react_description:
-      'React is my favorite frontend framework. I love the component based architecture. Combined with TypeScript, it is a very powerful tool.',
-    react_native: 'React Native',
-    react_native_description:
-      'For mobile apps, I use React Native. It allows me to build cross platform apps with a single codebase and native performance.',
-    nextJS: 'Next.js',
-    nextJS_description:
-      'Next.js is my favorite framework for building server side rendered React apps. It is very powerful and easy to use. React server components is a game changer for devlopeprs experience.',
-    remix: 'Remix',
-    remix_description:
-      'I love Remix too becauseof its api based on web standards. Less magic, more control compared to Next.js.',
-    trpc: 'trpc',
-    trpc_description:
-      'trpc is a very powerful tool to build APIs. It is very easy to use and it is based on TypeScript. Combined with Next.js or Remix and Prisma, it is a very powerful stack for cross platform apps.',
+      'Questovery is an app to create treasure hunts. Create and share your treasure hunts with your friends.',
   },
   pricing: {
     title: 'Pricing',
