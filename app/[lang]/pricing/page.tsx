@@ -39,7 +39,7 @@ export default async function Pricing({ params: { lang } }: { params: Params }) 
             <CircleDollarSign className='w-4 h-4 mr-4' /> {t.pricing.project_rate.simulate_your_project}
           </Button> */}
           <div className='sm:text-xl text-lg bg-primary/20 py-1 px-4 flex flex-row items-end rounded-full gap-2'>
-            <span>470€</span>
+            <span>500€</span>
             <span className='text-sm italic'>{t.pricing.daily_rate.per_day}</span>
           </div>
           <p className='text-sm ml-auto italic'>* {t.pricing.daily_rate.pricing_without_vat}</p>
