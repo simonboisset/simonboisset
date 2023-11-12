@@ -1,6 +1,7 @@
-import { marked } from 'marked';
 import { Metadata } from 'next';
 import { Locale } from '../../dictionaries';
+import Markdown from './Markdown';
+import './hljs.css';
 import { getPost, postMetadata } from './posts/post';
 
 type Params = { slug: string; lang: Locale };
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function BlogPostPage({ params: { slug, lang } }: { params: Params }) {
-  const md = await getPost(slug, lang);
+  const html = await getPost(slug, lang);
 
-  return <div dangerouslySetInnerHTML={{ __html: marked(md) }} />;
+  return <Markdown html={html} />;
 }

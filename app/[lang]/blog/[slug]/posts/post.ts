@@ -1,5 +1,6 @@
 import 'server-only';
 
+import { marked } from 'marked';
 import { redirect } from 'next/navigation';
 import z from 'zod';
 import { Locale } from '../../../dictionaries';
@@ -18,7 +19,9 @@ export const getPost = async (slug: string, locale: Locale) => {
   if (!safeSlug.success) {
     throw redirect('/blog');
   }
-  return import(`./${slug}/${locale}.md`).then((module) => module.default as string);
+  const post = await import(`./${slug}/${locale}.md`).then((module) => module.default as string);
+  const html = marked(post);
+  return html;
 };
 
 export const getPostList = async (locale: Locale) => {
