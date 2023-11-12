@@ -1,3 +1,4 @@
+import { marked } from 'marked';
 import { Metadata } from 'next';
 import { Locale } from '../../dictionaries';
 import Markdown from './Markdown';
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 export default async function BlogPostPage({ params: { slug, lang } }: { params: Params }) {
-  const html = await getPost(slug, lang);
-
+  const post = await getPost(slug, lang);
+  const html = marked(post);
   return <Markdown html={html} />;
 }
