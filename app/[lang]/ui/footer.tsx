@@ -15,9 +15,6 @@ export const Footer = async ({ lang }: { lang: Locale }) => {
           <Link href={`/${t.locale}/blog`} className='text-primary'>
             {t.footer.blog}
           </Link>
-          <Link href={`/${t.locale}/pricing`} className='text-primary'>
-            {t.footer.pricing}
-          </Link>
         </div>
         <div className='flex flex-col flex-[2] sm:items-center items-center'>
           <div className='flex flex-col gap-2  sm:items-start items-center'>

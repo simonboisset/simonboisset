@@ -1,5 +1,5 @@
 import { Button } from '@/ui/button';
-import { CircleDollarSign, Code2, Newspaper } from 'lucide-react';
+import { Code2, Newspaper } from 'lucide-react';
 import Link from 'next/link';
 import { Locale, getDictionary } from '../dictionaries';
 import { LocalSelect } from './local-select';
@@ -18,12 +18,6 @@ export const Header = async ({ params, theme }: { params: { lang: Locale }; them
         <span className='sm:hidden'>SB</span>
       </Link>
       <div className='flex-1' />
-      <Button variant='ghost' asChild className='flex flex-row gap-4'>
-        <Link href={`/${params.lang}/pricing`} aria-label={t.footer.pricing}>
-          <CircleDollarSign />
-          <span className='hidden sm:inline'>{t.footer.pricing}</span>
-        </Link>
-      </Button>
       <Button variant='ghost' asChild className='flex flex-row gap-4'>
         <Link href={`/${params.lang}/blog`} aria-label={t.footer.blog}>
           <Newspaper />
