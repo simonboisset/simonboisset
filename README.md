@@ -12,7 +12,7 @@ I am a passionate full-stack freelance developer, with a good expertise in TypeS
 
 Currently freelancing, I work with companies for web and mobile applications.
 
---
+---
 
 Thank you for visiting my GitHub profile!
 
