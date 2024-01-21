@@ -4,9 +4,9 @@
 
 `Web` `Mobile` `TypeScript` `React` `React Native` `Remix` `Trpc`
 
-**👋 Hello there, fellow tech enthusiasts! Welcome to my GitHub profile! 🚀**
+**👋 Hello there! Welcome to my GitHub profile! 🚀**
 
-I am a passionate full-stack freelance developer, with a good expertise in TypeScript, React, and React Native.
+I am a full-stack freelance developer, with a good expertise in TypeScript, React, and React Native.
 
 ## 🏢 Freelance
 
