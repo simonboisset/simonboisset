@@ -10,6 +10,7 @@ export const postSlugs = [
   'share-react-native-monorepo',
   'publish-npm-library-with-esbuild',
   'create-react-app-with-esbuild',
+  'typed-api-call-guide',
 ] as const;
 export const postSlugSchema = z.enum(postSlugs);
 

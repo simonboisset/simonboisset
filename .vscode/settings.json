@@ -35,5 +35,11 @@
   },
   "editor.tabSize": 2,
   "files.eol": "\n",
-  "files.refactoring.autoSave": true
+  "files.refactoring.autoSave": true,
+  "[typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
+    }
+  }
 }
