@@ -6,6 +6,8 @@ Dans le monde du développement web, effectuer des appels API est une tâche quo
 
 ## Installation Simplifiée
 
+https://github.com/simonboisset/typed-api-call
+
 Commencer avec `typed-api-call` est un jeu d'enfant. Commencez par installer la bibliothèque avec npm :
 
 ```bash
