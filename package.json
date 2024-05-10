@@ -16,7 +16,7 @@
     "highlight.js": "^11.9.0",
     "lucide-react": "^0.288.0",
     "marked": "^9.1.2",
-    "next": "13.5.5",
+    "next": "14.1.1",
     "raw-loader": "^4.0.2",
     "react": "^18",
     "react-dom": "^18",
