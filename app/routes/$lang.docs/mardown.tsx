@@ -16,7 +16,7 @@ const Markdown = ({
 }) => {
   useEffect(() => {
     hydrateCopyButtonInCodeBlocks();
-  }, []);
+  });
 
   return (
     <div

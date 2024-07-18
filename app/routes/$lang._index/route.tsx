@@ -15,7 +15,7 @@ export default function Home() {
             {t((l) => l.home.title)}
           </h1>
           <p className="text-xl text-center">{t((l) => l.home.description)}</p>
-          <Button asChild className="flex flex-row gap-4">
+          <Button asChild className="flex flex-row gap-4" size="rounded">
             <Link to="mailto:simon@lezo.dev">
               <Mail />
               <span>{t((l) => l.home.contact_me)}</span>

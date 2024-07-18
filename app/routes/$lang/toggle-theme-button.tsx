@@ -15,7 +15,7 @@ export const ToggleThemeButton = () => {
     <Button
       variant="ghost"
       onClick={toggleTheme}
-      size="icon"
+      size="icon-rounded"
       className="transition-colors duration-500 ease-in-out"
     >
       {theme === "light" ? <Sun /> : <Moon />}

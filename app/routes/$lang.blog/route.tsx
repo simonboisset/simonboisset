@@ -18,7 +18,7 @@ export default function Docs() {
   const { lang } = useTranslation();
   return (
     <div className="flex flex-row gap-8">
-      <nav className="fixed top-0 bottom-0 w-1/4 items-center px-4 flex-col gap-2 border-r border-border py-32 hidden lg:flex">
+      <nav className="fixed overflow-y-scroll top-0 bottom-0 h-screen w-1/4 items-center px-4 flex-col gap-2 border-r border-border pt-32 pb-12 hidden lg:flex">
         {articlesList.map((article) => (
           <Button
             key={article.slug}
@@ -32,6 +32,11 @@ export default function Docs() {
               key={article.slug}
               className="w-full h-auto"
             >
+              <img
+                src={article.cover}
+                alt={article.title}
+                className="size-16 ml-2 my-2 rounded-md mr-6 object-cover"
+              />
               <span className="whitespace-normal">{article.title}</span>
             </Link>
           </Button>

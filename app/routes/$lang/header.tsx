@@ -9,7 +9,7 @@ export const Header = () => {
   const { t, lang } = useTranslation();
 
   return (
-    <header className="flex z-40 fixed top-0 left-0 right-0 justify-between items-center px-4 sm:gap-4 gap-2 h-16 bg-foreground/10 backdrop-blur-md">
+    <header className="mx-12 mt-6 rounded-full flex z-40 fixed top-0 left-0 right-0 justify-between items-center px-4 sm:gap-4 gap-2 h-16 bg-foreground/10 backdrop-blur-md">
       <Link
         to={`/${lang}`}
         className="sm:text-2xl text-xl font-bold flex flex-row items-center gap-4"
@@ -20,7 +20,12 @@ export const Header = () => {
         <span className="sm:hidden">SB</span>
       </Link>
       <div className="flex-1" />
-      <Button variant="ghost" asChild className="flex flex-row gap-4">
+      <Button
+        variant="ghost"
+        size="rounded"
+        asChild
+        className="flex flex-row gap-4"
+      >
         <Link to={`/${lang}/blog`} aria-label={t((l) => l.footer.blog)}>
           <Newspaper />
           <span className="hidden sm:inline">{t((l) => l.footer.blog)}</span>

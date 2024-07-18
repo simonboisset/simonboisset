@@ -25,7 +25,7 @@ export const DictionarySelect = ({ value }: { value: Language }) => {
 
   return (
     <Select value={value} onValueChange={onSelect}>
-      <SelectTrigger className="w-16 h-10">
+      <SelectTrigger className="w-16 h-10 rounded-full">
         <SelectValue>
           {localeOptions.find((locale) => locale.value === value)?.flag}
         </SelectValue>
