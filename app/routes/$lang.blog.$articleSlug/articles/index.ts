@@ -2,12 +2,14 @@ import { parse } from "date-fns";
 import { convert } from "html-to-text";
 import { renderToString } from "react-dom/server";
 import { z } from "zod";
+import { Language } from "~/domains/i18n";
 import createReactAppWithEsbuild from "./create-react-app-with-esbuild";
 import nextStaticBlogTailwind from "./next-static-blog-tailwind";
 import publishNpmLibraryWithEsbuild from "./publish-npm-library-with-esbuild";
 import sharePackagesMonorepo from "./share-packages-monorepo";
 import shareReactNativeMonorepo from "./share-react-native-monorepo";
 import typedApiCallGuide from "./typed-api-call-guide";
+
 export const articles = {
   "create-react-app-with-esbuild": createReactAppWithEsbuild,
   "next-static-blog-tailwind": nextStaticBlogTailwind,
@@ -41,4 +43,20 @@ export const extractArticleInfosfromMd = (component: any) => {
 
   const config = mdConfigSchema.parse({ title, description, cover, date });
   return config;
+};
+
+export const getArticlesSortedByDate = (lang: Language) => {
+  const articlesList = [];
+
+  for (const key in articles) {
+    if (Object.hasOwnProperty.call(articles, key)) {
+      const article = articles[key as ArticleKey];
+      const Article = article[lang];
+      const config = extractArticleInfosfromMd(Article);
+      articlesList.push({ ...config, slug: key });
+    }
+  }
+
+  articlesList.sort((a, b) => b.date.getTime() - a.date.getTime());
+  return articlesList;
 };

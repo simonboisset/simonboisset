@@ -2,28 +2,12 @@ import { LoaderFunctionArgs } from "@remix-run/node";
 import { Link, Outlet, useLoaderData, useParams } from "@remix-run/react";
 import { getSafeLanguage } from "~/domains/i18n";
 import { Button } from "~/ui/button";
-import {
-  ArticleKey,
-  articles,
-  extractArticleInfosfromMd,
-} from "../$lang.blog.$articleSlug/articles";
+import { getArticlesSortedByDate } from "../$lang.blog.$articleSlug/articles";
 import { useTranslation } from "../$lang/route";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const lang = getSafeLanguage(params.lang);
-
-  const articlesList = [];
-
-  for (const key in articles) {
-    if (Object.hasOwnProperty.call(articles, key)) {
-      const article = articles[key as ArticleKey];
-      const Article = article[lang];
-      const config = extractArticleInfosfromMd(Article);
-      articlesList.push({ ...config, slug: key });
-    }
-  }
-
-  articlesList.sort((a, b) => b.date.getTime() - a.date.getTime());
+  const articlesList = getArticlesSortedByDate(lang);
 
   return { articlesList };
 };

@@ -1,0 +1,9 @@
+User-agent: Googlebot
+
+User-agent: *
+Disallow: /fr/docs/privacy
+Disallow: /fr/docs/legal
+Disallow: /en/docs/privacy
+Disallow: /en/docs/legal
+Allow: /
+Sitemap: https://www.simonboisset.com/sitemap.xml
