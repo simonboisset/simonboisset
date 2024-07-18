@@ -18,7 +18,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=8080
 COPY --from=installer /app/build/ ./build
-COPY --from=depender /app/node_modules/ ./node_modules
-COPY --from=depender /app/package.json ./package.json
+COPY --from=installer /app/node_modules/ ./node_modules
+COPY --from=installer /app/package.json ./package.json
 
 CMD ["pnpm", "start"]
