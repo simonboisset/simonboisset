@@ -2,6 +2,7 @@ import {
   ActionFunctionArgs,
   json,
   LoaderFunctionArgs,
+  MetaFunction,
   redirect,
 } from "@remix-run/node";
 import { Outlet, useLoaderData } from "@remix-run/react";
@@ -58,6 +59,15 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   const urlWithoutHost = request.url.split("/").slice(3);
 
   throw redirect(`/${locale}/${urlWithoutHost.join("/")}`, { status: 301 });
+};
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data) return [];
+  const t = createTranslator(data.translations);
+  return [
+    { title: `Simon Boisset |  ${t((l) => l.home.title)}` },
+    { name: "description", content: t((l) => l.home.description) },
+  ];
 };
 
 export const useTheme = () => {

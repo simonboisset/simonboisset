@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -19,17 +19,6 @@ export const loader = async (args: LoaderFunctionArgs) => {
   }
 
   return {};
-};
-
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: "Simon Boisset - Software Engineer" },
-    {
-      name: "description",
-      content:
-        "I'm a software engineer. Expert in React, TypeScript and Node.js.",
-    },
-  ];
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
