@@ -1,5 +1,7 @@
 # i18n: The Type-Safe Approach
 
+![Internationalization](https://lezo-files.s3.fr-par.scw.cloud/simon-blog/esbuild-npm.webp)
+
 > 19/07/2024
 
 Internationalization (i18n) is a crucial aspect of modern web development. This article explores how to implement a type-safe i18n solution using the typed-locale library in a React application.

@@ -30,14 +30,14 @@ export default function Docs() {
             <Link
               to={`/${lang}/blog/${article.slug}`}
               key={article.slug}
-              className="w-full h-auto"
+              className="w-full h-auto flex flex-row"
             >
               <img
                 src={article.cover}
                 alt={article.title}
                 className="size-16 ml-2 my-2 rounded-md mr-6 object-cover"
               />
-              <span className="whitespace-normal">{article.title}</span>
+              <span className="flex-1 whitespace-normal">{article.title}</span>
             </Link>
           </Button>
         ))}

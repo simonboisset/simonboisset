@@ -1,5 +1,7 @@
 # i18n : L'approche typée
 
+![Internationalisation (i18n)](https://lezo-files.s3.fr-par.scw.cloud/simon-blog/esbuild-npm.webp)
+
 > 19/07/2024
 
 L'internationalisation (i18n) est un aspect crucial du développement web moderne. Cet article explore comment implémenter une solution i18n typée en utilisant la bibliothèque typed-locale dans une application React.

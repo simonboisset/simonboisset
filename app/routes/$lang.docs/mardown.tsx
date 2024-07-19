@@ -1,5 +1,4 @@
 import hljs from "highlight.js";
-import { convert } from "html-to-text";
 import { Check, Copy } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
@@ -53,7 +52,7 @@ const CodeBlock = ({ code, language }: CodeBlockProps) => {
   };
   const lang = hljs.getLanguage(language) ? language : "plaintext";
 
-  const formatedCode = convert(code);
+  const formatedCode = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 
   const codeHtml = hljs.highlight(formatedCode, { language: lang }).value;
 
