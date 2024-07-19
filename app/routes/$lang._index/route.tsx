@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 import { Mail } from "lucide-react";
+import { AppLaunchIcon } from "~/icons/app-launch";
 import { Button } from "~/ui/button";
 import { Footer } from "../$lang/footer";
 import { useTranslation } from "../$lang/route";
@@ -9,7 +10,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col gap-4 w-full max-w-screen-lg mx-auto mt-52 px-12">
+      <div className="flex flex-col gap-4 w-full max-w-screen-lg mx-auto mt-24 px-12">
+        <AppLaunchIcon className="h-80 w-full" />
         <div className="flex flex-col gap-12 items-center">
           <h1 className="text-4xl font-black text-center">
             {t((l) => l.home.title)}

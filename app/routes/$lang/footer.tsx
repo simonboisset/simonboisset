@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, PaintBucket, Twitter } from "lucide-react";
 
 import { Link } from "@remix-run/react";
 import { useTranslation } from "./route";
@@ -6,7 +6,7 @@ import { useTranslation } from "./route";
 export const Footer = () => {
   const { t } = useTranslation();
   return (
-    <footer className="w-full p-4 mt-12 bg-gradient-to-t from-foreground/25 to-transparent pt-24">
+    <footer className="w-full p-4 mt-12 bg-gradient-to-t from-primary/25 to-transparent pt-24">
       <div className="flex sm:flex-row gap-8 flex-col justify-between items-center sm:items-start w-full max-w-screen-lg mx-auto">
         <div className="flex flex-col gap-2 flex-[2] sm:items-start items-center">
           <span className="text-lg font-bold">{t((l) => l.footer.site)}</span>
@@ -39,6 +39,13 @@ export const Footer = () => {
             <span className="text-lg font-bold">
               {t((l) => l.footer.links)}
             </span>
+            <Link
+              to="https://popsy.co/"
+              className="text-primary flex flex-row items-center gap-2"
+            >
+              <PaintBucket className="w-4 h-4" />
+              <span>Illustrations by Popsy</span>
+            </Link>
             <Link
               to="https://www.linkedin.com/in/simon-boisset-733445138/"
               className="text-primary flex flex-row items-center gap-2"

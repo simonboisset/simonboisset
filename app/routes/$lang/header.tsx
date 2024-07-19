@@ -1,5 +1,7 @@
 import { Link } from "@remix-run/react";
-import { Code2, Newspaper } from "lucide-react";
+import { Newspaper, PaintBucket } from "lucide-react";
+import { ManAvatarIcon } from "~/icons/man-avatar";
+import { Badge } from "~/ui/badge";
 import { Button } from "~/ui/button";
 import { DictionarySelect } from "./dictionary-select";
 import { useTranslation } from "./route";
@@ -9,15 +11,22 @@ export const Header = () => {
   const { t, lang } = useTranslation();
 
   return (
-    <header className="mx-12 mt-6 rounded-full flex z-40 fixed top-0 left-0 right-0 justify-between items-center px-4 sm:gap-4 gap-2 h-16 bg-foreground/10 backdrop-blur-md">
+    <header className="mx-12 mt-6 rounded-full flex z-40 fixed top-0 left-0 right-0 justify-between items-center px-4 sm:gap-4 gap-2 h-16 bg-primary/10 backdrop-blur-md">
       <Link
         to={`/${lang}`}
         className="sm:text-2xl text-xl font-bold flex flex-row items-center gap-4"
         aria-label="Simon Boisset"
       >
-        <Code2 className="sm:w-8 sm:h-8 w-6 h-6" />
+        <ManAvatarIcon className="sm:size-12 size-6" />
         <span className="hidden sm:inline">Simon Boisset</span>
         <span className="sm:hidden">SB</span>
+      </Link>
+
+      <Link to="https://popsy.co/" className="hidden sm:inline">
+        <Badge variant="secondary">
+          <PaintBucket className="w-4 h-4 mr-2" />
+          <span>Illustrations by Popsy</span>
+        </Badge>
       </Link>
       <div className="flex-1" />
       <Button
