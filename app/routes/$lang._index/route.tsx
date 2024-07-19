@@ -4,10 +4,69 @@ import { AppLaunchIcon } from "~/icons/app-launch";
 import { Button } from "~/ui/button";
 import { Footer } from "../$lang/footer";
 import { useTranslation } from "../$lang/route";
+import ProjectsList from "./project-list";
 
 export default function Home() {
   const { t } = useTranslation();
-
+  const projects = [
+    {
+      title: t((l) => l.home.silbo),
+      description: t((l) => l.home.silbo_description),
+      image: "https://lezo-files.s3.fr-par.scw.cloud/simon-blog/silbo.webp",
+      href: "https://silbo.com/fr/",
+      tags: [
+        "React",
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+      ],
+    },
+    {
+      title: t((l) => l.home.linote),
+      description: t((l) => l.home.linote_description),
+      image: "https://lezo-files.s3.fr-par.scw.cloud/simon-blog/linote.webp",
+      href: "https://linote.fr/",
+      tags: ["React Native", "Expo", "TypeScript"],
+    },
+    {
+      title: t((l) => l.home.mon_pont_chaban),
+      description: t((l) => l.home.mon_pont_chaban_description),
+      image: "https://lezo-files.s3.fr-par.scw.cloud/simon-blog/chaban.webp",
+      href: "https://pont-chaban-delmas.com/",
+      tags: [
+        "React",
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Node.js",
+        "Remix",
+        "Prisma",
+        "Trpc",
+        "Turborepo",
+      ],
+    },
+    {
+      title: t((l) => l.home.questovery),
+      description: t((l) => l.home.questovery_description),
+      image:
+        "https://lezo-files.s3.fr-par.scw.cloud/simon-blog/questovery.webp",
+      href: "https://www.questovery.com/",
+      tags: [
+        "React",
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Node.js",
+        "Remix",
+        "Prisma",
+        "Trpc",
+        "Turborepo",
+      ],
+    },
+  ];
   return (
     <>
       <div className="flex flex-col gap-4 w-full max-w-screen-lg mx-auto mt-24 px-12">
@@ -30,72 +89,10 @@ export default function Home() {
           <p className="text-lg text-center">
             {t((l) => l.home.achievements_description)}
           </p>
-          <section className="gap-12 grid sm:grid-cols-3 grid-cols-1">
-            <AchievementCard
-              title={t((l) => l.home.silbo)}
-              description={t((l) => l.home.silbo_description)}
-              image="https://lezo-files.s3.fr-par.scw.cloud/simon-blog/silbo.webp"
-              link="https://silbo.com/fr/"
-            />
-            <AchievementCard
-              title={t((l) => l.home.linote)}
-              description={t((l) => l.home.linote_description)}
-              image="https://lezo-files.s3.fr-par.scw.cloud/simon-blog/linote.webp"
-              link="https://linote.fr/"
-            />
-            <AchievementCard
-              title={t((l) => l.home.mon_pont_chaban)}
-              description={t((l) => l.home.mon_pont_chaban_description)}
-              image="https://lezo-files.s3.fr-par.scw.cloud/simon-blog/chaban.webp"
-              link="https://pont-chaban-delmas.com/"
-            />
-            <AchievementCard
-              title={t((l) => l.home.atypique_radio)}
-              description={t((l) => l.home.atypique_radio_description)}
-              image="https://lezo-files.s3.fr-par.scw.cloud/simon-blog/atypique.webp"
-              link="https://www.atypiqueradio.fr/"
-            />
-            <AchievementCard
-              title={t((l) => l.home.questovery)}
-              description={t((l) => l.home.questovery_description)}
-              image="https://lezo-files.s3.fr-par.scw.cloud/simon-blog/questovery.webp"
-              link="https://www.questovery.com/"
-            />
-          </section>
+          <ProjectsList projects={projects} />
         </div>
       </div>
       <Footer />
     </>
   );
 }
-
-const AchievementCard = ({
-  title,
-  description,
-  image,
-  link,
-}: {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-}) => {
-  return (
-    <Link
-      className="flex flex-col gap-4 items-center bg-primary/10 hover:bg-primary/20 transition-colors cursor-pointer shadow-lg rounded-xl overflow-hidden"
-      to={link}
-    >
-      <img
-        className="w-full h-52 object-cover"
-        src={image}
-        width={200}
-        height={200}
-        alt={title}
-      />
-      <div className="flex flex-col gap-2 items-center p-4">
-        <span className="text-lg font-bold">{title}</span>
-        <span className="text-sm text-justify">{description}</span>
-      </div>
-    </Link>
-  );
-};
