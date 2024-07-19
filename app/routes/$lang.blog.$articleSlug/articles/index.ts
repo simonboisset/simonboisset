@@ -4,6 +4,7 @@ import { renderToString } from "react-dom/server";
 import { z } from "zod";
 import { Language } from "~/domains/i18n";
 import createReactAppWithEsbuild from "./create-react-app-with-esbuild";
+import i18nTypeSafeApproach from "./i18n-type-safe-approach";
 import nextStaticBlogTailwind from "./next-static-blog-tailwind";
 import publishNpmLibraryWithEsbuild from "./publish-npm-library-with-esbuild";
 import sharePackagesMonorepo from "./share-packages-monorepo";
@@ -17,6 +18,7 @@ export const articles = {
   "share-packages-monorepo": sharePackagesMonorepo,
   "share-react-native-monorepo": shareReactNativeMonorepo,
   "typed-api-call-guide": typedApiCallGuide,
+  "i18n-type-safe-approach": i18nTypeSafeApproach,
 };
 export type ArticleKey = keyof typeof articles;
 
