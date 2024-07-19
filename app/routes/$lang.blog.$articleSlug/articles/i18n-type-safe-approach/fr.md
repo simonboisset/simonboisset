@@ -1,4 +1,4 @@
-# i18n : L'approche typée
+# Sauver mon i18n en le typant
 
 ![Internationalisation (i18n)](https://lezo-files.s3.fr-par.scw.cloud/simon-blog/esbuild-npm.webp)
 
