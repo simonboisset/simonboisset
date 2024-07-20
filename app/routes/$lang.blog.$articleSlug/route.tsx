@@ -9,6 +9,9 @@ import {
   articlesKeys,
   extractArticleInfosfromMd,
 } from "./articles";
+import "./gh-md.css";
+import "./hljs.css";
+// import copyCodeScript from "./btn-md.js";
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const articleSlug = articleKeySchema.safeParse(params.articleSlug).data;

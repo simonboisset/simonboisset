@@ -1,17 +1,15 @@
-import hljs from "highlight.js";
 import { Check, Copy } from "lucide-react";
-import { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Button } from "~/ui/button";
 import { cn } from "~/ui/utils";
-import "./hljs.css";
 
 const Markdown = ({
   html,
   children,
 }: {
   html?: string;
-  children: ReactNode;
+  children?: React.ReactNode;
 }) => {
   useEffect(() => {
     hydrateCopyButtonInCodeBlocks();
@@ -19,17 +17,9 @@ const Markdown = ({
 
   return (
     <div
-      className={cn(
-        "prose mx-auto prose-p:text-justify prose-a:underline prose-a:font-bold",
-        "prose-img:rounded-lg prose-img:shadow-lg prose-img:object-cover prose-img:p-0",
-        "prose-headings:text-primary prose-p:text-primary my-24",
-        "prose-li:text-primary prose-a:text-primary prose-li:marker:text-primary",
-        "w-full max-w-screen-lg mx-auto px-12 prose-pre:p-0 prose-pre:rounded-xl",
-        "prose-pre:border prose-pre:border-primary-foreground/30 prose-pre:relative",
-        "prose-code:text-primary/80 prose-code:bg-foreground/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-[4px]"
-      )}
-      dangerouslySetInnerHTML={html ? { __html: html } : undefined}
+      className={cn("w-full max-w-screen-lg mx-auto px-12 py-16 markdown-body")}
     >
+      {!!html && <div dangerouslySetInnerHTML={{ __html: html }} />}
       {children}
     </div>
   );
@@ -37,9 +27,9 @@ const Markdown = ({
 
 type CodeBlockProps = {
   code: string;
-  language: string;
+  className?: string;
 };
-const CodeBlock = ({ code, language }: CodeBlockProps) => {
+const CodeBlock = ({ code, className }: CodeBlockProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const copy = () => {
     setIsCopied(true);
@@ -48,19 +38,18 @@ const CodeBlock = ({ code, language }: CodeBlockProps) => {
       setIsCopied(false);
     }, 5000);
 
-    navigator.clipboard.writeText(code);
+    const text = getTextFromHtmlCodeBlock(code);
+
+    if (!text) return;
+
+    navigator.clipboard.writeText(text);
   };
-  const lang = hljs.getLanguage(language) ? language : "plaintext";
-
-  const formatedCode = code.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-
-  const codeHtml = hljs.highlight(formatedCode, { language: lang }).value;
 
   return (
-    <>
+    <div className="relative">
       <Button
         onClick={copy}
-        className={cn("absolute right-1 top-1")}
+        className={cn("absolute right-0 top-0")}
         variant="ghost"
         size="icon"
       >
@@ -70,26 +59,42 @@ const CodeBlock = ({ code, language }: CodeBlockProps) => {
           <Copy className="h-4 w-4" />
         )}
       </Button>
-      <code
-        className={`hljs language-${lang}`}
-        dangerouslySetInnerHTML={{ __html: codeHtml }}
-      />
-    </>
+      <code className={className} dangerouslySetInnerHTML={{ __html: code }} />
+    </div>
   );
 };
 
-const hydrateCopyButtonInCodeBlocks = async () => {
+const hydrateCopyButtonInCodeBlocks = () => {
   const codeBlocks = document.querySelectorAll("pre > code");
   codeBlocks.forEach((block) => {
-    if (!block.parentElement) {
-      return;
-    }
-    const root = createRoot(block.parentElement);
-    const code = block.innerHTML;
-    const lang = block.className.replace("language-", "");
+    if (!block.parentElement) return;
 
-    root.render(<CodeBlock code={code} language={lang} />);
+    const container = block.parentElement;
+
+    // Vérifier si un root React existe déjà
+    if (!container.dataset.reactRoot) {
+      const root = createRoot(container);
+      container.dataset.reactRoot = "true";
+
+      const code = block.innerHTML;
+      root.render(
+        <React.Fragment>
+          <CodeBlock code={code} className={block.className} />
+          {/* Préserver le contenu original pour les lecteurs d'écran et le SEO */}
+          <code
+            style={{ display: "none" }}
+            dangerouslySetInnerHTML={{ __html: code }}
+          />
+        </React.Fragment>
+      );
+    }
   });
 };
 
 export default Markdown;
+
+const getTextFromHtmlCodeBlock = (code: string) => {
+  const div = document.createElement("div");
+  div.innerHTML = code;
+  return div.textContent;
+};

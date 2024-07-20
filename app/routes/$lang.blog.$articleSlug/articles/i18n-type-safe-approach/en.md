@@ -32,35 +32,35 @@ Create a new file called `translations.ts` in the `src` folder:
 
 ```typescript
 // src/translations.ts
-import { InferTranslation, plural } from 'typed-locale';
+import { InferTranslation, plural } from "typed-locale";
 
 export const en = {
-  greeting: 'Hello, {{name}}!',
+  greeting: "Hello, {{name}}!",
   itemCount: plural({
-    none: 'You have no items.',
-    one: 'You have one item.',
-    other: 'You have {{count}} items.',
+    none: "You have no items.",
+    one: "You have one item.",
+    other: "You have {{count}} items.",
   }),
   nav: {
-    home: 'Home',
-    about: 'About',
-    contact: 'Contact',
+    home: "Home",
+    about: "About",
+    contact: "Contact",
   },
 } as const;
 
 export type Translation = InferTranslation<typeof en>;
 
 export const fr: Translation = {
-  greeting: 'Bonjour, {{name}} !',
+  greeting: "Bonjour, {{name}} !",
   itemCount: plural({
-    none: 'Vous n'avez aucun article.',
-    one: 'Vous avez un article.',
-    other: 'Vous avez {{count}} articles.',
+    none: "Vous n'avez aucun article.",
+    one: "Vous avez un article.",
+    other: "Vous avez {{count}} articles.",
   }),
   nav: {
-    home: 'Accueil',
-    about: 'À propos',
-    contact: 'Contact',
+    home: "Accueil",
+    about: "À propos",
+    contact: "Contact",
   },
 };
 ```
