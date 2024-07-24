@@ -19,21 +19,8 @@ export const loader = async () => {
               <changefreq>daily</changefreq>
               <priority>1.0</priority>
             </url>
-            ${articlesList.map(
-              ({ slug, date }) => `
-            <url>
-              <loc>https://www.simonboisset.com/en/blog/${slug}</loc>
-              <lastmod>${date}</lastmod>
-              <changefreq>monthly</changefreq>
-              <priority>0.7</priority>
-            </url>
-            <url>
-              <loc>https://www.simonboisset.com/fr/blog/${slug}</loc>
-              <lastmod>${date}</lastmod>
-              <changefreq>monthly</changefreq>
-              <priority>0.7</priority>
-            </url>
-            `
+            ${articlesList.map(({ slug, date }) =>
+              getArticleSiteMap(slug, date)
             )}
           </urlset>
       `;
@@ -46,4 +33,22 @@ export const loader = async () => {
       encoding: "UTF-8",
     },
   });
+};
+
+const getArticleSiteMap = (slug: string, date: Date) => {
+  const dateFormated = format(date, "yyyy-MM-dd");
+  return `
+  <url>
+    <loc>https://www.simonboisset.com/en/blog/${slug}</loc>
+    <lastmod>${dateFormated}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.simonboisset.com/fr/blog/${slug}</loc>
+    <lastmod>${dateFormated}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `;
 };
