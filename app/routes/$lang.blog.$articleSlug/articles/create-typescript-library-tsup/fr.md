@@ -23,13 +23,12 @@ Cette commande crée un fichier `package.json` de base. Nous le modifierons plus
 Installons TypeScript et les outils nécessaires pour notre projet :
 
 ```bash
-npm install --save-dev typescript tsup vitest @types/node
+npm install --save-dev typescript tsup vitest
 ```
 
 - `typescript` : Le compilateur TypeScript
 - `tsup` : Un outil de build pour TypeScript
 - `vitest` : Un framework de test rapide
-- `@types/node` : Les types TypeScript pour Node.js
 
 ## Étape 3 : Configuration de TypeScript
 

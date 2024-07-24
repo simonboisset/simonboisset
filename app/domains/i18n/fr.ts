@@ -29,6 +29,7 @@ export const fr: Translation = {
     questovery_description: `Questovery est une application pour créer des jeux de pistes. Créez et partagez vos jeux de piste avec vos amis.`,
     vaerdi: "Vaerdi",
     vaerdi_description: `Vaerdi est une société de conseil en en gestion de patrimoine.`,
+    book_a_call: "Prendre un rendez-vous",
   },
   pricing: {
     title: "Tarifs",
@@ -93,5 +94,11 @@ export const fr: Translation = {
     authoriseGoogleAnalyticsToSaveAdvertisingInformationToOfferYouPersonalisedAds:
       "Autoriser Google Analytics à enregistrer des informations publicitaires pour vous proposer des publicités personnalisées.",
     seeDetails: "Voir les détails",
+  },
+  cta: {
+    heyImSimon:
+      "👋 Hey, je suis Simon, Freelance Full Stack Developer. Je construis des applications web et mobiles.",
+    iCanHelpYou:
+      "Si vous avez un projet en cours, je peux vous aider à construire votre MVP et à faire évoluer votre produit.",
   },
 };

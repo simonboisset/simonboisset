@@ -37,6 +37,7 @@ export const en = {
     questovery: "Questovery",
     questovery_description:
       "Questovery is an app to create treasure hunts. Create and share your treasure hunts with your friends.",
+    book_a_call: "Book a call",
   },
   pricing: {
     title: "Pricing",
@@ -99,6 +100,12 @@ export const en = {
     denyAll: "Deny all",
     save: "Save",
     seeDetails: "See details",
+  },
+  cta: {
+    heyImSimon:
+      "👋 Hey, I'm Simon, I'm a freelance full stack developer. I build web apps and mobile apps.",
+    iCanHelpYou:
+      "📱 If you are building a product like a web app or a mobile app, I can help you to build it.",
   },
 };
 

@@ -1,7 +1,5 @@
-import { Link } from "@remix-run/react";
-import { Mail } from "lucide-react";
+import { ReservationBadge } from "~/domains/core/book-a-meet";
 import { AppLaunchIcon } from "~/icons/app-launch";
-import { Button } from "~/ui/button";
 import { Footer } from "../$lang/footer";
 import { useTranslation } from "../$lang/route";
 import ProjectsList from "./project-list";
@@ -76,12 +74,9 @@ export default function Home() {
             {t((l) => l.home.title)}
           </h1>
           <p className="text-xl text-center">{t((l) => l.home.description)}</p>
-          <Button asChild className="flex flex-row gap-4" size="rounded">
-            <Link to="mailto:simon@lezo.dev">
-              <Mail />
-              <span>{t((l) => l.home.contact_me)}</span>
-            </Link>
-          </Button>
+          <div className="flex flex-row gap-4">
+            <ReservationBadge />
+          </div>
           <div className="mt-24 h-px w-full max-w-sm bg-foreground/30" />
           <h1 className=" text-3xl font-bold text-center">
             {t((l) => l.home.achievements)}
