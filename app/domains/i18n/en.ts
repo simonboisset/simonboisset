@@ -38,6 +38,9 @@ export const en = {
     questovery_description:
       "Questovery is an app to create treasure hunts. Create and share your treasure hunts with your friends.",
     book_a_call: "Book a call",
+    camping_car_park: "Camping Car Park",
+    camping_car_park_description:
+      "Camping Car Park is the first network of motorhome parking areas in Europe.",
   },
   pricing: {
     title: "Pricing",

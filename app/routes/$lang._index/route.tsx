@@ -47,6 +47,14 @@ export default function Home() {
       ],
     },
     {
+      title: t((l) => l.home.camping_car_park),
+      description: t((l) => l.home.camping_car_park_description),
+      image:
+        "https://lezo-files.s3.eu-west-3.amazonaws.com/media/camping-car-park.png",
+      href: "https://www.campingcarpark.com",
+      tags: ["Mobile", "React Native", "Expo", "TypeScript"],
+    },
+    {
       title: t((l) => l.home.questovery),
       description: t((l) => l.home.questovery_description),
       image:

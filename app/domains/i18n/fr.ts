@@ -30,6 +30,8 @@ export const fr: Translation = {
     vaerdi: "Vaerdi",
     vaerdi_description: `Vaerdi est une société de conseil en en gestion de patrimoine.`,
     book_a_call: "Prendre un rendez-vous",
+    camping_car_park: "Camping Car Park",
+    camping_car_park_description: `Camping Car Park est le premier réseau d'aires de stationnement pour camping-cars en Europe.`,
   },
   pricing: {
     title: "Tarifs",
