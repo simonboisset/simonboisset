@@ -10,7 +10,7 @@ export const Header = () => {
   const { t, lang } = useTranslation();
 
   return (
-    <header className="mx-12 mt-6 rounded-full flex z-40 fixed top-0 left-0 right-0 justify-between items-center px-4 sm:gap-4 gap-2 h-16 bg-primary/10 backdrop-blur-md">
+    <header className="mx-12 mt-6 rounded-full flex z-40 fixed top-0 left-0 right-0 justify-between items-center pl-2 pr-4 sm:gap-4 gap-2 h-16 bg-primary/10 backdrop-blur-md">
       <Link
         to={`/${lang}`}
         className="sm:text-2xl text-xl font-bold flex flex-row items-center gap-4"
