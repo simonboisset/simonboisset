@@ -1,6 +1,5 @@
 import { Link } from "@remix-run/react";
 import { Newspaper, PaintBucket } from "lucide-react";
-import { ManAvatarIcon } from "~/icons/man-avatar";
 import { Badge } from "~/ui/badge";
 import { Button } from "~/ui/button";
 import { DictionarySelect } from "./dictionary-select";
@@ -17,7 +16,10 @@ export const Header = () => {
         className="sm:text-2xl text-xl font-bold flex flex-row items-center gap-4"
         aria-label="Simon Boisset"
       >
-        <ManAvatarIcon className="sm:size-12 size-6" />
+        <img
+          className="sm:size-12 size-6 rounded-full object-cover"
+          src="https://avatars.githubusercontent.com/u/30298797?s=400&u=969434330e65f4c4eff90da6f18194c00cdcc6c6&v=4"
+        />
         <span className="hidden sm:inline">Simon Boisset</span>
         <span className="sm:hidden">SB</span>
       </Link>
