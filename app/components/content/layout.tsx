@@ -1,12 +1,14 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { SerializeFrom } from "@remix-run/node";
 import { Link, useParams } from "@remix-run/react";
+import { PaintBucket } from "lucide-react";
 import { LinkTree } from "~/contents/blog/blog.server";
 import { useTranslation } from "~/contents/i18n/translator";
 import { GITHUB_URL } from "~/contents/navigation/domain";
 import { getAppUrl } from "~/contents/navigation/get-url";
 import { useAppConfig } from "~/routes/($lang)";
 import { DesktopSidebar, MobileSidebar } from "../content/sidebar";
+import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { LanguageSelect } from "./language-select";
 
@@ -46,6 +48,12 @@ export const Header = ({
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-4">
         <MobileSidebar linksTree={linksTree} />
         <Logo />
+        <Link to="https://popsy.co/" className="hidden sm:inline">
+          <Badge variant="secondary">
+            <PaintBucket className="w-4 h-4 mr-2" />
+            <span>Illustrations by Popsy</span>
+          </Badge>
+        </Link>
         <div className="hidden md:flex items-center gap-4 ml-20 flex-1">
           <Link
             className="hover:text-primary font-semibold"
