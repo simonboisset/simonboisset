@@ -1,27 +1,15 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Links,
   Meta,
   Outlet,
-  redirect,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { useUmami } from "./hooks/use-umami";
 import "./tailwind.css";
 
-export const loader = async (args: LoaderFunctionArgs) => {
-  const domain = args.request.headers.get("host") || "";
-  if (domain === "simonboisset.com") {
-    const urlWithoutHost = args.request.url.split("/").slice(3);
-    throw redirect(`https://www.simonboisset.com/${urlWithoutHost.join("/")}`, {
-      status: 301,
-    });
-  }
-
-  return {};
-};
-
 export function Layout({ children }: { children: React.ReactNode }) {
+  useUmami();
   return (
     <html lang="en">
       <head>
@@ -30,7 +18,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-background">
         {children}
         <ScrollRestoration />
         <Scripts />
