@@ -16,7 +16,7 @@ RUN pnpm i --prod
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=3000
 COPY --from=installer /app/build/ ./build
 COPY --from=installer /app/node_modules/ ./node_modules
 COPY --from=installer /app/package.json ./package.json
