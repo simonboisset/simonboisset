@@ -1,8 +1,8 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { redirect, useLoaderData } from "@remix-run/react";
 import { ArticleContent, processedContent } from "~/components/content/article";
-import { getBlogContent, requireBlogPost } from "~/contents/blog/blog.server";
-import { DEFAULT_LANGUAGE } from "~/contents/i18n/translator";
+import { getBlogPost, getBlogPosts } from "~/lib/source";
+import { DEFAULT_LANGUAGE, languageSchema, type Language } from "~/contents/i18n/translator";
 import { getAppUrl } from "~/contents/navigation/get-url";
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -13,7 +13,16 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const { posts, lang } = requireBlogPost(params);
+  const { lang: rawLang } = params;
+  const { success: successLang, data: validLanguage } =
+    languageSchema.safeParse(rawLang || DEFAULT_LANGUAGE);
+
+  const mustRedirect = rawLang === DEFAULT_LANGUAGE || !successLang;
+  const lang = validLanguage || DEFAULT_LANGUAGE;
+
+  if (mustRedirect) {
+    throw redirect(getAppUrl({ type: "blog", lang, DEFAULT_LANGUAGE }));
+  }
 
   const slug = params.slug;
 
@@ -21,14 +30,29 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     throw redirect(getAppUrl({ type: "blog", lang, DEFAULT_LANGUAGE }));
   }
 
-  const doc = getBlogContent(slug, lang)?.content;
-  if (!doc) {
+  const post = getBlogPost(slug, lang as Language);
+  if (!post) {
     throw redirect(getAppUrl({ type: "blog", lang, DEFAULT_LANGUAGE }));
   }
-  const nextArticle = posts[posts.findIndex((post) => post.slug === slug) + 1];
-  const previousArticle =
-    posts[posts.findIndex((post) => post.slug === slug) - 1];
-  const content = await processedContent(doc);
+
+  const allPosts = getBlogPosts(lang as Language);
+  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+  const nextArticle = allPosts[currentIndex + 1]
+    ? {
+        href: allPosts[currentIndex + 1].url,
+        title: allPosts[currentIndex + 1].title,
+        slug: allPosts[currentIndex + 1].slug,
+      }
+    : undefined;
+  const previousArticle = allPosts[currentIndex - 1]
+    ? {
+        href: allPosts[currentIndex - 1].url,
+        title: allPosts[currentIndex - 1].title,
+        slug: allPosts[currentIndex - 1].slug,
+      }
+    : undefined;
+
+  const content = await processedContent(post.body);
 
   return {
     ...content,
