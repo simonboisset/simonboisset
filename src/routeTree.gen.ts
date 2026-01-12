@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as ServicesReactNativeLegacyToExpoRouteImport } from './routes/services/react-native-legacy-to-expo'
+import { Route as ServicesExpoWorkflowOptimizationRouteImport } from './routes/services/expo-workflow-optimization'
+import { Route as DocsLegalRouteImport } from './routes/docs/legal'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +26,23 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesReactNativeLegacyToExpoRoute =
+  ServicesReactNativeLegacyToExpoRouteImport.update({
+    id: '/services/react-native-legacy-to-expo',
+    path: '/services/react-native-legacy-to-expo',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesExpoWorkflowOptimizationRoute =
+  ServicesExpoWorkflowOptimizationRouteImport.update({
+    id: '/services/expo-workflow-optimization',
+    path: '/services/expo-workflow-optimization',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocsLegalRoute = DocsLegalRouteImport.update({
+  id: '/docs/legal',
+  path: '/docs/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/blog/$slug',
   path: '/blog/$slug',
@@ -32,30 +52,61 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/docs/legal': typeof DocsLegalRoute
+  '/services/expo-workflow-optimization': typeof ServicesExpoWorkflowOptimizationRoute
+  '/services/react-native-legacy-to-expo': typeof ServicesReactNativeLegacyToExpoRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/docs/legal': typeof DocsLegalRoute
+  '/services/expo-workflow-optimization': typeof ServicesExpoWorkflowOptimizationRoute
+  '/services/react-native-legacy-to-expo': typeof ServicesReactNativeLegacyToExpoRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/docs/legal': typeof DocsLegalRoute
+  '/services/expo-workflow-optimization': typeof ServicesExpoWorkflowOptimizationRoute
+  '/services/react-native-legacy-to-expo': typeof ServicesReactNativeLegacyToExpoRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog/$slug' | '/blog'
+  fullPaths:
+    | '/'
+    | '/blog/$slug'
+    | '/docs/legal'
+    | '/services/expo-workflow-optimization'
+    | '/services/react-native-legacy-to-expo'
+    | '/blog'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog/$slug' | '/blog'
-  id: '__root__' | '/' | '/blog/$slug' | '/blog/'
+  to:
+    | '/'
+    | '/blog/$slug'
+    | '/docs/legal'
+    | '/services/expo-workflow-optimization'
+    | '/services/react-native-legacy-to-expo'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog/$slug'
+    | '/docs/legal'
+    | '/services/expo-workflow-optimization'
+    | '/services/react-native-legacy-to-expo'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  DocsLegalRoute: typeof DocsLegalRoute
+  ServicesExpoWorkflowOptimizationRoute: typeof ServicesExpoWorkflowOptimizationRoute
+  ServicesReactNativeLegacyToExpoRoute: typeof ServicesReactNativeLegacyToExpoRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
@@ -75,6 +126,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/react-native-legacy-to-expo': {
+      id: '/services/react-native-legacy-to-expo'
+      path: '/services/react-native-legacy-to-expo'
+      fullPath: '/services/react-native-legacy-to-expo'
+      preLoaderRoute: typeof ServicesReactNativeLegacyToExpoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/expo-workflow-optimization': {
+      id: '/services/expo-workflow-optimization'
+      path: '/services/expo-workflow-optimization'
+      fullPath: '/services/expo-workflow-optimization'
+      preLoaderRoute: typeof ServicesExpoWorkflowOptimizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/legal': {
+      id: '/docs/legal'
+      path: '/docs/legal'
+      fullPath: '/docs/legal'
+      preLoaderRoute: typeof DocsLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/blog/$slug'
@@ -88,6 +160,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogSlugRoute: BlogSlugRoute,
+  DocsLegalRoute: DocsLegalRoute,
+  ServicesExpoWorkflowOptimizationRoute: ServicesExpoWorkflowOptimizationRoute,
+  ServicesReactNativeLegacyToExpoRoute: ServicesReactNativeLegacyToExpoRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
