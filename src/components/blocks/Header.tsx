@@ -1,6 +1,16 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import {
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
+import type { PostSummary } from "@/lib/directus";
 import {
 	DEFAULT_LOCALE,
 	type Locale,
@@ -9,8 +19,13 @@ import {
 	stripLocaleFromPathname,
 } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
+import { cn } from "@/lib/utils";
 
-export default function Header() {
+type HeaderProps = {
+	blogPosts?: PostSummary[];
+};
+
+export default function Header({ blogPosts = [] }: HeaderProps) {
 	const router = useRouter();
 	const { t, locale, localeParam } = useI18n();
 	const localeParams: Record<string, string> = localeParam
@@ -19,6 +34,40 @@ export default function Header() {
 	const pathname = router.state.location.pathname;
 	const basePathname = stripLocaleFromPathname(pathname);
 	const isBlogActive = basePathname.startsWith("/blog");
+	const blogPreview = blogPosts.slice(0, 2);
+	const triggerClassName = cn(
+		navigationMenuTriggerStyle(),
+		"bg-transparent text-slate-600 hover:bg-white/70 hover:text-slate-900 focus:bg-white/70 data-[state=open]:bg-white/80 data-[state=open]:text-slate-900",
+	);
+	const aboutItems = [
+		{
+			title: t((t) => t.nav.services),
+			description: t((t) => t.nav.aboutItems.services),
+			hash: "services",
+		},
+		{
+			title: t((t) => t.nav.projects),
+			description: t((t) => t.nav.aboutItems.projects),
+			hash: "projects",
+		},
+		{
+			title: t((t) => t.nav.testimonials),
+			description: t((t) => t.nav.aboutItems.testimonials),
+			hash: "testimonials",
+		},
+	];
+	const serviceItems = [
+		{
+			title: t((t) => t.services.legacy.title),
+			description: t((t) => t.services.legacy.intro),
+			to: "/{-$locale}/services/react-native-legacy-to-expo",
+		},
+		{
+			title: t((t) => t.services.workflow.title),
+			description: t((t) => t.services.workflow.intro),
+			to: "/{-$locale}/services/expo-workflow-optimization",
+		},
+	];
 
 	const switchLocale = (nextLocale: Locale) => {
 		if (nextLocale === locale) return;
@@ -60,22 +109,87 @@ export default function Header() {
 					</span>
 				</div>
 				<nav className="flex flex-wrap items-center gap-4 text-sm text-slate-600 md:gap-6">
-					<Link to="/{-$locale}" hash="services" params={localeParams}>
-						{t((t) => t.nav.services)}
-					</Link>
-					<Link to="/{-$locale}" hash="projects" params={localeParams}>
-						{t((t) => t.nav.projects)}
-					</Link>
-					<Link to="/{-$locale}" hash="testimonials" params={localeParams}>
-						{t((t) => t.nav.testimonials)}
-					</Link>
-					<Link
-						to="/{-$locale}/blog"
-						params={localeParams}
-						className={isBlogActive ? "text-slate-900" : ""}
-					>
-						{t((t) => t.nav.blog)}
-					</Link>
+					<NavigationMenu className="flex-none">
+						<NavigationMenuList className="flex-none gap-2">
+							<NavigationMenuItem>
+								<NavigationMenuTrigger className={triggerClassName}>
+									{t((t) => t.nav.about)}
+								</NavigationMenuTrigger>
+								<NavigationMenuContent className="p-4 md:w-[420px]">
+									<ul className="grid gap-3">
+										{aboutItems.map((item) => (
+											<HeaderMenuLink
+												key={item.hash}
+												title={item.title}
+												description={item.description}
+												to="/{-$locale}"
+												params={localeParams}
+												hash={item.hash}
+											/>
+										))}
+									</ul>
+								</NavigationMenuContent>
+							</NavigationMenuItem>
+							<NavigationMenuItem>
+								<NavigationMenuTrigger className={triggerClassName}>
+									{t((t) => t.nav.services)}
+								</NavigationMenuTrigger>
+								<NavigationMenuContent className="p-4 md:w-[560px]">
+									<ul className="grid gap-3 md:grid-cols-2">
+										{serviceItems.map((item) => (
+											<HeaderMenuLink
+												key={item.to}
+												title={item.title}
+												description={item.description}
+												to={item.to}
+												params={localeParams}
+												className="h-full"
+											/>
+										))}
+									</ul>
+								</NavigationMenuContent>
+							</NavigationMenuItem>
+							<NavigationMenuItem>
+								<NavigationMenuTrigger
+									className={cn(
+										triggerClassName,
+										isBlogActive && "text-slate-900",
+									)}
+								>
+									{t((t) => t.nav.blog)}
+								</NavigationMenuTrigger>
+								<NavigationMenuContent className="p-4 md:w-[480px]">
+									<div className="flex items-center justify-between px-1 pb-2">
+										<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+											{t((t) => t.blog.latest)}
+										</p>
+										<Link
+											to="/{-$locale}/blog"
+											params={localeParams}
+											className="text-xs font-semibold text-teal-700 hover:text-teal-800"
+										>
+											{t((t) => t.nav.blogAll)}
+										</Link>
+									</div>
+									{blogPreview.length === 0 ? (
+										<p className="rounded-lg border border-slate-200 bg-white/80 p-4 text-sm text-slate-600">
+											{t((t) => t.blog.empty)}
+										</p>
+									) : (
+										<ul className="grid gap-3 md:grid-cols-2">
+											{blogPreview.map((post) => (
+												<BlogPreviewLink
+													key={post.slug}
+													post={post}
+													localeParams={localeParams}
+												/>
+											))}
+										</ul>
+									)}
+								</NavigationMenuContent>
+							</NavigationMenuItem>
+						</NavigationMenuList>
+					</NavigationMenu>
 					<a
 						href={GITHUB_URL}
 						target="_blank"
@@ -119,4 +233,84 @@ export default function Header() {
 			</div>
 		</header>
 	);
+}
+
+type HeaderMenuLinkProps = {
+	title: string;
+	description: string;
+	to: string;
+	params: Record<string, string>;
+	hash?: string;
+	className?: string;
+};
+
+function HeaderMenuLink({
+	title,
+	description,
+	to,
+	params,
+	hash,
+	className,
+}: HeaderMenuLinkProps) {
+	return (
+		<li>
+			<NavigationMenuLink asChild>
+				<Link
+					to={to}
+					params={params}
+					hash={hash}
+					className={cn(
+						"group flex h-full flex-col gap-2 rounded-xl border border-transparent bg-white/60 p-3 text-sm text-slate-700 transition hover:border-slate-200 hover:bg-white",
+						className,
+					)}
+				>
+					<span className="text-sm font-semibold text-slate-900 group-hover:text-teal-700">
+						{title}
+					</span>
+					<span className="text-xs text-slate-500 line-clamp-3">
+						{description}
+					</span>
+				</Link>
+			</NavigationMenuLink>
+		</li>
+	);
+}
+
+type BlogPreviewLinkProps = {
+	post: PostSummary;
+	localeParams: Record<string, string>;
+};
+
+function BlogPreviewLink({ post, localeParams }: BlogPreviewLinkProps) {
+	return (
+		<li>
+			<NavigationMenuLink asChild>
+				<Link
+					to="/{-$locale}/blog/$slug"
+					params={{ ...localeParams, slug: post.slug }}
+					className="group flex items-center gap-3 rounded-xl border border-transparent bg-white/60 p-3 text-sm text-slate-700 transition hover:border-slate-200 hover:bg-white"
+				>
+					<div className="h-14 w-20 overflow-hidden rounded-md bg-slate-100">
+						<BlogPreviewImage src={post.imageUrl} alt={post.title} />
+					</div>
+					<div className="flex flex-col gap-1">
+						<span className="text-xs uppercase tracking-[0.2em] text-slate-500">
+							{post.publishedAtLabel}
+						</span>
+						<span className="text-sm font-semibold text-slate-900 group-hover:text-teal-700 line-clamp-2">
+							{post.title}
+						</span>
+					</div>
+				</Link>
+			</NavigationMenuLink>
+		</li>
+	);
+}
+
+function BlogPreviewImage({ src, alt }: { src: string | null; alt: string }) {
+	if (!src) {
+		return <div className="h-full w-full bg-slate-100" aria-hidden="true" />;
+	}
+
+	return <img src={src} alt={alt} className="h-full w-full object-cover" />;
 }

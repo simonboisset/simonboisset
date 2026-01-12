@@ -13,11 +13,18 @@ export const en = {
 		brand: "Simon Boisset",
 		tagline: "Mobile + Full-stack",
 		home: "Home",
+		about: "About",
 		services: "Services",
 		projects: "Projects",
 		testimonials: "Testimonials",
 		blog: "Blog",
+		blogAll: "View all posts",
 		bookCall: "Book a call",
+		aboutItems: {
+			services: "How I help teams ship mobile products.",
+			projects: "Recent mobile work and measurable outcomes.",
+			testimonials: "Client feedback on delivery and collaboration.",
+		},
 	},
 	footer: {
 		description:
@@ -272,106 +279,184 @@ export const en = {
 			focusAreasLabel: "Focus areas",
 			processLabel: "Process",
 			deliverablesLabel: "Deliverables",
+			faqLabel: "FAQ",
 		},
 		legacy: {
 			title: "React Native legacy to Expo migration",
 			intro:
-				"Modernize your mobile stack without breaking the roadmap. I guide teams through a safe migration to Expo, unlocking faster builds and a stable release process.",
+				"A fixed-fee migration program to move a legacy React Native app to Expo, upgrade the stack, and meet App Store / Play Store compliance. Full native dependency audit, Expo compatibility, and an EAS delivery strategy (includes Expo workflow optimization).",
 			cta: "Plan a migration",
 			highlights: {
 				stackAlignment: {
-					title: "Stack alignment",
+					title: "Modernized stack",
 					description:
-						"Bring Expo, React Native, and native modules into a supported baseline.",
+						"Upgrade React Native + Expo and audit native modules for long-term compatibility.",
 				},
 				predictableReleases: {
-					title: "Predictable releases",
+					title: "Release control",
 					description:
-						"Set up EAS pipelines, OTA updates, and release playbooks.",
+						"EAS Build/Submit, OTA updates, versioning, and hotfix handling.",
 				},
 				handoff: {
-					title: "Launch-ready handoff",
-					description:
-						"Documented workflows and team enablement for the next sprint.",
+					title: "Store-ready handoff",
+					description: "Store compliance, documentation, and team enablement.",
 				},
 			},
-			deliverablesIntroTitle: "What you receive",
-			deliverablesIntroDescription:
-				"A detailed roadmap, upgraded codebase, and release process you can confidently own.",
-			deliverables: {
-				item1: "Technical audit of the existing React Native stack",
-				item2: "Expo migration roadmap with risk assessment",
-				item3: "Module-by-module upgrade plan with fallback paths",
-				item4: "EAS build, submit, and OTA update pipeline",
-				item5: "QA plan with release checklist",
+			outcomesTitle: "What the migration unlocks",
+			outcomesDescription:
+				"An up-to-date app, store compliant, with an Expo delivery system you control.",
+			outcomes: {
+				item1: "Latest React Native + Expo baseline with support",
+				item2: "Native dependencies compatible with Expo or replaced",
+				item3: "Fast QA distribution via OTA and dedicated channels",
+				item4: "Clear release + hotfix strategy aligned with store rules",
 			},
-			processTitle: "A staged migration with low risk",
+			deliverablesIntroTitle: "What's included in the fixed-fee scope",
+			deliverablesIntroDescription:
+				"Full audit, guided migration, and production-ready Expo workflows.",
+			deliverables: {
+				item1: "React Native audit + native dependency mapping",
+				item2: "Migration roadmap with RN/Expo upgrades and store compliance",
+				item3: "Replacement plan for incompatible modules + fallback options",
+				item4: "Expo workflows (EAS Build/Submit/Update) + versioning",
+				item5: "Release/QA/hotfix playbook + team handoff",
+			},
+			processTitle: "A controlled, three-stage migration",
 			processDescription:
-				"Each phase is scoped to keep your team shipping while the migration progresses.",
+				"A progressive rollout that keeps your team shipping.",
 			phases: {
 				discovery: {
 					title: "Discovery + audit",
 					description:
-						"Codebase review, dependency mapping, and migration feasibility analysis.",
+						"Codebase review, dependency mapping, and store compliance check.",
 				},
 				migration: {
 					title: "Migration execution",
 					description:
-						"Incremental upgrades, module replacements, and Expo configuration setup.",
+						"Incremental upgrades, module replacements, and Expo configuration.",
 				},
 				launch: {
 					title: "Launch + handoff",
 					description:
-						"Stabilization, release management, and documentation for your team.",
+						"EAS Build/Submit/Update, stabilization, and team documentation.",
+				},
+			},
+			faqTitle: "Migration FAQ",
+			faqDescription: "Clear answers before you commit to the migration.",
+			faq: {
+				item1: {
+					question: "How long does the migration take?",
+					answer:
+						"After the audit, you get a phased plan with clear milestones. Timelines depend on app complexity and native surface area.",
+				},
+				item2: {
+					question: "What if a native dependency isn’t Expo-ready?",
+					answer:
+						"Each module is audited, replaced or adapted with Expo-compatible alternatives, and backed by documented fallback paths.",
+				},
+				item3: {
+					question: "Can the team keep shipping during the migration?",
+					answer:
+						"Yes. The migration is staged to protect release cadence and reduce risk.",
+				},
+				item4: {
+					question: "Is Expo workflow optimization included?",
+					answer:
+						"Yes. EAS Build/Submit/Update, versioning, and QA distribution are part of the fixed-fee scope.",
 				},
 			},
 		},
 		workflow: {
 			title: "Expo workflow optimisation",
 			intro:
-				"Make builds faster, releases calmer, and handoffs clearer. I refine Expo pipelines so your team ships reliably every sprint.",
-			cta: "Optimize my workflow",
+				"A release and versioning audit that turns Expo delivery into a fast, controlled system. Share QA builds in minutes via OTA and govern native builds with hotfix and fingerprint precision.",
+			cta: "Optimize my Expo workflow",
 			highlights: {
 				releaseVelocity: {
-					title: "Release velocity",
-					description: "Shorter build times and fewer manual steps.",
+					title: "QA in minutes",
+					description:
+						"OTA updates and QA channels to ship in under 5 minutes.",
 				},
 				confidence: {
-					title: "Confidence",
-					description: "Clear deployment guardrails and rollback paths.",
+					title: "Versioning clarity",
+					description: "Clean hotfix flows, channels, and fingerprints.",
 				},
 				handoff: {
-					title: "Team handoff",
-					description: "Documentation and playbooks for every release.",
+					title: "Reliable releases",
+					description: "Controlled native builds and a stable release process.",
 				},
 			},
-			outcomesTitle: "Workflow improvements you can feel",
+			outcomesTitle: "Expected outcomes",
 			outcomesDescription:
-				"Identify bottlenecks, streamline approvals, and keep releases calm.",
+				"Faster releases from commit to production, with fewer surprises.",
 			outcomes: {
-				item1: "Faster build and submit times",
-				item2: "Stable CI/CD for iOS + Android",
-				item3: "Clear release checklists and monitoring",
-				item4: "Environment configuration and secrets audit",
+				item1: "OTA updates shared to QA in under 5 minutes",
+				item2: "Versioning + release channels for hotfix control",
+				item3: "Native builds managed by profiles and fingerprints",
+				item4: "Documented QA → production release path",
 			},
-			focusTitle: "From CI/CD to release observability",
+			focusTitle: "The optimization scope",
 			focusDescription:
-				"I target the workflow steps that create delays, handoffs, and unplanned downtime.",
+				"The levers that accelerate testing and secure production.",
 			focusAreas: {
 				area1: {
-					title: "EAS pipeline tuning",
+					title: "Release audit + versioning",
 					description:
-						"Optimize build profiles, caching, and parallelization for predictable releases.",
+						"Versioning rules, tags, changelog, and release conventions.",
 				},
 				area2: {
-					title: "Workflow reliability",
+					title: "EAS Update + QA channels",
 					description:
-						"Upgrade SDKs, clean dependency graphs, and reduce flaky build failures.",
+						"Fast OTA updates, QA branches, and internal distribution.",
 				},
 				area3: {
-					title: "Release visibility",
+					title: "Native builds + hotfix",
 					description:
-						"Add release notes, monitoring, and post-release review systems.",
+						"EAS profiles, fingerprints, and fine-grained hotfix control.",
+				},
+			},
+			processTitle: "A short, effective engagement",
+			processDescription:
+				"Audit, implementation, then handoff so the team stays autonomous.",
+			phases: {
+				discovery: {
+					title: "Audit + diagnosis",
+					description:
+						"Review releases, versioning, OTA strategy, and internal distribution.",
+				},
+				migration: {
+					title: "Implementation",
+					description:
+						"EAS configuration, QA channels, and hotfix rules in place.",
+				},
+				launch: {
+					title: "Handoff + metrics",
+					description: "Release playbook, documentation, and tracking metrics.",
+				},
+			},
+			faqTitle: "Workflow FAQ",
+			faqDescription:
+				"Questions teams ask before optimizing their release workflow.",
+			faq: {
+				item1: {
+					question: "How fast can QA get builds?",
+					answer:
+						"OTA updates and release channels deliver test builds in minutes after a commit.",
+				},
+				item2: {
+					question: "How are hotfixes handled?",
+					answer:
+						"Versioning rules, channels, and fingerprints keep hotfixes isolated and predictable.",
+				},
+				item3: {
+					question: "Do we need to replace our existing CI?",
+					answer:
+						"No. We integrate EAS with your current CI and reduce manual steps.",
+				},
+				item4: {
+					question: "What do we receive at the end?",
+					answer:
+						"An audited setup, updated configs, and a release playbook your team can run.",
 				},
 			},
 		},

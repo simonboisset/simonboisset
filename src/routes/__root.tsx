@@ -9,6 +9,7 @@ import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { env } from "@/env";
+import { directus } from "@/lib/directus";
 import {
 	addLocaleToPathname,
 	buildPath,
@@ -17,6 +18,7 @@ import {
 	getClientLocaleFromCookie,
 	getSafeLocale,
 	readServerLocale,
+	resolveLocaleForPath,
 	setLocaleCookie,
 	stripLocaleFromPathname,
 } from "@/lib/i18n/locale";
@@ -70,6 +72,11 @@ export const Route = createRootRoute({
 			isLocalePrefixed: shouldPrefix,
 		};
 	},
+	loader: async ({ location, serverContext }) => {
+		const locale = resolveLocaleForPath(location.pathname, serverContext);
+		const posts = await directus.getPosts({ data: { locale } });
+		return { blogPreview: posts.slice(0, 2) };
+	},
 	head: () => ({
 		meta: [
 			{
@@ -118,6 +125,7 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	const { locale } = Route.useRouteContext();
+	const { blogPreview } = Route.useLoaderData();
 
 	useEffect(() => {
 		setLocaleCookie(locale);
@@ -134,7 +142,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				<AnalyticsProvider>
 					<div className="min-h-screen flex flex-col">
-						<Header />
+						<Header blogPosts={blogPreview} />
 						<main className="flex-1">{children}</main>
 						<SiteFooter />
 					</div>
