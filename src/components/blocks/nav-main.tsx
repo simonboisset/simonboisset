@@ -15,7 +15,7 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import type { NavItem } from "@/lib/navigation";
+import type { NavItem, NavSubItem } from "@/lib/navigation";
 
 interface NavMainProps {
 	items: NavItem[];
@@ -25,10 +25,14 @@ export function NavMain({ items }: NavMainProps) {
 	const router = useRouter();
 	const pathname = router.state.location.pathname;
 
-	// Check if any submenu item is active
+	const getItemPathname = (item: NavItem | NavSubItem) =>
+		router.buildLocation({ to: item.to, params: item.params }).pathname;
+
 	const isGroupActive = (item: NavItem) => {
 		if (!item.items) return false;
-		return item.items.some((subItem) => pathname === subItem.url);
+		return item.items.some(
+			(subItem) => pathname === getItemPathname(subItem),
+		);
 	};
 
 	return (
@@ -36,17 +40,21 @@ export function NavMain({ items }: NavMainProps) {
 			<SidebarGroupContent>
 				<SidebarMenu>
 					{items.map((item) => {
-						// Render items without subitems
+						const isRoot = item.to === "/{-$locale}";
 						if (!item.items || item.items.length === 0) {
 							return (
 								<SidebarMenuItem key={item.title}>
 									<SidebarMenuButton asChild>
 										<Link
-											to={item.url}
+											to={item.to}
+											params={item.params}
 											activeProps={{
-												className: "bg-accent text-accent-foreground",
+												className:
+													"bg-accent text-accent-foreground",
 											}}
-											activeOptions={{ exact: item.url === "/" }}
+											activeOptions={
+												isRoot ? { exact: true } : undefined
+											}
 										>
 											{item.icon && <item.icon />}
 											<span>{item.title}</span>
@@ -56,7 +64,6 @@ export function NavMain({ items }: NavMainProps) {
 							);
 						}
 
-						// Render items with collapsible subitems
 						return (
 							<Collapsible
 								key={item.title}
@@ -77,7 +84,8 @@ export function NavMain({ items }: NavMainProps) {
 												<SidebarMenuSubItem key={subItem.title}>
 													<SidebarMenuSubButton asChild>
 														<Link
-															to={subItem.url}
+															to={subItem.to}
+															params={subItem.params}
 															activeProps={{
 																className:
 																	"bg-sidebar-accent text-sidebar-accent-foreground",

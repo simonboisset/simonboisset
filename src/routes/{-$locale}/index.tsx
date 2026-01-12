@@ -12,10 +12,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus } from "@/lib/directus";
+import { useI18n } from "@/lib/i18n/use-i18n";
 
 const HERO_PHOTO_ASSET_ID = "d891253f-cd33-486e-bff4-393d96d57f49";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/{-$locale}/")({
 	component: App,
 	loader: () => directus.getAssetUrl({ data: HERO_PHOTO_ASSET_ID }),
 });
@@ -36,9 +37,7 @@ type Testimonial = {
 type ProductizedService = {
 	title: string;
 	description: string;
-	href:
-		| "/services/react-native-legacy-to-expo"
-		| "/services/expo-workflow-optimization";
+	to: string;
 	bullets: string[];
 };
 
@@ -49,136 +48,125 @@ type ServiceLine = {
 
 function App() {
 	const heroPhotoUrl = Route.useLoaderData();
+	const { t, localeParam } = useI18n();
+	const localeParams: Record<string, string> = localeParam
+		? { locale: localeParam }
+		: {};
+
 	const projects: Project[] = [
 		{
-			name: "CAMPING-CAR PARK - Modernisation app mobile",
-			product: [
-				"App mobile grand public pour reserver et gerer des sejours en camping-car.",
-			],
+			name: t((t) => t.home.projects.campingCarPark.name),
+			product: [t((t) => t.home.projects.campingCarPark.product.line1)],
 			impact: [
-				"Refonte mobile + migration React Native legacy vers Expo.",
-				"Referent mobile pour structuration du projet et autonomisation equipe.",
+				t((t) => t.home.projects.campingCarPark.impact.line1),
+				t((t) => t.home.projects.campingCarPark.impact.line2),
 			],
 			stack: [
-				"React Native",
-				"Expo",
-				"Mobile",
-				"Architecture",
+				t((t) => t.home.projects.campingCarPark.stack.item1),
+				t((t) => t.home.projects.campingCarPark.stack.item2),
+				t((t) => t.home.projects.campingCarPark.stack.item3),
+				t((t) => t.home.projects.campingCarPark.stack.item4),
 			],
 		},
 		{
-			name: "VAERDICT - Re-architecture application web metier",
-			product: [
-				"App web pour conseillers en gestion de patrimoine immobilier.",
-			],
+			name: t((t) => t.home.projects.vaerdict.name),
+			product: [t((t) => t.home.projects.vaerdict.product.line1)],
 			impact: [
-				"Reprise du codebase et restructuration pour l'evolutivite.",
-				"Lead technique + formation pour renforcer l'equipe interne.",
+				t((t) => t.home.projects.vaerdict.impact.line1),
+				t((t) => t.home.projects.vaerdict.impact.line2),
 			],
 			stack: [
-				"Web",
-				"React",
-				"TypeScript",
-				"Architecture",
+				t((t) => t.home.projects.vaerdict.stack.item1),
+				t((t) => t.home.projects.vaerdict.stack.item2),
+				t((t) => t.home.projects.vaerdict.stack.item3),
+				t((t) => t.home.projects.vaerdict.stack.item4),
 			],
 		},
 		{
-			name: "LiNote - App mobile \"lien social\"",
-			product: [
-				"App mobile pour garder le lien avec des proches ages.",
-			],
+			name: t((t) => t.home.projects.linote.name),
+			product: [t((t) => t.home.projects.linote.product.line1)],
 			impact: [
-				"Developpement React Native from scratch aligne a l'app web.",
-				"Fonctionnalites cles : rappels, messagerie, partage photo, appels video.",
+				t((t) => t.home.projects.linote.impact.line1),
+				t((t) => t.home.projects.linote.impact.line2),
 			],
 			stack: [
-				"React Native",
-				"Mobile",
-				"iOS",
-				"Android",
+				t((t) => t.home.projects.linote.stack.item1),
+				t((t) => t.home.projects.linote.stack.item2),
+				t((t) => t.home.projects.linote.stack.item3),
+				t((t) => t.home.projects.linote.stack.item4),
 			],
 		},
 		{
-			name: "Silbo - Sante : web + apps terrain",
-			product: [
-				"Startup sante : web d'optimisation des flux patients + apps terrain.",
-			],
+			name: t((t) => t.home.projects.silbo.name),
+			product: [t((t) => t.home.projects.silbo.product.line1)],
 			impact: [
-				"Cycle complet produit -> mise en production en collaboration produit.",
-				"Focus fiabilite, temps reel et ergonomie iOS/Android.",
+				t((t) => t.home.projects.silbo.impact.line1),
+				t((t) => t.home.projects.silbo.impact.line2),
 			],
 			stack: [
-				"Web",
-				"Mobile",
-				"Fiabilite",
-				"Temps reel",
+				t((t) => t.home.projects.silbo.stack.item1),
+				t((t) => t.home.projects.silbo.stack.item2),
+				t((t) => t.home.projects.silbo.stack.item3),
+				t((t) => t.home.projects.silbo.stack.item4),
 			],
 		},
-	];
+	]
 
 	const testimonials: Testimonial[] = [
 		{
-			quote:
-				"Simon est tres agreable en matiere de collaboration, il est experimente, il a su s'integrer a l'equipe et faire immediatement preuve d'implication. Il a egalement fait preuve d'une capacite d'adaptation et de synergie avec notre precieux developpeur historique. Tout cela nous permet d'entrevoir sereinement la poursuite du developpement de notre projet dans le temps.",
-			name: "Eric",
-			role: "CEO, Vaerdict",
+			quote: t((t) => t.home.testimonials.eric.quote),
+			name: t((t) => t.home.testimonials.eric.name),
+			role: t((t) => t.home.testimonials.eric.role),
 		},
 		{
-			quote:
-				"Tres bonne experience avec Simon. Communication facile, tres pro, qualite du code top et livraison rapide. Nous lui avons confie une nouvelle mission suite a celle-ci.",
-			name: "Anthony",
-			role: "CEO, LiNote",
+			quote: t((t) => t.home.testimonials.anthony.quote),
+			name: t((t) => t.home.testimonials.anthony.name),
+			role: t((t) => t.home.testimonials.anthony.role),
 		},
 		{
-			quote:
-				"J'ai eu l'opportunite de travailler avec Simon pendant plus de deux ans au sein de mon equipe. Simon est un VRAI developpeur Full Stack par definition, il peut aussi bien ameliorer des composants UI, ameliorer le backend ou le mobile, comme faire de l'optimisation d'infrastructure cloud ou des pipelines de CI/CD. Force de proposition pour des architectures efficaces, il est aussi tres competent pour apprendre de nouveaux concepts complexes.",
-			name: "Thomas",
-			role: "CTO, Silbo",
+			quote: t((t) => t.home.testimonials.thomas.quote),
+			name: t((t) => t.home.testimonials.thomas.name),
+			role: t((t) => t.home.testimonials.thomas.role),
 		},
-	];
+	]
 
 	const serviceLines: ServiceLine[] = [
 		{
-			title: "Mobile product delivery",
-			description:
-				"React Native and Expo builds from MVP to production, with scalable architecture.",
+			title: t((t) => t.home.serviceLines.mobile.title),
+			description: t((t) => t.home.serviceLines.mobile.description),
 		},
 		{
-			title: "Full-stack support",
-			description:
-				"API design, data modeling, and back office dashboards to complement mobile apps.",
+			title: t((t) => t.home.serviceLines.fullstack.title),
+			description: t((t) => t.home.serviceLines.fullstack.description),
 		},
 		{
-			title: "Design-to-dev collaboration",
-			description:
-				"Crafted UIs, animation polish, and UI kits that stay consistent across teams.",
+			title: t((t) => t.home.serviceLines.design.title),
+			description: t((t) => t.home.serviceLines.design.description),
 		},
-	];
+	]
 
 	const productizedServices: ProductizedService[] = [
 		{
-			title: "React Native legacy to Expo migration",
-			description:
-				"Move from legacy tooling to a modern Expo stack without disrupting your roadmap.",
-			href: "/services/react-native-legacy-to-expo",
+			title: t((t) => t.home.productized.legacy.title),
+			description: t((t) => t.home.productized.legacy.description),
+			to: "/{-$locale}/services/react-native-legacy-to-expo",
 			bullets: [
-				"Audit + migration plan",
-				"Incremental rollout strategy",
-				"Release-ready Expo build pipeline",
+				t((t) => t.home.productized.legacy.bullets.item1),
+				t((t) => t.home.productized.legacy.bullets.item2),
+				t((t) => t.home.productized.legacy.bullets.item3),
 			],
 		},
 		{
-			title: "Expo workflow optimisation",
-			description:
-				"Speed up build times, improve reliability, and keep CI/CD predictable.",
-			href: "/services/expo-workflow-optimization",
+			title: t((t) => t.home.productized.workflow.title),
+			description: t((t) => t.home.productized.workflow.description),
+			to: "/{-$locale}/services/expo-workflow-optimization",
 			bullets: [
-				"EAS build + submit tuning",
-				"Environment + secrets audit",
-				"Monitoring and release playbooks",
+				t((t) => t.home.productized.workflow.bullets.item1),
+				t((t) => t.home.productized.workflow.bullets.item2),
+				t((t) => t.home.productized.workflow.bullets.item3),
 			],
 		},
-	];
+	]
 
 	return (
 		<div className="bg-[#f6f1ea] text-slate-900">
@@ -189,11 +177,10 @@ function App() {
 				<div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-[1.1fr_0.9fr]">
 					<div className="space-y-8">
 						<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
-							Mobile + Full-stack Freelance
+							{t((t) => t.home.hero.eyebrow)}
 						</p>
 						<h1 className="text-4xl font-semibold leading-tight text-slate-900 md:text-6xl">
-							Building high-performance mobile experiences with React Native +
-							Expo.
+							{t((t) => t.home.hero.title)}
 						</h1>
 						{heroPhotoUrl ? (
 							<div className="flex flex-col gap-4 sm:flex-row sm:items-start">
@@ -201,54 +188,57 @@ function App() {
 									<div className="size-20 overflow-hidden rounded-full bg-slate-100 md:size-24">
 										<img
 											src={heroPhotoUrl}
-											alt="Simon Boisset"
+											alt={t((t) => t.nav.brand)}
 											className="h-full w-full object-cover"
 										/>
 									</div>
 								</div>
 								<p className="rounded-[22px] rounded-tl-[8px] rounded-br-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
-									"I'm Simon Boisset, a mobile-focused full-stack developer. I help
-									teams ship polished apps, modernize legacy React Native stacks,
-									and tighten delivery workflows."
+									{t((t) => t.home.hero.intro)}
 								</p>
 							</div>
 						) : (
 							<p className="text-lg text-slate-600 md:text-xl">
-								I'm Simon Boisset, a mobile-focused full-stack developer. I help
-								teams ship polished apps, modernize legacy React Native stacks,
-								and tighten delivery workflows.
+								{t((t) => t.home.hero.intro)}
 							</p>
 						)}
 						<div className="flex flex-wrap items-center gap-4">
 							<Button asChild>
 								<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
-									Start a project <ArrowUpRight className="size-4" />
+									{t((t) => t.home.hero.ctaPrimary)}
+									<ArrowUpRight className="size-4" />
 								</a>
 							</Button>
 							<Button variant="outline" asChild>
-								<a href="/#services">View services</a>
+								<Link
+									to="/{-$locale}"
+									hash="services"
+									params={localeParams}
+								>
+									{t((t) => t.home.hero.ctaSecondary)}
+								</Link>
 							</Button>
 							<Button
 								asChild
 								className="border border-[#0d1117] bg-[#0d1117] text-white hover:bg-[#161b22] hover:text-white"
 							>
 								<a href={GITHUB_URL} target="_blank" rel="noreferrer">
-									GitHub <Github className="size-4" />
+									{t((t) => t.home.hero.ctaGithub)} <Github className="size-4" />
 								</a>
 							</Button>
 						</div>
 						<div className="flex flex-wrap items-center gap-6 text-sm text-slate-600">
 							<div className="flex items-center gap-2">
 								<Smartphone className="size-4 text-teal-700" />
-								<span>React Native + Expo expertise</span>
+								<span>{t((t) => t.home.hero.highlights.expertise)}</span>
 							</div>
 							<div className="flex items-center gap-2">
 								<ShieldCheck className="size-4 text-amber-700" />
-								<span>Production-ready delivery</span>
+								<span>{t((t) => t.home.hero.highlights.delivery)}</span>
 							</div>
 							<div className="flex items-center gap-2">
 								<Gauge className="size-4 text-slate-700" />
-								<span>Performance & release tuning</span>
+								<span>{t((t) => t.home.hero.highlights.performance)}</span>
 							</div>
 						</div>
 					</div>
@@ -257,28 +247,28 @@ function App() {
 							<div className="flex items-center justify-between">
 								<div>
 									<p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-										Availability
+										{t((t) => t.home.availability.label)}
 									</p>
 									<p className="text-2xl font-semibold text-slate-900">
-										Now booking
+										{t((t) => t.home.availability.status)}
 									</p>
 								</div>
 								<span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-									Open slots
+									{t((t) => t.home.availability.badge)}
 								</span>
 							</div>
 							<ul className="mt-6 space-y-3 text-sm text-slate-600">
 								<li className="flex items-center gap-2">
 									<CheckCircle2 className="size-4 text-emerald-600" />
-									Product discovery + roadmapping
+									{t((t) => t.home.availability.items.item1)}
 								</li>
 								<li className="flex items-center gap-2">
 									<CheckCircle2 className="size-4 text-emerald-600" />
-									Mobile app delivery, end-to-end
+									{t((t) => t.home.availability.items.item2)}
 								</li>
 								<li className="flex items-center gap-2">
 									<CheckCircle2 className="size-4 text-emerald-600" />
-									Release automation and QA support
+									{t((t) => t.home.availability.items.item3)}
 								</li>
 							</ul>
 						</div>
@@ -286,17 +276,16 @@ function App() {
 							<div className="flex items-start justify-between">
 								<div>
 									<p className="text-xs uppercase tracking-[0.2em] text-slate-400">
-										Signature focus
+										{t((t) => t.home.signature.label)}
 									</p>
 									<p className="mt-2 text-2xl font-semibold">
-										Expo-first delivery
+										{t((t) => t.home.signature.title)}
 									</p>
 								</div>
 								<Sparkles className="size-6 text-amber-300" />
 							</div>
 							<p className="mt-4 text-sm text-slate-300">
-								From SDK upgrades to EAS workflows, I build a release system that
-								keeps shipping predictable.
+								{t((t) => t.home.signature.description)}
 							</p>
 							<div className="mt-6 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
 								<span>React Native</span>
@@ -315,20 +304,23 @@ function App() {
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
 							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								Selected projects
+								{t((t) => t.home.projectsSection.label)}
 							</p>
 							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-								Built for teams who move fast
+								{t((t) => t.home.projectsSection.title)}
 							</h2>
 						</div>
 						<p className="max-w-xl text-slate-600">
-							Productized mobile builds, operational dashboards, and internal tools
-							that help teams ship with confidence.
+							{t((t) => t.home.projectsSection.description)}
 						</p>
 					</div>
 					<div className="mt-10 grid gap-6 lg:grid-cols-3">
 						{projects.map((project, index) => (
-							<ProjectCard key={project.name} index={index} project={project} />
+							<ProjectCard
+								key={project.name}
+								index={index}
+								project={project}
+							/>
 						))}
 					</div>
 				</div>
@@ -339,15 +331,14 @@ function App() {
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
 							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								Services
+								{t((t) => t.home.servicesSection.label)}
 							</p>
 							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-								React + Expo expertise for modern teams
+								{t((t) => t.home.servicesSection.title)}
 							</h2>
 						</div>
 						<p className="max-w-xl text-slate-600">
-							From greenfield builds to legacy upgrades, I design delivery systems
-							that keep your mobile roadmap moving.
+							{t((t) => t.home.servicesSection.description)}
 						</p>
 					</div>
 					<div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -372,6 +363,8 @@ function App() {
 								key={service.title}
 								index={index}
 								service={service}
+								localeParams={localeParams}
+								buttonLabel={t((t) => t.home.productized.button)}
 							/>
 						))}
 					</div>
@@ -383,15 +376,14 @@ function App() {
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
 							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								Testimonials
+								{t((t) => t.home.testimonialsSection.label)}
 							</p>
 							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-								Teams that trusted the process
+								{t((t) => t.home.testimonialsSection.title)}
 							</h2>
 						</div>
 						<p className="max-w-xl text-slate-600">
-							Partnerships built on clarity, velocity, and deep React Native
-							experience.
+							{t((t) => t.home.testimonialsSection.description)}
 						</p>
 					</div>
 					<div className="mt-10 grid gap-6 lg:grid-cols-3">
@@ -410,18 +402,18 @@ function App() {
 				<div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-center md:justify-between">
 					<div>
 						<p className="text-xs uppercase tracking-[0.3em] text-slate-400">
-							Ready to ship
+							{t((t) => t.home.cta.label)}
 						</p>
 						<h2 className="mt-3 text-3xl font-semibold md:text-4xl">
-							Let's build a mobile roadmap you can trust.
+							{t((t) => t.home.cta.title)}
 						</h2>
 						<p className="mt-3 text-slate-300">
-							Share your goals and I'll respond within 48 hours with next steps.
+							{t((t) => t.home.cta.description)}
 						</p>
 					</div>
 					<Button asChild size="lg">
 						<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
-							Schedule a call <Rocket className="size-4" />
+							{t((t) => t.home.cta.button)} <Rocket className="size-4" />
 						</a>
 					</Button>
 				</div>
@@ -437,6 +429,8 @@ function ProjectCard({
 	project: Project;
 	index: number;
 }) {
+	const { t } = useI18n();
+
 	return (
 		<div
 			className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm motion-safe:animate-fade-up"
@@ -448,7 +442,7 @@ function ProjectCard({
 			</div>
 			<div className="mt-4 space-y-3">
 				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-					Produit / entreprise
+					{t((t) => t.home.projectsSection.productLabel)}
 				</p>
 				{project.product.map((line) => (
 					<p key={line} className="text-sm text-slate-600">
@@ -458,7 +452,7 @@ function ProjectCard({
 			</div>
 			<div className="mt-4 space-y-3">
 				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-					Impact / contributions
+					{t((t) => t.home.projectsSection.impactLabel)}
 				</p>
 				{project.impact.map((line) => (
 					<p key={line} className="text-sm text-slate-600">
@@ -483,9 +477,13 @@ function ProjectCard({
 function ProductServiceCard({
 	service,
 	index,
+	localeParams,
+	buttonLabel,
 }: {
 	service: ProductizedService;
 	index: number;
+	localeParams: Record<string, string>;
+	buttonLabel: string;
 }) {
 	return (
 		<div
@@ -506,8 +504,8 @@ function ProductServiceCard({
 				))}
 			</ul>
 			<Button variant="outline" size="sm" asChild className="mt-6">
-				<Link to={service.href}>
-					View details <ArrowUpRight className="size-4" />
+				<Link to={service.to} params={localeParams}>
+					{buttonLabel} <ArrowUpRight className="size-4" />
 				</Link>
 			</Button>
 		</div>

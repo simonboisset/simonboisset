@@ -1,14 +1,16 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { directus, type PostSummary } from "@/lib/directus";
+import { resolveLocaleForPath } from "@/lib/i18n/locale";
+import { useI18n } from "@/lib/i18n/use-i18n";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-const blogDescription =
-	"Field notes on mobile delivery, Expo workflows, and full-stack craft.";
-
-export const Route = createFileRoute("/blog/")({
+export const Route = createFileRoute("/{-$locale}/blog/")({
 	ssr: false,
 	component: BlogListPage,
-	loader: () => directus.getPosts(),
+	loader: ({ location, serverContext }) => {
+		const locale = resolveLocaleForPath(location.pathname, serverContext);
+		return directus.getPosts({ data: { locale } });
+	},
 	pendingComponent: () => (
 		<div className="bg-[#f6f1ea]">
 			<div className="py-24 md:py-28 px-6 max-w-6xl mx-auto">
@@ -42,22 +44,15 @@ export const Route = createFileRoute("/blog/")({
 			</div>
 		</div>
 	),
-	errorComponent: ({ error }) => (
-		<div className="bg-[#f6f1ea]">
-			<div className="py-24 md:py-28 px-6 max-w-5xl mx-auto text-center">
-				<h1 className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
-					Error loading blog
-				</h1>
-				<p className="text-muted-foreground">
-					{error.message || "An unexpected error occurred"}
-				</p>
-			</div>
-		</div>
-	),
+	errorComponent: ({ error }) => <BlogError error={error} />,
 });
 
 function BlogListPage() {
 	const posts = Route.useLoaderData();
+	const { t, localeParam } = useI18n();
+	const localeParams: Record<string, string> = localeParam
+		? { locale: localeParam }
+		: {};
 	const [featuredArticle, ...otherArticles] = posts;
 
 	return (
@@ -66,13 +61,13 @@ function BlogListPage() {
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
 				<div className="relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-20 text-center">
 					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
-						Blog
+						{t((t) => t.blog.heroLabel)}
 					</p>
 					<h1 className="text-4xl font-semibold text-slate-900 md:text-5xl">
-						Thoughts on shipping great mobile products.
+						{t((t) => t.blog.heroTitle)}
 					</h1>
 					<p className="mx-auto max-w-2xl text-lg text-slate-600">
-						{blogDescription}
+						{t((t) => t.blog.description)}
 					</p>
 				</div>
 			</section>
@@ -80,15 +75,15 @@ function BlogListPage() {
 			<section className="mx-auto w-full max-w-6xl px-6 pb-20">
 				{posts.length === 0 ? (
 					<p className="rounded-2xl border border-slate-200 bg-white/80 p-8 text-center text-slate-600">
-						No blog posts published yet.
+						{t((t) => t.blog.empty)}
 					</p>
 				) : (
 					<>
 						{featuredArticle ? (
 							<div className="mb-16">
 								<Link
-									to="/blog/$slug"
-									params={{ slug: featuredArticle.slug }}
+									to="/{-$locale}/blog/$slug"
+									params={{ ...localeParams, slug: featuredArticle.slug }}
 									className="block group hover:no-underline"
 								>
 									<div className="flex flex-col md:flex-row gap-8 md:items-center">
@@ -101,13 +96,13 @@ function BlogListPage() {
 										</div>
 										<div className="flex-1">
 											<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-												Featured
+												{t((t) => t.blog.featured)}
 											</p>
 											<h2 className="mt-3 text-3xl md:text-4xl font-semibold text-slate-900 group-hover:text-teal-700 transition-colors">
 												{featuredArticle.title}
 											</h2>
 											<div className="mt-4 text-sm text-slate-500">
-												{featuredArticle.published_at}
+												{featuredArticle.publishedAtLabel}
 											</div>
 										</div>
 									</div>
@@ -118,11 +113,15 @@ function BlogListPage() {
 						{otherArticles.length > 0 ? (
 							<div>
 								<h3 className="text-2xl font-semibold text-slate-900 mb-8">
-									Latest articles
+									{t((t) => t.blog.latest)}
 								</h3>
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 									{otherArticles.map((article) => (
-										<ArticleCard key={article.slug} article={article} />
+										<ArticleCard
+											key={article.slug}
+											article={article}
+											localeParams={localeParams}
+										/>
 									))}
 								</div>
 							</div>
@@ -134,11 +133,34 @@ function BlogListPage() {
 	);
 }
 
-function ArticleCard({ article }: { article: PostSummary }) {
+function BlogError({ error }: { error: Error }) {
+	const { t } = useI18n();
+
+	return (
+		<div className="bg-[#f6f1ea]">
+			<div className="py-24 md:py-28 px-6 max-w-5xl mx-auto text-center">
+				<h1 className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
+					{t((t) => t.blog.errorTitleList)}
+				</h1>
+				<p className="text-muted-foreground">
+					{error.message || t((t) => t.blog.errorFallback)}
+				</p>
+			</div>
+		</div>
+	);
+}
+
+function ArticleCard({
+	article,
+	localeParams,
+}: {
+	article: PostSummary;
+	localeParams: Record<string, string>;
+}) {
 	return (
 		<Link
-			to="/blog/$slug"
-			params={{ slug: article.slug }}
+			to="/{-$locale}/blog/$slug"
+			params={{ ...localeParams, slug: article.slug }}
 			className="block group hover:no-underline"
 		>
 			<div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
@@ -151,7 +173,7 @@ function ArticleCard({ article }: { article: PostSummary }) {
 				</div>
 				<div className="p-6">
 					<div className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-3">
-						{article.published_at}
+						{article.publishedAtLabel}
 					</div>
 					<h4 className="text-lg font-semibold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-2">
 						{article.title}

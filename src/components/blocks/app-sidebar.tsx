@@ -10,16 +10,23 @@ import {
 	SidebarMenuItem,
 	SidebarRail,
 } from "@/components/ui/sidebar";
-import { navigationItems } from "@/lib/navigation";
+import { getNavigationItems } from "@/lib/navigation";
+import { useI18n } from "@/lib/i18n/use-i18n";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+	const { t, localeParam } = useI18n();
+	const localeParams: Record<string, string> = localeParam
+		? { locale: localeParam }
+		: {};
+	const navigationItems = getNavigationItems(t, localeParams);
+
 	return (
 		<Sidebar {...props}>
 			<SidebarHeader>
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton size="lg" asChild>
-							<Link to="/">
+							<Link to="/{-$locale}" params={localeParams}>
 								<div className="flex items-center gap-2">
 									<img
 										src="/tanstack-word-logo-white.svg"

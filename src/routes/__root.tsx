@@ -1,14 +1,65 @@
-import { createRootRoute, HeadContent, Link, Scripts } from "@tanstack/react-router";
+import { useEffect } from "react";
+import {
+	createRootRoute,
+	HeadContent,
+	Link,
+	Scripts,
+	redirect,
+} from "@tanstack/react-router";
 import { PostHogProvider } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import Header from "../components/blocks/Header";
 import SiteFooter from "../components/blocks/SiteFooter";
 import ConsentBanner from "../components/blocks/ConsentBanner";
 import { env } from "@/env";
+import { useI18n } from "@/lib/i18n/use-i18n";
+import {
+	DEFAULT_LOCALE,
+	addLocaleToPathname,
+	buildPath,
+	extractLocaleFromPathname,
+	getClientLocaleFromCookie,
+	getSafeLocale,
+	readServerLocale,
+	setLocaleCookie,
+	stripLocaleFromPathname,
+	type Locale,
+} from "@/lib/i18n/locale";
 
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
+	beforeLoad: ({ location, serverContext }) => {
+		const { locale: pathLocale, segment } = extractLocaleFromPathname(
+			location.pathname,
+		);
+		const clientCookieLocale = getClientLocaleFromCookie();
+		const serverLocale = readServerLocale(serverContext);
+
+		const resolvedLocale = getSafeLocale(
+			pathLocale ?? undefined,
+			serverLocale,
+			clientCookieLocale,
+		);
+		const basePathname = segment
+			? stripLocaleFromPathname(location.pathname)
+			: location.pathname;
+		const shouldPrefix = resolvedLocale !== DEFAULT_LOCALE;
+		const targetPathname = shouldPrefix
+			? addLocaleToPathname(basePathname, resolvedLocale)
+			: basePathname;
+
+		if (targetPathname !== location.pathname) {
+			throw redirect({
+				href: buildPath(targetPathname, location.search, location.hash),
+			});
+		}
+
+		return {
+			locale: resolvedLocale,
+			isLocalePrefixed: shouldPrefix,
+		};
+	},
 	head: () => ({
 		meta: [
 			{
@@ -40,8 +91,19 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+	const { locale } = Route.useRouteContext<{
+		locale: Locale;
+	}>();
+
+	useEffect(() => {
+		setLocaleCookie(locale);
+		if (typeof document !== "undefined") {
+			document.documentElement.lang = locale;
+		}
+	}, [locale]);
+
 	return (
-		<html lang="en">
+		<html lang={locale}>
 			<head>
 				<HeadContent />
 			</head>
@@ -61,20 +123,24 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 }
 
 function NotFound() {
+	const { t, localeParam } = useI18n();
+
 	return (
 		<div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6">
 			<div className="text-center space-y-6 max-w-md">
 				<p className="text-sm uppercase tracking-[0.3em] text-slate-500">
-					Error 404
+					{t((t) => t.notFound.label)}
 				</p>
 				<h1 className="text-5xl md:text-6xl font-semibold text-slate-900">
-					This page drifted away.
+					{t((t) => t.notFound.title)}
 				</h1>
 				<p className="text-slate-600">
-					The page you're looking for doesn't exist or has been moved.
+					{t((t) => t.notFound.description)}
 				</p>
 				<Button asChild>
-					<Link to="/">Back to Home</Link>
+					<Link to="/{-$locale}" params={{ locale: localeParam }}>
+						{t((t) => t.notFound.backHome)}
+					</Link>
 				</Button>
 			</div>
 		</div>

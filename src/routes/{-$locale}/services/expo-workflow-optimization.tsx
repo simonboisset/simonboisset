@@ -1,37 +1,41 @@
 import type React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, Layers, Rocket, Workflow } from "lucide-react";
+import { CheckCircle2, Gauge, Rocket, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
+import { useI18n } from "@/lib/i18n/use-i18n";
 
-export const Route = createFileRoute("/services/react-native-legacy-to-expo")({
-	component: LegacyToExpoPage,
+export const Route = createFileRoute(
+	"/{-$locale}/services/expo-workflow-optimization",
+)({
+	component: ExpoWorkflowOptimizationPage,
 });
 
-function LegacyToExpoPage() {
-	const deliverables = [
-		"Technical audit of the existing React Native stack",
-		"Expo migration roadmap with risk assessment",
-		"Module-by-module upgrade plan with fallback paths",
-		"EAS build, submit, and OTA update pipeline",
-		"QA plan with release checklist",
+function ExpoWorkflowOptimizationPage() {
+	const { t, localeParam } = useI18n();
+	const localeParams: Record<string, string> = localeParam
+		? { locale: localeParam }
+		: {};
+
+	const outcomes = [
+		t((t) => t.services.workflow.outcomes.item1),
+		t((t) => t.services.workflow.outcomes.item2),
+		t((t) => t.services.workflow.outcomes.item3),
+		t((t) => t.services.workflow.outcomes.item4),
 	];
 
-	const phases = [
+	const focusAreas = [
 		{
-			title: "Discovery + audit",
-			description:
-				"Codebase review, dependency mapping, and migration feasibility analysis.",
+			title: t((t) => t.services.workflow.focusAreas.area1.title),
+			description: t((t) => t.services.workflow.focusAreas.area1.description),
 		},
 		{
-			title: "Migration execution",
-			description:
-				"Incremental upgrades, module replacements, and Expo configuration setup.",
+			title: t((t) => t.services.workflow.focusAreas.area2.title),
+			description: t((t) => t.services.workflow.focusAreas.area2.description),
 		},
 		{
-			title: "Launch + handoff",
-			description:
-				"Stabilization, release management, and documentation for your team.",
+			title: t((t) => t.services.workflow.focusAreas.area3.title),
+			description: t((t) => t.services.workflow.focusAreas.area3.description),
 		},
 	];
 
@@ -41,24 +45,24 @@ function LegacyToExpoPage() {
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
 				<div className="relative mx-auto w-full max-w-5xl px-6 py-20 md:py-24">
 					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
-						Productized service
+						{t((t) => t.services.common.productizedLabel)}
 					</p>
 					<h1 className="mt-4 text-4xl font-semibold text-slate-900 md:text-5xl">
-						React Native legacy to Expo migration
+						{t((t) => t.services.workflow.title)}
 					</h1>
 					<p className="mt-4 text-lg text-slate-600 md:text-xl">
-						Modernize your mobile stack without breaking the roadmap. I guide
-						teams through a safe migration to Expo, unlocking faster builds and
-						a stable release process.
+						{t((t) => t.services.workflow.intro)}
 					</p>
 					<div className="mt-8 flex flex-wrap items-center gap-4">
 						<Button asChild>
 							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
-								Plan a migration
+								{t((t) => t.services.workflow.cta)}
 							</a>
 						</Button>
 						<Button variant="outline" asChild>
-							<Link to="/">Back to home</Link>
+							<Link to="/{-$locale}" params={localeParams}>
+								{t((t) => t.services.common.backHome)}
+							</Link>
 						</Button>
 					</div>
 				</div>
@@ -67,18 +71,24 @@ function LegacyToExpoPage() {
 			<section className="mx-auto w-full max-w-5xl px-6 py-16">
 				<div className="grid gap-6 md:grid-cols-3">
 					<ServiceHighlight
-						title="Stack alignment"
-						description="Bring Expo, React Native, and native modules into a supported baseline."
-						icon={<Layers className="size-5 text-teal-600" />}
+						title={t((t) => t.services.workflow.highlights.releaseVelocity.title)}
+						description={t(
+							(t) => t.services.workflow.highlights.releaseVelocity.description,
+						)}
+						icon={<Gauge className="size-5 text-teal-600" />}
 					/>
 					<ServiceHighlight
-						title="Predictable releases"
-						description="Set up EAS pipelines, OTA updates, and release playbooks."
-						icon={<Workflow className="size-5 text-amber-600" />}
+						title={t((t) => t.services.workflow.highlights.confidence.title)}
+						description={t(
+							(t) => t.services.workflow.highlights.confidence.description,
+						)}
+						icon={<ShieldCheck className="size-5 text-amber-600" />}
 					/>
 					<ServiceHighlight
-						title="Launch-ready handoff"
-						description="Documented workflows and team enablement for the next sprint."
+						title={t((t) => t.services.workflow.highlights.handoff.title)}
+						description={t(
+							(t) => t.services.workflow.highlights.handoff.description,
+						)}
 						icon={<Rocket className="size-5 text-slate-700" />}
 					/>
 				</div>
@@ -89,19 +99,18 @@ function LegacyToExpoPage() {
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
 							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								Deliverables
+								{t((t) => t.services.common.outcomesLabel)}
 							</p>
 							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-								What you receive
+								{t((t) => t.services.workflow.outcomesTitle)}
 							</h2>
 						</div>
 						<p className="max-w-xl text-slate-600">
-							A detailed roadmap, upgraded codebase, and release process you can
-							confidently own.
+							{t((t) => t.services.workflow.outcomesDescription)}
 						</p>
 					</div>
 					<ul className="mt-8 grid gap-4 md:grid-cols-2">
-						{deliverables.map((item) => (
+						{outcomes.map((item) => (
 							<li
 								key={item}
 								className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700"
@@ -118,27 +127,26 @@ function LegacyToExpoPage() {
 				<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
 						<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-							Process
+							{t((t) => t.services.common.focusAreasLabel)}
 						</p>
 						<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-							A staged migration with low risk
+							{t((t) => t.services.workflow.focusTitle)}
 						</h2>
 					</div>
 					<p className="max-w-xl text-slate-600">
-						Each phase is scoped to keep your team shipping while the migration
-						progresses.
+						{t((t) => t.services.workflow.focusDescription)}
 					</p>
 				</div>
 				<div className="mt-8 grid gap-6 md:grid-cols-3">
-					{phases.map((phase) => (
+					{focusAreas.map((area) => (
 						<div
-							key={phase.title}
+							key={area.title}
 							className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
 						>
 							<h3 className="text-lg font-semibold text-slate-900">
-								{phase.title}
+								{area.title}
 							</h3>
-							<p className="mt-3 text-sm text-slate-600">{phase.description}</p>
+							<p className="mt-3 text-sm text-slate-600">{area.description}</p>
 						</div>
 					))}
 				</div>

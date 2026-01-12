@@ -1,15 +1,14 @@
 import { createTranslator } from "typed-locale";
 import { en } from "./en";
 import { fr } from "./fr";
+import type { Locale } from "./locale";
 
-const translations = {
+export const translations = {
 	"en-US": en,
 	"fr-FR": fr,
-};
+} satisfies Record<Locale, typeof en>;
 
 export type Translations = typeof translations;
-export type Locale = keyof Translations;
-export const getT = (locale: Locale) => createTranslator(translations[locale]);
-// example usage:
-const t = getT("en-US");
-t((t) => t.hello({ name: "John" })); // "Hello John"
+
+export const getTranslator = (locale: Locale) =>
+	createTranslator(translations[locale]);

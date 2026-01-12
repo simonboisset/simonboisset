@@ -1,26 +1,37 @@
 import { BookOpen, Home, type LucideIcon } from "lucide-react";
+import type { Translations } from "@/lib/i18n/en";
+import type { Translator } from "typed-locale";
+
+type I18nTranslator = Translator<Translations>;
 
 export interface NavItem {
 	title: string;
-	url: string;
+	to: string;
+	params?: Record<string, string>;
 	icon?: LucideIcon;
 	items?: NavSubItem[];
 }
 
 export interface NavSubItem {
 	title: string;
-	url: string;
+	to: string;
+	params?: Record<string, string>;
 }
 
-export const navigationItems: NavItem[] = [
+export const getNavigationItems = (
+	t: I18nTranslator,
+	localeParams: Record<string, string>,
+): NavItem[] => [
 	{
-		title: "Home",
-		url: "/",
+		title: t((t) => t.nav.home),
+		to: "/{-$locale}",
+		params: localeParams,
 		icon: Home,
 	},
 	{
-		title: "Blog",
-		url: "/blog",
+		title: t((t) => t.nav.blog),
+		to: "/{-$locale}/blog",
+		params: localeParams,
 		icon: BookOpen,
 	},
 ];

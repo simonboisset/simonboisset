@@ -1,36 +1,42 @@
 import type React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CheckCircle2, Gauge, Rocket, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Layers, Rocket, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
+import { useI18n } from "@/lib/i18n/use-i18n";
 
-export const Route = createFileRoute("/services/expo-workflow-optimization")({
-	component: ExpoWorkflowOptimizationPage,
+export const Route = createFileRoute(
+	"/{-$locale}/services/react-native-legacy-to-expo",
+)({
+	component: LegacyToExpoPage,
 });
 
-function ExpoWorkflowOptimizationPage() {
-	const outcomes = [
-		"Faster build and submit times",
-		"Stable CI/CD for iOS + Android",
-		"Clear release checklists and monitoring",
-		"Environment configuration and secrets audit",
+function LegacyToExpoPage() {
+	const { t, localeParam } = useI18n();
+	const localeParams: Record<string, string> = localeParam
+		? { locale: localeParam }
+		: {};
+
+	const deliverables = [
+		t((t) => t.services.legacy.deliverables.item1),
+		t((t) => t.services.legacy.deliverables.item2),
+		t((t) => t.services.legacy.deliverables.item3),
+		t((t) => t.services.legacy.deliverables.item4),
+		t((t) => t.services.legacy.deliverables.item5),
 	];
 
-	const focusAreas = [
+	const phases = [
 		{
-			title: "EAS pipeline tuning",
-			description:
-				"Optimize build profiles, caching, and parallelization for predictable releases.",
+			title: t((t) => t.services.legacy.phases.discovery.title),
+			description: t((t) => t.services.legacy.phases.discovery.description),
 		},
 		{
-			title: "Workflow reliability",
-			description:
-				"Upgrade SDKs, clean dependency graphs, and reduce flaky build failures.",
+			title: t((t) => t.services.legacy.phases.migration.title),
+			description: t((t) => t.services.legacy.phases.migration.description),
 		},
 		{
-			title: "Release visibility",
-			description:
-				"Add release notes, monitoring, and post-release review systems.",
+			title: t((t) => t.services.legacy.phases.launch.title),
+			description: t((t) => t.services.legacy.phases.launch.description),
 		},
 	];
 
@@ -40,23 +46,24 @@ function ExpoWorkflowOptimizationPage() {
 				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
 				<div className="relative mx-auto w-full max-w-5xl px-6 py-20 md:py-24">
 					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
-						Productized service
+						{t((t) => t.services.common.productizedLabel)}
 					</p>
 					<h1 className="mt-4 text-4xl font-semibold text-slate-900 md:text-5xl">
-						Expo workflow optimisation
+						{t((t) => t.services.legacy.title)}
 					</h1>
 					<p className="mt-4 text-lg text-slate-600 md:text-xl">
-						Make builds faster, releases calmer, and handoffs clearer. I refine
-						Expo pipelines so your team ships reliably every sprint.
+						{t((t) => t.services.legacy.intro)}
 					</p>
 					<div className="mt-8 flex flex-wrap items-center gap-4">
 						<Button asChild>
 							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
-								Optimize my workflow
+								{t((t) => t.services.legacy.cta)}
 							</a>
 						</Button>
 						<Button variant="outline" asChild>
-							<Link to="/">Back to home</Link>
+							<Link to="/{-$locale}" params={localeParams}>
+								{t((t) => t.services.common.backHome)}
+							</Link>
 						</Button>
 					</div>
 				</div>
@@ -65,18 +72,22 @@ function ExpoWorkflowOptimizationPage() {
 			<section className="mx-auto w-full max-w-5xl px-6 py-16">
 				<div className="grid gap-6 md:grid-cols-3">
 					<ServiceHighlight
-						title="Release velocity"
-						description="Shorter build times and fewer manual steps."
-						icon={<Gauge className="size-5 text-teal-600" />}
+						title={t((t) => t.services.legacy.highlights.stackAlignment.title)}
+						description={t(
+							(t) => t.services.legacy.highlights.stackAlignment.description,
+						)}
+						icon={<Layers className="size-5 text-teal-600" />}
 					/>
 					<ServiceHighlight
-						title="Confidence"
-						description="Clear deployment guardrails and rollback paths."
-						icon={<ShieldCheck className="size-5 text-amber-600" />}
+						title={t((t) => t.services.legacy.highlights.predictableReleases.title)}
+						description={t(
+							(t) => t.services.legacy.highlights.predictableReleases.description,
+						)}
+						icon={<Workflow className="size-5 text-amber-600" />}
 					/>
 					<ServiceHighlight
-						title="Team handoff"
-						description="Documentation and playbooks for every release."
+						title={t((t) => t.services.legacy.highlights.handoff.title)}
+						description={t((t) => t.services.legacy.highlights.handoff.description)}
 						icon={<Rocket className="size-5 text-slate-700" />}
 					/>
 				</div>
@@ -87,18 +98,18 @@ function ExpoWorkflowOptimizationPage() {
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
 							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								Outcomes
+								{t((t) => t.services.common.deliverablesLabel)}
 							</p>
 							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-								Workflow improvements you can feel
+								{t((t) => t.services.legacy.deliverablesIntroTitle)}
 							</h2>
 						</div>
 						<p className="max-w-xl text-slate-600">
-							Identify bottlenecks, streamline approvals, and keep releases calm.
+							{t((t) => t.services.legacy.deliverablesIntroDescription)}
 						</p>
 					</div>
 					<ul className="mt-8 grid gap-4 md:grid-cols-2">
-						{outcomes.map((item) => (
+						{deliverables.map((item) => (
 							<li
 								key={item}
 								className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700"
@@ -115,27 +126,26 @@ function ExpoWorkflowOptimizationPage() {
 				<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
 						<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-							Focus areas
+							{t((t) => t.services.common.processLabel)}
 						</p>
 						<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-							From CI/CD to release observability
+							{t((t) => t.services.legacy.processTitle)}
 						</h2>
 					</div>
 					<p className="max-w-xl text-slate-600">
-						I target the workflow steps that create delays, handoffs, and
-						unplanned downtime.
+						{t((t) => t.services.legacy.processDescription)}
 					</p>
 				</div>
 				<div className="mt-8 grid gap-6 md:grid-cols-3">
-					{focusAreas.map((area) => (
+					{phases.map((phase) => (
 						<div
-							key={area.title}
+							key={phase.title}
 							className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
 						>
 							<h3 className="text-lg font-semibold text-slate-900">
-								{area.title}
+								{phase.title}
 							</h3>
-							<p className="mt-3 text-sm text-slate-600">{area.description}</p>
+							<p className="mt-3 text-sm text-slate-600">{phase.description}</p>
 						</div>
 					))}
 				</div>
