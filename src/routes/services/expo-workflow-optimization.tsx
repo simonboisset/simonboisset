@@ -2,6 +2,7 @@ import type React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Gauge, Rocket, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SCHEDULE_VISIO_URL } from "@/lib/constants";
 
 export const Route = createFileRoute("/services/expo-workflow-optimization")({
 	component: ExpoWorkflowOptimizationPage,
@@ -50,7 +51,9 @@ function ExpoWorkflowOptimizationPage() {
 					</p>
 					<div className="mt-8 flex flex-wrap items-center gap-4">
 						<Button asChild>
-							<a href="mailto:hello@simonboisset.dev">Optimize my workflow</a>
+							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+								Optimize my workflow
+							</a>
 						</Button>
 						<Button variant="outline" asChild>
 							<Link to="/">Back to home</Link>

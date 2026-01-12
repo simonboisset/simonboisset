@@ -1,5 +1,6 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 
 export default function Header() {
 	const router = useRouter();
@@ -35,16 +36,20 @@ export default function Header() {
 					>
 						Blog
 					</Link>
-					<Link
-						to="/docs/legal"
-						className={pathname.startsWith("/docs") ? "text-slate-900" : ""}
+					<a
+						href={GITHUB_URL}
+						target="_blank"
+						rel="noreferrer"
+						className="hover:text-slate-900"
 					>
-						Legal
-					</Link>
+						GitHub
+					</a>
 				</nav>
 				<div className="flex items-center gap-3">
 					<Button asChild size="sm">
-						<a href="mailto:hello@simonboisset.dev">Book a call</a>
+						<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+							Book a call
+						</a>
 					</Button>
 				</div>
 			</div>

@@ -2,6 +2,7 @@ import type React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Layers, Rocket, Workflow } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SCHEDULE_VISIO_URL } from "@/lib/constants";
 
 export const Route = createFileRoute("/services/react-native-legacy-to-expo")({
 	component: LegacyToExpoPage,
@@ -52,7 +53,9 @@ function LegacyToExpoPage() {
 					</p>
 					<div className="mt-8 flex flex-wrap items-center gap-4">
 						<Button asChild>
-							<a href="mailto:hello@simonboisset.dev">Plan a migration</a>
+							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+								Plan a migration
+							</a>
 						</Button>
 						<Button variant="outline" asChild>
 							<Link to="/">Back to home</Link>

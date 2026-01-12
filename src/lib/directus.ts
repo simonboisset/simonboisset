@@ -132,7 +132,12 @@ const getPostDetails = createServerFn({ method: "GET" })
 		return result;
 	});
 
+const getAssetUrl = createServerFn({ method: "GET" })
+	.inputValidator(z.string().min(1))
+	.handler(({ data: assetId }) => `${env.DIRECTUS_URL}/assets/${assetId}`);
+
 export const directus = {
 	getPosts,
 	getPostDetails,
+	getAssetUrl,
 };

@@ -10,15 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DocsIndexRouteImport } from './routes/docs/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as ServicesReactNativeLegacyToExpoRouteImport } from './routes/services/react-native-legacy-to-expo'
 import { Route as ServicesExpoWorkflowOptimizationRouteImport } from './routes/services/expo-workflow-optimization'
-import { Route as DocsLegalRouteImport } from './routes/docs/legal'
+import { Route as DocsPolitiqueConfidentialiteRouteImport } from './routes/docs/politique-confidentialite'
+import { Route as DocsMentionsLegalesRouteImport } from './routes/docs/mentions-legales'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsIndexRoute = DocsIndexRouteImport.update({
+  id: '/docs/',
+  path: '/docs/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -38,9 +45,15 @@ const ServicesExpoWorkflowOptimizationRoute =
     path: '/services/expo-workflow-optimization',
     getParentRoute: () => rootRouteImport,
   } as any)
-const DocsLegalRoute = DocsLegalRouteImport.update({
-  id: '/docs/legal',
-  path: '/docs/legal',
+const DocsPolitiqueConfidentialiteRoute =
+  DocsPolitiqueConfidentialiteRouteImport.update({
+    id: '/docs/politique-confidentialite',
+    path: '/docs/politique-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DocsMentionsLegalesRoute = DocsMentionsLegalesRouteImport.update({
+  id: '/docs/mentions-legales',
+  path: '/docs/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -52,62 +65,76 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/docs/legal': typeof DocsLegalRoute
+  '/docs/mentions-legales': typeof DocsMentionsLegalesRoute
+  '/docs/politique-confidentialite': typeof DocsPolitiqueConfidentialiteRoute
   '/services/expo-workflow-optimization': typeof ServicesExpoWorkflowOptimizationRoute
   '/services/react-native-legacy-to-expo': typeof ServicesReactNativeLegacyToExpoRoute
   '/blog': typeof BlogIndexRoute
+  '/docs': typeof DocsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/docs/legal': typeof DocsLegalRoute
+  '/docs/mentions-legales': typeof DocsMentionsLegalesRoute
+  '/docs/politique-confidentialite': typeof DocsPolitiqueConfidentialiteRoute
   '/services/expo-workflow-optimization': typeof ServicesExpoWorkflowOptimizationRoute
   '/services/react-native-legacy-to-expo': typeof ServicesReactNativeLegacyToExpoRoute
   '/blog': typeof BlogIndexRoute
+  '/docs': typeof DocsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/docs/legal': typeof DocsLegalRoute
+  '/docs/mentions-legales': typeof DocsMentionsLegalesRoute
+  '/docs/politique-confidentialite': typeof DocsPolitiqueConfidentialiteRoute
   '/services/expo-workflow-optimization': typeof ServicesExpoWorkflowOptimizationRoute
   '/services/react-native-legacy-to-expo': typeof ServicesReactNativeLegacyToExpoRoute
   '/blog/': typeof BlogIndexRoute
+  '/docs/': typeof DocsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/blog/$slug'
-    | '/docs/legal'
+    | '/docs/mentions-legales'
+    | '/docs/politique-confidentialite'
     | '/services/expo-workflow-optimization'
     | '/services/react-native-legacy-to-expo'
     | '/blog'
+    | '/docs'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/blog/$slug'
-    | '/docs/legal'
+    | '/docs/mentions-legales'
+    | '/docs/politique-confidentialite'
     | '/services/expo-workflow-optimization'
     | '/services/react-native-legacy-to-expo'
     | '/blog'
+    | '/docs'
   id:
     | '__root__'
     | '/'
     | '/blog/$slug'
-    | '/docs/legal'
+    | '/docs/mentions-legales'
+    | '/docs/politique-confidentialite'
     | '/services/expo-workflow-optimization'
     | '/services/react-native-legacy-to-expo'
     | '/blog/'
+    | '/docs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogSlugRoute: typeof BlogSlugRoute
-  DocsLegalRoute: typeof DocsLegalRoute
+  DocsMentionsLegalesRoute: typeof DocsMentionsLegalesRoute
+  DocsPolitiqueConfidentialiteRoute: typeof DocsPolitiqueConfidentialiteRoute
   ServicesExpoWorkflowOptimizationRoute: typeof ServicesExpoWorkflowOptimizationRoute
   ServicesReactNativeLegacyToExpoRoute: typeof ServicesReactNativeLegacyToExpoRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  DocsIndexRoute: typeof DocsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -117,6 +144,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/': {
+      id: '/docs/'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -140,11 +174,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesExpoWorkflowOptimizationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/docs/legal': {
-      id: '/docs/legal'
-      path: '/docs/legal'
-      fullPath: '/docs/legal'
-      preLoaderRoute: typeof DocsLegalRouteImport
+    '/docs/politique-confidentialite': {
+      id: '/docs/politique-confidentialite'
+      path: '/docs/politique-confidentialite'
+      fullPath: '/docs/politique-confidentialite'
+      preLoaderRoute: typeof DocsPolitiqueConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/mentions-legales': {
+      id: '/docs/mentions-legales'
+      path: '/docs/mentions-legales'
+      fullPath: '/docs/mentions-legales'
+      preLoaderRoute: typeof DocsMentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -160,10 +201,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogSlugRoute: BlogSlugRoute,
-  DocsLegalRoute: DocsLegalRoute,
+  DocsMentionsLegalesRoute: DocsMentionsLegalesRoute,
+  DocsPolitiqueConfidentialiteRoute: DocsPolitiqueConfidentialiteRoute,
   ServicesExpoWorkflowOptimizationRoute: ServicesExpoWorkflowOptimizationRoute,
   ServicesReactNativeLegacyToExpoRoute: ServicesReactNativeLegacyToExpoRoute,
   BlogIndexRoute: BlogIndexRoute,
+  DocsIndexRoute: DocsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

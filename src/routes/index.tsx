@@ -3,19 +3,27 @@ import {
 	ArrowUpRight,
 	CheckCircle2,
 	Gauge,
+	Github,
 	Rocket,
 	ShieldCheck,
 	Smartphone,
 	Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
+import { directus } from "@/lib/directus";
 
-export const Route = createFileRoute("/")({ component: App });
+const HERO_PHOTO_ASSET_ID = "d891253f-cd33-486e-bff4-393d96d57f49";
+
+export const Route = createFileRoute("/")({
+	component: App,
+	loader: () => directus.getAssetUrl({ data: HERO_PHOTO_ASSET_ID }),
+});
 
 type Project = {
 	name: string;
-	summary: string;
-	outcome: string;
+	product: string[];
+	impact: string[];
 	stack: string[];
 };
 
@@ -40,48 +48,92 @@ type ServiceLine = {
 };
 
 function App() {
+	const heroPhotoUrl = Route.useLoaderData();
 	const projects: Project[] = [
 		{
-			name: "FieldOps Dispatch",
-			summary:
-				"A real-time dispatch app for field teams with offline-first workflows.",
-			outcome: "Accelerated task completion and reduced missed visits.",
-			stack: ["React Native", "Expo", "Supabase"],
+			name: "CAMPING-CAR PARK - Modernisation app mobile",
+			product: [
+				"App mobile grand public pour reserver et gerer des sejours en camping-car.",
+			],
+			impact: [
+				"Refonte mobile + migration React Native legacy vers Expo.",
+				"Referent mobile pour structuration du projet et autonomisation equipe.",
+			],
+			stack: [
+				"React Native",
+				"Expo",
+				"Mobile",
+				"Architecture",
+			],
 		},
 		{
-			name: "Retail Pulse",
-			summary:
-				"Mobile analytics dashboard for multi-store performance visibility.",
-			outcome: "Unified metrics and enabled weekly forecasting rituals.",
-			stack: ["React", "TypeScript", "Node.js"],
+			name: "VAERDICT - Re-architecture application web metier",
+			product: [
+				"App web pour conseillers en gestion de patrimoine immobilier.",
+			],
+			impact: [
+				"Reprise du codebase et restructuration pour l'evolutivite.",
+				"Lead technique + formation pour renforcer l'equipe interne.",
+			],
+			stack: [
+				"Web",
+				"React",
+				"TypeScript",
+				"Architecture",
+			],
 		},
 		{
-			name: "Studio Planner",
-			summary:
-				"Scheduling and billing automation suite for creative studios.",
-			outcome: "Cut admin time by 40% with automated reminders.",
-			stack: ["React Native", "Expo", "Stripe"],
+			name: "LiNote - App mobile \"lien social\"",
+			product: [
+				"App mobile pour garder le lien avec des proches ages.",
+			],
+			impact: [
+				"Developpement React Native from scratch aligne a l'app web.",
+				"Fonctionnalites cles : rappels, messagerie, partage photo, appels video.",
+			],
+			stack: [
+				"React Native",
+				"Mobile",
+				"iOS",
+				"Android",
+			],
+		},
+		{
+			name: "Silbo - Sante : web + apps terrain",
+			product: [
+				"Startup sante : web d'optimisation des flux patients + apps terrain.",
+			],
+			impact: [
+				"Cycle complet produit -> mise en production en collaboration produit.",
+				"Focus fiabilite, temps reel et ergonomie iOS/Android.",
+			],
+			stack: [
+				"Web",
+				"Mobile",
+				"Fiabilite",
+				"Temps reel",
+			],
 		},
 	];
 
 	const testimonials: Testimonial[] = [
 		{
 			quote:
-				"Simon brings both product vision and execution speed. Our Expo migration felt calm and predictable.",
-			name: "Claire M.",
-			role: "Head of Product, Mobility SaaS",
+				"Simon est tres agreable en matiere de collaboration, il est experimente, il a su s'integrer a l'equipe et faire immediatement preuve d'implication. Il a egalement fait preuve d'une capacite d'adaptation et de synergie avec notre precieux developpeur historique. Tout cela nous permet d'entrevoir sereinement la poursuite du developpement de notre projet dans le temps.",
+			name: "Eric",
+			role: "CEO, Vaerdict",
 		},
 		{
 			quote:
-				"Reliable, proactive, and sharp. He modernized our workflow and unblocked our release cadence.",
-			name: "Julien R.",
-			role: "CTO, B2B Marketplace",
+				"Tres bonne experience avec Simon. Communication facile, tres pro, qualite du code top et livraison rapide. Nous lui avons confie une nouvelle mission suite a celle-ci.",
+			name: "Anthony",
+			role: "CEO, LiNote",
 		},
 		{
 			quote:
-				"Great communication and delightful UX instincts. Our users noticed the difference right away.",
-			name: "Lea N.",
-			role: "Founder, Wellness Startup",
+				"J'ai eu l'opportunite de travailler avec Simon pendant plus de deux ans au sein de mon equipe. Simon est un VRAI developpeur Full Stack par definition, il peut aussi bien ameliorer des composants UI, ameliorer le backend ou le mobile, comme faire de l'optimisation d'infrastructure cloud ou des pipelines de CI/CD. Force de proposition pour des architectures efficaces, il est aussi tres competent pour apprendre de nouveaux concepts complexes.",
+			name: "Thomas",
+			role: "CTO, Silbo",
 		},
 	];
 
@@ -143,19 +195,46 @@ function App() {
 							Building high-performance mobile experiences with React Native +
 							Expo.
 						</h1>
-						<p className="text-lg text-slate-600 md:text-xl">
-							I'm Simon Boisset, a mobile-focused full-stack developer. I help
-							teams ship polished apps, modernize legacy React Native stacks, and
-							tighten delivery workflows.
-						</p>
+						{heroPhotoUrl ? (
+							<div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+								<div className="rounded-full border border-slate-200 bg-white/90 p-2 shadow-lg">
+									<div className="size-20 overflow-hidden rounded-full bg-slate-100 md:size-24">
+										<img
+											src={heroPhotoUrl}
+											alt="Simon Boisset"
+											className="h-full w-full object-cover"
+										/>
+									</div>
+								</div>
+								<p className="rounded-[22px] rounded-tl-[8px] rounded-br-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
+									"I'm Simon Boisset, a mobile-focused full-stack developer. I help
+									teams ship polished apps, modernize legacy React Native stacks,
+									and tighten delivery workflows."
+								</p>
+							</div>
+						) : (
+							<p className="text-lg text-slate-600 md:text-xl">
+								I'm Simon Boisset, a mobile-focused full-stack developer. I help
+								teams ship polished apps, modernize legacy React Native stacks,
+								and tighten delivery workflows.
+							</p>
+						)}
 						<div className="flex flex-wrap items-center gap-4">
 							<Button asChild>
-								<a href="mailto:hello@simonboisset.dev">
+								<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
 									Start a project <ArrowUpRight className="size-4" />
 								</a>
 							</Button>
 							<Button variant="outline" asChild>
 								<a href="/#services">View services</a>
+							</Button>
+							<Button
+								asChild
+								className="border border-[#0d1117] bg-[#0d1117] text-white hover:bg-[#161b22] hover:text-white"
+							>
+								<a href={GITHUB_URL} target="_blank" rel="noreferrer">
+									GitHub <Github className="size-4" />
+								</a>
 							</Button>
 						</div>
 						<div className="flex flex-wrap items-center gap-6 text-sm text-slate-600">
@@ -341,7 +420,7 @@ function App() {
 						</p>
 					</div>
 					<Button asChild size="lg">
-						<a href="mailto:hello@simonboisset.dev">
+						<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
 							Schedule a call <Rocket className="size-4" />
 						</a>
 					</Button>
@@ -367,10 +446,26 @@ function ProjectCard({
 				<h3 className="text-lg font-semibold text-slate-900">{project.name}</h3>
 				<Sparkles className="size-4 text-amber-600" />
 			</div>
-			<p className="mt-3 text-sm text-slate-600">{project.summary}</p>
-			<p className="mt-4 text-sm font-semibold text-slate-900">
-				{project.outcome}
-			</p>
+			<div className="mt-4 space-y-3">
+				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+					Produit / entreprise
+				</p>
+				{project.product.map((line) => (
+					<p key={line} className="text-sm text-slate-600">
+						{line}
+					</p>
+				))}
+			</div>
+			<div className="mt-4 space-y-3">
+				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+					Impact / contributions
+				</p>
+				{project.impact.map((line) => (
+					<p key={line} className="text-sm text-slate-600">
+						{line}
+					</p>
+				))}
+			</div>
 			<div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-500">
 				{project.stack.map((item) => (
 					<span
@@ -428,17 +523,21 @@ function TestimonialCard({
 }) {
 	return (
 		<div
-			className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm motion-safe:animate-fade-up"
+			className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm motion-safe:animate-fade-up"
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
-			<p className="text-sm text-slate-600">"{testimonial.quote}"</p>
-			<div className="mt-6">
-				<p className="text-sm font-semibold text-slate-900">
-					{testimonial.name}
-				</p>
-				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-					{testimonial.role}
-				</p>
+			<p className="text-justify text-sm italic text-slate-600">
+				"{testimonial.quote}"
+			</p>
+			<div className="mt-auto pt-6">
+				<div className="border-t border-slate-100 pt-4">
+					<p className="text-sm font-semibold text-slate-900">
+						{testimonial.name}
+					</p>
+					<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+						{testimonial.role}
+					</p>
+				</div>
 			</div>
 		</div>
 	);
