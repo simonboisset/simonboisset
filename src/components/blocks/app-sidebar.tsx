@@ -10,8 +10,8 @@ import {
 	SidebarMenuItem,
 	SidebarRail,
 } from "@/components/ui/sidebar";
-import { getNavigationItems } from "@/lib/navigation";
 import { useI18n } from "@/lib/i18n/use-i18n";
+import { getNavigationItems } from "@/lib/navigation";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const { t, localeParam } = useI18n();

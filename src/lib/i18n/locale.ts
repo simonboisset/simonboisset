@@ -88,6 +88,7 @@ export const getClientLocaleFromCookie = (): Locale | null => {
 export const setLocaleCookie = (locale: Locale) => {
 	if (typeof document === "undefined") return;
 	const value = encodeURIComponent(locale);
+	// biome-ignore lint/suspicious/noDocumentCookie: cookie storage is intentional.
 	document.cookie = `${LOCALE_COOKIE_NAME}=${value}; Path=/; Max-Age=${LOCALE_COOKIE_MAX_AGE}; SameSite=Lax`;
 };
 
@@ -118,6 +119,8 @@ export const buildLocalizedPath = (
 ) => {
 	const basePathname = stripLocaleFromPathname(pathname);
 	const targetPathname =
-		locale === DEFAULT_LOCALE ? basePathname : addLocaleToPathname(basePathname, locale);
+		locale === DEFAULT_LOCALE
+			? basePathname
+			: addLocaleToPathname(basePathname, locale);
 	return buildPath(targetPathname, search, hash);
 };

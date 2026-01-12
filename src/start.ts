@@ -7,9 +7,9 @@ import {
 } from "@tanstack/react-start/server";
 import {
 	DEFAULT_LOCALE,
-	LOCALE_COOKIE_NAME,
 	extractLocaleFromPathname,
 	getSafeLocale,
+	LOCALE_COOKIE_NAME,
 } from "@/lib/i18n/locale";
 
 const localeMiddleware = createMiddleware().server(async ({ next }) => {

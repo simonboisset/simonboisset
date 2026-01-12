@@ -1,14 +1,14 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
-import { useI18n } from "@/lib/i18n/use-i18n";
 import {
 	DEFAULT_LOCALE,
+	type Locale,
 	localeToPathSegment,
 	setLocaleCookie,
 	stripLocaleFromPathname,
-	type Locale,
 } from "@/lib/i18n/locale";
+import { useI18n } from "@/lib/i18n/use-i18n";
 
 export default function Header() {
 	const router = useRouter();
@@ -24,7 +24,12 @@ export default function Header() {
 		if (nextLocale === locale) return;
 		setLocaleCookie(nextLocale);
 		const matches = router.state.matches;
-		const leafMatch = matches[matches.length - 1];
+		type RouteMatch = (typeof matches)[number];
+		const isNonRootMatch = (
+			match: RouteMatch,
+		): match is Exclude<RouteMatch, { routeId: "__root__" }> =>
+			match.routeId !== "__root__";
+		const leafMatch = [...matches].reverse().find(isNonRootMatch);
 		const to = leafMatch?.fullPath ?? "/{-$locale}";
 		const localeSegment =
 			nextLocale === DEFAULT_LOCALE

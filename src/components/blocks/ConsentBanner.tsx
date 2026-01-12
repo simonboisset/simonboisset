@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ANALYTICS_CONSENT_EVENT, useAnalyticsConsent } from "@/lib/analytics";
 import { useI18n } from "@/lib/i18n/use-i18n";
@@ -42,7 +42,8 @@ export default function ConsentBanner({ enabled = true }: ConsentBannerProps) {
 		};
 
 		window.addEventListener(ANALYTICS_CONSENT_EVENT, handleOpen);
-		return () => window.removeEventListener(ANALYTICS_CONSENT_EVENT, handleOpen);
+		return () =>
+			window.removeEventListener(ANALYTICS_CONSENT_EVENT, handleOpen);
 	}, []);
 
 	if (!isVisible) {

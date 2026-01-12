@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { usePostHog } from "posthog-js/react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 
 export const ANALYTICS_CONSENT_KEY = "analytics-consent";

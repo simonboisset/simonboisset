@@ -1,7 +1,14 @@
-import { type InferTranslation } from "typed-locale";
+import type { InferTranslation } from "typed-locale";
 
 export const en = {
 	locale: "en",
+	seo: {
+		homeTitle:
+			"Mobile-focused full-stack developer (React Native, Expo, React)",
+		homeDescription:
+			"Freelance mobile-focused full-stack developer specializing in React Native, Expo, and modern web apps.",
+		blogTitle: "Blog",
+	},
 	nav: {
 		brand: "Simon Boisset",
 		tagline: "Mobile + Full-stack",
@@ -46,7 +53,8 @@ export const en = {
 	blog: {
 		heroLabel: "Blog",
 		heroTitle: "Thoughts on shipping great mobile products.",
-		description: "Field notes on mobile delivery, Expo workflows, and full-stack craft.",
+		description:
+			"Field notes on mobile delivery, Expo workflows, and full-stack craft.",
 		featured: "Featured",
 		latest: "Latest articles",
 		empty: "No blog posts published yet.",
@@ -70,7 +78,8 @@ export const en = {
 	home: {
 		hero: {
 			eyebrow: "Mobile + Full-stack Freelance",
-			title: "Building high-performance mobile experiences with React Native + Expo.",
+			title:
+				"Building high-performance mobile experiences with React Native + Expo.",
 			intro:
 				"I'm Simon Boisset, a mobile-focused full-stack developer. I help teams ship polished apps, modernize legacy React Native stacks, and tighten delivery workflows.",
 			ctaPrimary: "Start a project",
@@ -110,11 +119,11 @@ export const en = {
 			campingCarPark: {
 				name: "CAMPING-CAR PARK - Mobile app modernization",
 				product: {
-					line1:
-						"Consumer mobile app to book and manage campervan stays.",
+					line1: "Consumer mobile app to book and manage campervan stays.",
 				},
 				impact: {
-					line1: "Mobile redesign + migration from legacy React Native to Expo.",
+					line1:
+						"Mobile redesign + migration from legacy React Native to Expo.",
 					line2: "Mobile lead for project structure and team enablement.",
 				},
 				stack: {
@@ -277,7 +286,8 @@ export const en = {
 				},
 				predictableReleases: {
 					title: "Predictable releases",
-					description: "Set up EAS pipelines, OTA updates, and release playbooks.",
+					description:
+						"Set up EAS pipelines, OTA updates, and release playbooks.",
 				},
 				handoff: {
 					title: "Launch-ready handoff",

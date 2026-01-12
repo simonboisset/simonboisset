@@ -2,6 +2,13 @@ import type { Translations } from "./en";
 
 export const fr: Translations = {
 	locale: "fr",
+	seo: {
+		homeTitle:
+			"Développeur full-stack orienté mobile (React Native, Expo, React)",
+		homeDescription:
+			"Développeur freelance mobile + full-stack spécialisé en React Native, Expo et applications web modernes.",
+		blogTitle: "Blog",
+	},
 	nav: {
 		brand: "Simon Boisset",
 		tagline: "Mobile + Full-stack",
@@ -26,7 +33,8 @@ export const fr: Translations = {
 		description:
 			"Nous utilisons PostHog pour mesurer l'audience et améliorer l'expérience. Vous pouvez accepter ou refuser.",
 		essentialTitle: "Essentiel",
-		essentialDescription: "Stockage de votre choix de consentement dans le navigateur.",
+		essentialDescription:
+			"Stockage de votre choix de consentement dans le navigateur.",
 		analyticsTitle: "Analytics",
 		analyticsDescription:
 			"PostHog (hébergement UE) pour comprendre les pages visitées et les parcours.",
@@ -40,8 +48,7 @@ export const fr: Translations = {
 	notFound: {
 		label: "Erreur 404",
 		title: "Cette page s'est égarée.",
-		description:
-			"La page que vous cherchez n'existe pas ou a été déplacée.",
+		description: "La page que vous cherchez n'existe pas ou a été déplacée.",
 		backHome: "Retour à l'accueil",
 	},
 	blog: {
@@ -61,7 +68,8 @@ export const fr: Translations = {
 	docs: {
 		heroLabel: "Documents",
 		heroTitle: "Documentation légale",
-		heroDescription: "Retrouvez les documents obligatoires et informations légales.",
+		heroDescription:
+			"Retrouvez les documents obligatoires et informations légales.",
 		effectiveDate: "Date d'effet",
 		empty: "Aucun document disponible.",
 		cardDescriptions: {
@@ -72,8 +80,7 @@ export const fr: Translations = {
 	home: {
 		hero: {
 			eyebrow: "Freelance mobile + full-stack",
-			title:
-				"Des expériences mobiles performantes avec React Native + Expo.",
+			title: "Des expériences mobiles performantes avec React Native + Expo.",
 			intro:
 				"Je suis Simon Boisset, développeur full-stack orienté mobile. J'aide les équipes à livrer des apps soignées, moderniser des stacks React Native legacy et fiabiliser les workflows de delivery.",
 			ctaPrimary: "Lancer un projet",
@@ -131,12 +138,12 @@ export const fr: Translations = {
 			vaerdict: {
 				name: "VAERDICT - Re-architecture application web métier",
 				product: {
-					line1: "App web pour conseillers en gestion de patrimoine immobilier.",
+					line1:
+						"App web pour conseillers en gestion de patrimoine immobilier.",
 				},
 				impact: {
 					line1: "Reprise du codebase et restructuration pour l'évolutivité.",
-					line2:
-						"Lead technique + formation pour renforcer l'équipe interne.",
+					line2: "Lead technique + formation pour renforcer l'équipe interne.",
 				},
 				stack: {
 					item1: "Web",
@@ -146,13 +153,12 @@ export const fr: Translations = {
 				},
 			},
 			linote: {
-				name: "LiNote - App mobile \"lien social\"",
+				name: 'LiNote - App mobile "lien social"',
 				product: {
 					line1: "App mobile pour garder le lien avec des proches âgés.",
 				},
 				impact: {
-					line1:
-						"Développement React Native from scratch aligné à l'app web.",
+					line1: "Développement React Native from scratch aligné à l'app web.",
 					line2:
 						"Fonctionnalités clés : rappels, messagerie, partage photo, appels vidéo.",
 				},
@@ -172,8 +178,7 @@ export const fr: Translations = {
 				impact: {
 					line1:
 						"Cycle complet produit -> mise en production en collaboration produit.",
-					line2:
-						"Focus fiabilité, temps réel et ergonomie iOS/Android.",
+					line2: "Focus fiabilité, temps réel et ergonomie iOS/Android.",
 				},
 				stack: {
 					item1: "Web",

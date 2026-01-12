@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
 import { Route as Char123LocaleChar125DocsIndexRouteImport } from './routes/{-$locale}/docs/index'
 import { Route as Char123LocaleChar125BlogIndexRouteImport } from './routes/{-$locale}/blog/index'
@@ -19,6 +20,11 @@ import { Route as Char123LocaleChar125DocsMentionsLegalesRouteImport } from './r
 import { Route as Char123LocaleChar125DocsSlugRouteImport } from './routes/{-$locale}/docs/$slug'
 import { Route as Char123LocaleChar125BlogSlugRouteImport } from './routes/{-$locale}/blog/$slug'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char123LocaleChar125IndexRoute =
   Char123LocaleChar125IndexRouteImport.update({
     id: '/{-$locale}/',
@@ -75,6 +81,7 @@ const Char123LocaleChar125BlogSlugRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
 }
 export interface FileRoutesByTo {
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
@@ -111,6 +120,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/sitemap.xml'
     | '/{-$locale}'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/sitemap.xml'
     | '/{-$locale}'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs'
   id:
     | '__root__'
+    | '/sitemap.xml'
     | '/{-$locale}/'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
@@ -145,6 +157,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
   Char123LocaleChar125BlogSlugRoute: typeof Char123LocaleChar125BlogSlugRoute
   Char123LocaleChar125DocsSlugRoute: typeof Char123LocaleChar125DocsSlugRoute
@@ -158,6 +171,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/{-$locale}/': {
       id: '/{-$locale}/'
       path: '/{-$locale}'
@@ -225,6 +245,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
   Char123LocaleChar125BlogSlugRoute: Char123LocaleChar125BlogSlugRoute,
   Char123LocaleChar125DocsSlugRoute: Char123LocaleChar125DocsSlugRoute,

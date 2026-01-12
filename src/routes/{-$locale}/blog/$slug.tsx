@@ -1,10 +1,12 @@
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { marked } from "marked";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Skeleton } from "@/components/ui/skeleton";
 import { directus, type PostDetails, type PostSummary } from "@/lib/directus";
+import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { marked } from "marked";
+import { buildSeo, stripHtml, toExcerpt } from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 	component: BlogDetailPage,
@@ -21,7 +23,25 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 
 		const contentHtml = await marked.parse(post.content);
 
-		return { post, contentHtml, posts };
+		return { post, contentHtml, posts, locale };
+	},
+	head: ({ loaderData }) => {
+		if (!loaderData) return {};
+		const t = getTranslator(loaderData.locale);
+		const descriptionFallback = t((t) => t.blog.description);
+		const contentText = stripHtml(loaderData.contentHtml);
+		const description = contentText
+			? toExcerpt(contentText)
+			: descriptionFallback;
+
+		return buildSeo({
+			title: loaderData.post.title,
+			description,
+			path: `/blog/${loaderData.post.slug}`,
+			locale: loaderData.locale,
+			imageUrl: loaderData.post.imageUrl,
+			type: "article",
+		});
 	},
 	pendingComponent: () => (
 		<div className="bg-[#f6f1ea]">

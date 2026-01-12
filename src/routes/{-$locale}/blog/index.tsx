@@ -1,15 +1,27 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Skeleton } from "@/components/ui/skeleton";
 import { directus, type PostSummary } from "@/lib/directus";
+import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/blog/")({
-	ssr: false,
 	component: BlogListPage,
-	loader: ({ location, serverContext }) => {
+	loader: async ({ location, serverContext }) => {
 		const locale = resolveLocaleForPath(location.pathname, serverContext);
-		return directus.getPosts({ data: { locale } });
+		const posts = await directus.getPosts({ data: { locale } });
+		return { posts, locale };
+	},
+	head: ({ loaderData }) => {
+		if (!loaderData) return {};
+		const t = getTranslator(loaderData.locale);
+		return buildSeo({
+			title: t((t) => t.seo.blogTitle),
+			description: t((t) => t.blog.description),
+			path: "/blog",
+			locale: loaderData.locale,
+		});
 	},
 	pendingComponent: () => (
 		<div className="bg-[#f6f1ea]">
@@ -48,7 +60,7 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 });
 
 function BlogListPage() {
-	const posts = Route.useLoaderData();
+	const { posts } = Route.useLoaderData();
 	const { t, localeParam } = useI18n();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }

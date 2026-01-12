@@ -1,9 +1,11 @@
-import MarkdownContent from "@/components/blocks/MarkdownContent";
-import { directus } from "@/lib/directus";
-import { resolveLocaleForPath } from "@/lib/i18n/locale";
-import { useI18n } from "@/lib/i18n/use-i18n";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { marked } from "marked";
+import MarkdownContent from "@/components/blocks/MarkdownContent";
+import { directus } from "@/lib/directus";
+import { getTranslator } from "@/lib/i18n";
+import { resolveLocaleForPath } from "@/lib/i18n/locale";
+import { useI18n } from "@/lib/i18n/use-i18n";
+import { buildSeo, stripHtml, toExcerpt } from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/docs/$slug")({
 	component: DocsDetailPage,
@@ -19,7 +21,24 @@ export const Route = createFileRoute("/{-$locale}/docs/$slug")({
 		}
 
 		const contentHtml = await marked.parse(doc.content);
-		return { doc, contentHtml, docs };
+		return { doc, contentHtml, docs, locale };
+	},
+	head: ({ loaderData }) => {
+		if (!loaderData) return {};
+		const t = getTranslator(loaderData.locale);
+		const descriptionFallback = t((t) => t.docs.heroDescription);
+		const contentText = stripHtml(loaderData.contentHtml);
+		const description = contentText
+			? toExcerpt(contentText)
+			: descriptionFallback;
+
+		return buildSeo({
+			title: loaderData.doc.title,
+			description,
+			path: `/docs/${loaderData.doc.slug}`,
+			locale: loaderData.locale,
+			type: "article",
+		});
 	},
 });
 

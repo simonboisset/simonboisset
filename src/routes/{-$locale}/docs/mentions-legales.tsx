@@ -1,10 +1,10 @@
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import {
-	DEFAULT_LOCALE,
 	addLocaleToPathname,
 	buildPath,
+	DEFAULT_LOCALE,
 	resolveLocaleForPath,
 } from "@/lib/i18n/locale";
-import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/{-$locale}/docs/mentions-legales")({
 	loader: ({ location, serverContext }) => {

@@ -30,9 +30,7 @@ export function NavMain({ items }: NavMainProps) {
 
 	const isGroupActive = (item: NavItem) => {
 		if (!item.items) return false;
-		return item.items.some(
-			(subItem) => pathname === getItemPathname(subItem),
-		);
+		return item.items.some((subItem) => pathname === getItemPathname(subItem));
 	};
 
 	return (
@@ -49,12 +47,9 @@ export function NavMain({ items }: NavMainProps) {
 											to={item.to}
 											params={item.params}
 											activeProps={{
-												className:
-													"bg-accent text-accent-foreground",
+												className: "bg-accent text-accent-foreground",
 											}}
-											activeOptions={
-												isRoot ? { exact: true } : undefined
-											}
+											activeOptions={isRoot ? { exact: true } : undefined}
 										>
 											{item.icon && <item.icon />}
 											<span>{item.title}</span>

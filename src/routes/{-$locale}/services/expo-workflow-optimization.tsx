@@ -1,13 +1,29 @@
-import type React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Gauge, Rocket, ShieldCheck } from "lucide-react";
+import type React from "react";
 import { Button } from "@/components/ui/button";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
+import { getTranslator } from "@/lib/i18n";
+import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute(
 	"/{-$locale}/services/expo-workflow-optimization",
 )({
+	loader: ({ location, serverContext }) => ({
+		locale: resolveLocaleForPath(location.pathname, serverContext),
+	}),
+	head: ({ loaderData }) => {
+		if (!loaderData) return {};
+		const t = getTranslator(loaderData.locale);
+		return buildSeo({
+			title: t((t) => t.services.workflow.title),
+			description: t((t) => t.services.workflow.intro),
+			path: "/services/expo-workflow-optimization",
+			locale: loaderData.locale,
+		});
+	},
 	component: ExpoWorkflowOptimizationPage,
 });
 
@@ -71,7 +87,9 @@ function ExpoWorkflowOptimizationPage() {
 			<section className="mx-auto w-full max-w-5xl px-6 py-16">
 				<div className="grid gap-6 md:grid-cols-3">
 					<ServiceHighlight
-						title={t((t) => t.services.workflow.highlights.releaseVelocity.title)}
+						title={t(
+							(t) => t.services.workflow.highlights.releaseVelocity.title,
+						)}
 						description={t(
 							(t) => t.services.workflow.highlights.releaseVelocity.description,
 						)}

@@ -1,6 +1,6 @@
 import { BookOpen, Home, type LucideIcon } from "lucide-react";
-import type { Translations } from "@/lib/i18n/en";
 import type { Translator } from "typed-locale";
+import type { Translations } from "@/lib/i18n/en";
 
 type I18nTranslator = Translator<Translations>;
 

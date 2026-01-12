@@ -1,7 +1,7 @@
-import { env } from "@/env";
-import { localeSchema, type Locale } from "@/lib/i18n/locale";
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { env } from "@/env";
+import { type Locale, localeSchema } from "@/lib/i18n/locale";
 
 const PostSummarySchema = z.object({
 	slug: z.string(),

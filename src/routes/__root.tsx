@@ -1,30 +1,29 @@
-import { useEffect } from "react";
 import {
 	createRootRoute,
 	HeadContent,
 	Link,
-	Scripts,
 	redirect,
+	Scripts,
 } from "@tanstack/react-router";
 import { PostHogProvider } from "posthog-js/react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import Header from "../components/blocks/Header";
-import SiteFooter from "../components/blocks/SiteFooter";
-import ConsentBanner from "../components/blocks/ConsentBanner";
 import { env } from "@/env";
-import { useI18n } from "@/lib/i18n/use-i18n";
 import {
-	DEFAULT_LOCALE,
 	addLocaleToPathname,
 	buildPath,
+	DEFAULT_LOCALE,
 	extractLocaleFromPathname,
 	getClientLocaleFromCookie,
 	getSafeLocale,
 	readServerLocale,
 	setLocaleCookie,
 	stripLocaleFromPathname,
-	type Locale,
 } from "@/lib/i18n/locale";
+import { useI18n } from "@/lib/i18n/use-i18n";
+import ConsentBanner from "../components/blocks/ConsentBanner";
+import Header from "../components/blocks/Header";
+import SiteFooter from "../components/blocks/SiteFooter";
 
 import appCss from "../styles.css?url";
 
@@ -44,6 +43,17 @@ export const Route = createRootRoute({
 		const basePathname = segment
 			? stripLocaleFromPathname(location.pathname)
 			: location.pathname;
+		if (basePathname === "/sitemap.xml" || basePathname === "/robots.txt") {
+			if (segment) {
+				throw redirect({
+					href: buildPath(basePathname, location.searchStr, location.hash),
+				});
+			}
+			return {
+				locale: resolvedLocale,
+				isLocalePrefixed: false,
+			};
+		}
 		const shouldPrefix = resolvedLocale !== DEFAULT_LOCALE;
 		const targetPathname = shouldPrefix
 			? addLocaleToPathname(basePathname, resolvedLocale)
@@ -69,19 +79,35 @@ export const Route = createRootRoute({
 				name: "viewport",
 				content: "width=device-width, initial-scale=1",
 			},
-			{
-				name: "description",
-				content:
-					"Simon Boisset, freelance mobile and full-stack developer specializing in React Native, Expo, and modern web apps.",
-			},
-			{
-				title: "Simon Boisset - Developer Mobile React Native",
-			},
 		],
 		links: [
 			{
 				rel: "stylesheet",
 				href: appCss,
+			},
+			{
+				rel: "icon",
+				href: "/favicon.ico",
+			},
+			{
+				rel: "apple-touch-icon",
+				href: "/logo192.png",
+			},
+			{
+				rel: "icon",
+				type: "image/png",
+				sizes: "192x192",
+				href: "/logo192.png",
+			},
+			{
+				rel: "icon",
+				type: "image/png",
+				sizes: "512x512",
+				href: "/logo512.png",
+			},
+			{
+				rel: "manifest",
+				href: "/manifest.json",
 			},
 		],
 	}),
@@ -91,9 +117,7 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-	const { locale } = Route.useRouteContext<{
-		locale: Locale;
-	}>();
+	const { locale } = Route.useRouteContext();
 
 	useEffect(() => {
 		setLocaleCookie(locale);
@@ -134,9 +158,7 @@ function NotFound() {
 				<h1 className="text-5xl md:text-6xl font-semibold text-slate-900">
 					{t((t) => t.notFound.title)}
 				</h1>
-				<p className="text-slate-600">
-					{t((t) => t.notFound.description)}
-				</p>
+				<p className="text-slate-600">{t((t) => t.notFound.description)}</p>
 				<Button asChild>
 					<Link to="/{-$locale}" params={{ locale: localeParam }}>
 						{t((t) => t.notFound.backHome)}

@@ -12,13 +12,32 @@ import {
 import { Button } from "@/components/ui/button";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus } from "@/lib/directus";
+import { getTranslator } from "@/lib/i18n";
+import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
+import { buildSeo } from "@/lib/seo";
 
 const HERO_PHOTO_ASSET_ID = "d891253f-cd33-486e-bff4-393d96d57f49";
 
 export const Route = createFileRoute("/{-$locale}/")({
 	component: App,
-	loader: () => directus.getAssetUrl({ data: HERO_PHOTO_ASSET_ID }),
+	loader: async ({ location, serverContext }) => {
+		const locale = resolveLocaleForPath(location.pathname, serverContext);
+		const heroPhotoUrl = await directus.getAssetUrl({
+			data: HERO_PHOTO_ASSET_ID,
+		});
+		return { heroPhotoUrl, locale };
+	},
+	head: ({ loaderData }) => {
+		if (!loaderData) return {};
+		const t = getTranslator(loaderData.locale);
+		return buildSeo({
+			title: t((t) => t.seo.homeTitle),
+			description: t((t) => t.seo.homeDescription),
+			path: "/",
+			locale: loaderData.locale,
+		});
+	},
 });
 
 type Project = {
@@ -47,7 +66,7 @@ type ServiceLine = {
 };
 
 function App() {
-	const heroPhotoUrl = Route.useLoaderData();
+	const { heroPhotoUrl } = Route.useLoaderData();
 	const { t, localeParam } = useI18n();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
@@ -110,7 +129,7 @@ function App() {
 				t((t) => t.home.projects.silbo.stack.item4),
 			],
 		},
-	]
+	];
 
 	const testimonials: Testimonial[] = [
 		{
@@ -128,7 +147,7 @@ function App() {
 			name: t((t) => t.home.testimonials.thomas.name),
 			role: t((t) => t.home.testimonials.thomas.role),
 		},
-	]
+	];
 
 	const serviceLines: ServiceLine[] = [
 		{
@@ -143,7 +162,7 @@ function App() {
 			title: t((t) => t.home.serviceLines.design.title),
 			description: t((t) => t.home.serviceLines.design.description),
 		},
-	]
+	];
 
 	const productizedServices: ProductizedService[] = [
 		{
@@ -166,7 +185,7 @@ function App() {
 				t((t) => t.home.productized.workflow.bullets.item3),
 			],
 		},
-	]
+	];
 
 	return (
 		<div className="bg-[#f6f1ea] text-slate-900">
@@ -210,11 +229,7 @@ function App() {
 								</a>
 							</Button>
 							<Button variant="outline" asChild>
-								<Link
-									to="/{-$locale}"
-									hash="services"
-									params={localeParams}
-								>
+								<Link to="/{-$locale}" hash="services" params={localeParams}>
 									{t((t) => t.home.hero.ctaSecondary)}
 								</Link>
 							</Button>
@@ -223,7 +238,8 @@ function App() {
 								className="border border-[#0d1117] bg-[#0d1117] text-white hover:bg-[#161b22] hover:text-white"
 							>
 								<a href={GITHUB_URL} target="_blank" rel="noreferrer">
-									{t((t) => t.home.hero.ctaGithub)} <Github className="size-4" />
+									{t((t) => t.home.hero.ctaGithub)}{" "}
+									<Github className="size-4" />
 								</a>
 							</Button>
 						</div>
@@ -299,6 +315,7 @@ function App() {
 				</div>
 			</section>
 
+			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
 			<section id="projects" className="py-16 md:py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -316,16 +333,13 @@ function App() {
 					</div>
 					<div className="mt-10 grid gap-6 lg:grid-cols-3">
 						{projects.map((project, index) => (
-							<ProjectCard
-								key={project.name}
-								index={index}
-								project={project}
-							/>
+							<ProjectCard key={project.name} index={index} project={project} />
 						))}
 					</div>
 				</div>
 			</section>
 
+			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
 			<section id="services" className="bg-[#f3ede4] py-16 md:py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -371,6 +385,7 @@ function App() {
 				</div>
 			</section>
 
+			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
 			<section id="testimonials" className="py-16 md:py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -422,13 +437,7 @@ function App() {
 	);
 }
 
-function ProjectCard({
-	project,
-	index,
-}: {
-	project: Project;
-	index: number;
-}) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
 	const { t } = useI18n();
 
 	return (
@@ -491,7 +500,9 @@ function ProductServiceCard({
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
 			<div className="flex items-center justify-between">
-				<h3 className="text-xl font-semibold text-slate-900">{service.title}</h3>
+				<h3 className="text-xl font-semibold text-slate-900">
+					{service.title}
+				</h3>
 				<Gauge className="size-5 text-teal-600" />
 			</div>
 			<p className="mt-3 text-sm text-slate-600">{service.description}</p>

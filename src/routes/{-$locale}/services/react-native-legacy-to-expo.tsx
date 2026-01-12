@@ -1,13 +1,29 @@
-import type React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2, Layers, Rocket, Workflow } from "lucide-react";
+import type React from "react";
 import { Button } from "@/components/ui/button";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
+import { getTranslator } from "@/lib/i18n";
+import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
+import { buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute(
 	"/{-$locale}/services/react-native-legacy-to-expo",
 )({
+	loader: ({ location, serverContext }) => ({
+		locale: resolveLocaleForPath(location.pathname, serverContext),
+	}),
+	head: ({ loaderData }) => {
+		if (!loaderData) return {};
+		const t = getTranslator(loaderData.locale);
+		return buildSeo({
+			title: t((t) => t.services.legacy.title),
+			description: t((t) => t.services.legacy.intro),
+			path: "/services/react-native-legacy-to-expo",
+			locale: loaderData.locale,
+		});
+	},
 	component: LegacyToExpoPage,
 });
 
@@ -79,15 +95,20 @@ function LegacyToExpoPage() {
 						icon={<Layers className="size-5 text-teal-600" />}
 					/>
 					<ServiceHighlight
-						title={t((t) => t.services.legacy.highlights.predictableReleases.title)}
+						title={t(
+							(t) => t.services.legacy.highlights.predictableReleases.title,
+						)}
 						description={t(
-							(t) => t.services.legacy.highlights.predictableReleases.description,
+							(t) =>
+								t.services.legacy.highlights.predictableReleases.description,
 						)}
 						icon={<Workflow className="size-5 text-amber-600" />}
 					/>
 					<ServiceHighlight
 						title={t((t) => t.services.legacy.highlights.handoff.title)}
-						description={t((t) => t.services.legacy.highlights.handoff.description)}
+						description={t(
+							(t) => t.services.legacy.highlights.handoff.description,
+						)}
 						icon={<Rocket className="size-5 text-slate-700" />}
 					/>
 				</div>
