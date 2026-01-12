@@ -17,7 +17,7 @@ export const Route = createFileRoute(
 				? basePath
 				: addLocaleToPathname(basePath, locale);
 		throw redirect({
-			href: buildPath(targetPathname, location.search, location.hash),
+			href: buildPath(targetPathname, location.searchStr, location.hash),
 		});
 	},
 	component: () => null,

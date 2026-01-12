@@ -15,7 +15,7 @@ export const Route = createFileRoute("/{-$locale}/docs/mentions-legales")({
 				? basePath
 				: addLocaleToPathname(basePath, locale);
 		throw redirect({
-			href: buildPath(targetPathname, location.search, location.hash),
+			href: buildPath(targetPathname, location.searchStr, location.hash),
 		});
 	},
 	component: () => null,

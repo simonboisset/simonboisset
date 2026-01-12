@@ -51,7 +51,7 @@ export const Route = createRootRoute({
 
 		if (targetPathname !== location.pathname) {
 			throw redirect({
-				href: buildPath(targetPathname, location.search, location.hash),
+				href: buildPath(targetPathname, location.searchStr, location.hash),
 			});
 		}
 

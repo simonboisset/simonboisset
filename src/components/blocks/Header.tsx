@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import {
-	buildLocalizedPath,
+	DEFAULT_LOCALE,
+	localeToPathSegment,
 	setLocaleCookie,
 	stripLocaleFromPathname,
 	type Locale,
@@ -22,13 +23,20 @@ export default function Header() {
 	const switchLocale = (nextLocale: Locale) => {
 		if (nextLocale === locale) return;
 		setLocaleCookie(nextLocale);
-		const targetHref = buildLocalizedPath(
-			pathname,
-			router.state.location.search,
-			router.state.location.hash,
-			nextLocale,
-		);
-		router.navigate({ href: targetHref });
+		const matches = router.state.matches;
+		const leafMatch = matches[matches.length - 1];
+		const to = leafMatch?.fullPath ?? "/{-$locale}";
+		const localeSegment =
+			nextLocale === DEFAULT_LOCALE
+				? undefined
+				: localeToPathSegment(nextLocale);
+
+		router.navigate({
+			to,
+			params: (prev) => ({ ...prev, locale: localeSegment }),
+			search: true,
+			hash: true,
+		});
 	};
 
 	return (

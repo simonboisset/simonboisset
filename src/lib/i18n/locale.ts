@@ -68,7 +68,8 @@ export const addLocaleToPathname = (pathname: string, locale: Locale) => {
 
 export const buildPath = (pathname: string, search?: string, hash?: string) => {
 	const searchPart = search && search.length > 0 ? search : "";
-	const hashPart = hash && hash.length > 0 ? hash : "";
+	const hashPart =
+		hash && hash.length > 0 ? (hash.startsWith("#") ? hash : `#${hash}`) : "";
 	return `${pathname}${searchPart}${hashPart}`;
 };
 
