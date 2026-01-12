@@ -87,9 +87,9 @@ export const fr: Translations = {
 	home: {
 		hero: {
 			eyebrow: "Freelance mobile + full-stack",
-			title: "Des expériences mobiles performantes avec React Native + Expo.",
+			title: "Des apps mobiles solides, prêtes pour la production.",
 			intro:
-				"Je suis Simon Boisset, développeur full-stack orienté mobile. J'aide les équipes à livrer des apps soignées, moderniser des stacks React Native legacy et fiabiliser les workflows de delivery.",
+				"Je suis Simon Boisset, développeur mobile/full-stack. J'aide les équipes à livrer des apps React Native/Expo, remettre à plat des stacks legacy et sécuriser les releases.",
 			ctaPrimary: "Lancer un projet",
 			ctaSecondary: "Voir les services",
 			ctaGithub: "GitHub",
@@ -111,15 +111,15 @@ export const fr: Translations = {
 		},
 		signature: {
 			label: "Signature",
-			title: "Delivery Expo-first",
+			title: "Delivery Expo clair et fiable",
 			description:
-				"Des upgrades SDK aux workflows EAS, je mets en place un système de release fiable et prévisible.",
+				"Un workflow Expo/EAS simple pour livrer régulièrement, sans surprise.",
 		},
 		projectsSection: {
 			label: "Projets sélectionnés",
-			title: "Pensé pour les équipes qui vont vite",
+			title: "Exemples de réalisations",
 			description:
-				"Livraison mobile, dashboards opérationnels et outils internes pour garder la confiance à chaque release.",
+				"Apps mobiles, web apps et outils professionnels livrés pour des équipes opérationnelles.",
 			productLabel: "Produit / entreprise",
 			impactLabel: "Impact / contributions",
 		},
@@ -232,9 +232,9 @@ export const fr: Translations = {
 		},
 		servicesSection: {
 			label: "Services",
-			title: "Expertise React + Expo pour des équipes modernes",
+			title: "React + Expo, en mode pragmatique",
 			description:
-				"Du greenfield aux migrations legacy, je conçois des systèmes de delivery qui gardent votre roadmap mobile en mouvement.",
+				"MVP, migration ou reprise d'existant : je pose une base saine pour continuer à shipper.",
 		},
 		serviceLines: {
 			mobile: {
@@ -278,9 +278,9 @@ export const fr: Translations = {
 		},
 		testimonialsSection: {
 			label: "Témoignages",
-			title: "Des équipes qui ont fait confiance au process",
+			title: "Ce que les équipes retiennent",
 			description:
-				"Des partenariats construits sur la clarté, la vélocité et une expertise React Native solide.",
+				"Retours des personnes qui m'ont fait confiance.",
 		},
 		testimonials: {
 			eric: {
@@ -304,9 +304,9 @@ export const fr: Translations = {
 		},
 		cta: {
 			label: "Prêt à livrer",
-			title: "Construisons une roadmap mobile fiable.",
+			title: "Parlons de votre projet mobile.",
 			description:
-				"Partagez vos objectifs et je reviens sous 48h avec les prochaines étapes.",
+				"Donnez le contexte, je reviens sous 48h avec des prochaines étapes claires.",
 			button: "Planifier un appel",
 		},
 	},

@@ -85,10 +85,9 @@ export const en = {
 	home: {
 		hero: {
 			eyebrow: "Mobile + Full-stack Freelance",
-			title:
-				"Building high-performance mobile experiences with React Native + Expo.",
+			title: "Solid mobile apps, ready for production.",
 			intro:
-				"I'm Simon Boisset, a mobile-focused full-stack developer. I help teams ship polished apps, modernize legacy React Native stacks, and tighten delivery workflows.",
+				"I'm Simon Boisset, a mobile/full-stack developer. I help teams ship React Native/Expo apps, clean up legacy stacks, and make releases predictable.",
 			ctaPrimary: "Start a project",
 			ctaSecondary: "View services",
 			ctaGithub: "GitHub",
@@ -110,15 +109,15 @@ export const en = {
 		},
 		signature: {
 			label: "Signature focus",
-			title: "Expo-first delivery",
+			title: "Expo delivery, clear and reliable",
 			description:
-				"From SDK upgrades to EAS workflows, I build a release system that keeps shipping predictable.",
+				"A simple Expo/EAS workflow to ship regularly without surprises.",
 		},
 		projectsSection: {
 			label: "Selected projects",
-			title: "Built for teams who move fast",
+			title: "Examples of shipped work",
 			description:
-				"Productized mobile builds, operational dashboards, and internal tools that help teams ship with confidence.",
+				"Mobile apps, web apps, and professional tools delivered for operational teams.",
 			productLabel: "Product / company",
 			impactLabel: "Impact / contributions",
 		},
@@ -227,9 +226,9 @@ export const en = {
 		},
 		servicesSection: {
 			label: "Services",
-			title: "React + Expo expertise for modern teams",
+			title: "React + Expo, pragmatic and hands-on",
 			description:
-				"From greenfield builds to legacy upgrades, I design delivery systems that keep your mobile roadmap moving.",
+				"MVP, migration, or legacy cleanup: I set a solid base to keep shipping.",
 		},
 		serviceLines: {
 			mobile: {
@@ -273,9 +272,9 @@ export const en = {
 		},
 		testimonialsSection: {
 			label: "Testimonials",
-			title: "Teams that trusted the process",
+			title: "What teams say after working together",
 			description:
-				"Partnerships built on clarity, velocity, and deep React Native experience.",
+				"Feedback from people who trusted me.",
 		},
 		testimonials: {
 			eric: {
@@ -299,9 +298,9 @@ export const en = {
 		},
 		cta: {
 			label: "Ready to ship",
-			title: "Let's build a mobile roadmap you can trust.",
+			title: "Let's talk about your mobile project.",
 			description:
-				"Share your goals and I'll respond within 48 hours with next steps.",
+				"Share the context and I'll come back within 48h with clear next steps.",
 			button: "Schedule a call",
 		},
 	},

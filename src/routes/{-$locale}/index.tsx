@@ -1,3 +1,10 @@
+import { Button } from "@/components/ui/button";
+import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
+import { directus } from "@/lib/directus";
+import { getTranslator } from "@/lib/i18n";
+import { resolveLocaleForPath } from "@/lib/i18n/locale";
+import { useI18n } from "@/lib/i18n/use-i18n";
+import { buildSeo } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
 	ArrowUpRight,
@@ -9,13 +16,6 @@ import {
 	Smartphone,
 	Sparkles,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
-import { directus } from "@/lib/directus";
-import { getTranslator } from "@/lib/i18n";
-import { resolveLocaleForPath } from "@/lib/i18n/locale";
-import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo } from "@/lib/seo";
 
 const HERO_PHOTO_ASSET_ID = "d891253f-cd33-486e-bff4-393d96d57f49";
 
@@ -240,7 +240,7 @@ function App() {
 										/>
 									</div>
 								</div>
-								<p className="rounded-[22px] rounded-tl-[8px] rounded-br-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
+								<p className="rounded-[22px] rounded-bl-[8px] rounded-tr-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
 									{t((t) => t.home.hero.intro)}
 								</p>
 							</div>
