@@ -194,6 +194,41 @@ export const fr: Translations = {
 					item4: "Temps réel",
 				},
 			},
+			monPontChanban: {
+				name: "Mon Pont Chanban - Alertes levées du pont de Bordeaux",
+				product: {
+					line1:
+						"App mobile d'alertes push pour suivre les levées du pont de Bordeaux.",
+				},
+				impact: {
+					line1:
+						"Notifications personnalisées sur les créneaux horaires des utilisateurs.",
+					line2: "Planification des notifications via Trigger.dev.",
+				},
+				stack: {
+					item1: "React Native",
+					item2: "Expo",
+					item3: "Push",
+					item4: "Trigger.dev",
+				},
+			},
+			questovery: {
+				name: "Questovery - Jeux de piste géolocalisés",
+				product: {
+					line1:
+						"Plateforme pour créer des jeux de piste avec une app mobile participants.",
+				},
+				impact: {
+					line1: "Expériences interactives basées sur la géolocalisation.",
+					line2: "Parcours sur-mesure pour animation et tourisme.",
+				},
+				stack: {
+					item1: "React Native",
+					item2: "Mobile",
+					item3: "Géolocalisation",
+					item4: "Game design",
+				},
+			},
 		},
 		servicesSection: {
 			label: "Services",

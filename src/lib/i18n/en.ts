@@ -190,6 +190,40 @@ export const en = {
 					item4: "Real-time",
 				},
 			},
+			monPontChanban: {
+				name: "Mon Pont Chanban - Bordeaux bridge lift alerts",
+				product: {
+					line1:
+						"Mobile app delivering push alerts for Bordeaux bridge lift times.",
+				},
+				impact: {
+					line1: "Personalized notifications based on user time slots.",
+					line2: "Notification scheduling powered by Trigger.dev.",
+				},
+				stack: {
+					item1: "React Native",
+					item2: "Expo",
+					item3: "Push",
+					item4: "Trigger.dev",
+				},
+			},
+			questovery: {
+				name: "Questovery - Geolocated treasure hunts",
+				product: {
+					line1:
+						"Platform to create treasure hunts with a participant mobile app.",
+				},
+				impact: {
+					line1: "Interactive experiences built on geolocation.",
+					line2: "Custom routes for events and tourism.",
+				},
+				stack: {
+					item1: "React Native",
+					item2: "Mobile",
+					item3: "Geolocation",
+					item4: "Game design",
+				},
+			},
 		},
 		servicesSection: {
 			label: "Services",

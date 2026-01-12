@@ -129,6 +129,34 @@ function App() {
 				t((t) => t.home.projects.silbo.stack.item4),
 			],
 		},
+		{
+			name: t((t) => t.home.projects.monPontChanban.name),
+			product: [t((t) => t.home.projects.monPontChanban.product.line1)],
+			impact: [
+				t((t) => t.home.projects.monPontChanban.impact.line1),
+				t((t) => t.home.projects.monPontChanban.impact.line2),
+			],
+			stack: [
+				t((t) => t.home.projects.monPontChanban.stack.item1),
+				t((t) => t.home.projects.monPontChanban.stack.item2),
+				t((t) => t.home.projects.monPontChanban.stack.item3),
+				t((t) => t.home.projects.monPontChanban.stack.item4),
+			],
+		},
+		{
+			name: t((t) => t.home.projects.questovery.name),
+			product: [t((t) => t.home.projects.questovery.product.line1)],
+			impact: [
+				t((t) => t.home.projects.questovery.impact.line1),
+				t((t) => t.home.projects.questovery.impact.line2),
+			],
+			stack: [
+				t((t) => t.home.projects.questovery.stack.item1),
+				t((t) => t.home.projects.questovery.stack.item2),
+				t((t) => t.home.projects.questovery.stack.item3),
+				t((t) => t.home.projects.questovery.stack.item4),
+			],
+		},
 	];
 
 	const testimonials: Testimonial[] = [
