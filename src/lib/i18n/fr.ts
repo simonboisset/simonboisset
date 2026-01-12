@@ -24,6 +24,7 @@ export const fr: Translations = {
 			services: "Comment j'aide les équipes à livrer du mobile.",
 			projects: "Projets récents et résultats concrets.",
 			testimonials: "Retours clients sur la livraison et la collaboration.",
+			github: "Open source, prototypes et exemples de code.",
 		},
 	},
 	footer: {

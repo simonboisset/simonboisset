@@ -53,8 +53,8 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 	},
 	pendingComponent: () => (
 		<div className="bg-[#f6f1ea]">
-			<div className="max-w-4xl mx-auto my-20">
-				<div className="py-16 px-6 flex flex-col gap-8">
+			<div className="mx-auto w-full max-w-4xl">
+				<div className="flex flex-col gap-8 px-6 py-16">
 					<Skeleton className="h-10 w-3/4 mx-auto" />
 					<Skeleton className="w-full aspect-video rounded-2xl" />
 					<div className="space-y-4">
@@ -79,8 +79,8 @@ function BlogDetailPage() {
 
 	return (
 		<div className="bg-[#f6f1ea]">
-			<article className="max-w-4xl mx-auto my-20">
-				<div className="py-16 px-6 flex flex-col gap-8">
+			<article className="mx-auto w-full max-w-4xl">
+				<div className="flex flex-col gap-8 px-6 py-16">
 					<Link
 						to="/{-$locale}/blog"
 						params={localeParams}

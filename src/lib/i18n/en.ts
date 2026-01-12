@@ -24,6 +24,7 @@ export const en = {
 			services: "How I help teams ship mobile products.",
 			projects: "Recent mobile work and measurable outcomes.",
 			testimonials: "Client feedback on delivery and collaboration.",
+			github: "Open-source work, experiments, and code samples.",
 		},
 	},
 	footer: {

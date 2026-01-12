@@ -1,4 +1,6 @@
+import type React from "react";
 import { Link, useRouter } from "@tanstack/react-router";
+import { Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
 	NavigationMenu,
@@ -127,6 +129,13 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 												hash={item.hash}
 											/>
 										))}
+										<HeaderMenuExternalLink
+											title={t((t) => t.footer.github)}
+											description={t((t) => t.nav.aboutItems.github)}
+											href={GITHUB_URL}
+											variant="brand"
+											icon={<Github className="h-4 w-4" aria-hidden="true" />}
+										/>
 									</ul>
 								</NavigationMenuContent>
 							</NavigationMenuItem>
@@ -190,14 +199,6 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 							</NavigationMenuItem>
 						</NavigationMenuList>
 					</NavigationMenu>
-					<a
-						href={GITHUB_URL}
-						target="_blank"
-						rel="noreferrer"
-						className="hover:text-slate-900"
-					>
-						{t((t) => t.footer.github)}
-					</a>
 				</nav>
 				<div className="flex flex-wrap items-center gap-3">
 					<Button asChild size="sm">
@@ -271,6 +272,76 @@ function HeaderMenuLink({
 						{description}
 					</span>
 				</Link>
+			</NavigationMenuLink>
+		</li>
+	);
+}
+
+type HeaderMenuExternalLinkProps = {
+	title: string;
+	description: string;
+	href: string;
+	icon?: React.ReactNode;
+	className?: string;
+	variant?: "default" | "brand";
+};
+
+function HeaderMenuExternalLink({
+	title,
+	description,
+	href,
+	icon,
+	className,
+	variant = "default",
+}: HeaderMenuExternalLinkProps) {
+	const isBrand = variant === "brand";
+
+	return (
+		<li>
+			<NavigationMenuLink asChild>
+				<a
+					href={href}
+					target="_blank"
+					rel="noreferrer"
+					className={cn(
+						"group flex h-full items-start gap-3 rounded-xl border border-transparent p-3 text-sm transition",
+						isBrand
+							? "bg-[#24292f] text-white hover:bg-[#1f2328]"
+							: "bg-white/60 text-slate-700 hover:border-slate-200 hover:bg-white",
+						className,
+					)}
+				>
+					{icon ? (
+						<span
+							className={cn(
+								"mt-0.5 rounded-md p-1",
+								isBrand ? "bg-white/10 text-white" : "bg-slate-900 text-white",
+							)}
+						>
+							{icon}
+						</span>
+					) : null}
+					<span className="flex flex-col gap-2">
+						<span
+							className={cn(
+								"text-sm font-semibold",
+								isBrand
+									? "text-white"
+									: "text-slate-900 group-hover:text-teal-700",
+							)}
+						>
+							{title}
+						</span>
+						<span
+							className={cn(
+								"text-xs line-clamp-3",
+								isBrand ? "text-slate-200" : "text-slate-500",
+							)}
+						>
+							{description}
+						</span>
+					</span>
+				</a>
 			</NavigationMenuLink>
 		</li>
 	);

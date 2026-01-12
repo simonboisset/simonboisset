@@ -28,7 +28,7 @@ export function HeroIntroCard({
 				className,
 			)}
 		>
-			<div className="rounded-full border border-slate-200 bg-white/90 p-2 shadow-lg">
+			<div className="inline-flex self-center rounded-full border border-slate-200 bg-white/90 p-2 shadow-lg sm:self-start">
 				<div className="size-20 overflow-hidden rounded-full bg-slate-100 md:size-24">
 					<img
 						src={heroPhotoUrl}
