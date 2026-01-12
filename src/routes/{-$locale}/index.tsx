@@ -1,5 +1,10 @@
+import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import { Button } from "@/components/ui/button";
-import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
+import {
+	GITHUB_URL,
+	HERO_PHOTO_ASSET_ID,
+	SCHEDULE_VISIO_URL,
+} from "@/lib/constants";
 import { directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -16,8 +21,6 @@ import {
 	Smartphone,
 	Sparkles,
 } from "lucide-react";
-
-const HERO_PHOTO_ASSET_ID = "d891253f-cd33-486e-bff4-393d96d57f49";
 
 export const Route = createFileRoute("/{-$locale}/")({
 	component: App,
@@ -229,26 +232,11 @@ function App() {
 						<h1 className="text-4xl font-semibold leading-tight text-slate-900 md:text-6xl">
 							{t((t) => t.home.hero.title)}
 						</h1>
-						{heroPhotoUrl ? (
-							<div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-								<div className="rounded-full border border-slate-200 bg-white/90 p-2 shadow-lg">
-									<div className="size-20 overflow-hidden rounded-full bg-slate-100 md:size-24">
-										<img
-											src={heroPhotoUrl}
-											alt={t((t) => t.nav.brand)}
-											className="h-full w-full object-cover"
-										/>
-									</div>
-								</div>
-								<p className="rounded-[22px] rounded-bl-[8px] rounded-tr-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
-									{t((t) => t.home.hero.intro)}
-								</p>
-							</div>
-						) : (
-							<p className="text-lg text-slate-600 md:text-xl">
-								{t((t) => t.home.hero.intro)}
-							</p>
-						)}
+						<HeroIntroCard
+							heroPhotoUrl={heroPhotoUrl}
+							intro={t((t) => t.home.hero.intro)}
+							alt={t((t) => t.nav.brand)}
+						/>
 						<div className="flex flex-wrap items-center gap-4">
 							<Button asChild>
 								<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">

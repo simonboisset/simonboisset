@@ -68,6 +68,7 @@ export const fr: Translations = {
 		empty: "Aucun article publié pour le moment.",
 		back: "Retour au blog",
 		other: "Autres articles",
+		bookCtaButton: "Prendre rendez-vous",
 		errorTitleList: "Erreur lors du chargement du blog",
 		errorTitleDetail: "Erreur lors du chargement de l'article",
 		errorFallback: "Une erreur inattendue s'est produite",

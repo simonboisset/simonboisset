@@ -67,6 +67,7 @@ export const en = {
 		empty: "No blog posts published yet.",
 		back: "Back to blog",
 		other: "Other articles",
+		bookCtaButton: "Book a call",
 		errorTitleList: "Error loading blog",
 		errorTitleDetail: "Error loading post",
 		errorFallback: "An unexpected error occurred",

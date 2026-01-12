@@ -1,20 +1,28 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { marked } from "marked";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
+import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+	HERO_PHOTO_ASSET_ID,
+	SCHEDULE_VISIO_URL,
+} from "@/lib/constants";
 import { directus, type PostDetails, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import { buildSeo, stripHtml, toExcerpt } from "@/lib/seo";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import { marked } from "marked";
 
 export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 	component: BlogDetailPage,
 	loader: async ({ params, location, serverContext }) => {
 		const locale = resolveLocaleForPath(location.pathname, serverContext);
-		const [post, posts] = await Promise.all([
+		const [post, posts, heroPhotoUrl] = await Promise.all([
 			directus.getPostDetails({ data: { slug: params.slug, locale } }),
 			directus.getPosts({ data: { locale } }),
+			directus.getAssetUrl({ data: HERO_PHOTO_ASSET_ID }),
 		]);
 
 		if (!post) {
@@ -23,7 +31,7 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 
 		const contentHtml = await marked.parse(post.content);
 
-		return { post, contentHtml, posts, locale };
+		return { post, contentHtml, posts, locale, heroPhotoUrl };
 	},
 	head: ({ loaderData }) => {
 		if (!loaderData) return {};
@@ -62,7 +70,7 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 });
 
 function BlogDetailPage() {
-	const { post, contentHtml, posts } = Route.useLoaderData();
+	const { post, contentHtml, posts, heroPhotoUrl } = Route.useLoaderData();
 	const { t, localeParam } = useI18n();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
@@ -94,6 +102,23 @@ function BlogDetailPage() {
 						/>
 					</div>
 					<MarkdownContent contentHtml={contentHtml} />
+					<div className="mt-16 space-y-4">
+						<HeroIntroCard
+							heroPhotoUrl={heroPhotoUrl}
+							intro={t((t) => t.home.hero.intro)}
+							alt={t((t) => t.nav.brand)}
+						/>
+						<Button asChild>
+							<a
+								href={SCHEDULE_VISIO_URL}
+								target="_blank"
+								rel="noreferrer"
+							>
+								{t((t) => t.blog.bookCtaButton)}
+								<ArrowUpRight className="size-4" />
+							</a>
+						</Button>
+					</div>
 
 					{suggestedArticles.length > 0 ? (
 						<div className="mt-16 pt-16 border-t border-slate-200">
