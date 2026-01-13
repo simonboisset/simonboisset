@@ -5,6 +5,8 @@ import {
 	redirect,
 	Scripts,
 } from "@tanstack/react-router";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -148,6 +150,17 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 					</div>
 					{env.VITE_POSTHOG_KEY ? <ConsentBanner /> : null}
 				</AnalyticsProvider>
+				{import.meta.env.DEV ? (
+					<TanStackDevtools
+						config={{ position: "bottom-right" }}
+						plugins={[
+							{
+								name: "TanStack Router",
+								render: <TanStackRouterDevtoolsPanel />,
+							},
+						]}
+					/>
+				) : null}
 				<Scripts />
 			</body>
 		</html>
