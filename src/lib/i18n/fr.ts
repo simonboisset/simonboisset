@@ -281,8 +281,7 @@ export const fr: Translations = {
 		testimonialsSection: {
 			label: "Témoignages",
 			title: "Ce que les équipes retiennent",
-			description:
-				"Retours des personnes qui m'ont fait confiance.",
+			description: "Retours des personnes qui m'ont fait confiance.",
 		},
 		testimonials: {
 			eric: {

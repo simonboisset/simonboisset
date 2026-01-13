@@ -1,3 +1,14 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+	ArrowUpRight,
+	CheckCircle2,
+	Gauge,
+	Github,
+	Rocket,
+	ShieldCheck,
+	Smartphone,
+	Sparkles,
+} from "lucide-react";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,17 +21,6 @@ import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import { buildSeo } from "@/lib/seo";
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-	ArrowUpRight,
-	CheckCircle2,
-	Gauge,
-	Github,
-	Rocket,
-	ShieldCheck,
-	Smartphone,
-	Sparkles,
-} from "lucide-react";
 
 export const Route = createFileRoute("/{-$locale}/")({
 	component: App,
@@ -48,6 +48,7 @@ type Project = {
 	product: string[];
 	impact: string[];
 	stack: string[];
+	url: string;
 };
 
 type Testimonial = {
@@ -89,6 +90,7 @@ function App() {
 				t((t) => t.home.projects.campingCarPark.stack.item3),
 				t((t) => t.home.projects.campingCarPark.stack.item4),
 			],
+			url: "https://www.campingcarpark.com/fr_FR",
 		},
 		{
 			name: t((t) => t.home.projects.vaerdict.name),
@@ -103,6 +105,7 @@ function App() {
 				t((t) => t.home.projects.vaerdict.stack.item3),
 				t((t) => t.home.projects.vaerdict.stack.item4),
 			],
+			url: "https://vaerdict.fr",
 		},
 		{
 			name: t((t) => t.home.projects.linote.name),
@@ -117,6 +120,7 @@ function App() {
 				t((t) => t.home.projects.linote.stack.item3),
 				t((t) => t.home.projects.linote.stack.item4),
 			],
+			url: "https://linote.fr",
 		},
 		{
 			name: t((t) => t.home.projects.silbo.name),
@@ -131,6 +135,7 @@ function App() {
 				t((t) => t.home.projects.silbo.stack.item3),
 				t((t) => t.home.projects.silbo.stack.item4),
 			],
+			url: "https://silbo.com/fr/",
 		},
 		{
 			name: t((t) => t.home.projects.monPontChanban.name),
@@ -145,6 +150,7 @@ function App() {
 				t((t) => t.home.projects.monPontChanban.stack.item3),
 				t((t) => t.home.projects.monPontChanban.stack.item4),
 			],
+			url: "https://www.pont-chaban-delmas.com/",
 		},
 		{
 			name: t((t) => t.home.projects.questovery.name),
@@ -159,6 +165,7 @@ function App() {
 				t((t) => t.home.projects.questovery.stack.item3),
 				t((t) => t.home.projects.questovery.stack.item4),
 			],
+			url: "https://questovery.com/fr",
 		},
 	];
 
@@ -462,8 +469,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
 			<div className="flex items-center justify-between">
-				<h3 className="text-lg font-semibold text-slate-900">{project.name}</h3>
-				<Sparkles className="size-4 text-amber-600" />
+				<h3 className="text-lg font-semibold text-slate-900">
+					<a
+						href={project.url}
+						target="_blank"
+						rel="noreferrer"
+						className="underline-offset-4 transition hover:text-amber-600 hover:underline"
+					>
+						{project.name}
+						<ArrowUpRight className="ml-1 inline-block size-3.5 align-baseline" />
+					</a>
+				</h3>
 			</div>
 			<div className="mt-4 space-y-3">
 				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">

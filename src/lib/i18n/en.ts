@@ -275,8 +275,7 @@ export const en = {
 		testimonialsSection: {
 			label: "Testimonials",
 			title: "What teams say after working together",
-			description:
-				"Feedback from people who trusted me.",
+			description: "Feedback from people who trusted me.",
 		},
 		testimonials: {
 			eric: {

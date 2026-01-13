@@ -1,19 +1,16 @@
-import MarkdownContent from "@/components/blocks/MarkdownContent";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import { marked } from "marked";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
+import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-	HERO_PHOTO_ASSET_ID,
-	SCHEDULE_VISIO_URL,
-} from "@/lib/constants";
+import { HERO_PHOTO_ASSET_ID, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus, type PostDetails, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import { buildSeo, stripHtml, toExcerpt } from "@/lib/seo";
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
-import { marked } from "marked";
 
 export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 	component: BlogDetailPage,
@@ -109,11 +106,7 @@ function BlogDetailPage() {
 							alt={t((t) => t.nav.brand)}
 						/>
 						<Button asChild>
-							<a
-								href={SCHEDULE_VISIO_URL}
-								target="_blank"
-								rel="noreferrer"
-							>
+							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
 								{t((t) => t.blog.bookCtaButton)}
 								<ArrowUpRight className="size-4" />
 							</a>
