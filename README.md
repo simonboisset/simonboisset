@@ -1,8 +1,22 @@
-# Welcome to my Profile
+# Simon Boisset
 
-## Environment
+Welcome to my GitHub.
 
-Create a `.env` file (see `.env.example`) with the following variables:
+I am a mobile + full-stack developer who enjoys shipping reliable products,
+keeping codebases simple, and helping teams move fast with confidence.
 
-- `DIRECTUS_URL` - Directus base URL (e.g. `https://cms.example.com`)
-- `DIRECTUS_APPLICATION_ID` - Directus application UUID used to scope blog content
+## Skills
+
+- React Native, Expo, React, TypeScript
+- Mobile + web product delivery
+- Architecture, performance, and release workflows
+
+## Work
+
+- Build and scale mobile apps from MVP to production
+- Modernize legacy stacks and improve developer experience
+- Support teams with full-stack features and delivery strategy
+
+## Keep in touch
+
+Feel free to reach out if you want to collaborate or just say hello.
