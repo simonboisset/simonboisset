@@ -20,3 +20,5 @@ keeping codebases simple, and helping teams move fast with confidence.
 ## Keep in touch
 
 Feel free to reach out if you want to collaborate or just say hello.
+
+[Book a call](https://calendar.app.google/T8ApUjnqBxDViMF56)
