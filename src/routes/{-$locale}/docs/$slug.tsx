@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { marked } from "marked";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
-import { directus } from "@/lib/directus";
+import { directus, type DocSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
@@ -48,7 +48,7 @@ function DocsDetailPage() {
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
-	const otherDocs = docs.filter((item) => item.slug !== doc.slug);
+	const otherDocs = docs.filter((item: DocSummary) => item.slug !== doc.slug);
 
 	return (
 		<div className="bg-[#f6f1ea] text-slate-900">
@@ -76,7 +76,7 @@ function DocsDetailPage() {
 
 				{otherDocs.length > 0 ? (
 					<div className="mt-10 grid gap-4 md:grid-cols-2">
-						{otherDocs.map((item) => (
+						{otherDocs.map((item: DocSummary) => (
 							<Link
 								key={item.slug}
 								to="/{-$locale}/docs/$slug"

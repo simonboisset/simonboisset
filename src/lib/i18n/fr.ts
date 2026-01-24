@@ -15,6 +15,8 @@ export const fr: Translations = {
 		home: "Accueil",
 		about: "À propos",
 		services: "Services",
+		products: "Produits",
+		saasStarter: "Keystone Stack",
 		projects: "Projets",
 		testimonials: "Témoignages",
 		blog: "Blog",
@@ -309,6 +311,223 @@ export const fr: Translations = {
 			description:
 				"Donnez le contexte, je reviens sous 48h avec des prochaines étapes claires.",
 			button: "Planifier un appel",
+		},
+	},
+	products: {
+		saasStarter: {
+			seoTitle: "Keystone Stack (web, mobile, API)",
+			seoDescription:
+				"Un stack SaaS solide, prêt pour l'IA, pour le web, le mobile et l'API. Auth, orgs, billing prêt, analytics et SDK partagé.",
+			hero: {
+				eyebrow: "Keystone Stack",
+				title: "A solid, AI-ready SaaS stack.",
+				subtitle: "Build fast. Stay stable.",
+				ctaPrimary: "Rejoindre la liste d’attente",
+				ctaSecondary: "Voir la stack",
+				badges: {
+					auth: "Auth + orgs",
+					sdk: "SDK partagé",
+					design: "AI-ready",
+				},
+				highlights: {
+					speed: {
+						title: "Mise en prod rapide",
+						description: "Tout est câblé pour livrer un MVP en jours.",
+					},
+					quality: {
+						title: "Qualité & garde-fous",
+						description: "TypeScript strict, Biome, règles anti-bypass.",
+					},
+					scale: {
+						title: "Multi-plateforme cohérente",
+						description: "SDK partagé, oRPC et TanStack Form.",
+					},
+				},
+				preview: {
+					title: "Ce que vous obtenez",
+					tag: "De bout en bout",
+				},
+			},
+			stack: {
+				title: "L’essentiel, directement exploitable",
+				subtitle: "Apps principales et types partagés prêts à livrer.",
+				items: {
+					web: {
+						title: "App web",
+						description: "Vite + TanStack Start + Tailwind + shadcn UI.",
+					},
+					api: {
+						title: "Couche API",
+						description: "Hono + oRPC + Zod + Better Auth.",
+					},
+					data: {
+						title: "Base de données",
+						description: "Drizzle ORM + Postgres + migrations.",
+					},
+					mobile: {
+						title: "Mobile",
+						description: "Expo + React Native + SDK partagé + workflows EAS.",
+					},
+				},
+				badges: {
+					item1: "TanStack Start",
+					item2: "Expo",
+					item3: "Hono + oRPC",
+					item4: "Drizzle ORM",
+					item5: "Postgres",
+				},
+			},
+			included: {
+				title: "Inclus par défaut",
+				subtitle: "Des features produit prêtes à brancher.",
+				items: {
+					auth: {
+						title: "Auth + 2FA",
+						description: "Email, magic link, Turnstile et TOTP.",
+					},
+					orgs: {
+						title: "Organisations & invitations",
+						description: "Workspaces, rôles, invitations d’équipe.",
+					},
+					billing: {
+						title: "Billing prêt",
+						description: "Clients et abonnements prêts à activer.",
+					},
+					admin: {
+						title: "Admin analytics",
+						description: "KPI d’activation et d’adoption.",
+					},
+					sdk: {
+						title: "SDK partagé",
+						description: "oRPC client + TanStack Query/Form.",
+					},
+					content: {
+						title: "CMS Directus",
+						description: "Blog, docs et légaux localisés.",
+					},
+				},
+			},
+			designSystem: {
+				title: "Design system partagé",
+				subtitle: "Un seul système de tokens pour le web et le mobile.",
+				items: {
+					tokens: {
+						title: "Tokens partagés",
+						description: "Couleurs, radius, spacing et motion au même endroit.",
+					},
+					web: {
+						title: "UI web",
+						description: "shadcn UI branché sur les mêmes tokens.",
+					},
+					mobile: {
+						title: "UI mobile",
+						description: "Uniwind consomme le même système de tokens.",
+					},
+				},
+			},
+			quality: {
+				title: "Ship vite, reprendre la main",
+				subtitle:
+					"Commence en vibe code, puis garde le contrôle avec un code propre et des règles claires.",
+				items: {
+					typing: {
+						title: "MVP en quelques jours",
+						description:
+							"Lance un produit viable rapidement avec les flux clés déjà câblés.",
+					},
+					lint: {
+						title: "Vibe code sans friction",
+						description:
+							"Avance vite au début sans perdre la structure ensuite.",
+					},
+					agents: {
+						title: "Code + règles maîtrisés",
+						description:
+							"Conventions strictes, contrats partagés, règles faciles à imposer.",
+					},
+				},
+			},
+			showcase: {
+				title: "Aperçu produit",
+				subtitle: "Quelques écrans et flux clés (placeholders).",
+				items: {
+					item1: {
+						title: "Dashboard organisation",
+						description: "Vue des membres, billing et statut.",
+					},
+					item2: {
+						title: "Onboarding 2FA",
+						description: "Setup TOTP + codes de secours.",
+					},
+					item3: {
+						title: "Admin analytics",
+						description: "KPI d’activation et d’adoption.",
+					},
+					item4: {
+						title: "Pipeline mobile",
+						description: "Build, submit et updates via EAS.",
+					},
+				},
+			},
+			waitlist: {
+				title: "Rejoindre la liste d’attente",
+				subtitle: "Laissez votre email pour l’accès anticipé.",
+				form: {
+					emailLabel: "Email pro",
+					emailPlaceholder: "vous@entreprise.com",
+					profileLabel: "Profil",
+					profilePlaceholder: "Choisissez votre profil",
+					profileOptions: {
+						pro: "Pro",
+						hobby: "Hobby",
+						agency: "Agence",
+					},
+					projectTypesLabel: "Type de projet",
+					projectTypes: {
+						side: "Projet perso",
+						client: "Projet client",
+					},
+					painLabel: "Quel problème ce template doit résoudre ?",
+					painPlaceholder:
+						"Temps d’onboarding, auth, billing, base de code, etc.",
+					budgetLabel: "Budget que vous pourriez payer pour ce template",
+					budgetPlaceholder: "ex. 490",
+					submit: "Rejoindre la liste d’attente",
+				},
+				successTitle: "Vous êtes sur la liste !",
+				successDescription:
+					"On vous contacte dès l’ouverture et pour les updates.",
+				errors: {
+					required: "Ce champ est requis.",
+					email: "Entrez un email valide.",
+					projectTypes: "Sélectionnez au moins un type de projet.",
+					budget: "Indiquez un budget.",
+					submit: "Une erreur est survenue. Réessayez.",
+				},
+			},
+			faq: {
+				title: "Questions fréquentes",
+				subtitle: "Les réponses aux questions les plus courantes.",
+				item1: {
+					question: "Est-ce prêt pour la production ?",
+					answer:
+						"Oui. Le stack inclut déjà auth, analytics et CMS de bout en bout.",
+				},
+				item2: {
+					question: "Puis-je utiliser mon propre CMS ou ma base ?",
+					answer:
+						"Bien sûr. Vous pouvez remplacer Directus ou Drizzle par vos outils.",
+				},
+				item3: {
+					question: "La plateforme gère-t-elle plusieurs langues ?",
+					answer:
+						"Oui. Le routage, le dictionnaire et le contenu sont localisés.",
+				},
+				item4: {
+					question: "Puis-je être accompagné au lancement ?",
+					answer: "Oui. Le template peut être livré avec un onboarding guidé.",
+				},
+			},
 		},
 	},
 	services: {

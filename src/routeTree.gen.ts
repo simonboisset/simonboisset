@@ -15,6 +15,7 @@ import { Route as Char123LocaleChar125DocsIndexRouteImport } from './routes/{-$l
 import { Route as Char123LocaleChar125BlogIndexRouteImport } from './routes/{-$locale}/blog/index'
 import { Route as Char123LocaleChar125ServicesReactNativeLegacyToExpoRouteImport } from './routes/{-$locale}/services/react-native-legacy-to-expo'
 import { Route as Char123LocaleChar125ServicesExpoWorkflowOptimizationRouteImport } from './routes/{-$locale}/services/expo-workflow-optimization'
+import { Route as Char123LocaleChar125ProductsSaasStarterTemplateRouteImport } from './routes/{-$locale}/products/saas-starter-template'
 import { Route as Char123LocaleChar125DocsPolitiqueConfidentialiteRouteImport } from './routes/{-$locale}/docs/politique-confidentialite'
 import { Route as Char123LocaleChar125DocsMentionsLegalesRouteImport } from './routes/{-$locale}/docs/mentions-legales'
 import { Route as Char123LocaleChar125DocsSlugRouteImport } from './routes/{-$locale}/docs/$slug'
@@ -55,6 +56,12 @@ const Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute =
     path: '/{-$locale}/services/expo-workflow-optimization',
     getParentRoute: () => rootRouteImport,
   } as any)
+const Char123LocaleChar125ProductsSaasStarterTemplateRoute =
+  Char123LocaleChar125ProductsSaasStarterTemplateRouteImport.update({
+    id: '/{-$locale}/products/saas-starter-template',
+    path: '/{-$locale}/products/saas-starter-template',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const Char123LocaleChar125DocsPolitiqueConfidentialiteRoute =
   Char123LocaleChar125DocsPolitiqueConfidentialiteRouteImport.update({
     id: '/{-$locale}/docs/politique-confidentialite',
@@ -87,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
+  '/{-$locale}/products/saas-starter-template': typeof Char123LocaleChar125ProductsSaasStarterTemplateRoute
   '/{-$locale}/services/expo-workflow-optimization': typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
   '/{-$locale}/services/react-native-legacy-to-expo': typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
@@ -99,6 +107,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
+  '/{-$locale}/products/saas-starter-template': typeof Char123LocaleChar125ProductsSaasStarterTemplateRoute
   '/{-$locale}/services/expo-workflow-optimization': typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
   '/{-$locale}/services/react-native-legacy-to-expo': typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
@@ -112,6 +121,7 @@ export interface FileRoutesById {
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
+  '/{-$locale}/products/saas-starter-template': typeof Char123LocaleChar125ProductsSaasStarterTemplateRoute
   '/{-$locale}/services/expo-workflow-optimization': typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
   '/{-$locale}/services/react-native-legacy-to-expo': typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
+    | '/{-$locale}/products/saas-starter-template'
     | '/{-$locale}/services/expo-workflow-optimization'
     | '/{-$locale}/services/react-native-legacy-to-expo'
     | '/{-$locale}/blog'
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
+    | '/{-$locale}/products/saas-starter-template'
     | '/{-$locale}/services/expo-workflow-optimization'
     | '/{-$locale}/services/react-native-legacy-to-expo'
     | '/{-$locale}/blog'
@@ -150,6 +162,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
+    | '/{-$locale}/products/saas-starter-template'
     | '/{-$locale}/services/expo-workflow-optimization'
     | '/{-$locale}/services/react-native-legacy-to-expo'
     | '/{-$locale}/blog/'
@@ -163,6 +176,7 @@ export interface RootRouteChildren {
   Char123LocaleChar125DocsSlugRoute: typeof Char123LocaleChar125DocsSlugRoute
   Char123LocaleChar125DocsMentionsLegalesRoute: typeof Char123LocaleChar125DocsMentionsLegalesRoute
   Char123LocaleChar125DocsPolitiqueConfidentialiteRoute: typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
+  Char123LocaleChar125ProductsSaasStarterTemplateRoute: typeof Char123LocaleChar125ProductsSaasStarterTemplateRoute
   Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute: typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
   Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute: typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   Char123LocaleChar125BlogIndexRoute: typeof Char123LocaleChar125BlogIndexRoute
@@ -213,6 +227,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/{-$locale}/products/saas-starter-template': {
+      id: '/{-$locale}/products/saas-starter-template'
+      path: '/{-$locale}/products/saas-starter-template'
+      fullPath: '/{-$locale}/products/saas-starter-template'
+      preLoaderRoute: typeof Char123LocaleChar125ProductsSaasStarterTemplateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/{-$locale}/docs/politique-confidentialite': {
       id: '/{-$locale}/docs/politique-confidentialite'
       path: '/{-$locale}/docs/politique-confidentialite'
@@ -253,6 +274,8 @@ const rootRouteChildren: RootRouteChildren = {
     Char123LocaleChar125DocsMentionsLegalesRoute,
   Char123LocaleChar125DocsPolitiqueConfidentialiteRoute:
     Char123LocaleChar125DocsPolitiqueConfidentialiteRoute,
+  Char123LocaleChar125ProductsSaasStarterTemplateRoute:
+    Char123LocaleChar125ProductsSaasStarterTemplateRoute,
   Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute:
     Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute,
   Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute:

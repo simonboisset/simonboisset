@@ -14,9 +14,8 @@ import {
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import type { PostSummary } from "@/lib/directus";
 import {
-	DEFAULT_LOCALE,
 	type Locale,
-	localeToPathSegment,
+	buildLocalizedPath,
 	setLocaleCookie,
 	stripLocaleFromPathname,
 } from "@/lib/i18n/locale";
@@ -70,29 +69,31 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 			to: "/{-$locale}/services/expo-workflow-optimization",
 		},
 	];
+	const productItems = [
+		{
+			title: t((t) => t.nav.saasStarter),
+			description: t((t) => t.products.saasStarter.hero.subtitle),
+			to: "/{-$locale}/products/saas-starter-template",
+			icon: (
+				<img
+					src="/icon-515x515.png"
+					alt="Keystone Stack icon"
+					className="h-12 w-12 rounded-xl border border-slate-200 bg-white shadow-sm"
+				/>
+			),
+		},
+	];
 
 	const switchLocale = (nextLocale: Locale) => {
 		if (nextLocale === locale) return;
 		setLocaleCookie(nextLocale);
-		const matches = router.state.matches;
-		type RouteMatch = (typeof matches)[number];
-		const isNonRootMatch = (
-			match: RouteMatch,
-		): match is Exclude<RouteMatch, { routeId: "__root__" }> =>
-			match.routeId !== "__root__";
-		const leafMatch = [...matches].reverse().find(isNonRootMatch);
-		const to = leafMatch?.fullPath ?? "/{-$locale}";
-		const localeSegment =
-			nextLocale === DEFAULT_LOCALE
-				? undefined
-				: localeToPathSegment(nextLocale);
-
-		router.navigate({
-			to,
-			params: (prev) => ({ ...prev, locale: localeSegment }),
-			search: true,
-			hash: true,
-		});
+		const nextPath = buildLocalizedPath(
+			router.state.location.pathname,
+			router.state.location.searchStr,
+			router.state.location.hash,
+			nextLocale,
+		);
+		router.history.push(nextPath);
 	};
 
 	return (
@@ -153,6 +154,25 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 												to={item.to}
 												params={localeParams}
 												className="h-full"
+											/>
+										))}
+									</ul>
+								</NavigationMenuContent>
+							</NavigationMenuItem>
+							<NavigationMenuItem>
+								<NavigationMenuTrigger className={triggerClassName}>
+									{t((t) => t.nav.products)}
+								</NavigationMenuTrigger>
+								<NavigationMenuContent className="p-4 md:w-[420px]">
+									<ul className="grid gap-3">
+										{productItems.map((item) => (
+											<HeaderMenuLink
+												key={item.to}
+												title={item.title}
+												description={item.description}
+												to={item.to}
+												params={localeParams}
+												icon={item.icon}
 											/>
 										))}
 									</ul>
@@ -241,6 +261,7 @@ type HeaderMenuLinkProps = {
 	description: string;
 	to: string;
 	params: Record<string, string>;
+	icon?: React.ReactNode;
 	hash?: string;
 	className?: string;
 };
@@ -250,6 +271,7 @@ function HeaderMenuLink({
 	description,
 	to,
 	params,
+	icon,
 	hash,
 	className,
 }: HeaderMenuLinkProps) {
@@ -265,12 +287,30 @@ function HeaderMenuLink({
 						className,
 					)}
 				>
-					<span className="text-sm font-semibold text-slate-900 group-hover:text-teal-700">
-						{title}
-					</span>
-					<span className="text-xs text-slate-500 line-clamp-3">
-						{description}
-					</span>
+					{icon ? (
+						<span className="flex items-center gap-3">
+							<span className="flex h-12 w-12 items-center justify-center">
+								{icon}
+							</span>
+							<span className="flex min-h-12 flex-col justify-center">
+								<span className="text-sm font-semibold text-slate-900 group-hover:text-teal-700">
+									{title}
+								</span>
+								<span className="text-xs text-slate-500 line-clamp-2">
+									{description}
+								</span>
+							</span>
+						</span>
+					) : (
+						<>
+							<span className="text-sm font-semibold text-slate-900 group-hover:text-teal-700">
+								{title}
+							</span>
+							<span className="text-xs text-slate-500 line-clamp-3">
+								{description}
+							</span>
+						</>
+					)}
 				</Link>
 			</NavigationMenuLink>
 		</li>

@@ -5,6 +5,8 @@ export const env = createEnv({
 	server: {
 		DIRECTUS_URL: z.string().url(),
 		DIRECTUS_APPLICATION_ID: z.string(),
+		KEYSTONE_APPLICATION_ID: z.string(),
+		DIRECTUS_WAITLIST_TOKEN: z.string().min(1),
 	},
 	clientPrefix: "VITE_",
 	client: {

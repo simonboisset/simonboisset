@@ -1,4 +1,4 @@
-import { BookOpen, Home, type LucideIcon } from "lucide-react";
+import { BookOpen, Home, Sparkles, type LucideIcon } from "lucide-react";
 import type { Translator } from "typed-locale";
 import type { Translations } from "@/lib/i18n/en";
 
@@ -27,6 +27,12 @@ export const getNavigationItems = (
 		to: "/{-$locale}",
 		params: localeParams,
 		icon: Home,
+	},
+	{
+		title: t((t) => t.nav.saasStarter),
+		to: "/{-$locale}/products/saas-starter-template",
+		params: localeParams,
+		icon: Sparkles,
 	},
 	{
 		title: t((t) => t.nav.blog),

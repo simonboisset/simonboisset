@@ -55,7 +55,7 @@ function DocsIndexPage() {
 					</p>
 				) : (
 					<div className="grid gap-6 md:grid-cols-2">
-						{docs.map((doc) => (
+						{docs.map((doc: DocSummary) => (
 							<DocsCard key={doc.slug} doc={doc} localeParams={localeParams} />
 						))}
 					</div>

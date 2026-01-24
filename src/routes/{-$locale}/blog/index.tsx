@@ -128,7 +128,7 @@ function BlogListPage() {
 									{t((t) => t.blog.latest)}
 								</h3>
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-									{otherArticles.map((article) => (
+									{otherArticles.map((article: PostSummary) => (
 										<ArticleCard
 											key={article.slug}
 											article={article}
