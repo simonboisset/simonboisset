@@ -223,6 +223,16 @@ function App() {
 				t((t) => t.home.productized.workflow.bullets.item3),
 			],
 		},
+		{
+			title: t((t) => t.home.productized.keystone.title),
+			description: t((t) => t.home.productized.keystone.description),
+			to: "/{-$locale}/products/saas-starter-template",
+			bullets: [
+				t((t) => t.home.productized.keystone.bullets.item1),
+				t((t) => t.home.productized.keystone.bullets.item2),
+				t((t) => t.home.productized.keystone.bullets.item3),
+			],
+		},
 	];
 
 	return (

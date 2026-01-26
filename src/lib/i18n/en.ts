@@ -272,6 +272,16 @@ export const en = {
 					item3: "Monitoring and release playbooks",
 				},
 			},
+			keystone: {
+				title: "Keystone Stack",
+				description:
+					"The SaaS foundation for web, mobile, and API with a solid starting point.",
+				bullets: {
+					item1: "Auth, orgs, and billing ready",
+					item2: "Shared SDK + design system",
+					item3: "Quality, CI/CD, and analytics built in",
+				},
+			},
 			button: "View details",
 		},
 		testimonialsSection: {

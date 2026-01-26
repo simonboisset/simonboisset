@@ -278,6 +278,16 @@ export const fr: Translations = {
 					item3: "Playbooks monitoring & release",
 				},
 			},
+			keystone: {
+				title: "Keystone Stack",
+				description:
+					"Le socle SaaS prêt pour le web, le mobile et l'API, avec une base solide.",
+				bullets: {
+					item1: "Auth, organisations et billing prêts",
+					item2: "SDK partagé + design system",
+					item3: "Qualité, CI/CD et analytics intégrés",
+				},
+			},
 			button: "Voir le détail",
 		},
 		testimonialsSection: {
