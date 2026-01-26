@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
 
 const config = defineConfig({
+  build: {
+    sourcemap: true,
+  },
   plugins: [
     devtools(),
     nitro(),
