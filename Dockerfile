@@ -13,7 +13,6 @@ ARG POSTHOG_CLI_HOST
 ARG POSTHOG_CLI_ENV_ID
 ARG POSTHOG_CLI_TOKEN
 ARG POSTHOG_SOURCEMAP_PROJECT
-ARG POSTHOG_SOURCEMAP_VERSION
 ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
 ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
 ENV POSTHOG_CLI_HOST=$POSTHOG_CLI_HOST
@@ -27,10 +26,7 @@ RUN set -e; \
 		if [ -n "$POSTHOG_SOURCEMAP_PROJECT" ]; then \
 			PROJECT_ARG="--project $POSTHOG_SOURCEMAP_PROJECT"; \
 		fi; \
-		VERSION_ARG=""; \
-		if [ -n "$POSTHOG_SOURCEMAP_VERSION" ]; then \
-			VERSION_ARG="--version $POSTHOG_SOURCEMAP_VERSION"; \
-		fi; \
+		VERSION_ARG="--version $(date -u +%Y%m%d%H%M%S)"; \
 		bunx @posthog/cli sourcemap inject --directory ./.output/public $PROJECT_ARG $VERSION_ARG; \
 		bunx @posthog/cli sourcemap upload --directory ./.output/public --delete-after; \
 	else \
