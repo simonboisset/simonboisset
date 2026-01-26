@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { marked } from "marked";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
+import { useContentReadTracking } from "@/lib/analytics";
 import { directus, type DocSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -44,11 +45,18 @@ export const Route = createFileRoute("/{-$locale}/docs/$slug")({
 
 function DocsDetailPage() {
 	const { doc, contentHtml, docs } = Route.useLoaderData();
-	const { t, localeParam } = useI18n();
+	const { t, locale, localeParam } = useI18n();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
 	const otherDocs = docs.filter((item: DocSummary) => item.slug !== doc.slug);
+
+	useContentReadTracking({
+		contentType: "doc",
+		slug: doc.slug,
+		title: doc.title,
+		locale,
+	});
 
 	return (
 		<div className="bg-[#f6f1ea] text-slate-900">

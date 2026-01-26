@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -73,6 +74,7 @@ function DocsCard({
 	localeParams: Record<string, string>;
 }) {
 	const { t } = useI18n();
+	const { capture } = useAnalytics();
 	const description = getDocDescription(doc.slug, t);
 
 	return (
@@ -80,6 +82,14 @@ function DocsCard({
 			to="/{-$locale}/docs/$slug"
 			params={{ ...localeParams, slug: doc.slug }}
 			className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md"
+			onClick={() =>
+				capture(ANALYTICS_EVENTS.contentClick, {
+					content_type: "doc",
+					slug: doc.slug,
+					title: doc.title,
+					placement: "docs_list",
+				})
+			}
 		>
 			<h2 className="text-xl font-semibold text-slate-900">{doc.title}</h2>
 			{description ? (

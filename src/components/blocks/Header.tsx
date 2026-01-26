@@ -11,6 +11,7 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import type { PostSummary } from "@/lib/directus";
 import {
@@ -29,6 +30,7 @@ type HeaderProps = {
 export default function Header({ blogPosts = [] }: HeaderProps) {
 	const router = useRouter();
 	const { t, locale, localeParam } = useI18n();
+	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
@@ -86,6 +88,11 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 
 	const switchLocale = (nextLocale: Locale) => {
 		if (nextLocale === locale) return;
+		capture(ANALYTICS_EVENTS.localeSwitch, {
+			from_locale: locale,
+			to_locale: nextLocale,
+			placement: "header",
+		});
 		setLocaleCookie(nextLocale);
 		const nextPath = buildLocalizedPath(
 			router.state.location.pathname,
@@ -136,6 +143,13 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 											href={GITHUB_URL}
 											variant="brand"
 											icon={<Github className="h-4 w-4" aria-hidden="true" />}
+											onClick={() =>
+												capture(ANALYTICS_EVENTS.ctaClick, {
+													cta: "github",
+													placement: "header_menu",
+													href: GITHUB_URL,
+												})
+											}
 										/>
 									</ul>
 								</NavigationMenuContent>
@@ -222,7 +236,18 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 				</nav>
 				<div className="flex flex-wrap items-center gap-3">
 					<Button asChild size="sm">
-						<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+						<a
+							href={SCHEDULE_VISIO_URL}
+							target="_blank"
+							rel="noreferrer"
+							onClick={() =>
+								capture(ANALYTICS_EVENTS.ctaClick, {
+									cta: "schedule_call",
+									placement: "header",
+									href: SCHEDULE_VISIO_URL,
+								})
+							}
+						>
 							{t((t) => t.nav.bookCall)}
 						</a>
 					</Button>
@@ -324,6 +349,7 @@ type HeaderMenuExternalLinkProps = {
 	icon?: React.ReactNode;
 	className?: string;
 	variant?: "default" | "brand";
+	onClick?: () => void;
 };
 
 function HeaderMenuExternalLink({
@@ -333,6 +359,7 @@ function HeaderMenuExternalLink({
 	icon,
 	className,
 	variant = "default",
+	onClick,
 }: HeaderMenuExternalLinkProps) {
 	const isBrand = variant === "brand";
 
@@ -343,6 +370,7 @@ function HeaderMenuExternalLink({
 					href={href}
 					target="_blank"
 					rel="noreferrer"
+					onClick={onClick}
 					className={cn(
 						"group flex h-full items-start gap-3 rounded-xl border border-transparent p-3 text-sm transition",
 						isBrand

@@ -5,6 +5,7 @@ import { ServiceFaqSection } from "@/components/blocks/ServiceFaqSection";
 import { ServiceHighlight } from "@/components/blocks/ServiceHighlight";
 import { ServiceProcessSection } from "@/components/blocks/ServiceProcessSection";
 import { Button } from "@/components/ui/button";
+import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -32,6 +33,7 @@ export const Route = createFileRoute(
 
 function LegacyToExpoPage() {
 	const { t, localeParam } = useI18n();
+	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
@@ -101,7 +103,18 @@ function LegacyToExpoPage() {
 					</p>
 					<div className="mt-8 flex flex-wrap items-center gap-4">
 						<Button asChild>
-							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+							<a
+								href={SCHEDULE_VISIO_URL}
+								target="_blank"
+								rel="noreferrer"
+								onClick={() =>
+									capture(ANALYTICS_EVENTS.ctaClick, {
+										cta: "schedule_call",
+										placement: "service_legacy",
+										href: SCHEDULE_VISIO_URL,
+									})
+								}
+							>
 								{t((t) => t.services.legacy.cta)}
 							</a>
 						</Button>

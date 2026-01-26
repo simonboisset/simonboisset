@@ -1,11 +1,16 @@
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Database, Globe, Server, Smartphone } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+	ANALYTICS_EVENTS,
+	useAnalytics,
+	useSectionViewTracking,
+} from "@/lib/analytics";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
@@ -34,9 +39,21 @@ export const Route = createFileRoute(
 const emailSchema = z.string().email();
 
 function SaasStarterTemplatePage() {
-	const { t } = useI18n();
+	const { t, locale } = useI18n();
+	const { capture } = useAnalytics();
 	const [submitError, setSubmitError] = useState<string | null>(null);
 	const [submitSuccess, setSubmitSuccess] = useState(false);
+	const hasStartedRef = useRef(false);
+	const sectionTracking = useMemo(
+		() => [
+			{ id: "waitlist", label: "waitlist" },
+			{ id: "stack", label: "stack" },
+			{ id: "quality", label: "quality" },
+		],
+		[],
+	);
+
+	useSectionViewTracking(sectionTracking, { pageType: "product", locale });
 
 	const heroHighlights = [
 		{
@@ -122,6 +139,16 @@ function SaasStarterTemplatePage() {
 	];
 
 	const emailError = t((t) => t.products.saasStarter.waitlist.errors.email);
+	const waitlistProduct = "saas_starter_template";
+
+	const trackWaitlistStart = () => {
+		if (hasStartedRef.current) return;
+		hasStartedRef.current = true;
+		capture(ANALYTICS_EVENTS.waitlistStart, {
+			product: waitlistProduct,
+			locale,
+		});
+	};
 
 	const defaultValues: WaitlistFormValues = {
 		email: "",
@@ -144,6 +171,10 @@ function SaasStarterTemplatePage() {
 		defaultValues,
 		onSubmit: async ({ value, formApi }) => {
 			setSubmitError(null);
+			capture(ANALYTICS_EVENTS.waitlistSubmit, {
+				product: waitlistProduct,
+				locale,
+			});
 			try {
 				await waitlist.createWaitlistEntry({
 					data: {
@@ -151,9 +182,19 @@ function SaasStarterTemplatePage() {
 					},
 				});
 				setSubmitSuccess(true);
+				capture(ANALYTICS_EVENTS.waitlistSuccess, {
+					product: waitlistProduct,
+					locale,
+				});
 				formApi.reset(defaultValues);
 			} catch (error) {
 				console.error(error);
+				capture(ANALYTICS_EVENTS.waitlistError, {
+					product: waitlistProduct,
+					locale,
+					error:
+						error instanceof Error ? error.message : "WAITLIST_UNKNOWN_ERROR",
+				});
 				setSubmitError(t((t) => t.products.saasStarter.waitlist.errors.submit));
 			}
 		},
@@ -179,13 +220,32 @@ function SaasStarterTemplatePage() {
 							</div>
 							<div className="flex flex-wrap gap-4">
 								<Button asChild>
-									<a href="#waitlist" className="gap-2">
+									<a
+										href="#waitlist"
+										className="gap-2"
+										onClick={() =>
+											capture(ANALYTICS_EVENTS.ctaClick, {
+												cta: "waitlist_scroll",
+												placement: "product_hero",
+												href: "#waitlist",
+											})
+										}
+									>
 										{t((t) => t.products.saasStarter.hero.ctaPrimary)}
 										<ArrowRight className="h-4 w-4" />
 									</a>
 								</Button>
 								<Button variant="outline" asChild>
-									<a href="#stack">
+									<a
+										href="#stack"
+										onClick={() =>
+											capture(ANALYTICS_EVENTS.ctaClick, {
+												cta: "stack_scroll",
+												placement: "product_hero",
+												href: "#stack",
+											})
+										}
+									>
 										{t((t) => t.products.saasStarter.hero.ctaSecondary)}
 									</a>
 								</Button>
@@ -314,9 +374,11 @@ function SaasStarterTemplatePage() {
 												type="email"
 												required
 												value={field.state.value}
-												onChange={(event) =>
-													field.handleChange(event.target.value)
-												}
+												onChange={(event) => {
+													trackWaitlistStart();
+													field.handleChange(event.target.value);
+												}}
+												onFocus={trackWaitlistStart}
 												placeholder={t(
 													(t) =>
 														t.products.saasStarter.waitlist.form

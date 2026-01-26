@@ -1,12 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { env } from "@/env";
-import { ANALYTICS_CONSENT_EVENT } from "@/lib/analytics";
+import {
+	ANALYTICS_CONSENT_EVENT,
+	ANALYTICS_EVENTS,
+	useAnalytics,
+} from "@/lib/analytics";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { useI18n } from "@/lib/i18n/use-i18n";
 
 export default function SiteFooter() {
 	const showConsentLink = Boolean(env.VITE_POSTHOG_KEY);
 	const { t, localeParam } = useI18n();
+	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
@@ -33,15 +38,42 @@ export default function SiteFooter() {
 						target="_blank"
 						rel="noreferrer"
 						className="hover:text-slate-900"
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "schedule_call",
+								placement: "footer",
+								href: SCHEDULE_VISIO_URL,
+							})
+						}
 					>
 						{t((t) => t.footer.scheduleCall)}
 					</a>
 					<span className="text-slate-300">|</span>
-					<Link to="/{-$locale}/blog" params={localeParams}>
+					<Link
+						to="/{-$locale}/blog"
+						params={localeParams}
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "blog",
+								placement: "footer",
+								href: "/blog",
+							})
+						}
+					>
 						{t((t) => t.footer.blog)}
 					</Link>
 					<span className="text-slate-300">|</span>
-					<Link to="/{-$locale}/docs" params={localeParams}>
+					<Link
+						to="/{-$locale}/docs"
+						params={localeParams}
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "docs",
+								placement: "footer",
+								href: "/docs",
+							})
+						}
+					>
 						{t((t) => t.footer.docs)}
 					</Link>
 					{showConsentLink ? (
@@ -62,6 +94,13 @@ export default function SiteFooter() {
 						target="_blank"
 						rel="noreferrer"
 						className="hover:text-slate-900"
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "github",
+								placement: "footer",
+								href: GITHUB_URL,
+							})
+						}
 					>
 						{t((t) => t.footer.github)}
 					</a>

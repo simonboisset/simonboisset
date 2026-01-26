@@ -9,8 +9,14 @@ import {
 	Smartphone,
 	Sparkles,
 } from "lucide-react";
+import { useMemo } from "react";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import { Button } from "@/components/ui/button";
+import {
+	ANALYTICS_EVENTS,
+	useAnalytics,
+	useSectionViewTracking,
+} from "@/lib/analytics";
 import {
 	GITHUB_URL,
 	HERO_PHOTO_ASSET_ID,
@@ -71,10 +77,21 @@ type ServiceLine = {
 
 function App() {
 	const { heroPhotoUrl } = Route.useLoaderData();
-	const { t, localeParam } = useI18n();
+	const { t, locale, localeParam } = useI18n();
+	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
+	const sectionTracking = useMemo(
+		() => [
+			{ id: "projects", label: "projects" },
+			{ id: "services", label: "services" },
+			{ id: "testimonials", label: "testimonials" },
+		],
+		[],
+	);
+
+	useSectionViewTracking(sectionTracking, { pageType: "home", locale });
 
 	const projects: Project[] = [
 		{
@@ -256,13 +273,35 @@ function App() {
 						/>
 						<div className="flex flex-wrap items-center gap-4">
 							<Button asChild>
-								<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+								<a
+									href={SCHEDULE_VISIO_URL}
+									target="_blank"
+									rel="noreferrer"
+									onClick={() =>
+										capture(ANALYTICS_EVENTS.ctaClick, {
+											cta: "schedule_call",
+											placement: "home_hero",
+											href: SCHEDULE_VISIO_URL,
+										})
+									}
+								>
 									{t((t) => t.home.hero.ctaPrimary)}
 									<ArrowUpRight className="size-4" />
 								</a>
 							</Button>
 							<Button variant="outline" asChild>
-								<Link to="/{-$locale}" hash="services" params={localeParams}>
+								<Link
+									to="/{-$locale}"
+									hash="services"
+									params={localeParams}
+									onClick={() =>
+										capture(ANALYTICS_EVENTS.ctaClick, {
+											cta: "services_overview",
+											placement: "home_hero",
+											href: "#services",
+										})
+									}
+								>
 									{t((t) => t.home.hero.ctaSecondary)}
 								</Link>
 							</Button>
@@ -270,7 +309,18 @@ function App() {
 								asChild
 								className="border border-[#0d1117] bg-[#0d1117] text-white hover:bg-[#161b22] hover:text-white"
 							>
-								<a href={GITHUB_URL} target="_blank" rel="noreferrer">
+								<a
+									href={GITHUB_URL}
+									target="_blank"
+									rel="noreferrer"
+									onClick={() =>
+										capture(ANALYTICS_EVENTS.ctaClick, {
+											cta: "github",
+											placement: "home_hero",
+											href: GITHUB_URL,
+										})
+									}
+								>
 									{t((t) => t.home.hero.ctaGithub)}{" "}
 									<Github className="size-4" />
 								</a>
@@ -460,7 +510,18 @@ function App() {
 						</p>
 					</div>
 					<Button asChild size="lg">
-						<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+						<a
+							href={SCHEDULE_VISIO_URL}
+							target="_blank"
+							rel="noreferrer"
+							onClick={() =>
+								capture(ANALYTICS_EVENTS.ctaClick, {
+									cta: "schedule_call",
+									placement: "home_cta",
+									href: SCHEDULE_VISIO_URL,
+								})
+							}
+						>
 							{t((t) => t.home.cta.button)} <Rocket className="size-4" />
 						</a>
 					</Button>
@@ -472,6 +533,7 @@ function App() {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
 	const { t } = useI18n();
+	const { capture } = useAnalytics();
 
 	return (
 		<div
@@ -485,6 +547,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 						target="_blank"
 						rel="noreferrer"
 						className="underline-offset-4 transition hover:text-amber-600 hover:underline"
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "project_link",
+								placement: "home_projects",
+								href: project.url,
+								project: project.name,
+							})
+						}
 					>
 						{project.name}
 						<ArrowUpRight className="ml-1 inline-block size-3.5 align-baseline" />
@@ -536,6 +606,8 @@ function ProductServiceCard({
 	localeParams: Record<string, string>;
 	buttonLabel: string;
 }) {
+	const { capture } = useAnalytics();
+
 	return (
 		<div
 			className="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg motion-safe:animate-fade-up"
@@ -557,7 +629,18 @@ function ProductServiceCard({
 				))}
 			</ul>
 			<Button variant="outline" size="sm" asChild className="mt-6">
-				<Link to={service.to} params={localeParams}>
+				<Link
+					to={service.to}
+					params={localeParams}
+					onClick={() =>
+						capture(ANALYTICS_EVENTS.ctaClick, {
+							cta: "productized_service",
+							placement: "home_productized",
+							href: service.to,
+							service: service.title,
+						})
+					}
+				>
 					{buttonLabel} <ArrowUpRight className="size-4" />
 				</Link>
 			</Button>

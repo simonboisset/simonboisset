@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { directus, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -62,6 +63,7 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 function BlogListPage() {
 	const { posts } = Route.useLoaderData();
 	const { t, localeParam } = useI18n();
+	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
@@ -97,6 +99,14 @@ function BlogListPage() {
 									to="/{-$locale}/blog/$slug"
 									params={{ ...localeParams, slug: featuredArticle.slug }}
 									className="block group hover:no-underline"
+									onClick={() =>
+										capture(ANALYTICS_EVENTS.contentClick, {
+											content_type: "blog",
+											slug: featuredArticle.slug,
+											title: featuredArticle.title,
+											placement: "blog_featured",
+										})
+									}
 								>
 									<div className="flex flex-col md:flex-row gap-8 md:items-center">
 										<div className="flex-1 aspect-[16/10] overflow-hidden rounded-2xl bg-white shadow-sm">
@@ -169,11 +179,21 @@ function ArticleCard({
 	article: PostSummary;
 	localeParams: Record<string, string>;
 }) {
+	const { capture } = useAnalytics();
+
 	return (
 		<Link
 			to="/{-$locale}/blog/$slug"
 			params={{ ...localeParams, slug: article.slug }}
 			className="block group hover:no-underline"
+			onClick={() =>
+				capture(ANALYTICS_EVENTS.contentClick, {
+					content_type: "blog",
+					slug: article.slug,
+					title: article.title,
+					placement: "blog_list",
+				})
+			}
 		>
 			<div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
 				<div className="aspect-[16/10] overflow-hidden bg-slate-100">

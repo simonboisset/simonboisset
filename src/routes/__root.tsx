@@ -4,6 +4,7 @@ import {
 	Link,
 	redirect,
 	Scripts,
+	useRouter,
 } from "@tanstack/react-router";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -11,6 +12,13 @@ import { PostHogProvider } from "posthog-js/react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { env } from "@/env";
+import {
+	ANALYTICS_EVENTS,
+	buildPageViewProperties,
+	getUtmParams,
+	useAnalytics,
+	useAnalyticsConsent,
+} from "@/lib/analytics";
 import { directus } from "@/lib/directus";
 import {
 	addLocaleToPathname,
@@ -128,6 +136,11 @@ export const Route = createRootRoute({
 function RootDocument({ children }: { children: React.ReactNode }) {
 	const { locale } = Route.useRouteContext();
 	const { blogPreview } = Route.useLoaderData();
+	const router = useRouter();
+	const { capture, register, registerOnce } = useAnalytics();
+	const { state: consentState } = useAnalyticsConsent({
+		syncWithPosthog: false,
+	});
 
 	useEffect(() => {
 		setLocaleCookie(locale);
@@ -135,6 +148,40 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			document.documentElement.lang = locale;
 		}
 	}, [locale]);
+
+	useEffect(() => {
+		if (consentState !== "granted") return;
+		if (typeof window === "undefined") return;
+
+		const { pathname, searchStr, hash } = router.state.location;
+		const pageProperties = buildPageViewProperties({
+			pathname,
+			searchStr,
+			hash,
+			locale,
+		});
+		const utmParams = getUtmParams(searchStr);
+
+		if (Object.keys(utmParams).length > 0) {
+			registerOnce(utmParams);
+		}
+
+		register({ locale });
+
+		capture(ANALYTICS_EVENTS.pageView, {
+			$current_url: window.location.href,
+			...pageProperties,
+		});
+	}, [
+		capture,
+		consentState,
+		locale,
+		register,
+		registerOnce,
+		router.state.location.hash,
+		router.state.location.pathname,
+		router.state.location.searchStr,
+	]);
 
 	return (
 		<html lang={locale}>
@@ -203,6 +250,7 @@ function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 				opt_out_capturing_persistence_type: "localStorage",
 				cookieless_mode: "on_reject",
 				opt_out_capturing_by_default: true,
+				capture_pageview: false,
 			}}
 		>
 			{children}

@@ -5,6 +5,11 @@ import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+	ANALYTICS_EVENTS,
+	useAnalytics,
+	useContentReadTracking,
+} from "@/lib/analytics";
 import { HERO_PHOTO_ASSET_ID, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus, type PostDetails, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
@@ -68,11 +73,19 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 
 function BlogDetailPage() {
 	const { post, contentHtml, posts, heroPhotoUrl } = Route.useLoaderData();
-	const { t, localeParam } = useI18n();
+	const { t, locale, localeParam } = useI18n();
+	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
 	const suggestedArticles = getClosestArticlesByDate(post, posts, 3);
+
+	useContentReadTracking({
+		contentType: "blog",
+		slug: post.slug,
+		title: post.title,
+		locale,
+	});
 
 	return (
 		<div className="bg-[#f6f1ea]">
@@ -106,7 +119,18 @@ function BlogDetailPage() {
 							alt={t((t) => t.nav.brand)}
 						/>
 						<Button asChild>
-							<a href={SCHEDULE_VISIO_URL} target="_blank" rel="noreferrer">
+							<a
+								href={SCHEDULE_VISIO_URL}
+								target="_blank"
+								rel="noreferrer"
+								onClick={() =>
+									capture(ANALYTICS_EVENTS.ctaClick, {
+										cta: "schedule_call",
+										placement: "blog_post",
+										href: SCHEDULE_VISIO_URL,
+									})
+								}
+							>
 								{t((t) => t.blog.bookCtaButton)}
 								<ArrowUpRight className="size-4" />
 							</a>
@@ -169,11 +193,21 @@ function SuggestedArticleCard({
 	article: DatedPost;
 	localeParams: Record<string, string>;
 }) {
+	const { capture } = useAnalytics();
+
 	return (
 		<Link
 			to="/{-$locale}/blog/$slug"
 			params={{ ...localeParams, slug: article.slug }}
 			className="block group hover:no-underline"
+			onClick={() =>
+				capture(ANALYTICS_EVENTS.contentClick, {
+					content_type: "blog",
+					slug: article.slug,
+					title: article.title,
+					placement: "blog_suggested",
+				})
+			}
 		>
 			<div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
 				<div className="aspect-[16/10] overflow-hidden bg-slate-100">
