@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { directus, type PostSummary } from "@/lib/directus";
@@ -157,6 +158,13 @@ function BlogListPage() {
 
 function BlogError({ error }: { error: Error }) {
 	const { t } = useI18n();
+	const { captureException } = useAnalytics();
+
+	useEffect(() => {
+		captureException(error, {
+			source: "blog_list",
+		});
+	}, [captureException, error]);
 
 	return (
 		<div className="bg-[#f6f1ea]">

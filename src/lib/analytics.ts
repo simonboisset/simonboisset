@@ -9,6 +9,7 @@ export const ANALYTICS_CONSENT_CHANGED_EVENT = "analytics-consent-changed";
 
 export const ANALYTICS_EVENTS = {
 	pageView: "$pageview",
+	pageLeave: "$pageleave",
 	ctaClick: "cta_click",
 	contentView: "content_view",
 	contentRead: "content_read",
@@ -259,9 +260,24 @@ export const useAnalytics = () => {
 		[posthog],
 	);
 
+	const captureException = useCallback(
+		(error: unknown, properties?: Record<string, unknown>) => {
+			if (!posthog?.has_opted_in_capturing?.()) return;
+			posthog.captureException(error, properties);
+		},
+		[posthog],
+	);
+
 	const canCapture = posthog?.has_opted_in_capturing?.() ?? false;
 
-	return { posthog, capture, register, registerOnce, canCapture };
+	return {
+		posthog,
+		capture,
+		register,
+		registerOnce,
+		captureException,
+		canCapture,
+	};
 };
 
 type SectionTracking = {

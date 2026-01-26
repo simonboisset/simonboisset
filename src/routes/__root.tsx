@@ -9,7 +9,7 @@ import {
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { PostHogProvider } from "posthog-js/react";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { env } from "@/env";
 import {
@@ -141,6 +141,28 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 	const { state: consentState } = useAnalyticsConsent({
 		syncWithPosthog: false,
 	});
+	const pageLeaveRef = useRef<{
+		startedAt: number;
+		properties: Record<string, unknown>;
+		captured: boolean;
+	} | null>(null);
+
+	const capturePageLeave = useCallback(
+		(reason: string) => {
+			const entry = pageLeaveRef.current;
+			if (!entry || entry.captured) return;
+
+			entry.captured = true;
+			const durationSeconds = Math.round((Date.now() - entry.startedAt) / 1000);
+
+			capture(ANALYTICS_EVENTS.pageLeave, {
+				...entry.properties,
+				duration_seconds: durationSeconds,
+				reason,
+			});
+		},
+		[capture],
+	);
 
 	useEffect(() => {
 		setLocaleCookie(locale);
@@ -154,6 +176,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 		if (typeof window === "undefined") return;
 
 		const { pathname, searchStr, hash } = router.state.location;
+		const currentUrl = window.location.href;
 		const pageProperties = buildPageViewProperties({
 			pathname,
 			searchStr,
@@ -168,12 +191,41 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
 		register({ locale });
 
+		pageLeaveRef.current = {
+			startedAt: Date.now(),
+			properties: {
+				$current_url: currentUrl,
+				...pageProperties,
+			},
+			captured: false,
+		};
+
 		capture(ANALYTICS_EVENTS.pageView, {
-			$current_url: window.location.href,
+			$current_url: currentUrl,
 			...pageProperties,
 		});
+
+		const handleVisibilityChange = () => {
+			if (document.visibilityState === "hidden") {
+				capturePageLeave("visibility_hidden");
+			}
+		};
+
+		const handlePageHide = () => {
+			capturePageLeave("page_hide");
+		};
+
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+		window.addEventListener("pagehide", handlePageHide);
+
+		return () => {
+			capturePageLeave("route_change");
+			document.removeEventListener("visibilitychange", handleVisibilityChange);
+			window.removeEventListener("pagehide", handlePageHide);
+		};
 	}, [
 		capture,
+		capturePageLeave,
 		consentState,
 		locale,
 		register,
@@ -251,6 +303,8 @@ function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 				cookieless_mode: "on_reject",
 				opt_out_capturing_by_default: true,
 				capture_pageview: false,
+				enable_heatmaps: true,
+				capture_exceptions: true,
 			}}
 		>
 			{children}

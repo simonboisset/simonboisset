@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { marked } from "marked";
+import { useEffect } from "react";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
@@ -232,6 +233,13 @@ function SuggestedArticleCard({
 
 function BlogPostError({ error }: { error: Error }) {
 	const { t } = useI18n();
+	const { captureException } = useAnalytics();
+
+	useEffect(() => {
+		captureException(error, {
+			source: "blog_detail",
+		});
+	}, [captureException, error]);
 
 	return (
 		<div className="bg-[#f6f1ea]">
