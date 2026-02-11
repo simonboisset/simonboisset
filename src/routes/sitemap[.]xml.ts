@@ -24,6 +24,7 @@ const staticPaths: StaticPath[] = [
 	{ path: "/", changefreq: "weekly", priority: 1 },
 	{ path: "/blog", changefreq: "weekly", priority: 0.7 },
 	{ path: "/docs", changefreq: "yearly", priority: 0.3 },
+	{ path: "/cv", changefreq: "monthly", priority: 0.5 },
 	{
 		path: "/services/react-native-legacy-to-expo",
 		changefreq: "monthly",

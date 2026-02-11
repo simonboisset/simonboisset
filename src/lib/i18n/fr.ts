@@ -8,6 +8,9 @@ export const fr: Translations = {
 		homeDescription:
 			"Développeur freelance mobile + full-stack spécialisé en React Native, Expo et applications web modernes.",
 		blogTitle: "Blog",
+		cvTitle: "CV",
+		cvDescription:
+			"CV de Simon Boisset, développeur full-stack orienté mobile (React Native, Expo, React, TypeScript).",
 	},
 	nav: {
 		brand: "Simon Boisset",
@@ -86,6 +89,112 @@ export const fr: Translations = {
 		cardDescriptions: {
 			legal: "Éditeur, hébergement et contacts.",
 			privacy: "Collecte des données et vos droits.",
+		},
+	},
+	cv: {
+		header: {
+			name: "Simon Boisset",
+			title: "Développeur Full-Stack orienté Mobile",
+			location: "Nantes, France",
+			email: "hello@simonboisset.com",
+			website: "https://simonboisset.com",
+			github: "https://github.com/simonboisset",
+			linkedin: "https://linkedin.com/in/simon-boisset",
+		},
+		summary:
+			"Développeur freelance qui livre des produits mobiles et web prêts pour la production. J'aide les équipes à moderniser des stacks React Native, accélérer le delivery Expo et fiabiliser les releases.",
+		sections: {
+			experience: "Expérience",
+			projects: "Projets sélectionnés",
+			education: "Formation",
+		},
+		experience: {
+			item1: {
+				company: "CAMPING-CAR PARK",
+				role: "Lead Développement Mobile",
+				period: "2024 - 2025",
+				bullets: {
+					item1:
+						"Pilotage d'une refonte mobile et migration d'un React Native legacy vers Expo.",
+					item2:
+						"Amélioration de la structure projet et de la fiabilité des releases.",
+				},
+			},
+			item2: {
+				company: "VAERDICT",
+				role: "Développeur Full-Stack",
+				period: "2024",
+				bullets: {
+					item1:
+						"Re-architecture d'une application web métier pour gagner en évolutivité.",
+					item2:
+						"Lead technique et accompagnement de l'équipe de développement interne.",
+				},
+			},
+			item3: {
+				company: "LiNote",
+				role: "Développeur React Native",
+				period: "2023",
+				bullets: {
+					item1:
+						"Développement d'une application React Native from scratch alignée avec le web.",
+					item2:
+						"Livraison des fonctionnalités clés de communication sur iOS et Android.",
+				},
+			},
+			item4: {
+				company: "Silbo",
+				role: "Full-Stack (Mobile + Web)",
+				period: "2020 - 2023",
+				bullets: {
+					item1:
+						"Livraison d'applications web et terrain dans le secteur santé.",
+					item2:
+						"Focus sur la fiabilité, le temps réel et l'exploitation en production.",
+				},
+			},
+		},
+		projects: {
+			item1: {
+				name: "Mon Pont Chaban",
+				context:
+					"Application mobile d'alertes sur les horaires de levée du pont de Bordeaux.",
+				stack: "React Native, Expo, Push, Trigger.dev",
+				highlights: {
+					item1:
+						"Mise en place d'envois push personnalisés selon les créneaux utilisateurs.",
+					item2:
+						"Automatisation des workflows de notification pour des envois fiables.",
+				},
+			},
+			item2: {
+				name: "Questovery",
+				context:
+					"Plateforme de jeux de piste géolocalisés avec application mobile participant.",
+				stack: "React Native, Expo, Web, Géolocalisation",
+				highlights: {
+					item1:
+						"Conception de parcours interactifs basés sur la géolocalisation.",
+					item2:
+						"Livraison de fonctionnalités produit pour créateurs et participants.",
+				},
+			},
+		},
+		education: {
+			item1: {
+				degree: "Développement professionnel dans le domaine du web",
+				school: "Apprentissage autonome orienté projets",
+				period: "Depuis 2015",
+				details:
+					"Parcours centré sur l'ingénierie web et produit, puis extension vers l'architecture mobile, l'ingénierie de release et le delivery full-stack.",
+			},
+			item2: {
+				degree: "Master de physique des lasers",
+				school: "Université Lille 1",
+				period: "2014",
+				details:
+					"Base solide en optique, photonique, modélisation mathématique et rigueur scientifique.",
+			},
 		},
 	},
 	home: {

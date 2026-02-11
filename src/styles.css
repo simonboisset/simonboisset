@@ -176,3 +176,104 @@ code {
     animation: float-slow 12s ease-in-out infinite;
   }
 }
+
+.cv-section-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.cv-avoid-break {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cv-page {
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+
+  .cv-sheet {
+    width: 210mm !important;
+    max-width: 210mm !important;
+    min-height: 297mm;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .cv-sheet a {
+    color: #0f172a !important;
+    text-decoration: underline !important;
+  }
+
+  .cv-header-grid {
+    grid-template-columns: 1.45fr 0.75fr !important;
+    align-items: start !important;
+  }
+
+  .cv-header-aside {
+    justify-self: end !important;
+  }
+
+  .cv-contact-icons {
+    justify-content: flex-end !important;
+  }
+
+  .cv-avatar,
+  .cv-icon-badge {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .cv-avatar {
+    border-radius: 9999px !important;
+    overflow: hidden !important;
+  }
+
+  .cv-icon-badge {
+    border-radius: 9999px !important;
+    text-decoration: none !important;
+  }
+
+  .cv-section {
+    margin-top: 0.75rem !important;
+  }
+
+  .cv-list-item {
+    padding-bottom: 0.45rem !important;
+  }
+
+  .cv-detail-list {
+    margin-top: 0.3rem !important;
+    gap: 0.1rem !important;
+    padding-left: 0.9rem !important;
+  }
+
+  .cv-detail-list li {
+    font-size: 11.5px !important;
+    line-height: 1.2 !important;
+  }
+
+  .cv-detail-text {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+  }
+}

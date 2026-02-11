@@ -44,9 +44,14 @@ export const extractLocaleFromPathname = (pathname: string) => {
 		return { segment: null, locale: null };
 	}
 
+	const mappedLocale = mapLocaleInput(firstSegment);
+	if (!mappedLocale) {
+		return { segment: null, locale: null };
+	}
+
 	return {
 		segment: firstSegment,
-		locale: mapLocaleInput(firstSegment),
+		locale: mappedLocale,
 	};
 };
 

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125CvRouteImport } from './routes/{-$locale}/cv'
 import { Route as Char123LocaleChar125DocsIndexRouteImport } from './routes/{-$locale}/docs/index'
 import { Route as Char123LocaleChar125BlogIndexRouteImport } from './routes/{-$locale}/blog/index'
 import { Route as Char123LocaleChar125ServicesReactNativeLegacyToExpoRouteImport } from './routes/{-$locale}/services/react-native-legacy-to-expo'
@@ -32,6 +33,11 @@ const Char123LocaleChar125IndexRoute =
     path: '/{-$locale}/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const Char123LocaleChar125CvRoute = Char123LocaleChar125CvRouteImport.update({
+  id: '/{-$locale}/cv',
+  path: '/{-$locale}/cv',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char123LocaleChar125DocsIndexRoute =
   Char123LocaleChar125DocsIndexRouteImport.update({
     id: '/{-$locale}/docs/',
@@ -89,6 +95,7 @@ const Char123LocaleChar125BlogSlugRoute =
 
 export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
@@ -116,6 +124,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/sitemap.xml'
+    | '/{-$locale}/cv'
     | '/{-$locale}'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/sitemap.xml'
+    | '/{-$locale}/cv'
     | '/{-$locale}'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/sitemap.xml'
+    | '/{-$locale}/cv'
     | '/{-$locale}/'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
@@ -171,6 +183,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  Char123LocaleChar125CvRoute: typeof Char123LocaleChar125CvRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
   Char123LocaleChar125BlogSlugRoute: typeof Char123LocaleChar125BlogSlugRoute
   Char123LocaleChar125DocsSlugRoute: typeof Char123LocaleChar125DocsSlugRoute
@@ -197,6 +210,13 @@ declare module '@tanstack/react-router' {
       path: '/{-$locale}'
       fullPath: '/{-$locale}'
       preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/{-$locale}/cv': {
+      id: '/{-$locale}/cv'
+      path: '/{-$locale}/cv'
+      fullPath: '/{-$locale}/cv'
+      preLoaderRoute: typeof Char123LocaleChar125CvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/docs/': {
@@ -267,6 +287,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  Char123LocaleChar125CvRoute: Char123LocaleChar125CvRoute,
   Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
   Char123LocaleChar125BlogSlugRoute: Char123LocaleChar125BlogSlugRoute,
   Char123LocaleChar125DocsSlugRoute: Char123LocaleChar125DocsSlugRoute,

@@ -137,6 +137,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 	const { locale } = Route.useRouteContext();
 	const { blogPreview } = Route.useLoaderData();
 	const router = useRouter();
+	const isCvRoute =
+		stripLocaleFromPathname(router.state.location.pathname) === "/cv";
 	const { capture, register, registerOnce } = useAnalytics();
 	const { state: consentState } = useAnalyticsConsent({
 		syncWithPosthog: false,
@@ -242,12 +244,18 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<AnalyticsProvider>
-					<div className="min-h-screen flex flex-col">
-						<Header blogPosts={blogPreview} />
-						<main className="flex-1">{children}</main>
-						<SiteFooter />
-					</div>
-					{env.VITE_POSTHOG_KEY ? <ConsentBanner /> : null}
+					{isCvRoute ? (
+						<main>{children}</main>
+					) : (
+						<>
+							<div className="min-h-screen flex flex-col">
+								<Header blogPosts={blogPreview} />
+								<main className="flex-1">{children}</main>
+								<SiteFooter />
+							</div>
+							{env.VITE_POSTHOG_KEY ? <ConsentBanner /> : null}
+						</>
+					)}
 				</AnalyticsProvider>
 				{import.meta.env.DEV ? (
 					<TanStackDevtools

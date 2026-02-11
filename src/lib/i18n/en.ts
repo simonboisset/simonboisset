@@ -8,6 +8,9 @@ export const en = {
 		homeDescription:
 			"Freelance mobile-focused full-stack developer specializing in React Native, Expo, and modern web apps.",
 		blogTitle: "Blog",
+		cvTitle: "Resume",
+		cvDescription:
+			"Resume of Simon Boisset, mobile-focused full-stack developer (React Native, Expo, React, TypeScript).",
 	},
 	nav: {
 		brand: "Simon Boisset",
@@ -84,6 +87,107 @@ export const en = {
 		cardDescriptions: {
 			legal: "Publisher, hosting, and contact details.",
 			privacy: "How data is collected and your rights.",
+		},
+	},
+	cv: {
+		header: {
+			name: "Simon Boisset",
+			title: "Mobile-focused Full-Stack Developer",
+			location: "Nantes, France",
+			email: "hello@simonboisset.com",
+			website: "https://simonboisset.com",
+			github: "https://github.com/simonboisset",
+			linkedin: "https://linkedin.com/in/simon-boisset",
+		},
+		summary:
+			"Freelance developer shipping production-ready mobile and web products. I help teams modernize React Native stacks, accelerate Expo delivery, and improve release reliability.",
+		sections: {
+			experience: "Experience",
+			projects: "Projects",
+			education: "Education",
+		},
+		experience: {
+			item1: {
+				company: "CAMPING-CAR PARK",
+				role: "Mobile Lead Developer",
+				period: "2024 - 2025",
+				bullets: {
+					item1:
+						"Led a mobile redesign and migration from legacy React Native to Expo.",
+					item2:
+						"Improved project structure and release confidence for the product team.",
+				},
+			},
+			item2: {
+				company: "VAERDICT",
+				role: "Full-Stack Developer",
+				period: "2024",
+				bullets: {
+					item1:
+						"Re-architected a business web app for scalability and maintainability.",
+					item2:
+						"Provided technical leadership and onboarding for internal developers.",
+				},
+			},
+			item3: {
+				company: "LiNote",
+				role: "React Native Developer",
+				period: "2023",
+				bullets: {
+					item1:
+						"Built a React Native app from scratch aligned with the web platform.",
+					item2:
+						"Delivered core communication features across iOS and Android.",
+				},
+			},
+			item4: {
+				company: "Silbo",
+				role: "Full-Stack (Mobile + Web)",
+				period: "2020 - 2023",
+				bullets: {
+					item1:
+						"Shipped healthcare web and field applications with product stakeholders.",
+					item2:
+						"Focused on reliability, real-time behavior, and production operations.",
+				},
+			},
+		},
+		projects: {
+			item1: {
+				name: "Mon Pont Chaban",
+				context: "Mobile alert app for Bordeaux bridge lift schedules.",
+				stack: "React Native, Expo, Push, Trigger.dev",
+				highlights: {
+					item1: "Implemented personalized push scheduling by user time slots.",
+					item2: "Built automation workflows for reliable delivery timing.",
+				},
+			},
+			item2: {
+				name: "Questovery",
+				context:
+					"Geolocated treasure hunt platform with participant mobile app.",
+				stack: "React Native, Expo, Web, Geolocation",
+				highlights: {
+					item1: "Developed interactive geolocation-based user journeys.",
+					item2: "Delivered product features for creators and participants.",
+				},
+			},
+		},
+		education: {
+			item1: {
+				degree: "Professional Development in Web Technologies",
+				school: "Independent and project-driven learning",
+				period: "Since 2015",
+				details:
+					"Focused on web and product engineering, then expanded into mobile architecture, release engineering, and full-stack delivery.",
+			},
+			item2: {
+				degree: "Master's Degree in Laser Physics",
+				school: "Université Lille 1",
+				period: "2014",
+				details:
+					"Foundation in optics, photonics, mathematical modeling, and scientific rigor.",
+			},
 		},
 	},
 	home: {
