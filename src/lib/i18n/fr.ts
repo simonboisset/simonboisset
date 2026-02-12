@@ -102,7 +102,7 @@ export const fr: Translations = {
 			linkedin: "https://linkedin.com/in/simon-boisset",
 		},
 		summary:
-			"Développeur freelance qui livre des produits mobiles et web prêts pour la production. J'aide les équipes à moderniser des stacks React Native, accélérer le delivery Expo et fiabiliser les releases.",
+			"Bonjour, je suis Simon. Développeur autodidacte passionné par le web et le mobile, j'exerce professionnellement depuis 2020. J'ai mené plusieurs projets jusqu'en production. N'hésitez pas à me contacter si vous recherchez une expertise full-stack ou mobile, notamment en React Native.",
 		sections: {
 			experience: "Expérience",
 			projects: "Projets sélectionnés",
@@ -111,7 +111,7 @@ export const fr: Translations = {
 		experience: {
 			item1: {
 				company: "CAMPING-CAR PARK",
-				role: "Lead Développement Mobile",
+				role: "Développeur React Native",
 				period: "2024 - 2025",
 				bullets: {
 					item1:
@@ -144,7 +144,7 @@ export const fr: Translations = {
 			},
 			item4: {
 				company: "Silbo",
-				role: "Full-Stack (Mobile + Web)",
+				role: "Développeur Full-Stack",
 				period: "2020 - 2023",
 				bullets: {
 					item1:
@@ -159,10 +159,10 @@ export const fr: Translations = {
 				name: "Mon Pont Chaban",
 				context:
 					"Application mobile d'alertes sur les horaires de levée du pont de Bordeaux.",
-				stack: "React Native, Expo, Push, Trigger.dev",
+				stack: "React Native, Expo, Push Notifications, Trigger.dev",
 				highlights: {
 					item1:
-						"Mise en place d'envois push personnalisés selon les créneaux utilisateurs.",
+						"Mise en place d'envois push notifications personnalisées selon les créneaux utilisateurs.",
 					item2:
 						"Automatisation des workflows de notification pour des envois fiables.",
 				},

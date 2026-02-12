@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { marked } from "marked";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { useContentReadTracking } from "@/lib/analytics";
-import { directus, type DocSummary } from "@/lib/directus";
+import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";

@@ -1,3 +1,4 @@
+import { TanStackDevtools } from "@tanstack/react-devtools";
 import {
 	createRootRoute,
 	HeadContent,
@@ -6,7 +7,6 @@ import {
 	Scripts,
 	useRouter,
 } from "@tanstack/react-router";
-import { TanStackDevtools } from "@tanstack/react-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { PostHogProvider } from "posthog-js/react";
 import { useCallback, useEffect, useRef } from "react";
@@ -235,6 +235,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 		router.state.location.hash,
 		router.state.location.pathname,
 		router.state.location.searchStr,
+		router.state.location,
 	]);
 
 	return (

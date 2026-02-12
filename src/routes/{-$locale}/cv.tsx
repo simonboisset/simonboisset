@@ -191,6 +191,7 @@ function IconBadgeLink({
 			className="cv-icon-badge inline-flex size-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-700"
 		>
 			<span aria-hidden="true">{icon}</span>
+			<span className="sr-only">{label}</span>
 		</a>
 	);
 }

@@ -1,4 +1,4 @@
-import { BookOpen, Home, Sparkles, type LucideIcon } from "lucide-react";
+import { BookOpen, Home, type LucideIcon, Sparkles } from "lucide-react";
 import type { Translator } from "typed-locale";
 import type { Translations } from "@/lib/i18n/en";
 

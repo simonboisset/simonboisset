@@ -7,7 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "check": "biome check --formatter-enabled=true --linter-enabled=false --assist-enabled=false && tsc --noEmit"
+    "check": "biome check --write --unsafe . && tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.1.12",

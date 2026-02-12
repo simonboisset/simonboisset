@@ -1,7 +1,7 @@
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Database, Globe, Server, Smartphone } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState } from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,13 +44,16 @@ function SaasStarterTemplatePage() {
 	const [submitError, setSubmitError] = useState<string | null>(null);
 	const [submitSuccess, setSubmitSuccess] = useState(false);
 	const hasStartedRef = useRef(false);
+	const waitlistSectionId = useId();
+	const stackSectionId = useId();
+	const qualitySectionId = useId();
 	const sectionTracking = useMemo(
 		() => [
-			{ id: "waitlist", label: "waitlist" },
-			{ id: "stack", label: "stack" },
-			{ id: "quality", label: "quality" },
+			{ id: waitlistSectionId, label: "waitlist" },
+			{ id: stackSectionId, label: "stack" },
+			{ id: qualitySectionId, label: "quality" },
 		],
-		[],
+		[qualitySectionId, stackSectionId, waitlistSectionId],
 	);
 
 	useSectionViewTracking(sectionTracking, { pageType: "product", locale });
@@ -150,6 +153,28 @@ function SaasStarterTemplatePage() {
 		});
 	};
 
+	const scrollToSection = ({
+		sectionId,
+		cta,
+		href,
+	}: {
+		sectionId: string;
+		cta: string;
+		href: string;
+	}) => {
+		capture(ANALYTICS_EVENTS.ctaClick, {
+			cta,
+			placement: "product_hero",
+			href,
+		});
+		const sectionElement = document.getElementById(sectionId);
+		if (!sectionElement) return;
+		sectionElement.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+	};
+
 	const defaultValues: WaitlistFormValues = {
 		email: "",
 	};
@@ -219,35 +244,32 @@ function SaasStarterTemplatePage() {
 								</p>
 							</div>
 							<div className="flex flex-wrap gap-4">
-								<Button asChild>
-									<a
-										href="#waitlist"
-										className="gap-2"
-										onClick={() =>
-											capture(ANALYTICS_EVENTS.ctaClick, {
-												cta: "waitlist_scroll",
-												placement: "product_hero",
-												href: "#waitlist",
-											})
-										}
-									>
-										{t((t) => t.products.saasStarter.hero.ctaPrimary)}
-										<ArrowRight className="h-4 w-4" />
-									</a>
+								<Button
+									type="button"
+									className="gap-2"
+									onClick={() =>
+										scrollToSection({
+											sectionId: waitlistSectionId,
+											cta: "waitlist_scroll",
+											href: "#waitlist",
+										})
+									}
+								>
+									{t((t) => t.products.saasStarter.hero.ctaPrimary)}
+									<ArrowRight className="h-4 w-4" />
 								</Button>
-								<Button variant="outline" asChild>
-									<a
-										href="#stack"
-										onClick={() =>
-											capture(ANALYTICS_EVENTS.ctaClick, {
-												cta: "stack_scroll",
-												placement: "product_hero",
-												href: "#stack",
-											})
-										}
-									>
-										{t((t) => t.products.saasStarter.hero.ctaSecondary)}
-									</a>
+								<Button
+									type="button"
+									variant="outline"
+									onClick={() =>
+										scrollToSection({
+											sectionId: stackSectionId,
+											cta: "stack_scroll",
+											href: "#stack",
+										})
+									}
+								>
+									{t((t) => t.products.saasStarter.hero.ctaSecondary)}
 								</Button>
 							</div>
 							<div className="flex flex-wrap gap-2 text-xs text-slate-500">
@@ -325,7 +347,7 @@ function SaasStarterTemplatePage() {
 				</div>
 			</section>
 
-			<section id="waitlist" className="pb-16 pt-6">
+			<section id={waitlistSectionId} className="pb-16 pt-6">
 				<div className="mx-auto w-full max-w-3xl px-6 text-center">
 					<h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
 						{t((t) => t.products.saasStarter.waitlist.title)}
@@ -421,7 +443,7 @@ function SaasStarterTemplatePage() {
 				</div>
 			</section>
 
-			<section id="stack" className="py-20">
+			<section id={stackSectionId} className="py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
 						<div className="space-y-4">
@@ -456,7 +478,7 @@ function SaasStarterTemplatePage() {
 				</div>
 			</section>
 
-			<section id="quality" className="bg-white py-20">
+			<section id={qualitySectionId} className="bg-white py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
 						<div className="space-y-4">

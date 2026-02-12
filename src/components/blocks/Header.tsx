@@ -15,8 +15,8 @@ import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { GITHUB_URL, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import type { PostSummary } from "@/lib/directus";
 import {
-	type Locale,
 	buildLocalizedPath,
+	type Locale,
 	setLocaleCookie,
 	stripLocaleFromPathname,
 } from "@/lib/i18n/locale";

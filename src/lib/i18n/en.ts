@@ -94,13 +94,13 @@ export const en = {
 			name: "Simon Boisset",
 			title: "Mobile-focused Full-Stack Developer",
 			location: "Nantes, France",
-			email: "hello@simonboisset.com",
+			email: "simon@lezo.dev",
 			website: "https://simonboisset.com",
 			github: "https://github.com/simonboisset",
 			linkedin: "https://linkedin.com/in/simon-boisset",
 		},
 		summary:
-			"Freelance developer shipping production-ready mobile and web products. I help teams modernize React Native stacks, accelerate Expo delivery, and improve release reliability.",
+			"Hello, I'm Simon. I'm a self-taught developer passionate about web and mobile development, and I have been working professionally since 2020. I have delivered several projects to production. Feel free to contact me if you need full-stack or mobile expertise, especially in React Native.",
 		sections: {
 			experience: "Experience",
 			projects: "Projects",
@@ -109,7 +109,7 @@ export const en = {
 		experience: {
 			item1: {
 				company: "CAMPING-CAR PARK",
-				role: "Mobile Lead Developer",
+				role: "React Native Developer",
 				period: "2024 - 2025",
 				bullets: {
 					item1:
@@ -142,7 +142,7 @@ export const en = {
 			},
 			item4: {
 				company: "Silbo",
-				role: "Full-Stack (Mobile + Web)",
+				role: "Full-Stack Developer",
 				period: "2020 - 2023",
 				bullets: {
 					item1:
@@ -156,9 +156,10 @@ export const en = {
 			item1: {
 				name: "Mon Pont Chaban",
 				context: "Mobile alert app for Bordeaux bridge lift schedules.",
-				stack: "React Native, Expo, Push, Trigger.dev",
+				stack: "React Native, Expo, Push Notification, Trigger.dev",
 				highlights: {
-					item1: "Implemented personalized push scheduling by user time slots.",
+					item1:
+						"Implemented personalized push notifications scheduling by user time slots.",
 					item2: "Built automation workflows for reliable delivery timing.",
 				},
 			},
