@@ -105,7 +105,7 @@ export const fr: Translations = {
 			"Bonjour, je suis Simon. Développeur autodidacte passionné par le web et le mobile, j'exerce professionnellement depuis 2020. J'ai mené plusieurs projets jusqu'en production. N'hésitez pas à me contacter si vous recherchez une expertise full-stack ou mobile, notamment en React Native.",
 		sections: {
 			experience: "Expérience",
-			projects: "Projets sélectionnés",
+			projects: "Projets",
 			education: "Formation",
 		},
 		experience: {
@@ -186,7 +186,7 @@ export const fr: Translations = {
 				school: "Apprentissage autonome orienté projets",
 				period: "Depuis 2015",
 				details:
-					"Parcours centré sur l'ingénierie web et produit, puis extension vers l'architecture mobile, l'ingénierie de release et le delivery full-stack.",
+					"Parcours centré sur l'ingénierie web et produit, puis extension vers l'architecture mobile, devops et full-stack.",
 			},
 			item2: {
 				degree: "Master de physique des lasers",

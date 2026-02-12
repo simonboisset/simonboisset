@@ -156,7 +156,7 @@ export const en = {
 			item1: {
 				name: "Mon Pont Chaban",
 				context: "Mobile alert app for Bordeaux bridge lift schedules.",
-				stack: "React Native, Expo, Push Notification, Trigger.dev",
+				stack: "React Native, Expo, Push Notifications, Trigger.dev",
 				highlights: {
 					item1:
 						"Implemented personalized push notifications scheduling by user time slots.",
@@ -180,7 +180,7 @@ export const en = {
 				school: "Independent and project-driven learning",
 				period: "Since 2015",
 				details:
-					"Focused on web and product engineering, then expanded into mobile architecture, release engineering, and full-stack delivery.",
+					"Focused on web and product engineering, then expanded into mobile architecture, devops, and full-stack delivery.",
 			},
 			item2: {
 				degree: "Master's Degree in Laser Physics",

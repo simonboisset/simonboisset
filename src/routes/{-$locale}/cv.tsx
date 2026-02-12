@@ -56,7 +56,7 @@ function CvPage() {
 							<p className="mt-2 text-sm text-slate-600">
 								{cv.header.location}
 							</p>
-							<p className="mt-4 rounded-[22px] rounded-bl-[8px] rounded-tr-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
+							<p className="mt-4 rounded-[22px] rounded-br-[8px] rounded-tl-[30px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,248,240,0.92),rgba(236,248,246,0.9))] px-4 py-3 text-sm italic text-slate-600 shadow-sm md:text-base">
 								{cv.summary}
 							</p>
 						</div>
