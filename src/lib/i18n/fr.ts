@@ -96,7 +96,7 @@ export const fr: Translations = {
 			name: "Simon Boisset",
 			title: "Développeur Full-Stack orienté Mobile",
 			location: "Nantes, France",
-			email: "hello@simonboisset.com",
+			email: "simon@lezo.dev",
 			website: "https://simonboisset.com",
 			github: "https://github.com/simonboisset",
 			linkedin: "https://linkedin.com/in/simon-boisset",
