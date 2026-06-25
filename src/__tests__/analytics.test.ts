@@ -38,11 +38,6 @@ describe("analytics helpers", () => {
 			contentType: "service",
 			slug: "expo-workflow-optimization",
 		});
-		expect(getPageContext("/products/saas-starter-template")).toEqual({
-			pageType: "product",
-			contentType: "product",
-			slug: "saas-starter-template",
-		});
 	});
 
 	it("extracts UTM params safely", () => {

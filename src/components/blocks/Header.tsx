@@ -71,21 +71,6 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 			to: "/{-$locale}/services/expo-workflow-optimization",
 		},
 	];
-	const productItems = [
-		{
-			title: t((t) => t.nav.saasStarter),
-			description: t((t) => t.products.saasStarter.hero.subtitle),
-			to: "/{-$locale}/products/saas-starter-template",
-			icon: (
-				<img
-					src="/icon-515x515.png"
-					alt="Keystone Stack icon"
-					className="h-12 w-12 rounded-xl border border-slate-200 bg-white shadow-sm"
-				/>
-			),
-		},
-	];
-
 	const switchLocale = (nextLocale: Locale) => {
 		if (nextLocale === locale) return;
 		capture(ANALYTICS_EVENTS.localeSwitch, {
@@ -168,25 +153,6 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 												to={item.to}
 												params={localeParams}
 												className="h-full"
-											/>
-										))}
-									</ul>
-								</NavigationMenuContent>
-							</NavigationMenuItem>
-							<NavigationMenuItem>
-								<NavigationMenuTrigger className={triggerClassName}>
-									{t((t) => t.nav.products)}
-								</NavigationMenuTrigger>
-								<NavigationMenuContent className="p-4 md:w-[420px]">
-									<ul className="grid gap-3">
-										{productItems.map((item) => (
-											<HeaderMenuLink
-												key={item.to}
-												title={item.title}
-												description={item.description}
-												to={item.to}
-												params={localeParams}
-												icon={item.icon}
 											/>
 										))}
 									</ul>

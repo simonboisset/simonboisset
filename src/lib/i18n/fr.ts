@@ -3,10 +3,9 @@ import type { Translations } from "./en";
 export const fr: Translations = {
 	locale: "fr",
 	seo: {
-		homeTitle:
-			"Développeur full-stack orienté mobile (React Native, Expo, React)",
+		homeTitle: "Expert migration React Native vers Expo - Simon Boisset",
 		homeDescription:
-			"Développeur freelance mobile + full-stack spécialisé en React Native, Expo et applications web modernes.",
+			"Freelance expert des migrations React Native vers Expo, delivery mobile fiable et construction de Questovery.",
 		blogTitle: "Blog",
 		cvTitle: "CV",
 		cvDescription:
@@ -14,27 +13,25 @@ export const fr: Translations = {
 	},
 	nav: {
 		brand: "Simon Boisset",
-		tagline: "Mobile + Full-stack",
+		tagline: "React Native -> Expo",
 		home: "Accueil",
 		about: "À propos",
 		services: "Services",
-		products: "Produits",
-		saasStarter: "Keystone Stack",
 		projects: "Projets",
 		testimonials: "Témoignages",
 		blog: "Blog",
 		blogAll: "Voir tous les articles",
 		bookCall: "Réserver un appel",
 		aboutItems: {
-			services: "Comment j'aide les équipes à livrer du mobile.",
-			projects: "Projets récents et résultats concrets.",
+			services: "Migration React Native vers Expo et focus Questovery.",
+			projects: "Références mobiles derrière le positionnement Expo.",
 			testimonials: "Retours clients sur la livraison et la collaboration.",
 			github: "Open source, prototypes et exemples de code.",
 		},
 	},
 	footer: {
 		description:
-			"Développeur freelance mobile + full-stack. React Native, Expo, React, TypeScript.",
+			"Freelance expert migration React Native -> Expo, en construction de Questovery.",
 		scheduleCall: "Planifier un appel",
 		blog: "Blog",
 		docs: "Docs",
@@ -66,9 +63,9 @@ export const fr: Translations = {
 	},
 	blog: {
 		heroLabel: "Blog",
-		heroTitle: "Réflexions pour livrer de grands produits mobiles.",
+		heroTitle: "Notes de terrain React Native, Expo et Questovery.",
 		description:
-			"Notes de terrain sur la livraison mobile, les workflows Expo et le full-stack.",
+			"Retours pratiques sur les migrations, les workflows de release, l'architecture mobile et la construction de Questovery.",
 		featured: "À la une",
 		latest: "Derniers articles",
 		empty: "Aucun article publié pour le moment.",
@@ -199,40 +196,40 @@ export const fr: Translations = {
 	},
 	home: {
 		hero: {
-			eyebrow: "Freelance mobile + full-stack",
-			title: "Des apps mobiles solides, prêtes pour la production.",
+			eyebrow: "Expert React Native -> Expo",
+			title:
+				"Je migre des apps React Native vers Expo et je construis Questovery.",
 			intro:
-				"Je suis Simon Boisset, développeur mobile/full-stack. J'aide les équipes à livrer des apps React Native/Expo, remettre à plat des stacks legacy et sécuriser les releases.",
-			ctaPrimary: "Lancer un projet",
-			ctaSecondary: "Voir les services",
-			ctaGithub: "GitHub",
+				"J'aide les équipes à moderniser leur stack mobile, fiabiliser leurs releases et livrer plus vite avec Expo/EAS. En parallèle, je construis Questovery, une plateforme de jeux de piste géolocalisés.",
+			ctaPrimary: "Parler d'une migration Expo",
+			ctaSecondary: "Découvrir Questovery",
 			highlights: {
-				expertise: "Expertise React Native + Expo",
-				delivery: "Livraison prête pour la production",
-				performance: "Optimisation perf & release",
+				expertise: "Migration React Native legacy",
+				delivery: "Releases Expo/EAS en production",
+				performance: "Focus produit Questovery",
 			},
 		},
 		availability: {
-			label: "Disponibilités",
-			status: "Réservation ouverte",
-			badge: "Créneaux ouverts",
+			label: "Focus actuel",
+			status: "Migration + produit",
+			badge: "Scope resserré",
 			items: {
-				item1: "Discovery produit + roadmap",
-				item2: "Delivery mobile de bout en bout",
-				item3: "Automatisation des releases et support QA",
+				item1: "Audit React Native legacy",
+				item2: "Migration Expo/EAS jusqu'en production",
+				item3: "Construction produit Questovery en cours",
 			},
 		},
 		signature: {
-			label: "Signature",
-			title: "Delivery Expo clair et fiable",
+			label: "Terrain d'intervention",
+			title: "De RN legacy à Expo/EAS",
 			description:
-				"Un workflow Expo/EAS simple pour livrer régulièrement, sans surprise.",
+				"Un chemin clair depuis des workflows natifs fragiles vers une QA, des releases stores et un handoff équipe prévisibles.",
 		},
 		projectsSection: {
-			label: "Projets sélectionnés",
-			title: "Exemples de réalisations",
+			label: "Preuves mobiles",
+			title: "Références derrière le positionnement",
 			description:
-				"Apps mobiles, web apps et outils professionnels livrés pour des équipes opérationnelles.",
+				"Des produits mobiles qui ont structuré l'offre migration React Native -> Expo et la construction de Questovery.",
 			productLabel: "Produit / entreprise",
 			impactLabel: "Impact / contributions",
 		},
@@ -344,82 +341,59 @@ export const fr: Translations = {
 			},
 		},
 		servicesSection: {
-			label: "Services",
-			title: "React + Expo, en mode pragmatique",
+			label: "Deux focus",
+			title: "Expertise migration et produit en construction",
 			description:
-				"MVP, migration ou reprise d'existant : je pose une base saine pour continuer à shipper.",
+				"Je recentre le site sur les missions que je veux multiplier : migrations Expo pour les équipes, et Questovery comme produit que je construis.",
 		},
-		serviceLines: {
-			mobile: {
-				title: "Delivery produit mobile",
+		focus: {
+			migration: {
+				title: "Migration React Native legacy -> Expo",
 				description:
-					"Build React Native et Expo du MVP à la production, avec une architecture scalable.",
+					"Auditer, migrer et stabiliser des apps existantes pour que l'équipe livre avec Expo/EAS au lieu de subir des workflows natifs fragiles.",
+				bullets: {
+					item1: "Audit des dépendances natives et roadmap de migration",
+					item2: "Déploiement Expo/EAS incrémental sans bloquer la roadmap",
+					item3: "Playbook QA, release store et hotfix",
+				},
+				cta: "Voir l'offre migration",
 			},
-			fullstack: {
-				title: "Support full-stack",
+			questovery: {
+				title: "Questovery",
 				description:
-					"Design d'API, modélisation des données et back offices pour compléter les apps mobiles.",
-			},
-			design: {
-				title: "Collaboration design/dev",
-				description:
-					"UI soignées, animations, et kits cohérents pour aligner les équipes.",
+					"Un produit de jeux de piste géolocalisés avec app mobile participant. C'est le laboratoire terrain derrière mes décisions Expo, carte, offline et UX mobile.",
+				bullets: {
+					item1: "App participant React Native + Expo",
+					item2: "Géolocalisation, parcours et contraintes terrain",
+					item3: "Expérience SaaS créateur connectée au delivery mobile",
+				},
+				cta: "Ouvrir Questovery",
 			},
 		},
-		productized: {
-			legacy: {
-				title: "Migration React Native legacy vers Expo",
-				description:
-					"Passer d'un tooling legacy à une stack Expo moderne sans casser la roadmap.",
-				bullets: {
-					item1: "Audit + plan de migration",
-					item2: "Stratégie de déploiement incrémentale",
-					item3: "Pipeline Expo prêt pour la production",
-				},
-			},
-			workflow: {
-				title: "Optimisation du workflow Expo",
-				description:
-					"Accélérer les builds, fiabiliser les releases et rendre le CI/CD prévisible.",
-				bullets: {
-					item1: "Optimisation EAS build + submit",
-					item2: "Audit environnement + secrets",
-					item3: "Playbooks monitoring & release",
-				},
-			},
-			keystone: {
-				title: "Keystone Stack",
-				description:
-					"Le socle SaaS prêt pour le web, le mobile et l'API, avec une base solide.",
-				bullets: {
-					item1: "Auth, organisations et billing prêts",
-					item2: "SDK partagé + design system",
-					item3: "Qualité, CI/CD et analytics intégrés",
-				},
-			},
-			button: "Voir le détail",
-		},
-		fieldNotes: {
-			label: "Notes techniques",
-			title: "Les guides techniques derrière le delivery",
+		method: {
+			label: "Méthode migration",
+			title: "Un chemin cadré de l'audit au handoff",
 			description:
-				"Des guides React, TypeScript et monorepo reliés au travail de production.",
-			items: {
-				esbuild: {
-					title: "Configurer esbuild pour React",
-					description:
-						"Une configuration esbuild ciblée pour les apps React et TypeScript.",
-				},
-				tsup: {
-					title: "Créer une librairie TypeScript avec tsup",
-					description:
-						"Builder, typer et publier un package TypeScript réutilisable.",
-				},
-				turborepo: {
-					title: "Partager des packages dans un monorepo Turborepo",
-					description:
-						"Utiliser des packages internes et workspaces sans imports fragiles.",
-				},
+				"Le travail est cadré pour réduire le risque release d'abord, puis amener l'app et l'équipe vers un workflow Expo maintenable.",
+			audit: {
+				title: "Auditer la surface native",
+				description:
+					"Cartographier dépendances, app config, CI, contraintes stores, irritants release et compatibilité Expo avant de toucher à la roadmap.",
+			},
+			migration: {
+				title: "Migrer par incréments",
+				description:
+					"Mettre à jour React Native et Expo par étapes, remplacer les modules incompatibles et garder la branche produit livrable.",
+			},
+			release: {
+				title: "Stabiliser les releases",
+				description:
+					"Configurer EAS Build, Submit, Update, channels, fingerprints et règles de distribution QA adaptées à l'équipe.",
+			},
+			handoff: {
+				title: "Transférer la main",
+				description:
+					"Documenter décisions, playbooks et options de repli pour que l'équipe interne puisse continuer sans consultant en permanence.",
 			},
 		},
 		testimonialsSection: {
@@ -453,223 +427,6 @@ export const fr: Translations = {
 			description:
 				"Donnez le contexte, je reviens sous 48h avec des prochaines étapes claires.",
 			button: "Planifier un appel",
-		},
-	},
-	products: {
-		saasStarter: {
-			seoTitle: "Template SaaS web, mobile et API - Keystone Stack",
-			seoDescription:
-				"Un stack SaaS solide, prêt pour l'IA, pour le web, le mobile et l'API. Auth, orgs, billing prêt, analytics et SDK partagé.",
-			hero: {
-				eyebrow: "Keystone Stack",
-				title: "Un socle SaaS solide, prêt pour l'IA.",
-				subtitle: "Lancer vite, garder le contrôle.",
-				ctaPrimary: "Rejoindre la liste d’attente",
-				ctaSecondary: "Voir la stack",
-				badges: {
-					auth: "Auth + orgs",
-					sdk: "SDK partagé",
-					design: "AI-ready",
-				},
-				highlights: {
-					speed: {
-						title: "Mise en prod rapide",
-						description: "Tout est câblé pour livrer un MVP en jours.",
-					},
-					quality: {
-						title: "Qualité & garde-fous",
-						description: "TypeScript strict, Biome, règles anti-bypass.",
-					},
-					scale: {
-						title: "Multi-plateforme cohérente",
-						description: "SDK partagé, oRPC et TanStack Form.",
-					},
-				},
-				preview: {
-					title: "Ce que vous obtenez",
-					tag: "De bout en bout",
-				},
-			},
-			stack: {
-				title: "L’essentiel, directement exploitable",
-				subtitle: "Apps principales et types partagés prêts à livrer.",
-				items: {
-					web: {
-						title: "App web",
-						description: "Vite + TanStack Start + Tailwind + shadcn UI.",
-					},
-					api: {
-						title: "Couche API",
-						description: "Hono + oRPC + Zod + Better Auth.",
-					},
-					data: {
-						title: "Base de données",
-						description: "Drizzle ORM + Postgres + migrations.",
-					},
-					mobile: {
-						title: "Mobile",
-						description: "Expo + React Native + SDK partagé + workflows EAS.",
-					},
-				},
-				badges: {
-					item1: "TanStack Start",
-					item2: "Expo",
-					item3: "Hono + oRPC",
-					item4: "Drizzle ORM",
-					item5: "Postgres",
-				},
-			},
-			included: {
-				title: "Inclus par défaut",
-				subtitle: "Des features produit prêtes à brancher.",
-				items: {
-					auth: {
-						title: "Auth + 2FA",
-						description: "Email, magic link, Turnstile et TOTP.",
-					},
-					orgs: {
-						title: "Organisations & invitations",
-						description: "Workspaces, rôles, invitations d’équipe.",
-					},
-					billing: {
-						title: "Billing prêt",
-						description: "Clients et abonnements prêts à activer.",
-					},
-					admin: {
-						title: "Admin analytics",
-						description: "KPI d’activation et d’adoption.",
-					},
-					sdk: {
-						title: "SDK partagé",
-						description: "oRPC client + TanStack Query/Form.",
-					},
-					content: {
-						title: "CMS Directus",
-						description: "Blog, docs et légaux localisés.",
-					},
-				},
-			},
-			designSystem: {
-				title: "Design system partagé",
-				subtitle: "Un seul système de tokens pour le web et le mobile.",
-				items: {
-					tokens: {
-						title: "Tokens partagés",
-						description: "Couleurs, radius, spacing et motion au même endroit.",
-					},
-					web: {
-						title: "UI web",
-						description: "shadcn UI branché sur les mêmes tokens.",
-					},
-					mobile: {
-						title: "UI mobile",
-						description: "Uniwind consomme le même système de tokens.",
-					},
-				},
-			},
-			quality: {
-				title: "Ship vite, reprendre la main",
-				subtitle:
-					"Commence en vibe code, puis garde le contrôle avec un code propre et des règles claires.",
-				items: {
-					typing: {
-						title: "MVP en quelques jours",
-						description:
-							"Lance un produit viable rapidement avec les flux clés déjà câblés.",
-					},
-					lint: {
-						title: "Vibe code sans friction",
-						description:
-							"Avance vite au début sans perdre la structure ensuite.",
-					},
-					agents: {
-						title: "Code + règles maîtrisés",
-						description:
-							"Conventions strictes, contrats partagés, règles faciles à imposer.",
-					},
-				},
-			},
-			showcase: {
-				title: "Aperçu produit",
-				subtitle: "Quelques écrans et flux clés (placeholders).",
-				items: {
-					item1: {
-						title: "Dashboard organisation",
-						description: "Vue des membres, billing et statut.",
-					},
-					item2: {
-						title: "Onboarding 2FA",
-						description: "Setup TOTP + codes de secours.",
-					},
-					item3: {
-						title: "Admin analytics",
-						description: "KPI d’activation et d’adoption.",
-					},
-					item4: {
-						title: "Pipeline mobile",
-						description: "Build, submit et updates via EAS.",
-					},
-				},
-			},
-			waitlist: {
-				title: "Rejoindre la liste d’attente",
-				subtitle: "Laissez votre email pour l’accès anticipé.",
-				form: {
-					emailLabel: "Email pro",
-					emailPlaceholder: "vous@entreprise.com",
-					profileLabel: "Profil",
-					profilePlaceholder: "Choisissez votre profil",
-					profileOptions: {
-						pro: "Pro",
-						hobby: "Hobby",
-						agency: "Agence",
-					},
-					projectTypesLabel: "Type de projet",
-					projectTypes: {
-						side: "Projet perso",
-						client: "Projet client",
-					},
-					painLabel: "Quel problème ce template doit résoudre ?",
-					painPlaceholder:
-						"Temps d’onboarding, auth, billing, base de code, etc.",
-					budgetLabel: "Budget que vous pourriez payer pour ce template",
-					budgetPlaceholder: "ex. 490",
-					submit: "Rejoindre la liste d’attente",
-				},
-				successTitle: "Vous êtes sur la liste !",
-				successDescription:
-					"On vous contacte dès l’ouverture et pour les updates.",
-				errors: {
-					required: "Ce champ est requis.",
-					email: "Entrez un email valide.",
-					projectTypes: "Sélectionnez au moins un type de projet.",
-					budget: "Indiquez un budget.",
-					submit: "Une erreur est survenue. Réessayez.",
-				},
-			},
-			faq: {
-				title: "Questions fréquentes",
-				subtitle: "Les réponses aux questions les plus courantes.",
-				item1: {
-					question: "Est-ce prêt pour la production ?",
-					answer:
-						"Oui. Le stack inclut déjà auth, analytics et CMS de bout en bout.",
-				},
-				item2: {
-					question: "Puis-je utiliser mon propre CMS ou ma base ?",
-					answer:
-						"Bien sûr. Vous pouvez remplacer Directus ou Drizzle par vos outils.",
-				},
-				item3: {
-					question: "La plateforme gère-t-elle plusieurs langues ?",
-					answer:
-						"Oui. Le routage, le dictionnaire et le contenu sont localisés.",
-				},
-				item4: {
-					question: "Puis-je être accompagné au lancement ?",
-					answer: "Oui. Le template peut être livré avec un onboarding guidé.",
-				},
-			},
 		},
 	},
 	services: {

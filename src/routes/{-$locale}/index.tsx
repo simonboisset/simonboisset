@@ -3,7 +3,6 @@ import {
 	ArrowUpRight,
 	CheckCircle2,
 	Gauge,
-	Github,
 	Rocket,
 	ShieldCheck,
 	Smartphone,
@@ -17,11 +16,7 @@ import {
 	useAnalytics,
 	useSectionViewTracking,
 } from "@/lib/analytics";
-import {
-	GITHUB_URL,
-	HERO_PHOTO_ASSET_ID,
-	SCHEDULE_VISIO_URL,
-} from "@/lib/constants";
+import { HERO_PHOTO_ASSET_ID, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -71,22 +66,18 @@ type Testimonial = {
 	role: string;
 };
 
-type ProductizedService = {
+type FocusCard = {
 	title: string;
 	description: string;
-	to: string;
 	bullets: string[];
+	cta: string;
+	to?: string;
+	href?: string;
 };
 
-type ServiceLine = {
+type MigrationPhase = {
 	title: string;
 	description: string;
-};
-
-type FieldNote = {
-	title: string;
-	description: string;
-	slug: string;
 };
 
 function App() {
@@ -98,8 +89,9 @@ function App() {
 		: {};
 	const sectionTracking = useMemo(
 		() => [
+			{ id: "services", label: "focus" },
 			{ id: "projects", label: "projects" },
-			{ id: "services", label: "services" },
+			{ id: "process", label: "process" },
 			{ id: "testimonials", label: "testimonials" },
 		],
 		[],
@@ -124,21 +116,6 @@ function App() {
 			url: "https://www.campingcarpark.com/fr_FR",
 		},
 		{
-			name: t((t) => t.home.projects.vaerdict.name),
-			product: [t((t) => t.home.projects.vaerdict.product.line1)],
-			impact: [
-				t((t) => t.home.projects.vaerdict.impact.line1),
-				t((t) => t.home.projects.vaerdict.impact.line2),
-			],
-			stack: [
-				t((t) => t.home.projects.vaerdict.stack.item1),
-				t((t) => t.home.projects.vaerdict.stack.item2),
-				t((t) => t.home.projects.vaerdict.stack.item3),
-				t((t) => t.home.projects.vaerdict.stack.item4),
-			],
-			url: "https://vaerdict.fr",
-		},
-		{
 			name: t((t) => t.home.projects.linote.name),
 			product: [t((t) => t.home.projects.linote.product.line1)],
 			impact: [
@@ -152,21 +129,6 @@ function App() {
 				t((t) => t.home.projects.linote.stack.item4),
 			],
 			url: "https://linote.fr",
-		},
-		{
-			name: t((t) => t.home.projects.silbo.name),
-			product: [t((t) => t.home.projects.silbo.product.line1)],
-			impact: [
-				t((t) => t.home.projects.silbo.impact.line1),
-				t((t) => t.home.projects.silbo.impact.line2),
-			],
-			stack: [
-				t((t) => t.home.projects.silbo.stack.item1),
-				t((t) => t.home.projects.silbo.stack.item2),
-				t((t) => t.home.projects.silbo.stack.item3),
-				t((t) => t.home.projects.silbo.stack.item4),
-			],
-			url: "https://silbo.com/fr/",
 		},
 		{
 			name: t((t) => t.home.projects.monPontChanban.name),
@@ -218,68 +180,47 @@ function App() {
 		},
 	];
 
-	const serviceLines: ServiceLine[] = [
+	const focusCards: FocusCard[] = [
 		{
-			title: t((t) => t.home.serviceLines.mobile.title),
-			description: t((t) => t.home.serviceLines.mobile.description),
+			title: t((t) => t.home.focus.migration.title),
+			description: t((t) => t.home.focus.migration.description),
+			to: "/{-$locale}/services/react-native-legacy-to-expo",
+			cta: t((t) => t.home.focus.migration.cta),
+			bullets: [
+				t((t) => t.home.focus.migration.bullets.item1),
+				t((t) => t.home.focus.migration.bullets.item2),
+				t((t) => t.home.focus.migration.bullets.item3),
+			],
 		},
 		{
-			title: t((t) => t.home.serviceLines.fullstack.title),
-			description: t((t) => t.home.serviceLines.fullstack.description),
-		},
-		{
-			title: t((t) => t.home.serviceLines.design.title),
-			description: t((t) => t.home.serviceLines.design.description),
+			title: t((t) => t.home.focus.questovery.title),
+			description: t((t) => t.home.focus.questovery.description),
+			href: "https://questovery.com/fr",
+			cta: t((t) => t.home.focus.questovery.cta),
+			bullets: [
+				t((t) => t.home.focus.questovery.bullets.item1),
+				t((t) => t.home.focus.questovery.bullets.item2),
+				t((t) => t.home.focus.questovery.bullets.item3),
+			],
 		},
 	];
 
-	const productizedServices: ProductizedService[] = [
+	const migrationPhases: MigrationPhase[] = [
 		{
-			title: t((t) => t.home.productized.legacy.title),
-			description: t((t) => t.home.productized.legacy.description),
-			to: "/{-$locale}/services/react-native-legacy-to-expo",
-			bullets: [
-				t((t) => t.home.productized.legacy.bullets.item1),
-				t((t) => t.home.productized.legacy.bullets.item2),
-				t((t) => t.home.productized.legacy.bullets.item3),
-			],
+			title: t((t) => t.home.method.audit.title),
+			description: t((t) => t.home.method.audit.description),
 		},
 		{
-			title: t((t) => t.home.productized.workflow.title),
-			description: t((t) => t.home.productized.workflow.description),
-			to: "/{-$locale}/services/expo-workflow-optimization",
-			bullets: [
-				t((t) => t.home.productized.workflow.bullets.item1),
-				t((t) => t.home.productized.workflow.bullets.item2),
-				t((t) => t.home.productized.workflow.bullets.item3),
-			],
+			title: t((t) => t.home.method.migration.title),
+			description: t((t) => t.home.method.migration.description),
 		},
 		{
-			title: t((t) => t.home.productized.keystone.title),
-			description: t((t) => t.home.productized.keystone.description),
-			to: "/{-$locale}/products/saas-starter-template",
-			bullets: [
-				t((t) => t.home.productized.keystone.bullets.item1),
-				t((t) => t.home.productized.keystone.bullets.item2),
-				t((t) => t.home.productized.keystone.bullets.item3),
-			],
-		},
-	];
-	const fieldNotes: FieldNote[] = [
-		{
-			title: t((t) => t.home.fieldNotes.items.esbuild.title),
-			description: t((t) => t.home.fieldNotes.items.esbuild.description),
-			slug: "create-react-app-with-esbuild",
+			title: t((t) => t.home.method.release.title),
+			description: t((t) => t.home.method.release.description),
 		},
 		{
-			title: t((t) => t.home.fieldNotes.items.tsup.title),
-			description: t((t) => t.home.fieldNotes.items.tsup.description),
-			slug: "create-typescript-library-tsup",
-		},
-		{
-			title: t((t) => t.home.fieldNotes.items.turborepo.title),
-			description: t((t) => t.home.fieldNotes.items.turborepo.description),
-			slug: "share-packages-monorepo",
+			title: t((t) => t.home.method.handoff.title),
+			description: t((t) => t.home.method.handoff.description),
 		},
 	];
 
@@ -321,39 +262,19 @@ function App() {
 								</a>
 							</Button>
 							<Button variant="outline" asChild>
-								<Link
-									to="/{-$locale}"
-									hash="services"
-									params={localeParams}
-									onClick={() =>
-										capture(ANALYTICS_EVENTS.ctaClick, {
-											cta: "services_overview",
-											placement: "home_hero",
-											href: "#services",
-										})
-									}
-								>
-									{t((t) => t.home.hero.ctaSecondary)}
-								</Link>
-							</Button>
-							<Button
-								asChild
-								className="border border-[#0d1117] bg-[#0d1117] text-white hover:bg-[#161b22] hover:text-white"
-							>
 								<a
-									href={GITHUB_URL}
+									href="https://questovery.com/fr"
 									target="_blank"
 									rel="noreferrer"
 									onClick={() =>
 										capture(ANALYTICS_EVENTS.ctaClick, {
-											cta: "github",
+											cta: "questovery",
 											placement: "home_hero",
-											href: GITHUB_URL,
+											href: "https://questovery.com/fr",
 										})
 									}
 								>
-									{t((t) => t.home.hero.ctaGithub)}{" "}
-									<Github className="size-4" />
+									{t((t) => t.home.hero.ctaSecondary)}
 								</a>
 							</Button>
 						</div>
@@ -418,37 +339,13 @@ function App() {
 								{t((t) => t.home.signature.description)}
 							</p>
 							<div className="mt-6 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
-								<span>React Native</span>
+								<span>RN legacy</span>
 								<span>|</span>
-								<span>Expo</span>
+								<span>Expo/EAS</span>
 								<span>|</span>
-								<span>TypeScript</span>
+								<span>Questovery</span>
 							</div>
 						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="projects" className="py-16 md:py-20">
-				<div className="mx-auto w-full max-w-6xl px-6">
-					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-						<div>
-							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								{t((t) => t.home.projectsSection.label)}
-							</p>
-							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-								{t((t) => t.home.projectsSection.title)}
-							</h2>
-						</div>
-						<p className="max-w-xl text-slate-600">
-							{t((t) => t.home.projectsSection.description)}
-						</p>
-					</div>
-					<div className="mt-10 grid gap-6 lg:grid-cols-3">
-						{projects.map((project, index) => (
-							<ProjectCard key={project.name} index={index} project={project} />
-						))}
 					</div>
 				</div>
 			</section>
@@ -469,55 +366,76 @@ function App() {
 							{t((t) => t.home.servicesSection.description)}
 						</p>
 					</div>
-					<div className="mt-10 grid gap-6 md:grid-cols-3">
-						{serviceLines.map((service) => (
-							<div
-								key={service.title}
-								className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-							>
-								<h3 className="text-lg font-semibold text-slate-900">
-									{service.title}
-								</h3>
-								<p className="mt-3 text-sm text-slate-600">
-									{service.description}
-								</p>
-							</div>
-						))}
-					</div>
-
-					<div className="mt-12 grid gap-6 lg:grid-cols-2">
-						{productizedServices.map((service, index) => (
-							<ProductServiceCard
-								key={service.title}
+					<div className="mt-10 grid gap-6 lg:grid-cols-2">
+						{focusCards.map((focus, index) => (
+							<FocusCard
+								key={focus.title}
+								focus={focus}
 								index={index}
-								service={service}
 								localeParams={localeParams}
-								buttonLabel={t((t) => t.home.productized.button)}
 							/>
 						))}
 					</div>
+				</div>
+			</section>
 
-					<div className="mt-12 border-t border-slate-200 pt-10">
-						<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-							<div>
-								<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-									{t((t) => t.home.fieldNotes.label)}
-								</p>
-								<h3 className="mt-3 text-2xl font-semibold text-slate-900">
-									{t((t) => t.home.fieldNotes.title)}
-								</h3>
-							</div>
-							<p className="max-w-xl text-sm text-slate-600">
-								{t((t) => t.home.fieldNotes.description)}
+			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
+			<section id="projects" className="py-16 md:py-20">
+				<div className="mx-auto w-full max-w-6xl px-6">
+					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+						<div>
+							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+								{t((t) => t.home.projectsSection.label)}
+							</p>
+							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+								{t((t) => t.home.projectsSection.title)}
+							</h2>
+						</div>
+						<p className="max-w-xl text-slate-600">
+							{t((t) => t.home.projectsSection.description)}
+						</p>
+					</div>
+					<div className="mt-10 grid gap-6 lg:grid-cols-2">
+						{projects.map((project, index) => (
+							<ProjectCard key={project.name} index={index} project={project} />
+						))}
+					</div>
+				</div>
+			</section>
+
+			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
+			<section id="process" className="bg-white py-16 md:py-20">
+				<div className="mx-auto w-full max-w-6xl px-6">
+					<div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+						<div>
+							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+								{t((t) => t.home.method.label)}
+							</p>
+							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+								{t((t) => t.home.method.title)}
+							</h2>
+							<p className="mt-4 text-slate-600">
+								{t((t) => t.home.method.description)}
 							</p>
 						</div>
-						<div className="mt-6 grid gap-4 md:grid-cols-3">
-							{fieldNotes.map((note) => (
-								<FieldNoteCard
-									key={note.slug}
-									note={note}
-									localeParams={localeParams}
-								/>
+						<div className="grid gap-4">
+							{migrationPhases.map((phase, index) => (
+								<div
+									key={phase.title}
+									className="grid gap-4 rounded-2xl border border-slate-200 bg-[#f6f1ea] p-5 shadow-sm sm:grid-cols-[auto_1fr]"
+								>
+									<span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+										{index + 1}
+									</span>
+									<div>
+										<h3 className="text-lg font-semibold text-slate-900">
+											{phase.title}
+										</h3>
+										<p className="mt-2 text-sm text-slate-600">
+											{phase.description}
+										</p>
+									</div>
+								</div>
 							))}
 						</div>
 					</div>
@@ -587,40 +505,6 @@ function App() {
 	);
 }
 
-function FieldNoteCard({
-	note,
-	localeParams,
-}: {
-	note: FieldNote;
-	localeParams: Record<string, string>;
-}) {
-	const { capture } = useAnalytics();
-
-	return (
-		<Link
-			to="/{-$locale}/blog/$slug"
-			params={{ ...localeParams, slug: note.slug }}
-			className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-200 hover:shadow-md"
-			onClick={() =>
-				capture(ANALYTICS_EVENTS.contentClick, {
-					content_type: "blog",
-					slug: note.slug,
-					title: note.title,
-					placement: "home_field_notes",
-				})
-			}
-		>
-			<h4 className="text-base font-semibold text-slate-900 group-hover:text-teal-700">
-				{note.title}
-			</h4>
-			<p className="mt-3 text-sm text-slate-600">{note.description}</p>
-			<span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-700">
-				Blog <ArrowUpRight className="size-3.5" />
-			</span>
-		</Link>
-	);
-}
-
 function ProjectCard({ project, index }: { project: Project; index: number }) {
 	const { t } = useI18n();
 	const { capture } = useAnalytics();
@@ -685,55 +569,95 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 	);
 }
 
-function ProductServiceCard({
-	service,
+function FocusCard({
+	focus,
 	index,
 	localeParams,
-	buttonLabel,
 }: {
-	service: ProductizedService;
+	focus: FocusCard;
 	index: number;
 	localeParams: Record<string, string>;
-	buttonLabel: string;
 }) {
 	const { capture } = useAnalytics();
+	const cardClassName =
+		index === 0
+			? "rounded-3xl border border-slate-200 bg-white p-6 shadow-lg motion-safe:animate-fade-up"
+			: "rounded-3xl border border-slate-800 bg-slate-900 p-6 text-white shadow-lg motion-safe:animate-fade-up";
+	const mutedTextClassName = index === 0 ? "text-slate-600" : "text-slate-300";
+	const titleClassName = index === 0 ? "text-slate-900" : "text-white";
 
-	return (
+	const content = (
 		<div
-			className="rounded-3xl border border-slate-200 bg-white p-6 shadow-lg motion-safe:animate-fade-up"
+			className={cardClassName}
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
 			<div className="flex items-center justify-between">
-				<h3 className="text-xl font-semibold text-slate-900">
-					{service.title}
+				<h3 className={`text-xl font-semibold ${titleClassName}`}>
+					{focus.title}
 				</h3>
-				<Gauge className="size-5 text-teal-600" />
+				{index === 0 ? (
+					<Smartphone className="size-5 text-teal-600" />
+				) : (
+					<Sparkles className="size-5 text-amber-300" />
+				)}
 			</div>
-			<p className="mt-3 text-sm text-slate-600">{service.description}</p>
-			<ul className="mt-4 space-y-2 text-sm text-slate-600">
-				{service.bullets.map((bullet) => (
+			<p className={`mt-3 text-sm ${mutedTextClassName}`}>
+				{focus.description}
+			</p>
+			<ul className={`mt-5 space-y-2 text-sm ${mutedTextClassName}`}>
+				{focus.bullets.map((bullet) => (
 					<li key={bullet} className="flex items-center gap-2">
 						<CheckCircle2 className="size-4 text-emerald-600" />
 						{bullet}
 					</li>
 				))}
 			</ul>
-			<Button variant="outline" size="sm" asChild className="mt-6">
-				<Link
-					to={service.to}
-					params={localeParams}
-					onClick={() =>
-						capture(ANALYTICS_EVENTS.ctaClick, {
-							cta: "productized_service",
-							placement: "home_productized",
-							href: service.to,
-							service: service.title,
-						})
-					}
-				>
-					{buttonLabel} <ArrowUpRight className="size-4" />
-				</Link>
+			<Button
+				variant={index === 0 ? "outline" : "secondary"}
+				size="sm"
+				asChild
+				className="mt-6"
+			>
+				{focus.to ? (
+					<Link
+						to={focus.to}
+						params={localeParams}
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "focus_detail",
+								placement: "home_focus",
+								href: focus.to,
+								service: focus.title,
+							})
+						}
+					>
+						{focus.cta} <ArrowUpRight className="size-4" />
+					</Link>
+				) : (
+					<a
+						href={focus.href}
+						target="_blank"
+						rel="noreferrer"
+						onClick={() =>
+							capture(ANALYTICS_EVENTS.ctaClick, {
+								cta: "questovery",
+								placement: "home_focus",
+								href: focus.href,
+							})
+						}
+					>
+						{focus.cta} <ArrowUpRight className="size-4" />
+					</a>
+				)}
 			</Button>
+		</div>
+	);
+
+	return focus.to ? (
+		content
+	) : (
+		<div className="contents" data-focus-href={focus.href}>
+			{content}
 		</div>
 	);
 }

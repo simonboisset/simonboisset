@@ -35,11 +35,6 @@ const staticPaths: StaticPath[] = [
 		changefreq: "monthly",
 		priority: 0.6,
 	},
-	{
-		path: "/products/saas-starter-template",
-		changefreq: "monthly",
-		priority: 0.7,
-	},
 ];
 
 const toLastMod = (value?: string | null) => {
