@@ -3,9 +3,9 @@ import type { Translations } from "./en";
 export const fr: Translations = {
 	locale: "fr",
 	seo: {
-		homeTitle: "Expert migration React Native vers Expo - Simon Boisset",
+		homeTitle: "Modernisation React Native avec Expo - Simon Boisset",
 		homeDescription:
-			"Freelance expert des migrations React Native vers Expo, delivery mobile fiable et construction de Questovery.",
+			"Freelance React Native et Expo : modernisation d'apps mobiles, livraisons fiables et expérience produit avec Questovery.",
 		blogTitle: "Blog",
 		cvTitle: "CV",
 		cvDescription:
@@ -23,15 +23,15 @@ export const fr: Translations = {
 		blogAll: "Voir tous les articles",
 		bookCall: "Réserver un appel",
 		aboutItems: {
-			services: "Migration React Native vers Expo et focus Questovery.",
-			projects: "Références mobiles derrière le positionnement Expo.",
+			services: "Migration Expo, workflow EAS et accompagnement mobile.",
+			projects: "Cas concrets de livraison mobile, web et produit.",
 			testimonials: "Retours clients sur la livraison et la collaboration.",
 			github: "Open source, prototypes et exemples de code.",
 		},
 	},
 	footer: {
 		description:
-			"Freelance expert migration React Native -> Expo, en construction de Questovery.",
+			"Freelance React Native et Expo, avec un terrain produit concret : Questovery.",
 		scheduleCall: "Planifier un appel",
 		blog: "Blog",
 		docs: "Docs",
@@ -63,9 +63,9 @@ export const fr: Translations = {
 	},
 	blog: {
 		heroLabel: "Blog",
-		heroTitle: "Notes de terrain React Native, Expo et Questovery.",
+		heroTitle: "Notes de terrain React Native et Expo.",
 		description:
-			"Retours pratiques sur les migrations, les workflows de release, l'architecture mobile et la construction de Questovery.",
+			"Retours pratiques sur les migrations, les circuits de livraison, l'architecture mobile et les choix produit derrière Questovery.",
 		featured: "À la une",
 		latest: "Derniers articles",
 		empty: "Aucun article publié pour le moment.",
@@ -196,40 +196,39 @@ export const fr: Translations = {
 	},
 	home: {
 		hero: {
-			eyebrow: "Expert React Native -> Expo",
-			title:
-				"Je migre des apps React Native vers Expo et je construis Questovery.",
+			eyebrow: "React Native, Expo et livraison mobile",
+			title: "Je modernise les apps React Native avec Expo.",
 			intro:
-				"J'aide les équipes à moderniser leur stack mobile, fiabiliser leurs releases et livrer plus vite avec Expo/EAS. En parallèle, je construis Questovery, une plateforme de jeux de piste géolocalisés.",
+				"J'aide les équipes à sortir d'une stack mobile fragile, stabiliser leurs livraisons et reprendre la main sur Expo/EAS. Questovery, mon produit de jeux de piste géolocalisés, nourrit ce travail au quotidien.",
 			ctaPrimary: "Parler d'une migration Expo",
 			ctaSecondary: "Découvrir Questovery",
 			highlights: {
-				expertise: "Migration React Native legacy",
-				delivery: "Releases Expo/EAS en production",
-				performance: "Focus produit Questovery",
+				expertise: "Migration RN legacy",
+				delivery: "Livraisons Expo/EAS",
+				performance: "Terrain produit Questovery",
 			},
 		},
 		availability: {
 			label: "Focus actuel",
-			status: "Migration + produit",
-			badge: "Scope resserré",
+			status: "Mobile + produit",
+			badge: "Périmètre clair",
 			items: {
 				item1: "Audit React Native legacy",
 				item2: "Migration Expo/EAS jusqu'en production",
-				item3: "Construction produit Questovery en cours",
+				item3: "Retours terrain via Questovery",
 			},
 		},
 		signature: {
 			label: "Terrain d'intervention",
-			title: "De RN legacy à Expo/EAS",
+			title: "Des apps mobiles plus simples à livrer",
 			description:
-				"Un chemin clair depuis des workflows natifs fragiles vers une QA, des releases stores et un handoff équipe prévisibles.",
+				"Je transforme des workflows natifs fragiles en QA rapide, sorties stores prévisibles et autonomie pour l'équipe.",
 		},
 		projectsSection: {
-			label: "Preuves mobiles",
-			title: "Références derrière le positionnement",
+			label: "Cas concrets",
+			title: "Des projets proches de vos enjeux",
 			description:
-				"Des produits mobiles qui ont structuré l'offre migration React Native -> Expo et la construction de Questovery.",
+				"Des exemples de missions où il fallait reprendre une base existante, livrer en production ou rendre une équipe plus autonome.",
 			productLabel: "Produit / entreprise",
 			impactLabel: "Impact / contributions",
 		},
@@ -305,7 +304,7 @@ export const fr: Translations = {
 				},
 			},
 			monPontChanban: {
-				name: "Mon Pont Chanban - Alertes levées du pont de Bordeaux",
+				name: "Mon Pont Chaban - Alertes levées du pont de Bordeaux",
 				product: {
 					line1:
 						"App mobile d'alertes push pour suivre les levées du pont de Bordeaux.",
@@ -326,7 +325,7 @@ export const fr: Translations = {
 				name: "Questovery - Jeux de piste géolocalisés",
 				product: {
 					line1:
-						"Plateforme pour créer des jeux de piste avec une app mobile participants.",
+						"Plateforme pour créer des jeux de piste avec une app mobile pour participants.",
 				},
 				impact: {
 					line1: "Expériences interactives basées sur la géolocalisation.",
@@ -342,43 +341,43 @@ export const fr: Translations = {
 		},
 		servicesSection: {
 			label: "Deux focus",
-			title: "Expertise migration et produit en construction",
+			title: "Ce que je peux faire pour votre app",
 			description:
-				"Je recentre le site sur les missions que je veux multiplier : migrations Expo pour les équipes, et Questovery comme produit que je construis.",
+				"J'interviens surtout quand une app React Native doit passer sur des bases Expo solides, avec un circuit de livraison que l'équipe peut garder en main.",
 		},
 		focus: {
 			migration: {
-				title: "Migration React Native legacy -> Expo",
+				title: "Migration React Native vers Expo",
 				description:
-					"Auditer, migrer et stabiliser des apps existantes pour que l'équipe livre avec Expo/EAS au lieu de subir des workflows natifs fragiles.",
+					"Auditer, migrer et stabiliser une app existante pour que l'équipe livre avec Expo/EAS sans subir la complexité native.",
 				bullets: {
 					item1: "Audit des dépendances natives et roadmap de migration",
 					item2: "Déploiement Expo/EAS incrémental sans bloquer la roadmap",
-					item3: "Playbook QA, release store et hotfix",
+					item3: "Guide QA, sortie store et hotfix",
 				},
 				cta: "Voir l'offre migration",
 			},
 			questovery: {
 				title: "Questovery",
 				description:
-					"Un produit de jeux de piste géolocalisés avec app mobile participant. C'est le laboratoire terrain derrière mes décisions Expo, carte, offline et UX mobile.",
+					"Une plateforme de jeux de piste géolocalisés avec app mobile participant. C'est mon terrain d'expérimentation Expo en conditions réelles : cartes, offline, géolocalisation et UX terrain.",
 				bullets: {
 					item1: "App participant React Native + Expo",
 					item2: "Géolocalisation, parcours et contraintes terrain",
-					item3: "Expérience SaaS créateur connectée au delivery mobile",
+					item3: "Expérience SaaS créateur connectée à l'app mobile",
 				},
 				cta: "Ouvrir Questovery",
 			},
 		},
 		method: {
 			label: "Méthode migration",
-			title: "Un chemin cadré de l'audit au handoff",
+			title: "Comment je sécurise votre migration Expo",
 			description:
-				"Le travail est cadré pour réduire le risque release d'abord, puis amener l'app et l'équipe vers un workflow Expo maintenable.",
+				"On commence par réduire le risque de livraison, puis on avance par étapes jusqu'à un workflow Expo maintenable par l'équipe.",
 			audit: {
 				title: "Auditer la surface native",
 				description:
-					"Cartographier dépendances, app config, CI, contraintes stores, irritants release et compatibilité Expo avant de toucher à la roadmap.",
+					"Cartographier dépendances, app config, CI, contraintes stores, frictions de livraison et compatibilité Expo avant de toucher à la roadmap.",
 			},
 			migration: {
 				title: "Migrer par incréments",
@@ -386,7 +385,7 @@ export const fr: Translations = {
 					"Mettre à jour React Native et Expo par étapes, remplacer les modules incompatibles et garder la branche produit livrable.",
 			},
 			release: {
-				title: "Stabiliser les releases",
+				title: "Stabiliser les livraisons",
 				description:
 					"Configurer EAS Build, Submit, Update, channels, fingerprints et règles de distribution QA adaptées à l'équipe.",
 			},
@@ -425,7 +424,7 @@ export const fr: Translations = {
 			label: "Prêt à livrer",
 			title: "Parlons de votre projet mobile.",
 			description:
-				"Donnez le contexte, je reviens sous 48h avec des prochaines étapes claires.",
+				"Donnez le contexte, je reviens sous 48 h avec des prochaines étapes claires.",
 			button: "Planifier un appel",
 		},
 	},
@@ -435,14 +434,14 @@ export const fr: Translations = {
 			backHome: "Retour à l'accueil",
 			outcomesLabel: "Résultats",
 			focusAreasLabel: "Axes de travail",
-			processLabel: "Process",
+			processLabel: "Processus",
 			deliverablesLabel: "Livrables",
 			faqLabel: "FAQ",
 		},
 		legacy: {
-			title: "Migration React Native legacy vers Expo",
+			title: "Migration React Native vers Expo",
 			intro:
-				"Programme d'accompagnement forfaitaire pour migrer une app React Native legacy vers Expo, moderniser la stack et assurer la conformité App Store / Play Store. Audit complet des dépendances natives, compatibilité Expo, et stratégie EAS (inclut l'optimisation du workflow Expo).",
+				"Accompagnement forfaitaire pour migrer une app React Native vers Expo, moderniser la stack et sécuriser les sorties stores. Le forfait couvre l'audit natif, la compatibilité Expo et la stratégie EAS.",
 			cta: "Planifier un accompagnement",
 			highlights: {
 				stackAlignment: {
@@ -451,7 +450,7 @@ export const fr: Translations = {
 						"Mise à niveau React Native + Expo, audit des modules natifs et compatibilité durable.",
 				},
 				predictableReleases: {
-					title: "Releases maîtrisées",
+					title: "Livraisons maîtrisées",
 					description:
 						"Stratégie EAS Build/Submit, OTA updates, versioning et gestion des hotfix.",
 				},
@@ -463,12 +462,12 @@ export const fr: Translations = {
 			},
 			outcomesTitle: "Ce que la migration débloque",
 			outcomesDescription:
-				"Une app à jour, conforme aux stores, avec un delivery Expo maîtrisé.",
+				"Une app à jour, conforme aux stores, avec un circuit Expo que l'équipe maîtrise.",
 			outcomes: {
 				item1: "Stack React Native + Expo à jour et supportée",
 				item2: "Dépendances natives compatibles Expo ou remplacées",
 				item3: "Distribution QA rapide via OTA et canaux dédiés",
-				item4: "Stratégie de release et hotfix claire, conforme aux stores",
+				item4: "Stratégie de sortie et hotfix claire, conforme aux stores",
 			},
 			deliverablesIntroTitle: "Ce qui est inclus dans le forfait",
 			deliverablesIntroDescription:
@@ -479,24 +478,24 @@ export const fr: Translations = {
 					"Roadmap de migration avec mise à jour RN/Expo et conformité stores",
 				item3: "Remplacement des modules incompatibles + options de repli",
 				item4: "Workflows Expo (EAS Build/Submit/Update) + versioning",
-				item5: "Playbook release/QA/hotfix + handoff équipe",
+				item5: "Guide QA, sortie store, hotfix et prise en main équipe",
 			},
 			processTitle: "Une migration en trois étapes, cadrée",
 			processDescription:
 				"Une migration progressive pour continuer à livrer sans rupture.",
 			phases: {
 				discovery: {
-					title: "Discovery + audit",
+					title: "Cadrage + audit",
 					description:
 						"Revue du codebase, cartographie des dépendances et conformité stores.",
 				},
 				migration: {
 					title: "Exécution de la migration",
 					description:
-						"Upgrades incrémentaux, compatibilité Expo et mise à niveau RN/SDK.",
+						"Mises à jour incrémentales, compatibilité Expo et mise à niveau RN/SDK.",
 				},
 				launch: {
-					title: "Lancement + handoff",
+					title: "Lancement + prise en main",
 					description:
 						"EAS Build/Submit/Update, stabilisation et documentation équipe.",
 				},
@@ -529,7 +528,7 @@ export const fr: Translations = {
 		workflow: {
 			title: "Optimisation du workflow Expo",
 			intro:
-				"Audit release + versioning pour transformer le delivery Expo en système rapide et maîtrisé. Objectif : livrer des builds QA en minutes via OTA et gouverner les builds natifs avec des règles de hotfix et de fingerprints.",
+				"Audit livraison + versioning pour transformer votre circuit Expo en système rapide et maîtrisé. Objectif : livrer des builds QA en minutes via OTA et gouverner les builds natifs avec des règles de hotfix et de fingerprints.",
 			cta: "Optimiser mon workflow Expo",
 			highlights: {
 				releaseVelocity: {
@@ -545,15 +544,15 @@ export const fr: Translations = {
 				handoff: {
 					title: "Déploiements fiables",
 					description:
-						"Builds natifs contrôlés et process de release stable pour l'équipe.",
+						"Builds natifs contrôlés et processus de livraison stable pour l'équipe.",
 				},
 			},
 			outcomesTitle: "Résultats attendus",
 			outcomesDescription:
-				"Des releases plus fluides du commit à la production.",
+				"Des livraisons plus fluides du commit à la production.",
 			outcomes: {
 				item1: "OTA updates partagées à la QA en moins de 5 minutes",
-				item2: "Versioning + release channels clairs pour les hotfix",
+				item2: "Versioning + canaux de release clairs pour les hotfix",
 				item3: "Builds natifs maîtrisés par profils et fingerprints",
 				item4: "Process QA → prod documenté et reproductible",
 			},
@@ -562,9 +561,9 @@ export const fr: Translations = {
 				"Les leviers qui accélèrent les tests et sécurisent la production.",
 			focusAreas: {
 				area1: {
-					title: "Audit release + versioning",
+					title: "Audit livraison + versioning",
 					description:
-						"Convention de version, tags, changelog et règles de release.",
+						"Convention de version, tags, changelog et règles de livraison.",
 				},
 				area2: {
 					title: "EAS Update et canaux QA",
@@ -584,22 +583,22 @@ export const fr: Translations = {
 				discovery: {
 					title: "Audit + diagnostic",
 					description:
-						"Analyse des releases, versioning, OTA et distribution interne.",
+						"Analyse des livraisons, versioning, OTA et distribution interne.",
 				},
 				migration: {
 					title: "Mise en place",
 					description:
-						"Configuration EAS, canaux QA, règles de release et hotfix.",
+						"Configuration EAS, canaux QA, règles de livraison et hotfix.",
 				},
 				launch: {
-					title: "Handoff + mesure",
+					title: "Transmission + mesure",
 					description:
-						"Playbook de release, documentation et indicateurs de suivi.",
+						"Guide de livraison, documentation et indicateurs de suivi.",
 				},
 			},
 			faqTitle: "FAQ workflow",
 			faqDescription:
-				"Les questions clés avant d'optimiser votre delivery Expo.",
+				"Les questions clés avant d'optimiser votre circuit Expo.",
 			faq: {
 				item1: {
 					question: "En combien de temps la QA reçoit une version ?",
@@ -619,7 +618,7 @@ export const fr: Translations = {
 				item4: {
 					question: "Que livrez-vous à la fin ?",
 					answer:
-						"Audit, configurations à jour et playbook de release pour l'équipe.",
+						"Audit, configurations à jour et guide de livraison pour l'équipe.",
 				},
 			},
 		},

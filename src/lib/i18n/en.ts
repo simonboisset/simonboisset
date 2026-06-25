@@ -3,9 +3,9 @@ import type { InferTranslation } from "typed-locale";
 export const en = {
 	locale: "en",
 	seo: {
-		homeTitle: "React Native to Expo migration expert - Simon Boisset",
+		homeTitle: "React Native modernization with Expo - Simon Boisset",
 		homeDescription:
-			"Freelance expert helping teams migrate React Native apps to Expo and ship reliable mobile releases while building Questovery.",
+			"Freelance React Native and Expo developer helping teams modernize mobile apps, stabilize releases, and stay grounded through Questovery.",
 		blogTitle: "Blog",
 		cvTitle: "Resume",
 		cvDescription:
@@ -23,15 +23,15 @@ export const en = {
 		blogAll: "View all posts",
 		bookCall: "Book a call",
 		aboutItems: {
-			services: "React Native to Expo migration and Questovery focus.",
-			projects: "Mobile references behind the Expo positioning.",
+			services: "Expo migration, EAS workflows, and mobile consulting.",
+			projects: "Concrete mobile, web, and product delivery examples.",
 			testimonials: "Client feedback on delivery and collaboration.",
 			github: "Open-source work, experiments, and code samples.",
 		},
 	},
 	footer: {
 		description:
-			"Freelance React Native -> Expo migration expert, building Questovery.",
+			"Freelance React Native and Expo developer, grounded by a real product: Questovery.",
 		scheduleCall: "Schedule a call",
 		blog: "Blog",
 		docs: "Docs",
@@ -62,9 +62,9 @@ export const en = {
 	},
 	blog: {
 		heroLabel: "Blog",
-		heroTitle: "Field notes on React Native, Expo, and Questovery.",
+		heroTitle: "Field notes on React Native and Expo.",
 		description:
-			"Practical notes on migrations, release workflows, mobile architecture, and product lessons from building Questovery.",
+			"Practical notes on migrations, release workflows, mobile architecture, and the product decisions behind Questovery.",
 		featured: "Featured",
 		latest: "Latest articles",
 		empty: "No blog posts published yet.",
@@ -190,39 +190,39 @@ export const en = {
 	},
 	home: {
 		hero: {
-			eyebrow: "React Native -> Expo expert",
-			title: "I migrate React Native apps to Expo and build Questovery.",
+			eyebrow: "React Native, Expo, and mobile delivery",
+			title: "I modernize React Native apps with Expo.",
 			intro:
-				"I help teams modernize their mobile stack, make releases reliable, and ship faster with Expo/EAS. In parallel, I build Questovery, a geolocated treasure hunt platform.",
+				"I help teams move away from fragile mobile stacks, stabilize releases, and regain control of Expo/EAS. Questovery, my geolocated treasure hunt product, keeps that work grounded in real usage.",
 			ctaPrimary: "Discuss an Expo migration",
 			ctaSecondary: "Discover Questovery",
 			highlights: {
-				expertise: "Legacy React Native migration",
-				delivery: "Expo/EAS production releases",
-				performance: "Questovery product focus",
+				expertise: "Legacy RN migration",
+				delivery: "Expo/EAS releases",
+				performance: "Questovery product proof",
 			},
 		},
 		availability: {
 			label: "Current focus",
-			status: "Migration + product",
+			status: "Mobile + product",
 			badge: "Focused scope",
 			items: {
 				item1: "React Native legacy audits",
 				item2: "Expo/EAS migration delivery",
-				item3: "Questovery product build in progress",
+				item3: "Field lessons from Questovery",
 			},
 		},
 		signature: {
 			label: "Operating lane",
-			title: "From legacy RN to Expo/EAS",
+			title: "Mobile apps that are easier to ship",
 			description:
-				"A focused path from fragile native workflows to predictable QA, store releases, and team handoff.",
+				"I turn fragile native workflows into fast QA, predictable store releases, and team ownership.",
 		},
 		projectsSection: {
-			label: "Mobile proof",
-			title: "References behind the positioning",
+			label: "Concrete cases",
+			title: "Projects close to your challenges",
 			description:
-				"Selected mobile products that shaped the React Native -> Expo migration offer and Questovery build.",
+				"Examples of engagements where the work was to take over an existing base, ship to production, or make a team more autonomous.",
 			productLabel: "Product / company",
 			impactLabel: "Impact / contributions",
 		},
@@ -295,7 +295,7 @@ export const en = {
 				},
 			},
 			monPontChanban: {
-				name: "Mon Pont Chanban - Bordeaux bridge lift alerts",
+				name: "Mon Pont Chaban - Bordeaux bridge lift alerts",
 				product: {
 					line1:
 						"Mobile app delivering push alerts for Bordeaux bridge lift times.",
@@ -331,15 +331,15 @@ export const en = {
 		},
 		servicesSection: {
 			label: "Two focus areas",
-			title: "Migration expertise and one product focus",
+			title: "What I can do for your app",
 			description:
-				"I now keep the site centered on the work I want more of: Expo migrations for teams, and Questovery as the product I am building.",
+				"I mostly step in when a React Native app needs solid Expo foundations and a delivery workflow the team can keep owning.",
 		},
 		focus: {
 			migration: {
-				title: "React Native legacy -> Expo migration",
+				title: "React Native to Expo migration",
 				description:
-					"Audit, migrate, and stabilize existing apps so your team can keep shipping with Expo/EAS instead of fighting fragile native workflows.",
+					"Audit, migrate, and stabilize an existing app so your team can ship with Expo/EAS without fighting native complexity.",
 				bullets: {
 					item1: "Native dependency audit and migration roadmap",
 					item2: "Incremental Expo/EAS rollout without blocking the roadmap",
@@ -350,7 +350,7 @@ export const en = {
 			questovery: {
 				title: "Questovery",
 				description:
-					"A geolocated treasure hunt product with a participant mobile app. It is the product lab behind my Expo, map, offline, and field UX decisions.",
+					"A geolocated treasure hunt platform with a participant mobile app. It is my real-world Expo lab for maps, offline behavior, geolocation, and field UX.",
 				bullets: {
 					item1: "React Native + Expo participant app",
 					item2: "Geolocation, routes, and field constraints",
@@ -361,9 +361,9 @@ export const en = {
 		},
 		method: {
 			label: "Migration method",
-			title: "A controlled path from audit to handoff",
+			title: "How I make your Expo migration safer",
 			description:
-				"The work is framed to reduce release risk first, then move the app and the team toward a maintainable Expo workflow.",
+				"We reduce release risk first, then move step by step toward an Expo workflow the team can maintain.",
 			audit: {
 				title: "Audit the native surface",
 				description:
@@ -414,7 +414,7 @@ export const en = {
 			label: "Ready to ship",
 			title: "Let's talk about your mobile project.",
 			description:
-				"Share the context and I'll come back within 48h with clear next steps.",
+				"Share the context and I'll come back within 48 hours with clear next steps.",
 			button: "Schedule a call",
 		},
 	},
@@ -429,9 +429,9 @@ export const en = {
 			faqLabel: "FAQ",
 		},
 		legacy: {
-			title: "React Native legacy to Expo migration",
+			title: "React Native to Expo migration",
 			intro:
-				"A fixed-fee migration program to move a legacy React Native app to Expo, upgrade the stack, and meet App Store / Play Store compliance. Full native dependency audit, Expo compatibility, and an EAS delivery strategy (includes Expo workflow optimization).",
+				"A fixed-fee engagement to migrate a React Native app to Expo, modernize the stack, and secure store releases. The scope covers the native audit, Expo compatibility, and the EAS delivery strategy.",
 			cta: "Plan a migration",
 			highlights: {
 				stackAlignment: {
@@ -451,7 +451,7 @@ export const en = {
 			},
 			outcomesTitle: "What the migration unlocks",
 			outcomesDescription:
-				"An up-to-date app, store compliant, with an Expo delivery system you control.",
+				"An up-to-date, store-compliant app with an Expo delivery system the team controls.",
 			outcomes: {
 				item1: "Latest React Native + Expo baseline with support",
 				item2: "Native dependencies compatible with Expo or replaced",
