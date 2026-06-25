@@ -11,12 +11,20 @@ import {
 	useAnalytics,
 	useContentReadTracking,
 } from "@/lib/analytics";
+import { getBlogSeoOverride } from "@/lib/blog-seo";
 import { HERO_PHOTO_ASSET_ID, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus, type PostDetails, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo, stripHtml, toExcerpt } from "@/lib/seo";
+import {
+	buildArticleStructuredData,
+	buildFaqStructuredData,
+	buildSeo,
+	type StructuredData,
+	stripHtml,
+	toExcerpt,
+} from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 	component: BlogDetailPage,
@@ -41,17 +49,38 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 		const t = getTranslator(loaderData.locale);
 		const descriptionFallback = t((t) => t.blog.description);
 		const contentText = stripHtml(loaderData.contentHtml);
-		const description = contentText
-			? toExcerpt(contentText)
-			: descriptionFallback;
+		const seoOverride = getBlogSeoOverride(
+			loaderData.post.slug,
+			loaderData.locale,
+		);
+		const title = seoOverride?.title ?? loaderData.post.title;
+		const description =
+			seoOverride?.description ??
+			(contentText ? toExcerpt(contentText) : descriptionFallback);
+		const path = `/blog/${loaderData.post.slug}`;
+		const structuredData: StructuredData[] = [
+			buildArticleStructuredData({
+				title,
+				description,
+				path,
+				locale: loaderData.locale,
+				imageUrl: loaderData.post.imageUrl,
+				publishedAt: loaderData.post.publishedAt,
+			}),
+		];
+
+		if (seoOverride?.faq.length) {
+			structuredData.push(buildFaqStructuredData(seoOverride.faq));
+		}
 
 		return buildSeo({
-			title: loaderData.post.title,
+			title,
 			description,
-			path: `/blog/${loaderData.post.slug}`,
+			path,
 			locale: loaderData.locale,
 			imageUrl: loaderData.post.imageUrl,
 			type: "article",
+			structuredData,
 		});
 	},
 	pendingComponent: () => (
@@ -80,11 +109,13 @@ function BlogDetailPage() {
 		? { locale: localeParam }
 		: {};
 	const suggestedArticles = getClosestArticlesByDate(post, posts, 3);
+	const seoOverride = getBlogSeoOverride(post.slug, locale);
+	const displayTitle = seoOverride?.title ?? post.title;
 
 	useContentReadTracking({
 		contentType: "blog",
 		slug: post.slug,
-		title: post.title,
+		title: displayTitle,
 		locale,
 	});
 
@@ -100,7 +131,7 @@ function BlogDetailPage() {
 						{t((t) => t.blog.back)}
 					</Link>
 					<h1 className="text-3xl md:text-5xl font-semibold text-slate-900 text-center">
-						{post.title}
+						{displayTitle}
 					</h1>
 					<p className="text-center text-sm uppercase tracking-[0.2em] text-slate-500">
 						{post.publishedAtLabel}
@@ -108,11 +139,12 @@ function BlogDetailPage() {
 					<div className="w-full aspect-video overflow-hidden rounded-2xl shadow-lg bg-white">
 						<ArticleImage
 							src={post.imageUrl}
-							alt={post.title}
+							alt={displayTitle}
 							className="w-full h-full object-cover"
 						/>
 					</div>
 					<MarkdownContent contentHtml={contentHtml} />
+					{seoOverride ? <SeoInsightSection override={seoOverride} /> : null}
 					<div className="mt-16 space-y-4">
 						<HeroIntroCard
 							heroPhotoUrl={heroPhotoUrl}
@@ -157,6 +189,46 @@ function BlogDetailPage() {
 				</div>
 			</article>
 		</div>
+	);
+}
+
+function SeoInsightSection({
+	override,
+}: {
+	override: NonNullable<ReturnType<typeof getBlogSeoOverride>>;
+}) {
+	const { locale } = useI18n();
+	const labels =
+		locale === "fr-FR"
+			? { takeaways: "À retenir", faq: "FAQ rapide" }
+			: { takeaways: "Key takeaways", faq: "Quick FAQ" };
+
+	return (
+		<section className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+			<p className="text-xs uppercase tracking-[0.25em] text-slate-500">
+				{labels.takeaways}
+			</p>
+			<p className="mt-3 text-slate-700">{override.summary}</p>
+			<ul className="mt-5 space-y-3 text-sm text-slate-600">
+				{override.keyPoints.map((point) => (
+					<li key={point} className="flex gap-3">
+						<span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-600" />
+						<span>{point}</span>
+					</li>
+				))}
+			</ul>
+			<div className="mt-8 space-y-4">
+				<h2 className="text-xl font-semibold text-slate-900">{labels.faq}</h2>
+				{override.faq.map((item) => (
+					<div key={item.question} className="border-t border-slate-100 pt-4">
+						<h3 className="text-base font-semibold text-slate-900">
+							{item.question}
+						</h3>
+						<p className="mt-2 text-sm text-slate-600">{item.answer}</p>
+					</div>
+				))}
+			</div>
+		</section>
 	);
 }
 

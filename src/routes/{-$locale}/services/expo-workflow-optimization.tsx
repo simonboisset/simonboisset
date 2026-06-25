@@ -10,7 +10,7 @@ import { SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo } from "@/lib/seo";
+import { buildFaqStructuredData, buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute(
 	"/{-$locale}/services/expo-workflow-optimization",
@@ -26,6 +26,24 @@ export const Route = createFileRoute(
 			description: t((t) => t.services.workflow.intro),
 			path: "/services/expo-workflow-optimization",
 			locale: loaderData.locale,
+			structuredData: buildFaqStructuredData([
+				{
+					question: t((t) => t.services.workflow.faq.item1.question),
+					answer: t((t) => t.services.workflow.faq.item1.answer),
+				},
+				{
+					question: t((t) => t.services.workflow.faq.item2.question),
+					answer: t((t) => t.services.workflow.faq.item2.answer),
+				},
+				{
+					question: t((t) => t.services.workflow.faq.item3.question),
+					answer: t((t) => t.services.workflow.faq.item3.answer),
+				},
+				{
+					question: t((t) => t.services.workflow.faq.item4.question),
+					answer: t((t) => t.services.workflow.faq.item4.answer),
+				},
+			]),
 		});
 	},
 	component: ExpoWorkflowOptimizationPage,

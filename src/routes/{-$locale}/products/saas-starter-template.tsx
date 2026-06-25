@@ -14,7 +14,7 @@ import {
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo } from "@/lib/seo";
+import { buildFaqStructuredData, buildSeo } from "@/lib/seo";
 import { type WaitlistFormValues, waitlist } from "@/lib/waitlist";
 
 export const Route = createFileRoute(
@@ -31,6 +31,24 @@ export const Route = createFileRoute(
 			description: t((t) => t.products.saasStarter.seoDescription),
 			path: "/products/saas-starter-template",
 			locale: loaderData.locale,
+			structuredData: buildFaqStructuredData([
+				{
+					question: t((t) => t.products.saasStarter.faq.item1.question),
+					answer: t((t) => t.products.saasStarter.faq.item1.answer),
+				},
+				{
+					question: t((t) => t.products.saasStarter.faq.item2.question),
+					answer: t((t) => t.products.saasStarter.faq.item2.answer),
+				},
+				{
+					question: t((t) => t.products.saasStarter.faq.item3.question),
+					answer: t((t) => t.products.saasStarter.faq.item3.answer),
+				},
+				{
+					question: t((t) => t.products.saasStarter.faq.item4.question),
+					answer: t((t) => t.products.saasStarter.faq.item4.answer),
+				},
+			]),
 		});
 	},
 	component: SaasStarterTemplatePage,
@@ -138,6 +156,62 @@ function SaasStarterTemplatePage() {
 			description: t(
 				(t) => t.products.saasStarter.quality.items.agents.description,
 			),
+		},
+	];
+	const includedItems = [
+		{
+			title: t((t) => t.products.saasStarter.included.items.auth.title),
+			description: t(
+				(t) => t.products.saasStarter.included.items.auth.description,
+			),
+		},
+		{
+			title: t((t) => t.products.saasStarter.included.items.orgs.title),
+			description: t(
+				(t) => t.products.saasStarter.included.items.orgs.description,
+			),
+		},
+		{
+			title: t((t) => t.products.saasStarter.included.items.billing.title),
+			description: t(
+				(t) => t.products.saasStarter.included.items.billing.description,
+			),
+		},
+		{
+			title: t((t) => t.products.saasStarter.included.items.admin.title),
+			description: t(
+				(t) => t.products.saasStarter.included.items.admin.description,
+			),
+		},
+		{
+			title: t((t) => t.products.saasStarter.included.items.sdk.title),
+			description: t(
+				(t) => t.products.saasStarter.included.items.sdk.description,
+			),
+		},
+		{
+			title: t((t) => t.products.saasStarter.included.items.content.title),
+			description: t(
+				(t) => t.products.saasStarter.included.items.content.description,
+			),
+		},
+	];
+	const faqItems = [
+		{
+			question: t((t) => t.products.saasStarter.faq.item1.question),
+			answer: t((t) => t.products.saasStarter.faq.item1.answer),
+		},
+		{
+			question: t((t) => t.products.saasStarter.faq.item2.question),
+			answer: t((t) => t.products.saasStarter.faq.item2.answer),
+		},
+		{
+			question: t((t) => t.products.saasStarter.faq.item3.question),
+			answer: t((t) => t.products.saasStarter.faq.item3.answer),
+		},
+		{
+			question: t((t) => t.products.saasStarter.faq.item4.question),
+			answer: t((t) => t.products.saasStarter.faq.item4.answer),
 		},
 	];
 
@@ -504,6 +578,60 @@ function SaasStarterTemplatePage() {
 								</div>
 							))}
 						</div>
+					</div>
+				</div>
+			</section>
+
+			<section className="py-20">
+				<div className="mx-auto w-full max-w-6xl px-6">
+					<div className="max-w-2xl space-y-4">
+						<h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+							{t((t) => t.products.saasStarter.included.title)}
+						</h2>
+						<p className="text-slate-600">
+							{t((t) => t.products.saasStarter.included.subtitle)}
+						</p>
+					</div>
+					<div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{includedItems.map((item) => (
+							<div
+								key={item.title}
+								className="rounded-2xl border border-slate-200 bg-white/85 p-5 shadow-sm"
+							>
+								<p className="text-sm font-semibold text-slate-900">
+									{item.title}
+								</p>
+								<p className="mt-2 text-sm text-slate-600">
+									{item.description}
+								</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section className="bg-white py-20">
+				<div className="mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr]">
+					<div className="space-y-4">
+						<h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
+							{t((t) => t.products.saasStarter.faq.title)}
+						</h2>
+						<p className="text-slate-600">
+							{t((t) => t.products.saasStarter.faq.subtitle)}
+						</p>
+					</div>
+					<div className="space-y-4">
+						{faqItems.map((item) => (
+							<div
+								key={item.question}
+								className="rounded-2xl border border-slate-200 p-5"
+							>
+								<h3 className="text-base font-semibold text-slate-900">
+									{item.question}
+								</h3>
+								<p className="mt-2 text-sm text-slate-600">{item.answer}</p>
+							</div>
+						))}
 					</div>
 				</div>
 			</section>

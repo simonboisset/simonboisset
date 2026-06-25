@@ -399,6 +399,29 @@ export const fr: Translations = {
 			},
 			button: "Voir le détail",
 		},
+		fieldNotes: {
+			label: "Notes techniques",
+			title: "Les guides techniques derrière le delivery",
+			description:
+				"Des guides React, TypeScript et monorepo reliés au travail de production.",
+			items: {
+				esbuild: {
+					title: "Configurer esbuild pour React",
+					description:
+						"Une configuration esbuild ciblée pour les apps React et TypeScript.",
+				},
+				tsup: {
+					title: "Créer une librairie TypeScript avec tsup",
+					description:
+						"Builder, typer et publier un package TypeScript réutilisable.",
+				},
+				turborepo: {
+					title: "Partager des packages dans un monorepo Turborepo",
+					description:
+						"Utiliser des packages internes et workspaces sans imports fragiles.",
+				},
+			},
+		},
 		testimonialsSection: {
 			label: "Témoignages",
 			title: "Ce que les équipes retiennent",
@@ -434,13 +457,13 @@ export const fr: Translations = {
 	},
 	products: {
 		saasStarter: {
-			seoTitle: "Keystone Stack (web, mobile, API)",
+			seoTitle: "Template SaaS web, mobile et API - Keystone Stack",
 			seoDescription:
 				"Un stack SaaS solide, prêt pour l'IA, pour le web, le mobile et l'API. Auth, orgs, billing prêt, analytics et SDK partagé.",
 			hero: {
 				eyebrow: "Keystone Stack",
-				title: "A solid, AI-ready SaaS stack.",
-				subtitle: "Build fast. Stay stable.",
+				title: "Un socle SaaS solide, prêt pour l'IA.",
+				subtitle: "Lancer vite, garder le contrôle.",
 				ctaPrimary: "Rejoindre la liste d’attente",
 				ctaSecondary: "Voir la stack",
 				badges: {

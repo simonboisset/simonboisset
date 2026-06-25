@@ -26,7 +26,11 @@ import { directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo } from "@/lib/seo";
+import {
+	buildPersonStructuredData,
+	buildProfessionalServiceStructuredData,
+	buildSeo,
+} from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/")({
 	component: App,
@@ -45,6 +49,10 @@ export const Route = createFileRoute("/{-$locale}/")({
 			description: t((t) => t.seo.homeDescription),
 			path: "/",
 			locale: loaderData.locale,
+			structuredData: [
+				buildPersonStructuredData(),
+				buildProfessionalServiceStructuredData(loaderData.locale),
+			],
 		});
 	},
 });
@@ -73,6 +81,12 @@ type ProductizedService = {
 type ServiceLine = {
 	title: string;
 	description: string;
+};
+
+type FieldNote = {
+	title: string;
+	description: string;
+	slug: string;
 };
 
 function App() {
@@ -249,6 +263,23 @@ function App() {
 				t((t) => t.home.productized.keystone.bullets.item2),
 				t((t) => t.home.productized.keystone.bullets.item3),
 			],
+		},
+	];
+	const fieldNotes: FieldNote[] = [
+		{
+			title: t((t) => t.home.fieldNotes.items.esbuild.title),
+			description: t((t) => t.home.fieldNotes.items.esbuild.description),
+			slug: "create-react-app-with-esbuild",
+		},
+		{
+			title: t((t) => t.home.fieldNotes.items.tsup.title),
+			description: t((t) => t.home.fieldNotes.items.tsup.description),
+			slug: "create-typescript-library-tsup",
+		},
+		{
+			title: t((t) => t.home.fieldNotes.items.turborepo.title),
+			description: t((t) => t.home.fieldNotes.items.turborepo.description),
+			slug: "share-packages-monorepo",
 		},
 	];
 
@@ -465,6 +496,31 @@ function App() {
 							/>
 						))}
 					</div>
+
+					<div className="mt-12 border-t border-slate-200 pt-10">
+						<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+							<div>
+								<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+									{t((t) => t.home.fieldNotes.label)}
+								</p>
+								<h3 className="mt-3 text-2xl font-semibold text-slate-900">
+									{t((t) => t.home.fieldNotes.title)}
+								</h3>
+							</div>
+							<p className="max-w-xl text-sm text-slate-600">
+								{t((t) => t.home.fieldNotes.description)}
+							</p>
+						</div>
+						<div className="mt-6 grid gap-4 md:grid-cols-3">
+							{fieldNotes.map((note) => (
+								<FieldNoteCard
+									key={note.slug}
+									note={note}
+									localeParams={localeParams}
+								/>
+							))}
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -528,6 +584,40 @@ function App() {
 				</div>
 			</section>
 		</div>
+	);
+}
+
+function FieldNoteCard({
+	note,
+	localeParams,
+}: {
+	note: FieldNote;
+	localeParams: Record<string, string>;
+}) {
+	const { capture } = useAnalytics();
+
+	return (
+		<Link
+			to="/{-$locale}/blog/$slug"
+			params={{ ...localeParams, slug: note.slug }}
+			className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-200 hover:shadow-md"
+			onClick={() =>
+				capture(ANALYTICS_EVENTS.contentClick, {
+					content_type: "blog",
+					slug: note.slug,
+					title: note.title,
+					placement: "home_field_notes",
+				})
+			}
+		>
+			<h4 className="text-base font-semibold text-slate-900 group-hover:text-teal-700">
+				{note.title}
+			</h4>
+			<p className="mt-3 text-sm text-slate-600">{note.description}</p>
+			<span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-teal-700">
+				Blog <ArrowUpRight className="size-3.5" />
+			</span>
+		</Link>
 	);
 }
 

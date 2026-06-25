@@ -389,6 +389,28 @@ export const en = {
 			},
 			button: "View details",
 		},
+		fieldNotes: {
+			label: "Field notes",
+			title: "Technical notes behind the delivery work",
+			description:
+				"Practical React, TypeScript, and monorepo guides that support the same production work.",
+			items: {
+				esbuild: {
+					title: "Configure esbuild for React",
+					description: "A focused esbuild setup for React and TypeScript apps.",
+				},
+				tsup: {
+					title: "Create a TypeScript library with tsup",
+					description:
+						"Build, type, and publish a reusable TypeScript package.",
+				},
+				turborepo: {
+					title: "Share packages in a Turborepo monorepo",
+					description:
+						"Use internal packages and workspaces without fragile imports.",
+				},
+			},
+		},
 		testimonialsSection: {
 			label: "Testimonials",
 			title: "What teams say after working together",
