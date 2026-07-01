@@ -225,17 +225,14 @@ function App() {
 	];
 
 	return (
-		<div className="bg-[#f6f1ea] text-slate-900">
-			<section className="relative overflow-hidden">
-				<div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-amber-200/70 blur-3xl animate-float" />
-				<div className="absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-teal-200/70 blur-3xl animate-float" />
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.75),rgba(246,241,234,0.9)_55%,rgba(246,241,234,1)_100%)]" />
+		<div className="terminal-page">
+			<section className="terminal-hero">
 				<div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-[1.1fr_0.9fr]">
 					<div className="space-y-8">
-						<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
+						<p className="terminal-label terminal-boot-line">
 							{t((t) => t.home.hero.eyebrow)}
 						</p>
-						<h1 className="text-4xl font-semibold leading-tight text-slate-900 md:text-6xl">
+						<h1 className="terminal-heading terminal-boot-line terminal-cursor text-4xl md:text-6xl">
 							{t((t) => t.home.hero.title)}
 						</h1>
 						<HeroIntroCard
@@ -278,67 +275,67 @@ function App() {
 								</a>
 							</Button>
 						</div>
-						<div className="flex flex-wrap items-center gap-6 text-sm text-slate-600">
-							<div className="flex items-center gap-2">
-								<Smartphone className="size-4 text-teal-700" />
+						<div className="flex flex-wrap items-center gap-3 text-sm">
+							<div className="terminal-chip">
+								<Smartphone className="size-4" />
 								<span>{t((t) => t.home.hero.highlights.expertise)}</span>
 							</div>
-							<div className="flex items-center gap-2">
-								<ShieldCheck className="size-4 text-amber-700" />
+							<div className="terminal-chip text-accent">
+								<ShieldCheck className="size-4" />
 								<span>{t((t) => t.home.hero.highlights.delivery)}</span>
 							</div>
-							<div className="flex items-center gap-2">
-								<Gauge className="size-4 text-slate-700" />
+							<div className="terminal-chip text-foreground">
+								<Gauge className="size-4" />
 								<span>{t((t) => t.home.hero.highlights.performance)}</span>
 							</div>
 						</div>
 					</div>
 					<div className="space-y-6">
-						<div className="rounded-3xl border border-slate-200 bg-white/70 p-6 shadow-xl backdrop-blur">
+						<div className="terminal-card terminal-card-light p-6">
 							<div className="flex items-center justify-between">
 								<div>
-									<p className="text-sm uppercase tracking-[0.2em] text-slate-500">
+									<p className="terminal-label">
 										{t((t) => t.home.availability.label)}
 									</p>
-									<p className="text-2xl font-semibold text-slate-900">
+									<p className="terminal-heading-dark mt-2 text-2xl">
 										{t((t) => t.home.availability.status)}
 									</p>
 								</div>
-								<span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+								<span className="terminal-chip">
 									{t((t) => t.home.availability.badge)}
 								</span>
 							</div>
-							<ul className="mt-6 space-y-3 text-sm text-slate-600">
+							<ul className="terminal-muted-dark mt-6 space-y-3 text-sm">
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="size-4 text-emerald-600" />
+									<CheckCircle2 className="size-4 text-secondary" />
 									{t((t) => t.home.availability.items.item1)}
 								</li>
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="size-4 text-emerald-600" />
+									<CheckCircle2 className="size-4 text-secondary" />
 									{t((t) => t.home.availability.items.item2)}
 								</li>
 								<li className="flex items-center gap-2">
-									<CheckCircle2 className="size-4 text-emerald-600" />
+									<CheckCircle2 className="size-4 text-secondary" />
 									{t((t) => t.home.availability.items.item3)}
 								</li>
 							</ul>
 						</div>
-						<div className="rounded-3xl border border-slate-200 bg-slate-900 p-6 text-white shadow-xl">
+						<div className="terminal-card p-6">
 							<div className="flex items-start justify-between">
 								<div>
-									<p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+									<p className="terminal-label">
 										{t((t) => t.home.signature.label)}
 									</p>
-									<p className="mt-2 text-2xl font-semibold">
+									<p className="terminal-heading mt-2 text-2xl">
 										{t((t) => t.home.signature.title)}
 									</p>
 								</div>
-								<Sparkles className="size-6 text-amber-300" />
+								<Sparkles className="size-6 text-accent" />
 							</div>
-							<p className="mt-4 text-sm text-slate-300">
+							<p className="terminal-muted mt-4 text-sm">
 								{t((t) => t.home.signature.description)}
 							</p>
-							<div className="mt-6 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-slate-400">
+							<div className="mt-6 flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-secondary">
 								<span>RN legacy</span>
 								<span>|</span>
 								<span>Expo/EAS</span>
@@ -351,18 +348,21 @@ function App() {
 			</section>
 
 			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="services" className="bg-[#f3ede4] py-16 md:py-20">
+			<section
+				id="services"
+				className="terminal-section terminal-section-alt py-16 md:py-20"
+			>
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
-							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+							<p className="terminal-label">
 								{t((t) => t.home.servicesSection.label)}
 							</p>
-							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
 								{t((t) => t.home.servicesSection.title)}
 							</h2>
 						</div>
-						<p className="max-w-xl text-slate-600">
+						<p className="terminal-muted max-w-xl">
 							{t((t) => t.home.servicesSection.description)}
 						</p>
 					</div>
@@ -380,18 +380,18 @@ function App() {
 			</section>
 
 			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="projects" className="py-16 md:py-20">
+			<section id="projects" className="terminal-section py-16 md:py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
-							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+							<p className="terminal-label">
 								{t((t) => t.home.projectsSection.label)}
 							</p>
-							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
 								{t((t) => t.home.projectsSection.title)}
 							</h2>
 						</div>
-						<p className="max-w-xl text-slate-600">
+						<p className="terminal-muted max-w-xl">
 							{t((t) => t.home.projectsSection.description)}
 						</p>
 					</div>
@@ -404,17 +404,18 @@ function App() {
 			</section>
 
 			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="process" className="bg-white py-16 md:py-20">
+			<section
+				id="process"
+				className="terminal-section terminal-section-alt py-16 md:py-20"
+			>
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
 						<div>
-							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-								{t((t) => t.home.method.label)}
-							</p>
-							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+							<p className="terminal-label">{t((t) => t.home.method.label)}</p>
+							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
 								{t((t) => t.home.method.title)}
 							</h2>
-							<p className="mt-4 text-slate-600">
+							<p className="terminal-muted mt-4">
 								{t((t) => t.home.method.description)}
 							</p>
 						</div>
@@ -422,16 +423,15 @@ function App() {
 							{migrationPhases.map((phase, index) => (
 								<div
 									key={phase.title}
-									className="grid gap-4 rounded-2xl border border-slate-200 bg-[#f6f1ea] p-5 shadow-sm sm:grid-cols-[auto_1fr]"
+									className="terminal-card grid gap-4 p-5 sm:grid-cols-[auto_1fr]"
+									style={{ animationDelay: `${index * 120}ms` }}
 								>
-									<span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
-										{index + 1}
+									<span className="terminal-chip flex h-10 w-14 items-center justify-center p-0">
+										{String(index + 1).padStart(2, "0")}
 									</span>
 									<div>
-										<h3 className="text-lg font-semibold text-slate-900">
-											{phase.title}
-										</h3>
-										<p className="mt-2 text-sm text-slate-600">
+										<h3 className="terminal-heading text-lg">{phase.title}</h3>
+										<p className="terminal-muted mt-2 text-sm">
 											{phase.description}
 										</p>
 									</div>
@@ -443,18 +443,18 @@ function App() {
 			</section>
 
 			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="testimonials" className="py-16 md:py-20">
+			<section id="testimonials" className="terminal-section py-16 md:py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
-							<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+							<p className="terminal-label">
 								{t((t) => t.home.testimonialsSection.label)}
 							</p>
-							<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
 								{t((t) => t.home.testimonialsSection.title)}
 							</h2>
 						</div>
-						<p className="max-w-xl text-slate-600">
+						<p className="terminal-muted max-w-xl">
 							{t((t) => t.home.testimonialsSection.description)}
 						</p>
 					</div>
@@ -470,16 +470,14 @@ function App() {
 				</div>
 			</section>
 
-			<section className="bg-[#101827] py-16 text-white">
+			<section className="terminal-section terminal-section-alt py-16">
 				<div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-center md:justify-between">
 					<div>
-						<p className="text-xs uppercase tracking-[0.3em] text-slate-400">
-							{t((t) => t.home.cta.label)}
-						</p>
-						<h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+						<p className="terminal-label">{t((t) => t.home.cta.label)}</p>
+						<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
 							{t((t) => t.home.cta.title)}
 						</h2>
-						<p className="mt-3 text-slate-300">
+						<p className="terminal-muted mt-3">
 							{t((t) => t.home.cta.description)}
 						</p>
 					</div>
@@ -511,16 +509,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 	return (
 		<div
-			className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm motion-safe:animate-fade-up"
+			className="terminal-card motion-safe:animate-fade-up p-6"
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
 			<div className="flex items-center justify-between">
-				<h3 className="text-lg font-semibold text-slate-900">
+				<h3 className="terminal-heading pr-8 text-lg">
 					<a
 						href={project.url}
 						target="_blank"
 						rel="noreferrer"
-						className="underline-offset-4 transition hover:text-amber-600 hover:underline"
+						className="underline-offset-4 transition hover:text-accent hover:underline"
 						onClick={() =>
 							capture(ANALYTICS_EVENTS.ctaClick, {
 								cta: "project_link",
@@ -536,31 +534,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 				</h3>
 			</div>
 			<div className="mt-4 space-y-3">
-				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+				<p className="terminal-label">
 					{t((t) => t.home.projectsSection.productLabel)}
 				</p>
 				{project.product.map((line) => (
-					<p key={line} className="text-sm text-slate-600">
+					<p key={line} className="terminal-muted text-sm">
 						{line}
 					</p>
 				))}
 			</div>
 			<div className="mt-4 space-y-3">
-				<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
+				<p className="terminal-label">
 					{t((t) => t.home.projectsSection.impactLabel)}
 				</p>
 				{project.impact.map((line) => (
-					<p key={line} className="text-sm text-slate-600">
+					<p key={line} className="terminal-muted text-sm">
 						{line}
 					</p>
 				))}
 			</div>
-			<div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-500">
+			<div className="mt-4 flex flex-wrap gap-2">
 				{project.stack.map((item) => (
-					<span
-						key={item}
-						className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1"
-					>
+					<span key={item} className="terminal-chip">
 						{item}
 					</span>
 				))}
@@ -581,10 +576,12 @@ function FocusCard({
 	const { capture } = useAnalytics();
 	const cardClassName =
 		index === 0
-			? "rounded-3xl border border-slate-200 bg-white p-6 shadow-lg motion-safe:animate-fade-up"
-			: "rounded-3xl border border-slate-800 bg-slate-900 p-6 text-white shadow-lg motion-safe:animate-fade-up";
-	const mutedTextClassName = index === 0 ? "text-slate-600" : "text-slate-300";
-	const titleClassName = index === 0 ? "text-slate-900" : "text-white";
+			? "terminal-card terminal-card-light p-6 motion-safe:animate-fade-up"
+			: "terminal-card p-6 motion-safe:animate-fade-up";
+	const mutedTextClassName =
+		index === 0 ? "terminal-muted-dark" : "terminal-muted";
+	const titleClassName =
+		index === 0 ? "terminal-heading-dark" : "terminal-heading";
 
 	const content = (
 		<div
@@ -592,13 +589,11 @@ function FocusCard({
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
 			<div className="flex items-center justify-between">
-				<h3 className={`text-xl font-semibold ${titleClassName}`}>
-					{focus.title}
-				</h3>
+				<h3 className={`pr-8 text-xl ${titleClassName}`}>{focus.title}</h3>
 				{index === 0 ? (
-					<Smartphone className="size-5 text-teal-600" />
+					<Smartphone className="size-5 text-secondary" />
 				) : (
-					<Sparkles className="size-5 text-amber-300" />
+					<Sparkles className="size-5 text-accent" />
 				)}
 			</div>
 			<p className={`mt-3 text-sm ${mutedTextClassName}`}>
@@ -607,7 +602,7 @@ function FocusCard({
 			<ul className={`mt-5 space-y-2 text-sm ${mutedTextClassName}`}>
 				{focus.bullets.map((bullet) => (
 					<li key={bullet} className="flex items-center gap-2">
-						<CheckCircle2 className="size-4 text-emerald-600" />
+						<CheckCircle2 className="size-4 text-secondary" />
 						{bullet}
 					</li>
 				))}
@@ -671,20 +666,16 @@ function TestimonialCard({
 }) {
 	return (
 		<div
-			className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm motion-safe:animate-fade-up"
+			className="terminal-card flex h-full flex-col p-6 motion-safe:animate-fade-up"
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
-			<p className="text-justify text-sm italic text-slate-600">
-				"{testimonial.quote}"
-			</p>
+			<p className="terminal-muted text-left text-sm">"{testimonial.quote}"</p>
 			<div className="mt-auto pt-6">
-				<div className="border-t border-slate-100 pt-4">
-					<p className="text-sm font-semibold text-slate-900">
+				<div className="terminal-divider border-t pt-4">
+					<p className="text-sm font-semibold text-foreground">
 						{testimonial.name}
 					</p>
-					<p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-						{testimonial.role}
-					</p>
+					<p className="terminal-label mt-1">{testimonial.role}</p>
 				</div>
 			</div>
 		</div>

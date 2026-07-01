@@ -22,22 +22,21 @@ export default function SiteFooter() {
 	};
 
 	return (
-		<footer className="border-t border-slate-200/80 bg-[#f3ede4]">
+		<footer className="border-t-2 border-secondary/50 bg-background">
 			<div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between">
 				<div className="space-y-2">
-					<p className="text-lg font-semibold text-slate-900">
-						{t((t) => t.nav.brand)}
-					</p>
-					<p className="text-sm text-slate-600">
+					<p className="terminal-heading text-lg">{t((t) => t.nav.brand)}</p>
+					<p className="terminal-muted text-sm">
 						{t((t) => t.footer.description)}
 					</p>
+					<p className="terminal-label">&gt; schedule_call --slot available</p>
 				</div>
-				<div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+				<div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
 					<a
 						href={SCHEDULE_VISIO_URL}
 						target="_blank"
 						rel="noreferrer"
-						className="hover:text-slate-900"
+						className="hover:text-secondary"
 						onClick={() =>
 							capture(ANALYTICS_EVENTS.ctaClick, {
 								cta: "schedule_call",
@@ -48,10 +47,11 @@ export default function SiteFooter() {
 					>
 						{t((t) => t.footer.scheduleCall)}
 					</a>
-					<span className="text-slate-300">|</span>
+					<span className="text-secondary/50">|</span>
 					<Link
 						to="/{-$locale}/blog"
 						params={localeParams}
+						className="hover:text-secondary"
 						onClick={() =>
 							capture(ANALYTICS_EVENTS.ctaClick, {
 								cta: "blog",
@@ -62,10 +62,11 @@ export default function SiteFooter() {
 					>
 						{t((t) => t.footer.blog)}
 					</Link>
-					<span className="text-slate-300">|</span>
+					<span className="text-secondary/50">|</span>
 					<Link
 						to="/{-$locale}/docs"
 						params={localeParams}
+						className="hover:text-secondary"
 						onClick={() =>
 							capture(ANALYTICS_EVENTS.ctaClick, {
 								cta: "docs",
@@ -78,22 +79,22 @@ export default function SiteFooter() {
 					</Link>
 					{showConsentLink ? (
 						<>
-							<span className="text-slate-300">|</span>
+							<span className="text-secondary/50">|</span>
 							<button
 								type="button"
 								onClick={handleManageConsent}
-								className="hover:text-slate-900"
+								className="hover:text-secondary"
 							>
 								{t((t) => t.footer.manageConsent)}
 							</button>
 						</>
 					) : null}
-					<span className="text-slate-300">|</span>
+					<span className="text-secondary/50">|</span>
 					<a
 						href={GITHUB_URL}
 						target="_blank"
 						rel="noreferrer"
-						className="hover:text-slate-900"
+						className="hover:text-secondary"
 						onClick={() =>
 							capture(ANALYTICS_EVENTS.ctaClick, {
 								cta: "github",

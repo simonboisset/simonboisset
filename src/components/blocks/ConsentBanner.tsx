@@ -52,24 +52,24 @@ export default function ConsentBanner({ enabled = true }: ConsentBannerProps) {
 
 	return (
 		<div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-6 md:max-w-lg">
-			<div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl">
-				<h2 className="text-lg font-semibold text-slate-900">
+			<div className="terminal-card p-6">
+				<h2 className="terminal-heading text-lg">
 					{t((t) => t.consent.title)}
 				</h2>
-				<p className="mt-2 text-sm text-slate-600">
+				<p className="terminal-muted mt-2 text-sm">
 					{t((t) => t.consent.description)}
 				</p>
 
 				{showDetails ? (
-					<div className="mt-4 space-y-4 text-sm text-slate-600">
+					<div className="terminal-muted mt-4 space-y-4 text-sm">
 						<div>
-							<p className="font-semibold text-slate-900">
+							<p className="font-semibold text-foreground">
 								{t((t) => t.consent.essentialTitle)}
 							</p>
 							<p>{t((t) => t.consent.essentialDescription)}</p>
 						</div>
 						<div>
-							<p className="font-semibold text-slate-900">
+							<p className="font-semibold text-foreground">
 								{t((t) => t.consent.analyticsTitle)}
 							</p>
 							<p>{t((t) => t.consent.analyticsDescription)}</p>
@@ -77,7 +77,7 @@ export default function ConsentBanner({ enabled = true }: ConsentBannerProps) {
 						<Link
 							to="/{-$locale}/docs/$slug"
 							params={{ ...localeParams, slug: "privacy" }}
-							className="text-sm font-semibold text-teal-700 hover:text-teal-800"
+							className="text-sm font-semibold text-secondary hover:text-accent"
 						>
 							{t((t) => t.consent.policyLink)}
 						</Link>

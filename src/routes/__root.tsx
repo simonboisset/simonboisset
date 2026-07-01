@@ -279,15 +279,13 @@ function NotFound() {
 	const { t, localeParam } = useI18n();
 
 	return (
-		<div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6">
-			<div className="text-center space-y-6 max-w-md">
-				<p className="text-sm uppercase tracking-[0.3em] text-slate-500">
-					{t((t) => t.notFound.label)}
-				</p>
-				<h1 className="text-5xl md:text-6xl font-semibold text-slate-900">
+		<div className="terminal-page flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center px-6">
+			<div className="max-w-md space-y-6 text-center">
+				<p className="terminal-label">{t((t) => t.notFound.label)}</p>
+				<h1 className="terminal-heading text-5xl md:text-6xl">
 					{t((t) => t.notFound.title)}
 				</h1>
-				<p className="text-slate-600">{t((t) => t.notFound.description)}</p>
+				<p className="terminal-muted">{t((t) => t.notFound.description)}</p>
 				<Button asChild>
 					<Link to="/{-$locale}" params={{ locale: localeParam }}>
 						{t((t) => t.notFound.backHome)}

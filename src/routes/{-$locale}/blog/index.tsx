@@ -26,7 +26,7 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 		});
 	},
 	pendingComponent: () => (
-		<div className="bg-[#f6f1ea]">
+		<div className="terminal-page">
 			<div className="py-24 md:py-28 px-6 max-w-6xl mx-auto">
 				<div className="text-center mb-16">
 					<Skeleton className="h-10 w-32 mx-auto mb-4" />
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 				</div>
 				<div className="mb-16">
 					<div className="flex flex-col md:flex-row gap-8 md:items-center">
-						<Skeleton className="flex-1 aspect-[16/10] rounded-2xl" />
+						<Skeleton className="flex-1 aspect-[16/10]" />
 						<div className="flex-1">
 							<Skeleton className="h-10 w-3/4 mb-4" />
 							<Skeleton className="h-4 w-40" />
@@ -71,25 +71,24 @@ function BlogListPage() {
 	const [featuredArticle, ...otherArticles] = posts;
 
 	return (
-		<div className="bg-[#f6f1ea]">
-			<section className="relative overflow-hidden">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
+		<div className="terminal-page">
+			<section className="terminal-hero">
 				<div className="relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-20 text-center">
-					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
+					<p className="terminal-label terminal-boot-line">
 						{t((t) => t.blog.heroLabel)}
 					</p>
-					<h1 className="text-4xl font-semibold text-slate-900 md:text-5xl">
+					<h1 className="terminal-heading terminal-boot-line text-4xl md:text-5xl">
 						{t((t) => t.blog.heroTitle)}
 					</h1>
-					<p className="mx-auto max-w-2xl text-lg text-slate-600">
+					<p className="terminal-muted mx-auto max-w-2xl text-lg">
 						{t((t) => t.blog.description)}
 					</p>
 				</div>
 			</section>
 
-			<section className="mx-auto w-full max-w-6xl px-6 pb-20">
+			<section className="terminal-section mx-auto w-full max-w-6xl px-6 pb-20 pt-12">
 				{posts.length === 0 ? (
-					<p className="rounded-2xl border border-slate-200 bg-white/80 p-8 text-center text-slate-600">
+					<p className="terminal-card p-8 text-center">
 						{t((t) => t.blog.empty)}
 					</p>
 				) : (
@@ -110,21 +109,21 @@ function BlogListPage() {
 									}
 								>
 									<div className="flex flex-col md:flex-row gap-8 md:items-center">
-										<div className="flex-1 aspect-[16/10] overflow-hidden rounded-2xl bg-white shadow-sm">
+										<div className="terminal-image-frame flex-1 aspect-[16/10]">
 											<ArticleImage
 												src={featuredArticle.imageUrl}
 												alt={featuredArticle.title}
-												className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+												className="terminal-image w-full h-full object-cover"
 											/>
 										</div>
 										<div className="flex-1">
-											<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+											<p className="terminal-label">
 												{t((t) => t.blog.featured)}
 											</p>
-											<h2 className="mt-3 text-3xl md:text-4xl font-semibold text-slate-900 group-hover:text-teal-700 transition-colors">
+											<h2 className="terminal-heading mt-3 text-3xl transition-colors group-hover:text-secondary md:text-4xl">
 												{featuredArticle.title}
 											</h2>
-											<div className="mt-4 text-sm text-slate-500">
+											<div className="terminal-label mt-4 text-sm">
 												{featuredArticle.publishedAtLabel}
 											</div>
 										</div>
@@ -135,7 +134,7 @@ function BlogListPage() {
 
 						{otherArticles.length > 0 ? (
 							<div>
-								<h3 className="text-2xl font-semibold text-slate-900 mb-8">
+								<h3 className="terminal-heading mb-8 text-2xl">
 									{t((t) => t.blog.latest)}
 								</h3>
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -167,9 +166,9 @@ function BlogError({ error }: { error: Error }) {
 	}, [captureException, error]);
 
 	return (
-		<div className="bg-[#f6f1ea]">
+		<div className="terminal-page">
 			<div className="py-24 md:py-28 px-6 max-w-5xl mx-auto text-center">
-				<h1 className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
+				<h1 className="mb-3 text-2xl font-semibold text-destructive md:text-3xl">
 					{t((t) => t.blog.errorTitleList)}
 				</h1>
 				<p className="text-muted-foreground">
@@ -203,19 +202,17 @@ function ArticleCard({
 				})
 			}
 		>
-			<div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-				<div className="aspect-[16/10] overflow-hidden bg-slate-100">
+			<div className="terminal-card overflow-hidden">
+				<div className="terminal-image-frame aspect-[16/10] border-0 shadow-none">
 					<ArticleImage
 						src={article.imageUrl}
 						alt={article.title}
-						className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+						className="terminal-image w-full h-full object-cover"
 					/>
 				</div>
 				<div className="p-6">
-					<div className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-3">
-						{article.publishedAtLabel}
-					</div>
-					<h4 className="text-lg font-semibold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-2">
+					<div className="terminal-label mb-3">{article.publishedAtLabel}</div>
+					<h4 className="terminal-heading text-lg transition-colors group-hover:text-secondary line-clamp-2">
 						{article.title}
 					</h4>
 				</div>

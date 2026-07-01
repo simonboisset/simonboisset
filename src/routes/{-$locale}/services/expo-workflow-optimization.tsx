@@ -113,17 +113,16 @@ function ExpoWorkflowOptimizationPage() {
 	];
 
 	return (
-		<div className="bg-[#f6f1ea] text-slate-900">
-			<section className="relative overflow-hidden">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
+		<div className="terminal-page">
+			<section className="terminal-hero">
 				<div className="relative mx-auto w-full max-w-5xl px-6 py-20 md:py-24">
-					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
+					<p className="terminal-label terminal-boot-line">
 						{t((t) => t.services.common.productizedLabel)}
 					</p>
-					<h1 className="mt-4 text-4xl font-semibold text-slate-900 md:text-5xl">
+					<h1 className="terminal-heading terminal-boot-line mt-4 text-4xl md:text-5xl">
 						{t((t) => t.services.workflow.title)}
 					</h1>
-					<p className="mt-4 text-lg text-slate-600 md:text-xl">
+					<p className="terminal-muted mt-4 text-lg md:text-xl">
 						{t((t) => t.services.workflow.intro)}
 					</p>
 					<div className="mt-8 flex flex-wrap items-center gap-4">
@@ -152,7 +151,7 @@ function ExpoWorkflowOptimizationPage() {
 				</div>
 			</section>
 
-			<section className="mx-auto w-full max-w-5xl px-6 py-16">
+			<section className="terminal-section mx-auto w-full max-w-5xl px-6 py-16">
 				<div className="grid gap-6 md:grid-cols-3">
 					<ServiceHighlight
 						title={t(
@@ -161,64 +160,59 @@ function ExpoWorkflowOptimizationPage() {
 						description={t(
 							(t) => t.services.workflow.highlights.releaseVelocity.description,
 						)}
-						icon={<Gauge className="size-5 text-teal-600" />}
+						icon={<Gauge className="size-5" />}
 					/>
 					<ServiceHighlight
 						title={t((t) => t.services.workflow.highlights.confidence.title)}
 						description={t(
 							(t) => t.services.workflow.highlights.confidence.description,
 						)}
-						icon={<ShieldCheck className="size-5 text-amber-600" />}
+						icon={<ShieldCheck className="size-5" />}
 					/>
 					<ServiceHighlight
 						title={t((t) => t.services.workflow.highlights.handoff.title)}
 						description={t(
 							(t) => t.services.workflow.highlights.handoff.description,
 						)}
-						icon={<Rocket className="size-5 text-slate-700" />}
+						icon={<Rocket className="size-5" />}
 					/>
 				</div>
 			</section>
 
 			<ServiceChecklistSection
-				className="bg-white"
+				className="terminal-section-alt"
 				label={t((t) => t.services.common.outcomesLabel)}
 				title={t((t) => t.services.workflow.outcomesTitle)}
 				description={t((t) => t.services.workflow.outcomesDescription)}
 				items={outcomes}
 			/>
 
-			<section className="mx-auto w-full max-w-5xl px-6 py-16">
+			<section className="terminal-section mx-auto w-full max-w-5xl px-6 py-16">
 				<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
-						<p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+						<p className="terminal-label">
 							{t((t) => t.services.common.focusAreasLabel)}
 						</p>
-						<h2 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
+						<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
 							{t((t) => t.services.workflow.focusTitle)}
 						</h2>
 					</div>
-					<p className="max-w-xl text-slate-600">
+					<p className="terminal-muted max-w-xl">
 						{t((t) => t.services.workflow.focusDescription)}
 					</p>
 				</div>
 				<div className="mt-8 grid gap-6 md:grid-cols-3">
 					{focusAreas.map((area) => (
-						<div
-							key={area.title}
-							className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-						>
-							<h3 className="text-lg font-semibold text-slate-900">
-								{area.title}
-							</h3>
-							<p className="mt-3 text-sm text-slate-600">{area.description}</p>
+						<div key={area.title} className="terminal-card p-6">
+							<h3 className="terminal-heading text-lg">{area.title}</h3>
+							<p className="terminal-muted mt-3 text-sm">{area.description}</p>
 						</div>
 					))}
 				</div>
 			</section>
 
 			<ServiceProcessSection
-				className="bg-white"
+				className="terminal-section-alt"
 				label={t((t) => t.services.common.processLabel)}
 				title={t((t) => t.services.workflow.processTitle)}
 				description={t((t) => t.services.workflow.processDescription)}

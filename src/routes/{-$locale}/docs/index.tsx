@@ -33,25 +33,24 @@ function DocsIndexPage() {
 		: {};
 
 	return (
-		<div className="bg-[#f6f1ea] text-slate-900">
-			<section className="relative overflow-hidden">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
+		<div className="terminal-page">
+			<section className="terminal-hero">
 				<div className="relative mx-auto w-full max-w-4xl px-6 py-20 text-center">
-					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
+					<p className="terminal-label terminal-boot-line">
 						{t((t) => t.docs.heroLabel)}
 					</p>
-					<h1 className="mt-4 text-4xl font-semibold text-slate-900 md:text-5xl">
+					<h1 className="terminal-heading terminal-boot-line mt-4 text-4xl md:text-5xl">
 						{t((t) => t.docs.heroTitle)}
 					</h1>
-					<p className="mt-4 text-lg text-slate-600">
+					<p className="terminal-muted mt-4 text-lg">
 						{t((t) => t.docs.heroDescription)}
 					</p>
 				</div>
 			</section>
 
-			<section className="mx-auto w-full max-w-4xl px-6 pb-20">
+			<section className="terminal-section mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
 				{docs.length === 0 ? (
-					<p className="rounded-3xl border border-slate-200 bg-white p-8 text-center text-slate-600">
+					<p className="terminal-card p-8 text-center">
 						{t((t) => t.docs.empty)}
 					</p>
 				) : (
@@ -81,7 +80,7 @@ function DocsCard({
 		<Link
 			to="/{-$locale}/docs/$slug"
 			params={{ ...localeParams, slug: doc.slug }}
-			className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md"
+			className="terminal-card p-8 transition hover:no-underline"
 			onClick={() =>
 				capture(ANALYTICS_EVENTS.contentClick, {
 					content_type: "doc",
@@ -91,9 +90,9 @@ function DocsCard({
 				})
 			}
 		>
-			<h2 className="text-xl font-semibold text-slate-900">{doc.title}</h2>
+			<h2 className="terminal-heading pr-8 text-xl">{doc.title}</h2>
 			{description ? (
-				<p className="mt-3 text-sm text-slate-600">{description}</p>
+				<p className="terminal-muted mt-3 text-sm">{description}</p>
 			) : null}
 		</Link>
 	);

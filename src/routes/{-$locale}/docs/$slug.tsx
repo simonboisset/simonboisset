@@ -59,26 +59,25 @@ function DocsDetailPage() {
 	});
 
 	return (
-		<div className="bg-[#f6f1ea] text-slate-900">
-			<section className="relative overflow-hidden">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.8),rgba(246,241,234,0.9)_60%,rgba(246,241,234,1)_100%)]" />
+		<div className="terminal-page">
+			<section className="terminal-hero">
 				<div className="relative mx-auto w-full max-w-4xl px-6 py-20 text-center">
-					<p className="text-xs uppercase tracking-[0.35em] text-slate-500">
+					<p className="terminal-label terminal-boot-line">
 						{t((t) => t.docs.heroLabel)}
 					</p>
-					<h1 className="mt-4 text-4xl font-semibold text-slate-900 md:text-5xl">
+					<h1 className="terminal-heading terminal-boot-line mt-4 text-4xl md:text-5xl">
 						{doc.title}
 					</h1>
 					{doc.updatedAtLabel ? (
-						<p className="mt-4 text-sm uppercase tracking-[0.2em] text-slate-500">
+						<p className="terminal-label mt-4 text-sm">
 							{t((t) => t.docs.effectiveDate)}: {doc.updatedAtLabel}
 						</p>
 					) : null}
 				</div>
 			</section>
 
-			<section className="mx-auto w-full max-w-4xl px-6 pb-20">
-				<div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+			<section className="terminal-section mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
+				<div className="terminal-card p-8">
 					<MarkdownContent contentHtml={contentHtml} />
 				</div>
 
@@ -89,7 +88,7 @@ function DocsDetailPage() {
 								key={item.slug}
 								to="/{-$locale}/docs/$slug"
 								params={{ ...localeParams, slug: item.slug }}
-								className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-600 shadow-sm transition hover:shadow-md"
+								className="terminal-card p-6 text-sm transition hover:no-underline"
 							>
 								{item.title}
 							</Link>

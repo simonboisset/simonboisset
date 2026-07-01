@@ -84,11 +84,11 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 		});
 	},
 	pendingComponent: () => (
-		<div className="bg-[#f6f1ea]">
+		<div className="terminal-page">
 			<div className="mx-auto w-full max-w-4xl">
 				<div className="flex flex-col gap-8 px-6 py-16">
 					<Skeleton className="h-10 w-3/4 mx-auto" />
-					<Skeleton className="w-full aspect-video rounded-2xl" />
+					<Skeleton className="w-full aspect-video" />
 					<div className="space-y-4">
 						<Skeleton className="h-4 w-full" />
 						<Skeleton className="h-4 w-full" />
@@ -120,27 +120,27 @@ function BlogDetailPage() {
 	});
 
 	return (
-		<div className="bg-[#f6f1ea]">
+		<div className="terminal-page">
 			<article className="mx-auto w-full max-w-4xl">
 				<div className="flex flex-col gap-8 px-6 py-16">
 					<Link
 						to="/{-$locale}/blog"
 						params={localeParams}
-						className="text-xs uppercase tracking-[0.3em] text-slate-500 hover:text-slate-900"
+						className="terminal-label hover:text-secondary"
 					>
 						{t((t) => t.blog.back)}
 					</Link>
-					<h1 className="text-3xl md:text-5xl font-semibold text-slate-900 text-center">
+					<h1 className="terminal-heading text-center text-3xl md:text-5xl">
 						{displayTitle}
 					</h1>
-					<p className="text-center text-sm uppercase tracking-[0.2em] text-slate-500">
+					<p className="terminal-label text-center text-sm">
 						{post.publishedAtLabel}
 					</p>
-					<div className="w-full aspect-video overflow-hidden rounded-2xl shadow-lg bg-white">
+					<div className="terminal-image-frame w-full aspect-video">
 						<ArticleImage
 							src={post.imageUrl}
 							alt={displayTitle}
-							className="w-full h-full object-cover"
+							className="terminal-image w-full h-full object-cover"
 						/>
 					</div>
 					<MarkdownContent contentHtml={contentHtml} />
@@ -171,8 +171,8 @@ function BlogDetailPage() {
 					</div>
 
 					{suggestedArticles.length > 0 ? (
-						<div className="mt-16 pt-16 border-t border-slate-200">
-							<h3 className="text-2xl font-semibold text-slate-900 mb-8 text-center">
+						<div className="terminal-divider mt-16 border-t pt-16">
+							<h3 className="terminal-heading mb-8 text-center text-2xl">
 								{t((t) => t.blog.other)}
 							</h3>
 							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -204,27 +204,25 @@ function SeoInsightSection({
 			: { takeaways: "Key takeaways", faq: "Quick FAQ" };
 
 	return (
-		<section className="mt-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-			<p className="text-xs uppercase tracking-[0.25em] text-slate-500">
-				{labels.takeaways}
-			</p>
-			<p className="mt-3 text-slate-700">{override.summary}</p>
-			<ul className="mt-5 space-y-3 text-sm text-slate-600">
+		<section className="terminal-card mt-12 p-6">
+			<p className="terminal-label">{labels.takeaways}</p>
+			<p className="terminal-muted mt-3">{override.summary}</p>
+			<ul className="terminal-muted mt-5 space-y-3 text-sm">
 				{override.keyPoints.map((point) => (
 					<li key={point} className="flex gap-3">
-						<span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-600" />
+						<span className="mt-1.5 shrink-0 text-secondary">&gt;</span>
 						<span>{point}</span>
 					</li>
 				))}
 			</ul>
 			<div className="mt-8 space-y-4">
-				<h2 className="text-xl font-semibold text-slate-900">{labels.faq}</h2>
+				<h2 className="terminal-heading text-xl">{labels.faq}</h2>
 				{override.faq.map((item) => (
-					<div key={item.question} className="border-t border-slate-100 pt-4">
-						<h3 className="text-base font-semibold text-slate-900">
+					<div key={item.question} className="terminal-divider border-t pt-4">
+						<h3 className="text-base font-semibold text-foreground">
 							{item.question}
 						</h3>
-						<p className="mt-2 text-sm text-slate-600">{item.answer}</p>
+						<p className="terminal-muted mt-2 text-sm">{item.answer}</p>
 					</div>
 				))}
 			</div>
@@ -282,19 +280,17 @@ function SuggestedArticleCard({
 				})
 			}
 		>
-			<div className="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-				<div className="aspect-[16/10] overflow-hidden bg-slate-100">
+			<div className="terminal-card overflow-hidden">
+				<div className="terminal-image-frame aspect-[16/10] border-0 shadow-none">
 					<ArticleImage
 						src={article.imageUrl}
 						alt={article.title}
-						className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+						className="terminal-image w-full h-full object-cover"
 					/>
 				</div>
 				<div className="p-4 md:p-6">
-					<div className="text-xs uppercase tracking-[0.2em] text-slate-500 mb-2">
-						{article.publishedAtLabel}
-					</div>
-					<h4 className="text-base md:text-lg font-semibold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-2">
+					<div className="terminal-label mb-2">{article.publishedAtLabel}</div>
+					<h4 className="terminal-heading text-base transition-colors group-hover:text-secondary md:text-lg line-clamp-2">
 						{article.title}
 					</h4>
 				</div>
@@ -314,9 +310,9 @@ function BlogPostError({ error }: { error: Error }) {
 	}, [captureException, error]);
 
 	return (
-		<div className="bg-[#f6f1ea]">
+		<div className="terminal-page">
 			<div className="py-24 px-6 max-w-5xl mx-auto text-center">
-				<h1 className="text-2xl md:text-3xl font-semibold text-red-600 mb-3">
+				<h1 className="mb-3 text-2xl font-semibold text-destructive md:text-3xl">
 					{t((t) => t.blog.errorTitleDetail)}
 				</h1>
 				<p className="text-muted-foreground">
