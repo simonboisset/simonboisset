@@ -189,15 +189,6 @@ code {
   }
 }
 
-@keyframes crt-scan {
-  0% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(8px);
-  }
-}
-
 @keyframes fade-up {
   0% {
     opacity: 0;
@@ -216,6 +207,15 @@ code {
   }
   50% {
     transform: translateY(-14px);
+  }
+}
+
+@keyframes crt-scan {
+  0% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(8px);
   }
 }
 
@@ -441,8 +441,8 @@ code {
     --migration-progress: 0;
     position: relative;
     display: grid;
-    gap: 1rem;
-    padding-left: 1.15rem;
+    gap: 2rem;
+    padding-left: 2.5rem;
   }
 
   .migration-progress-grid::before {
@@ -450,7 +450,8 @@ code {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 1.55rem;
+    left: 50%;
+    transform: translateX(-50%);
     width: 2px;
     background: linear-gradient(
       var(--terminal-phosphor),
@@ -469,6 +470,8 @@ code {
     min-height: 17rem;
     overflow: hidden;
     background: color-mix(in srgb, var(--terminal-panel) 98%, black);
+    margin-left: calc(-2.5rem + 1.25rem);
+    width: calc(100% + 2.5rem - 1.25rem);
   }
 
   .migration-progress-card::after {
@@ -628,6 +631,8 @@ code {
 
     .migration-progress-card {
       min-height: 18rem;
+      margin-left: 0;
+      width: 100%;
     }
 
     .migration-progress-card-1 {
