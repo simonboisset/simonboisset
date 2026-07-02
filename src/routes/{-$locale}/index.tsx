@@ -52,12 +52,15 @@ export const Route = createFileRoute("/{-$locale}/")({
 	},
 });
 
-type Project = {
+type ProofCase = {
 	name: string;
-	product: string[];
+	category: string;
+	context: string[];
 	impact: string[];
 	stack: string[];
-	url: string;
+	url?: string;
+	proofType?: "client" | "field";
+	testimonial?: Testimonial;
 };
 
 type Testimonial = {
@@ -66,13 +69,10 @@ type Testimonial = {
 	role: string;
 };
 
-type FocusCard = {
+type RiskCard = {
 	title: string;
 	description: string;
-	bullets: string[];
-	cta: string;
-	to?: string;
-	href?: string;
+	bullet: string;
 };
 
 type MigrationPhase = {
@@ -89,23 +89,24 @@ function App() {
 		: {};
 	const sectionTracking = useMemo(
 		() => [
-			{ id: "services", label: "focus" },
-			{ id: "projects", label: "projects" },
+			{ id: "services", label: "risks" },
+			{ id: "projects", label: "proofs" },
 			{ id: "process", label: "process" },
-			{ id: "testimonials", label: "testimonials" },
 		],
 		[],
 	);
 
 	useSectionViewTracking(sectionTracking, { pageType: "home", locale });
 
-	const projects: Project[] = [
+	const proofCases: ProofCase[] = [
 		{
 			name: t((t) => t.home.projects.campingCarPark.name),
-			product: [t((t) => t.home.projects.campingCarPark.product.line1)],
+			category: t((t) => t.home.projects.campingCarPark.category),
+			context: [t((t) => t.home.projects.campingCarPark.context.line1)],
 			impact: [
 				t((t) => t.home.projects.campingCarPark.impact.line1),
 				t((t) => t.home.projects.campingCarPark.impact.line2),
+				t((t) => t.home.projects.campingCarPark.impact.line3),
 			],
 			stack: [
 				t((t) => t.home.projects.campingCarPark.stack.item1),
@@ -117,7 +118,8 @@ function App() {
 		},
 		{
 			name: t((t) => t.home.projects.linote.name),
-			product: [t((t) => t.home.projects.linote.product.line1)],
+			category: t((t) => t.home.projects.linote.category),
+			context: [t((t) => t.home.projects.linote.context.line1)],
 			impact: [
 				t((t) => t.home.projects.linote.impact.line1),
 				t((t) => t.home.projects.linote.impact.line2),
@@ -129,79 +131,74 @@ function App() {
 				t((t) => t.home.projects.linote.stack.item4),
 			],
 			url: "https://linote.fr",
+			testimonial: {
+				quote: t((t) => t.home.projects.linote.testimonial.quote),
+				name: t((t) => t.home.projects.linote.testimonial.name),
+				role: t((t) => t.home.projects.linote.testimonial.role),
+			},
 		},
 		{
-			name: t((t) => t.home.projects.monPontChanban.name),
-			product: [t((t) => t.home.projects.monPontChanban.product.line1)],
+			name: t((t) => t.home.projects.silbo.name),
+			category: t((t) => t.home.projects.silbo.category),
+			context: [t((t) => t.home.projects.silbo.context.line1)],
 			impact: [
-				t((t) => t.home.projects.monPontChanban.impact.line1),
-				t((t) => t.home.projects.monPontChanban.impact.line2),
+				t((t) => t.home.projects.silbo.impact.line1),
+				t((t) => t.home.projects.silbo.impact.line2),
 			],
 			stack: [
-				t((t) => t.home.projects.monPontChanban.stack.item1),
-				t((t) => t.home.projects.monPontChanban.stack.item2),
-				t((t) => t.home.projects.monPontChanban.stack.item3),
-				t((t) => t.home.projects.monPontChanban.stack.item4),
+				t((t) => t.home.projects.silbo.stack.item1),
+				t((t) => t.home.projects.silbo.stack.item2),
+				t((t) => t.home.projects.silbo.stack.item3),
+				t((t) => t.home.projects.silbo.stack.item4),
 			],
-			url: "https://www.pont-chaban-delmas.com/",
+			testimonial: {
+				quote: t((t) => t.home.projects.silbo.testimonial.quote),
+				name: t((t) => t.home.projects.silbo.testimonial.name),
+				role: t((t) => t.home.projects.silbo.testimonial.role),
+			},
 		},
 		{
-			name: t((t) => t.home.projects.questovery.name),
-			product: [t((t) => t.home.projects.questovery.product.line1)],
+			name: t((t) => t.home.projects.fieldExpo.name),
+			category: t((t) => t.home.projects.fieldExpo.category),
+			context: [
+				t((t) => t.home.projects.fieldExpo.context.line1),
+				t((t) => t.home.projects.fieldExpo.context.line2),
+			],
 			impact: [
-				t((t) => t.home.projects.questovery.impact.line1),
-				t((t) => t.home.projects.questovery.impact.line2),
+				t((t) => t.home.projects.fieldExpo.impact.line1),
+				t((t) => t.home.projects.fieldExpo.impact.line2),
 			],
 			stack: [
-				t((t) => t.home.projects.questovery.stack.item1),
-				t((t) => t.home.projects.questovery.stack.item2),
-				t((t) => t.home.projects.questovery.stack.item3),
-				t((t) => t.home.projects.questovery.stack.item4),
+				t((t) => t.home.projects.fieldExpo.stack.item1),
+				t((t) => t.home.projects.fieldExpo.stack.item2),
+				t((t) => t.home.projects.fieldExpo.stack.item3),
+				t((t) => t.home.projects.fieldExpo.stack.item4),
 			],
 			url: "https://questovery.com/fr",
+			proofType: "field",
 		},
 	];
 
-	const testimonials: Testimonial[] = [
+	const riskCards: RiskCard[] = [
 		{
-			quote: t((t) => t.home.testimonials.eric.quote),
-			name: t((t) => t.home.testimonials.eric.name),
-			role: t((t) => t.home.testimonials.eric.role),
+			title: t((t) => t.home.risks.native.title),
+			description: t((t) => t.home.risks.native.description),
+			bullet: t((t) => t.home.risks.native.bullet),
 		},
 		{
-			quote: t((t) => t.home.testimonials.anthony.quote),
-			name: t((t) => t.home.testimonials.anthony.name),
-			role: t((t) => t.home.testimonials.anthony.role),
+			title: t((t) => t.home.risks.delivery.title),
+			description: t((t) => t.home.risks.delivery.description),
+			bullet: t((t) => t.home.risks.delivery.bullet),
 		},
 		{
-			quote: t((t) => t.home.testimonials.thomas.quote),
-			name: t((t) => t.home.testimonials.thomas.name),
-			role: t((t) => t.home.testimonials.thomas.role),
-		},
-	];
-
-	const focusCards: FocusCard[] = [
-		{
-			title: t((t) => t.home.focus.migration.title),
-			description: t((t) => t.home.focus.migration.description),
-			to: "/{-$locale}/services/react-native-legacy-to-expo",
-			cta: t((t) => t.home.focus.migration.cta),
-			bullets: [
-				t((t) => t.home.focus.migration.bullets.item1),
-				t((t) => t.home.focus.migration.bullets.item2),
-				t((t) => t.home.focus.migration.bullets.item3),
-			],
+			title: t((t) => t.home.risks.stores.title),
+			description: t((t) => t.home.risks.stores.description),
+			bullet: t((t) => t.home.risks.stores.bullet),
 		},
 		{
-			title: t((t) => t.home.focus.questovery.title),
-			description: t((t) => t.home.focus.questovery.description),
-			href: "https://questovery.com/fr",
-			cta: t((t) => t.home.focus.questovery.cta),
-			bullets: [
-				t((t) => t.home.focus.questovery.bullets.item1),
-				t((t) => t.home.focus.questovery.bullets.item2),
-				t((t) => t.home.focus.questovery.bullets.item3),
-			],
+			title: t((t) => t.home.risks.handoff.title),
+			description: t((t) => t.home.risks.handoff.description),
+			bullet: t((t) => t.home.risks.handoff.bullet),
 		},
 	];
 
@@ -259,20 +256,20 @@ function App() {
 								</a>
 							</Button>
 							<Button variant="outline" asChild>
-								<a
-									href="https://questovery.com/fr"
-									target="_blank"
-									rel="noreferrer"
+								<Link
+									to="/{-$locale}"
+									params={localeParams}
+									hash="projects"
 									onClick={() =>
 										capture(ANALYTICS_EVENTS.ctaClick, {
-											cta: "questovery",
+											cta: "proofs",
 											placement: "home_hero",
-											href: "https://questovery.com/fr",
+											href: "#projects",
 										})
 									}
 								>
 									{t((t) => t.home.hero.ctaSecondary)}
-								</a>
+								</Link>
 							</Button>
 						</div>
 						<div className="flex flex-wrap items-center gap-3 text-sm">
@@ -340,7 +337,7 @@ function App() {
 								<span>|</span>
 								<span>Expo/EAS</span>
 								<span>|</span>
-								<span>Questovery</span>
+								<span>Store releases</span>
 							</div>
 						</div>
 					</div>
@@ -366,16 +363,27 @@ function App() {
 							{t((t) => t.home.servicesSection.description)}
 						</p>
 					</div>
-					<div className="mt-10 grid gap-6 lg:grid-cols-2">
-						{focusCards.map((focus, index) => (
-							<FocusCard
-								key={focus.title}
-								focus={focus}
-								index={index}
-								localeParams={localeParams}
-							/>
+					<div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+						{riskCards.map((risk, index) => (
+							<RiskCard key={risk.title} index={index} risk={risk} />
 						))}
 					</div>
+					<Button variant="outline" asChild className="mt-8">
+						<Link
+							to="/{-$locale}/services/react-native-legacy-to-expo"
+							params={localeParams}
+							onClick={() =>
+								capture(ANALYTICS_EVENTS.ctaClick, {
+									cta: "migration_offer",
+									placement: "home_risks",
+									href: "/services/react-native-legacy-to-expo",
+								})
+							}
+						>
+							{t((t) => t.home.servicesSection.cta)}
+							<ArrowUpRight className="size-4" />
+						</Link>
+					</Button>
 				</div>
 			</section>
 
@@ -396,8 +404,8 @@ function App() {
 						</p>
 					</div>
 					<div className="mt-10 grid gap-6 lg:grid-cols-2">
-						{projects.map((project, index) => (
-							<ProjectCard key={project.name} index={index} project={project} />
+						{proofCases.map((proof, index) => (
+							<ProofCard key={proof.name} index={index} proof={proof} />
 						))}
 					</div>
 				</div>
@@ -442,34 +450,6 @@ function App() {
 				</div>
 			</section>
 
-			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="testimonials" className="terminal-section py-16 md:py-20">
-				<div className="mx-auto w-full max-w-6xl px-6">
-					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-						<div>
-							<p className="terminal-label">
-								{t((t) => t.home.testimonialsSection.label)}
-							</p>
-							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
-								{t((t) => t.home.testimonialsSection.title)}
-							</h2>
-						</div>
-						<p className="terminal-muted max-w-xl">
-							{t((t) => t.home.testimonialsSection.description)}
-						</p>
-					</div>
-					<div className="mt-10 grid gap-6 lg:grid-cols-3">
-						{testimonials.map((testimonial, index) => (
-							<TestimonialCard
-								key={testimonial.name}
-								index={index}
-								testimonial={testimonial}
-							/>
-						))}
-					</div>
-				</div>
-			</section>
-
 			<section className="terminal-section terminal-section-alt py-16">
 				<div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-center md:justify-between">
 					<div>
@@ -503,41 +483,49 @@ function App() {
 	);
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProofCard({ proof, index }: { proof: ProofCase; index: number }) {
 	const { t } = useI18n();
 	const { capture } = useAnalytics();
+	const isFieldProof = proof.proofType === "field";
 
 	return (
 		<div
-			className="terminal-card motion-safe:animate-fade-up p-6"
+			className={`terminal-card motion-safe:animate-fade-up p-6 ${
+				isFieldProof ? "border-dashed border-accent/70" : ""
+			}`}
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
+			<p className="terminal-label mb-3">{proof.category}</p>
 			<div className="flex items-center justify-between">
 				<h3 className="terminal-heading pr-8 text-lg">
-					<a
-						href={project.url}
-						target="_blank"
-						rel="noreferrer"
-						className="underline-offset-4 transition hover:text-accent hover:underline"
-						onClick={() =>
-							capture(ANALYTICS_EVENTS.ctaClick, {
-								cta: "project_link",
-								placement: "home_projects",
-								href: project.url,
-								project: project.name,
-							})
-						}
-					>
-						{project.name}
-						<ArrowUpRight className="ml-1 inline-block size-3.5 align-baseline" />
-					</a>
+					{proof.url ? (
+						<a
+							href={proof.url}
+							target="_blank"
+							rel="noreferrer"
+							className="underline-offset-4 transition hover:text-accent hover:underline"
+							onClick={() =>
+								capture(ANALYTICS_EVENTS.ctaClick, {
+									cta: "proof_link",
+									placement: "home_proofs",
+									href: proof.url,
+									project: proof.name,
+								})
+							}
+						>
+							{proof.name}
+							<ArrowUpRight className="ml-1 inline-block size-3.5 align-baseline" />
+						</a>
+					) : (
+						proof.name
+					)}
 				</h3>
 			</div>
 			<div className="mt-4 space-y-3">
 				<p className="terminal-label">
-					{t((t) => t.home.projectsSection.productLabel)}
+					{t((t) => t.home.projectsSection.contextLabel)}
 				</p>
-				{project.product.map((line) => (
+				{proof.context.map((line) => (
 					<p key={line} className="terminal-muted text-sm">
 						{line}
 					</p>
@@ -547,137 +535,54 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 				<p className="terminal-label">
 					{t((t) => t.home.projectsSection.impactLabel)}
 				</p>
-				{project.impact.map((line) => (
+				{proof.impact.map((line) => (
 					<p key={line} className="terminal-muted text-sm">
 						{line}
 					</p>
 				))}
 			</div>
 			<div className="mt-4 flex flex-wrap gap-2">
-				{project.stack.map((item) => (
+				{proof.stack.map((item) => (
 					<span key={item} className="terminal-chip">
 						{item}
 					</span>
 				))}
 			</div>
+			{proof.testimonial ? (
+				<figure className="terminal-divider mt-6 border-t pt-4">
+					<p className="terminal-label">
+						{t((t) => t.home.projectsSection.testimonialLabel)}
+					</p>
+					<blockquote className="terminal-muted mt-3 text-sm">
+						"{proof.testimonial.quote}"
+					</blockquote>
+					<figcaption className="mt-4">
+						<p className="text-sm font-semibold text-foreground">
+							{proof.testimonial.name}
+						</p>
+						<p className="terminal-label mt-1">{proof.testimonial.role}</p>
+					</figcaption>
+				</figure>
+			) : null}
 		</div>
 	);
 }
 
-function FocusCard({
-	focus,
-	index,
-	localeParams,
-}: {
-	focus: FocusCard;
-	index: number;
-	localeParams: Record<string, string>;
-}) {
-	const { capture } = useAnalytics();
-	const cardClassName =
-		index === 0
-			? "terminal-card terminal-card-light p-6 motion-safe:animate-fade-up"
-			: "terminal-card p-6 motion-safe:animate-fade-up";
-	const mutedTextClassName =
-		index === 0 ? "terminal-muted-dark" : "terminal-muted";
-	const titleClassName =
-		index === 0 ? "terminal-heading-dark" : "terminal-heading";
-
-	const content = (
+function RiskCard({ risk, index }: { risk: RiskCard; index: number }) {
+	return (
 		<div
-			className={cardClassName}
+			className="terminal-card p-6 motion-safe:animate-fade-up"
 			style={{ animationDelay: `${index * 120}ms` }}
 		>
 			<div className="flex items-center justify-between">
-				<h3 className={`pr-8 text-xl ${titleClassName}`}>{focus.title}</h3>
-				{index === 0 ? (
-					<Smartphone className="size-5 text-secondary" />
-				) : (
-					<Sparkles className="size-5 text-accent" />
-				)}
+				<h3 className="terminal-heading pr-8 text-lg">{risk.title}</h3>
+				<ShieldCheck className="size-5 text-secondary" />
 			</div>
-			<p className={`mt-3 text-sm ${mutedTextClassName}`}>
-				{focus.description}
+			<p className="terminal-muted mt-3 text-sm">{risk.description}</p>
+			<p className="terminal-muted mt-5 flex items-start gap-2 text-sm">
+				<CheckCircle2 className="mt-0.5 size-4 shrink-0 text-secondary" />
+				{risk.bullet}
 			</p>
-			<ul className={`mt-5 space-y-2 text-sm ${mutedTextClassName}`}>
-				{focus.bullets.map((bullet) => (
-					<li key={bullet} className="flex items-center gap-2">
-						<CheckCircle2 className="size-4 text-secondary" />
-						{bullet}
-					</li>
-				))}
-			</ul>
-			<Button
-				variant={index === 0 ? "outline" : "secondary"}
-				size="sm"
-				asChild
-				className="mt-6"
-			>
-				{focus.to ? (
-					<Link
-						to={focus.to}
-						params={localeParams}
-						onClick={() =>
-							capture(ANALYTICS_EVENTS.ctaClick, {
-								cta: "focus_detail",
-								placement: "home_focus",
-								href: focus.to,
-								service: focus.title,
-							})
-						}
-					>
-						{focus.cta} <ArrowUpRight className="size-4" />
-					</Link>
-				) : (
-					<a
-						href={focus.href}
-						target="_blank"
-						rel="noreferrer"
-						onClick={() =>
-							capture(ANALYTICS_EVENTS.ctaClick, {
-								cta: "questovery",
-								placement: "home_focus",
-								href: focus.href,
-							})
-						}
-					>
-						{focus.cta} <ArrowUpRight className="size-4" />
-					</a>
-				)}
-			</Button>
-		</div>
-	);
-
-	return focus.to ? (
-		content
-	) : (
-		<div className="contents" data-focus-href={focus.href}>
-			{content}
-		</div>
-	);
-}
-
-function TestimonialCard({
-	testimonial,
-	index,
-}: {
-	testimonial: Testimonial;
-	index: number;
-}) {
-	return (
-		<div
-			className="terminal-card flex h-full flex-col p-6 motion-safe:animate-fade-up"
-			style={{ animationDelay: `${index * 120}ms` }}
-		>
-			<p className="terminal-muted text-left text-sm">"{testimonial.quote}"</p>
-			<div className="mt-auto pt-6">
-				<div className="terminal-divider border-t pt-4">
-					<p className="text-sm font-semibold text-foreground">
-						{testimonial.name}
-					</p>
-					<p className="terminal-label mt-1">{testimonial.role}</p>
-				</div>
-			</div>
 		</div>
 	);
 }

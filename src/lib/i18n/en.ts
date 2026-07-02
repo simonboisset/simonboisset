@@ -3,9 +3,9 @@ import type { InferTranslation } from "typed-locale";
 export const en = {
 	locale: "en",
 	seo: {
-		homeTitle: "React Native modernization with Expo - Simon Boisset",
+		homeTitle: "React Native to Expo migration - Simon Boisset",
 		homeDescription:
-			"Freelance React Native and Expo developer helping teams modernize mobile apps, stabilize releases, and stay grounded through Questovery.",
+			"React Native and Expo consultant helping CTOs migrate legacy mobile apps, secure EAS releases, and hand off the workflow to their team.",
 		blogTitle: "Blog",
 		cvTitle: "Resume",
 		cvDescription:
@@ -17,21 +17,21 @@ export const en = {
 		home: "Home",
 		about: "About",
 		services: "Services",
-		projects: "Projects",
-		testimonials: "Testimonials",
+		projects: "Field proof",
+		method: "Method",
 		blog: "Blog",
 		blogAll: "View all posts",
 		bookCall: "Book a call",
 		aboutItems: {
-			services: "Expo migration, EAS workflows, and mobile consulting.",
-			projects: "Concrete mobile, web, and product delivery examples.",
-			testimonials: "Client feedback on delivery and collaboration.",
+			services: "Risks covered during a React Native to Expo migration.",
+			projects: "Client and product proof around mobile delivery.",
+			method: "Audit, migration, release, and team handoff.",
 			github: "Open-source work, experiments, and code samples.",
 		},
 	},
 	footer: {
 		description:
-			"Freelance React Native and Expo developer, grounded by a real product: Questovery.",
+			"React Native and Expo consultant for mobile teams migrating toward safer releases.",
 		scheduleCall: "Schedule a call",
 		blog: "Blog",
 		docs: "Docs",
@@ -190,52 +190,56 @@ export const en = {
 	},
 	home: {
 		hero: {
-			eyebrow: "React Native, Expo, and mobile delivery",
-			title: "I modernize React Native apps with Expo.",
+			eyebrow: "For React Native CTOs and lead techs",
+			title: "Make your React Native app safer to ship with Expo.",
 			intro:
-				"I help teams move away from fragile mobile stacks, stabilize releases, and regain control of Expo/EAS. Questovery, my geolocated treasure hunt product, keeps that work grounded in real usage.",
+				"When native dependencies, store releases, and CI make every update risky, I help you audit the app, migrate incrementally to Expo/EAS, and leave the workflow in your team's hands.",
 			ctaPrimary: "Discuss an Expo migration",
-			ctaSecondary: "Discover Questovery",
+			ctaSecondary: "See field proof",
 			highlights: {
-				expertise: "Legacy RN migration",
-				delivery: "Expo/EAS releases",
-				performance: "Questovery product proof",
+				expertise: "Native dependency audit",
+				delivery: "EAS/store releases",
+				performance: "Team handoff",
 			},
 		},
 		availability: {
-			label: "Current focus",
-			status: "Mobile + product",
-			badge: "Focused scope",
+			label: "Migration diagnosis",
+			status: "Release risk first",
+			badge: "Before code",
 			items: {
-				item1: "React Native legacy audits",
-				item2: "Expo/EAS migration delivery",
-				item3: "Field lessons from Questovery",
+				item1: "Native modules and config plugins",
+				item2: "EAS, CI, stores, and OTA paths",
+				item3: "Hotfix and rollback strategy",
 			},
 		},
 		signature: {
-			label: "Operating lane",
-			title: "Mobile apps that are easier to ship",
+			label: "How I step in",
+			title: "Audit, roadmap, migration",
 			description:
-				"I turn fragile native workflows into fast QA, predictable store releases, and team ownership.",
+				"The goal is not to move everything at once: we identify the risky native surface, preserve the product roadmap, and make releases predictable.",
 		},
 		projectsSection: {
-			label: "Concrete cases",
-			title: "Projects close to your challenges",
+			label: "Field proof",
+			title: "Proofs tied to CTO objections",
 			description:
-				"Examples of engagements where the work was to take over an existing base, ship to production, or make a team more autonomous.",
-			productLabel: "Product / company",
-			impactLabel: "Impact / contributions",
+				"Concrete contexts where the work addressed migration risk, mobile delivery, architecture, or team ownership.",
+			contextLabel: "Context",
+			impactLabel: "What it proves",
+			testimonialLabel: "Client wording to validate",
 		},
 		projects: {
 			campingCarPark: {
 				name: "CAMPING-CAR PARK - Mobile app modernization",
-				product: {
+				category: "Client mission - Expo migration",
+				context: {
 					line1: "Consumer mobile app to book and manage campervan stays.",
 				},
 				impact: {
 					line1:
 						"Mobile redesign + migration from legacy React Native to Expo.",
 					line2: "Mobile lead for project structure and team enablement.",
+					line3:
+						"Strongest proof for CTOs facing native debt and release friction.",
 				},
 				stack: {
 					item1: "React Native",
@@ -244,31 +248,16 @@ export const en = {
 					item4: "Architecture",
 				},
 			},
-			vaerdict: {
-				name: "VAERDICT - Business web app re-architecture",
-				product: {
-					line1: "Web app for real estate wealth advisors.",
-				},
-				impact: {
-					line1: "Codebase takeover and restructuring for scalability.",
-					line2: "Technical lead + training to strengthen the internal team.",
-				},
-				stack: {
-					item1: "Web",
-					item2: "React",
-					item3: "TypeScript",
-					item4: "Architecture",
-				},
-			},
 			linote: {
 				name: "LiNote - Mobile app for social connection",
-				product: {
+				category: "Client mission - React Native mobile",
+				context: {
 					line1: "Mobile app to stay connected with elderly relatives.",
 				},
 				impact: {
 					line1: "React Native build from scratch aligned with the web app.",
 					line2:
-						"Key features: reminders, messaging, photo sharing, video calls.",
+						"Proof of clean mobile delivery across reminders, messaging, photo sharing, and video calls.",
 				},
 				stack: {
 					item1: "React Native",
@@ -276,92 +265,102 @@ export const en = {
 					item3: "iOS",
 					item4: "Android",
 				},
+				testimonial: {
+					quote:
+						"Simon combined easy communication, clean code, and fast delivery on our React Native app. The collaboration was reliable enough that we trusted him with another mission.",
+					name: "Anthony",
+					role: "CEO, LiNote",
+				},
 			},
 			silbo: {
 				name: "Silbo - Health: web + field apps",
-				product: {
+				category: "CTO proof - architecture and delivery",
+				context: {
 					line1:
 						"Healthcare startup: web app for patient flow optimization + field apps.",
 				},
 				impact: {
-					line1: "Full product cycle to production with product partnership.",
-					line2: "Focus on reliability, real-time, and iOS/Android ergonomics.",
+					line1:
+						"Ability to move across mobile, backend, UI, infrastructure, and CI/CD.",
+					line2:
+						"Useful for migrations where architecture and release workflow are tightly linked.",
 				},
 				stack: {
-					item1: "Web",
-					item2: "Mobile",
-					item3: "Reliability",
-					item4: "Real-time",
+					item1: "Mobile",
+					item2: "Architecture",
+					item3: "CI/CD",
+					item4: "Production",
+				},
+				testimonial: {
+					quote:
+						"Simon can move across UI, backend, mobile, cloud infrastructure, and CI/CD without losing the architecture thread. He brings pragmatic technical decisions and gets up to speed quickly on complex systems.",
+					name: "Thomas",
+					role: "CTO, Silbo",
 				},
 			},
-			monPontChanban: {
-				name: "Mon Pont Chaban - Bordeaux bridge lift alerts",
-				product: {
+			fieldExpo: {
+				name: "Questovery + Mon Pont Chaban - Expo products in the field",
+				category: "Personal product proof",
+				context: {
 					line1:
-						"Mobile app delivering push alerts for Bordeaux bridge lift times.",
+						"Questovery: geolocated treasure hunt platform with a participant mobile app.",
+					line2:
+						"Mon Pont Chaban: Expo app for push alerts around Bordeaux bridge lift schedules.",
 				},
 				impact: {
-					line1: "Personalized notifications based on user time slots.",
-					line2: "Notification scheduling powered by Trigger.dev.",
+					line1:
+						"Expo in production with geolocation, maps/offline constraints, push notifications, and store releases.",
+					line2:
+						"Daily product ownership: not just migration advice, but mobile release tradeoffs I live with.",
 				},
 				stack: {
 					item1: "React Native",
 					item2: "Expo",
-					item3: "Push",
-					item4: "Trigger.dev",
-				},
-			},
-			questovery: {
-				name: "Questovery - Geolocated treasure hunts",
-				product: {
-					line1:
-						"Platform to create treasure hunts with a participant mobile app.",
-				},
-				impact: {
-					line1: "Interactive experiences built on geolocation.",
-					line2: "Custom routes for events and tourism.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Mobile",
 					item3: "Geolocation",
-					item4: "Game design",
+					item4: "Push",
 				},
 			},
 		},
 		servicesSection: {
-			label: "Two focus areas",
-			title: "What I can do for your app",
+			label: "Risks covered",
+			title: "What I secure during the migration",
 			description:
-				"I mostly step in when a React Native app needs solid Expo foundations and a delivery workflow the team can keep owning.",
+				"A migration is not just an SDK upgrade. The key is to reduce release risk before touching the product roadmap.",
+			cta: "See the migration scope",
 		},
-		focus: {
-			migration: {
-				title: "React Native to Expo migration",
+		risks: {
+			native: {
+				title: "Native surface",
 				description:
-					"Audit, migrate, and stabilize an existing app so your team can ship with Expo/EAS without fighting native complexity.",
-				bullets: {
-					item1: "Native dependency audit and migration roadmap",
-					item2: "Incremental Expo/EAS rollout without blocking the roadmap",
-					item3: "QA, store release, and hotfix playbook",
-				},
-				cta: "See the migration offer",
+					"Dependencies, permissions, config plugins, prebuild, and modules that can block Expo.",
+				bullet:
+					"You get a compatibility map and clear replacement or fallback options.",
 			},
-			questovery: {
-				title: "Questovery",
+			delivery: {
+				title: "Delivery workflow",
 				description:
-					"A geolocated treasure hunt platform with a participant mobile app. It is my real-world Expo lab for maps, offline behavior, geolocation, and field UX.",
-				bullets: {
-					item1: "React Native + Expo participant app",
-					item2: "Geolocation, routes, and field constraints",
-					item3: "SaaS creator experience connected to mobile delivery",
-				},
-				cta: "Open Questovery",
+					"EAS Build, Submit, Update, channels, CI, and QA distribution.",
+				bullet:
+					"The team knows which changes need native builds and which can ship through OTA.",
+			},
+			stores: {
+				title: "Store and hotfix risk",
+				description:
+					"Versioning, fingerprints, rollback rules, and app-store constraints.",
+				bullet:
+					"Hotfix paths are documented before the next production incident.",
+			},
+			handoff: {
+				title: "Team ownership",
+				description:
+					"Decisions, playbooks, and tradeoffs are written for the internal team.",
+				bullet:
+					"The migration ends with a workflow your team can operate without me.",
 			},
 		},
 		method: {
 			label: "Migration method",
-			title: "How I make your Expo migration safer",
+			title: "A migration plan your roadmap can survive",
 			description:
 				"We reduce release risk first, then move step by step toward an Expo workflow the team can maintain.",
 			audit: {
@@ -385,36 +384,11 @@ export const en = {
 					"Document decisions, playbooks, and fallback paths so the internal team can keep releasing without a consultant in the loop.",
 			},
 		},
-		testimonialsSection: {
-			label: "Testimonials",
-			title: "What teams say after working together",
-			description: "Feedback from people who trusted me.",
-		},
-		testimonials: {
-			eric: {
-				quote:
-					"Simon is great to work with: experienced, collaborative, and immediately involved. He adapted quickly and worked in synergy with our historic developer, giving us confidence in the long-term development of the project.",
-				name: "Eric",
-				role: "CEO, Vaerdict",
-			},
-			anthony: {
-				quote:
-					"Great experience with Simon. Easy communication, very professional, high code quality, and fast delivery. We trusted him with a new mission after this one.",
-				name: "Anthony",
-				role: "CEO, LiNote",
-			},
-			thomas: {
-				quote:
-					"I had the opportunity to work with Simon for over two years on my team. Simon is a true Full Stack developer: he improves UI components, backend or mobile, and can also optimize cloud infrastructure or CI/CD pipelines. He brings effective architecture ideas and quickly learns complex concepts.",
-				name: "Thomas",
-				role: "CTO, Silbo",
-			},
-		},
 		cta: {
-			label: "Ready to ship",
-			title: "Let's talk about your mobile project.",
+			label: "Migration diagnosis",
+			title: "Let's review your React Native migration risk.",
 			description:
-				"Share the context and I'll come back within 48 hours with clear next steps.",
+				"Share your current RN/Expo versions, native dependencies, CI/store setup, and release pain points. I will come back within 48 hours with clear next steps.",
 			button: "Schedule a call",
 		},
 	},

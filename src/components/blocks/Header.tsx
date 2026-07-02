@@ -51,9 +51,9 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 			hash: "projects",
 		},
 		{
-			title: t((t) => t.nav.testimonials),
-			description: t((t) => t.nav.aboutItems.testimonials),
-			hash: "testimonials",
+			title: t((t) => t.nav.method),
+			description: t((t) => t.nav.aboutItems.method),
+			hash: "process",
 		},
 	];
 	const serviceItems = [
