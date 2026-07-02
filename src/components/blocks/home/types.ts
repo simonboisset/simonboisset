@@ -51,7 +51,6 @@ export type MigrationProgressItem = {
 
 export type HomeContent = {
 	hero: {
-		eyebrow: string;
 		title: string;
 		intro: string;
 		ctaPrimary: string;
