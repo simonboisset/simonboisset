@@ -1,7 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import {
+	ArticleCardLink,
+	ContentEmptyState,
+	ContentErrorState,
+	ContentHero,
+} from "@/components/blocks/editorial";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
 import { directus, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -64,7 +68,6 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 function BlogListPage() {
 	const { posts } = Route.useLoaderData();
 	const { t, localeParam } = useI18n();
-	const { capture } = useAnalytics();
 	const localeParams: Record<string, string> = localeParam
 		? { locale: localeParam }
 		: {};
@@ -72,63 +75,28 @@ function BlogListPage() {
 
 	return (
 		<div className="terminal-page">
-			<section className="terminal-hero">
-				<div className="relative mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-20 text-center">
-					<p className="terminal-label terminal-boot-line">
-						{t((t) => t.blog.heroLabel)}
-					</p>
-					<h1 className="terminal-heading terminal-boot-line text-4xl md:text-5xl">
-						{t((t) => t.blog.heroTitle)}
-					</h1>
-					<p className="terminal-muted mx-auto max-w-2xl text-lg">
-						{t((t) => t.blog.description)}
-					</p>
-				</div>
-			</section>
+			<ContentHero
+				label={t((t) => t.blog.heroLabel)}
+				title={t((t) => t.blog.heroTitle)}
+				description={t((t) => t.blog.description)}
+				containerClassName="flex max-w-6xl flex-col gap-6"
+				descriptionClassName="mx-auto max-w-2xl"
+			/>
 
 			<section className="terminal-section mx-auto w-full max-w-6xl px-6 pb-20 pt-12">
 				{posts.length === 0 ? (
-					<p className="terminal-card p-8 text-center">
-						{t((t) => t.blog.empty)}
-					</p>
+					<ContentEmptyState>{t((t) => t.blog.empty)}</ContentEmptyState>
 				) : (
 					<>
 						{featuredArticle ? (
 							<div className="mb-16">
-								<Link
-									to="/{-$locale}/blog/$slug"
-									params={{ ...localeParams, slug: featuredArticle.slug }}
-									className="block group hover:no-underline"
-									onClick={() =>
-										capture(ANALYTICS_EVENTS.contentClick, {
-											content_type: "blog",
-											slug: featuredArticle.slug,
-											title: featuredArticle.title,
-											placement: "blog_featured",
-										})
-									}
-								>
-									<div className="flex flex-col md:flex-row gap-8 md:items-center">
-										<div className="terminal-image-frame flex-1 aspect-[16/10]">
-											<ArticleImage
-												src={featuredArticle.imageUrl}
-												alt={featuredArticle.title}
-												className="terminal-image w-full h-full object-cover"
-											/>
-										</div>
-										<div className="flex-1">
-											<p className="terminal-label">
-												{t((t) => t.blog.featured)}
-											</p>
-											<h2 className="terminal-heading mt-3 text-3xl transition-colors group-hover:text-secondary md:text-4xl">
-												{featuredArticle.title}
-											</h2>
-											<div className="terminal-label mt-4 text-sm">
-												{featuredArticle.publishedAtLabel}
-											</div>
-										</div>
-									</div>
-								</Link>
+								<ArticleCardLink
+									article={featuredArticle}
+									localeParams={localeParams}
+									placement="blog_featured"
+									variant="featured"
+									featuredLabel={t((t) => t.blog.featured)}
+								/>
 							</div>
 						) : null}
 
@@ -157,25 +125,15 @@ function BlogListPage() {
 
 function BlogError({ error }: { error: Error }) {
 	const { t } = useI18n();
-	const { captureException } = useAnalytics();
-
-	useEffect(() => {
-		captureException(error, {
-			source: "blog_list",
-		});
-	}, [captureException, error]);
 
 	return (
-		<div className="terminal-page">
-			<div className="py-24 md:py-28 px-6 max-w-5xl mx-auto text-center">
-				<h1 className="mb-3 text-2xl font-semibold text-destructive md:text-3xl">
-					{t((t) => t.blog.errorTitleList)}
-				</h1>
-				<p className="text-muted-foreground">
-					{error.message || t((t) => t.blog.errorFallback)}
-				</p>
-			</div>
-		</div>
+		<ContentErrorState
+			error={error}
+			title={t((t) => t.blog.errorTitleList)}
+			fallback={t((t) => t.blog.errorFallback)}
+			source="blog_list"
+			containerClassName="md:py-28"
+		/>
 	);
 }
 
@@ -186,53 +144,12 @@ function ArticleCard({
 	article: PostSummary;
 	localeParams: Record<string, string>;
 }) {
-	const { capture } = useAnalytics();
-
 	return (
-		<Link
-			to="/{-$locale}/blog/$slug"
-			params={{ ...localeParams, slug: article.slug }}
-			className="block group hover:no-underline"
-			onClick={() =>
-				capture(ANALYTICS_EVENTS.contentClick, {
-					content_type: "blog",
-					slug: article.slug,
-					title: article.title,
-					placement: "blog_list",
-				})
-			}
-		>
-			<div className="terminal-card overflow-hidden">
-				<div className="terminal-image-frame aspect-[16/10] border-0 shadow-none">
-					<ArticleImage
-						src={article.imageUrl}
-						alt={article.title}
-						className="terminal-image w-full h-full object-cover"
-					/>
-				</div>
-				<div className="p-6">
-					<div className="terminal-label mb-3">{article.publishedAtLabel}</div>
-					<h4 className="terminal-heading text-lg transition-colors group-hover:text-secondary line-clamp-2">
-						{article.title}
-					</h4>
-				</div>
-			</div>
-		</Link>
+		<ArticleCardLink
+			article={article}
+			localeParams={localeParams}
+			placement="blog_list"
+			variant="grid"
+		/>
 	);
-}
-
-function ArticleImage({
-	src,
-	alt,
-	className,
-}: {
-	src: string | null;
-	alt: string;
-	className: string;
-}) {
-	if (!src) {
-		return <div className={`${className} bg-muted`} aria-hidden="true" />;
-	}
-
-	return <img src={src} alt={alt} className={className} />;
 }

@@ -1,7 +1,11 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { marked } from "marked";
-import { useEffect } from "react";
+import {
+	ArticleCardLink,
+	ArticleImage,
+	ContentErrorState,
+} from "@/components/blocks/editorial";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
@@ -11,9 +15,10 @@ import {
 	useAnalytics,
 	useContentReadTracking,
 } from "@/lib/analytics";
+import { type DatedPost, getClosestArticlesByDate } from "@/lib/blog";
 import { getBlogSeoOverride } from "@/lib/blog-seo";
 import { HERO_PHOTO_ASSET_ID, SCHEDULE_VISIO_URL } from "@/lib/constants";
-import { directus, type PostDetails, type PostSummary } from "@/lib/directus";
+import { directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
@@ -230,33 +235,6 @@ function SeoInsightSection({
 	);
 }
 
-type DatedPost = Pick<
-	PostSummary,
-	"slug" | "publishedAt" | "publishedAtLabel" | "title" | "imageUrl"
->;
-
-const getClosestArticlesByDate = (
-	currentPost: Pick<PostDetails, "slug" | "publishedAt">,
-	allPosts: PostSummary[],
-	count = 3,
-): DatedPost[] => {
-	const currentDate = toDateValue(currentPost.publishedAt);
-
-	return allPosts
-		.filter((post) => post.slug !== currentPost.slug)
-		.map((post) => ({
-			...post,
-			dateDiff: Math.abs(toDateValue(post.publishedAt) - currentDate),
-		}))
-		.sort((a, b) => a.dateDiff - b.dateDiff)
-		.slice(0, count);
-};
-
-const toDateValue = (value: string) => {
-	const time = new Date(value).getTime();
-	return Number.isNaN(time) ? 0 : time;
-};
-
 function SuggestedArticleCard({
 	article,
 	localeParams,
@@ -264,77 +242,25 @@ function SuggestedArticleCard({
 	article: DatedPost;
 	localeParams: Record<string, string>;
 }) {
-	const { capture } = useAnalytics();
-
 	return (
-		<Link
-			to="/{-$locale}/blog/$slug"
-			params={{ ...localeParams, slug: article.slug }}
-			className="block group hover:no-underline"
-			onClick={() =>
-				capture(ANALYTICS_EVENTS.contentClick, {
-					content_type: "blog",
-					slug: article.slug,
-					title: article.title,
-					placement: "blog_suggested",
-				})
-			}
-		>
-			<div className="terminal-card overflow-hidden">
-				<div className="terminal-image-frame aspect-[16/10] border-0 shadow-none">
-					<ArticleImage
-						src={article.imageUrl}
-						alt={article.title}
-						className="terminal-image w-full h-full object-cover"
-					/>
-				</div>
-				<div className="p-4 md:p-6">
-					<div className="terminal-label mb-2">{article.publishedAtLabel}</div>
-					<h4 className="terminal-heading text-base transition-colors group-hover:text-secondary md:text-lg line-clamp-2">
-						{article.title}
-					</h4>
-				</div>
-			</div>
-		</Link>
+		<ArticleCardLink
+			article={article}
+			localeParams={localeParams}
+			placement="blog_suggested"
+			variant="compact"
+		/>
 	);
 }
 
 function BlogPostError({ error }: { error: Error }) {
 	const { t } = useI18n();
-	const { captureException } = useAnalytics();
-
-	useEffect(() => {
-		captureException(error, {
-			source: "blog_detail",
-		});
-	}, [captureException, error]);
 
 	return (
-		<div className="terminal-page">
-			<div className="py-24 px-6 max-w-5xl mx-auto text-center">
-				<h1 className="mb-3 text-2xl font-semibold text-destructive md:text-3xl">
-					{t((t) => t.blog.errorTitleDetail)}
-				</h1>
-				<p className="text-muted-foreground">
-					{error.message || t((t) => t.blog.errorFallback)}
-				</p>
-			</div>
-		</div>
+		<ContentErrorState
+			error={error}
+			title={t((t) => t.blog.errorTitleDetail)}
+			fallback={t((t) => t.blog.errorFallback)}
+			source="blog_detail"
+		/>
 	);
-}
-
-function ArticleImage({
-	src,
-	alt,
-	className,
-}: {
-	src: string | null;
-	alt: string;
-	className: string;
-}) {
-	if (!src) {
-		return <div className={`${className} bg-muted`} aria-hidden="true" />;
-	}
-
-	return <img src={src} alt={alt} className={className} />;
 }

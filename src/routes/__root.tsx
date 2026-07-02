@@ -8,17 +8,10 @@ import {
 	useRouter,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { PostHogProvider } from "posthog-js/react";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { AnalyticsProvider, RootShell } from "@/components/blocks/RootShell";
 import { Button } from "@/components/ui/button";
-import { env } from "@/env";
-import {
-	ANALYTICS_EVENTS,
-	buildPageViewProperties,
-	getUtmParams,
-	useAnalytics,
-	useAnalyticsConsent,
-} from "@/lib/analytics";
+import { usePageViewAnalytics } from "@/hooks/use-page-view-analytics";
 import { directus } from "@/lib/directus";
 import {
 	addLocaleToPathname,
@@ -33,9 +26,6 @@ import {
 	stripLocaleFromPathname,
 } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import ConsentBanner from "../components/blocks/ConsentBanner";
-import Header from "../components/blocks/Header";
-import SiteFooter from "../components/blocks/SiteFooter";
 
 import appCss from "../styles.css?url";
 
@@ -139,32 +129,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
 	const isCvRoute =
 		stripLocaleFromPathname(router.state.location.pathname) === "/cv";
-	const { capture, register, registerOnce } = useAnalytics();
-	const { state: consentState } = useAnalyticsConsent({
-		syncWithPosthog: false,
-	});
-	const pageLeaveRef = useRef<{
-		startedAt: number;
-		properties: Record<string, unknown>;
-		captured: boolean;
-	} | null>(null);
-
-	const capturePageLeave = useCallback(
-		(reason: string) => {
-			const entry = pageLeaveRef.current;
-			if (!entry || entry.captured) return;
-
-			entry.captured = true;
-			const durationSeconds = Math.round((Date.now() - entry.startedAt) / 1000);
-
-			capture(ANALYTICS_EVENTS.pageLeave, {
-				...entry.properties,
-				duration_seconds: durationSeconds,
-				reason,
-			});
-		},
-		[capture],
-	);
+	usePageViewAnalytics(locale);
 
 	useEffect(() => {
 		setLocaleCookie(locale);
@@ -173,71 +138,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 		}
 	}, [locale]);
 
-	useEffect(() => {
-		if (consentState !== "granted") return;
-		if (typeof window === "undefined") return;
-
-		const { pathname, searchStr, hash } = router.state.location;
-		const currentUrl = window.location.href;
-		const pageProperties = buildPageViewProperties({
-			pathname,
-			searchStr,
-			hash,
-			locale,
-		});
-		const utmParams = getUtmParams(searchStr);
-
-		if (Object.keys(utmParams).length > 0) {
-			registerOnce(utmParams);
-		}
-
-		register({ locale });
-
-		pageLeaveRef.current = {
-			startedAt: Date.now(),
-			properties: {
-				$current_url: currentUrl,
-				...pageProperties,
-			},
-			captured: false,
-		};
-
-		capture(ANALYTICS_EVENTS.pageView, {
-			$current_url: currentUrl,
-			...pageProperties,
-		});
-
-		const handleVisibilityChange = () => {
-			if (document.visibilityState === "hidden") {
-				capturePageLeave("visibility_hidden");
-			}
-		};
-
-		const handlePageHide = () => {
-			capturePageLeave("page_hide");
-		};
-
-		document.addEventListener("visibilitychange", handleVisibilityChange);
-		window.addEventListener("pagehide", handlePageHide);
-
-		return () => {
-			capturePageLeave("route_change");
-			document.removeEventListener("visibilitychange", handleVisibilityChange);
-			window.removeEventListener("pagehide", handlePageHide);
-		};
-	}, [
-		capture,
-		capturePageLeave,
-		consentState,
-		locale,
-		register,
-		registerOnce,
-		router.state.location.hash,
-		router.state.location.pathname,
-		router.state.location.searchStr,
-		router.state.location,
-	]);
-
 	return (
 		<html lang={locale}>
 			<head>
@@ -245,18 +145,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				<AnalyticsProvider>
-					{isCvRoute ? (
-						<main>{children}</main>
-					) : (
-						<>
-							<div className="min-h-screen flex flex-col">
-								<Header blogPosts={blogPreview} />
-								<main className="flex-1">{children}</main>
-								<SiteFooter />
-							</div>
-							{env.VITE_POSTHOG_KEY ? <ConsentBanner /> : null}
-						</>
-					)}
+					<RootShell blogPreview={blogPreview} isCvRoute={isCvRoute}>
+						{children}
+					</RootShell>
 				</AnalyticsProvider>
 				{import.meta.env.DEV ? (
 					<TanStackDevtools
@@ -293,28 +184,5 @@ function NotFound() {
 				</Button>
 			</div>
 		</div>
-	);
-}
-
-function AnalyticsProvider({ children }: { children: React.ReactNode }) {
-	if (!env.VITE_POSTHOG_KEY) {
-		return <>{children}</>;
-	}
-
-	return (
-		<PostHogProvider
-			apiKey={env.VITE_POSTHOG_KEY}
-			options={{
-				api_host: env.VITE_POSTHOG_HOST ?? "https://eu.i.posthog.com",
-				opt_out_capturing_persistence_type: "localStorage",
-				cookieless_mode: "on_reject",
-				opt_out_capturing_by_default: true,
-				capture_pageview: false,
-				enable_heatmaps: true,
-				capture_exceptions: true,
-			}}
-		>
-			{children}
-		</PostHogProvider>
 	);
 }

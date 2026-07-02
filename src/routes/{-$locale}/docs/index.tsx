@@ -1,5 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ANALYTICS_EVENTS, useAnalytics } from "@/lib/analytics";
+import { createFileRoute } from "@tanstack/react-router";
+import {
+	ContentEmptyState,
+	ContentHero,
+	DocumentCardLink,
+} from "@/components/blocks/editorial";
 import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
@@ -34,25 +38,18 @@ function DocsIndexPage() {
 
 	return (
 		<div className="terminal-page">
-			<section className="terminal-hero">
-				<div className="relative mx-auto w-full max-w-4xl px-6 py-20 text-center">
-					<p className="terminal-label terminal-boot-line">
-						{t((t) => t.docs.heroLabel)}
-					</p>
-					<h1 className="terminal-heading terminal-boot-line mt-4 text-4xl md:text-5xl">
-						{t((t) => t.docs.heroTitle)}
-					</h1>
-					<p className="terminal-muted mt-4 text-lg">
-						{t((t) => t.docs.heroDescription)}
-					</p>
-				</div>
-			</section>
+			<ContentHero
+				label={t((t) => t.docs.heroLabel)}
+				title={t((t) => t.docs.heroTitle)}
+				description={t((t) => t.docs.heroDescription)}
+				containerClassName="max-w-4xl"
+				titleClassName="mt-4"
+				descriptionClassName="mt-4"
+			/>
 
 			<section className="terminal-section mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
 				{docs.length === 0 ? (
-					<p className="terminal-card p-8 text-center">
-						{t((t) => t.docs.empty)}
-					</p>
+					<ContentEmptyState>{t((t) => t.docs.empty)}</ContentEmptyState>
 				) : (
 					<div className="grid gap-6 md:grid-cols-2">
 						{docs.map((doc: DocSummary) => (
@@ -73,28 +70,15 @@ function DocsCard({
 	localeParams: Record<string, string>;
 }) {
 	const { t } = useI18n();
-	const { capture } = useAnalytics();
 	const description = getDocDescription(doc.slug, t);
 
 	return (
-		<Link
-			to="/{-$locale}/docs/$slug"
-			params={{ ...localeParams, slug: doc.slug }}
-			className="terminal-card p-8 transition hover:no-underline"
-			onClick={() =>
-				capture(ANALYTICS_EVENTS.contentClick, {
-					content_type: "doc",
-					slug: doc.slug,
-					title: doc.title,
-					placement: "docs_list",
-				})
-			}
-		>
-			<h2 className="terminal-heading pr-8 text-xl">{doc.title}</h2>
-			{description ? (
-				<p className="terminal-muted mt-3 text-sm">{description}</p>
-			) : null}
-		</Link>
+		<DocumentCardLink
+			doc={doc}
+			localeParams={localeParams}
+			description={description}
+			variant="grid"
+		/>
 	);
 }
 

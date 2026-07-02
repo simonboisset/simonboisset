@@ -1,5 +1,6 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { marked } from "marked";
+import { ContentHero, DocumentCardLink } from "@/components/blocks/editorial";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { useContentReadTracking } from "@/lib/analytics";
 import { type DocSummary, directus } from "@/lib/directus";
@@ -60,21 +61,18 @@ function DocsDetailPage() {
 
 	return (
 		<div className="terminal-page">
-			<section className="terminal-hero">
-				<div className="relative mx-auto w-full max-w-4xl px-6 py-20 text-center">
-					<p className="terminal-label terminal-boot-line">
-						{t((t) => t.docs.heroLabel)}
+			<ContentHero
+				label={t((t) => t.docs.heroLabel)}
+				title={doc.title}
+				containerClassName="max-w-4xl"
+				titleClassName="mt-4"
+			>
+				{doc.updatedAtLabel ? (
+					<p className="terminal-label mt-4 text-sm">
+						{t((t) => t.docs.effectiveDate)}: {doc.updatedAtLabel}
 					</p>
-					<h1 className="terminal-heading terminal-boot-line mt-4 text-4xl md:text-5xl">
-						{doc.title}
-					</h1>
-					{doc.updatedAtLabel ? (
-						<p className="terminal-label mt-4 text-sm">
-							{t((t) => t.docs.effectiveDate)}: {doc.updatedAtLabel}
-						</p>
-					) : null}
-				</div>
-			</section>
+				) : null}
+			</ContentHero>
 
 			<section className="terminal-section mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
 				<div className="terminal-card p-8">
@@ -84,14 +82,12 @@ function DocsDetailPage() {
 				{otherDocs.length > 0 ? (
 					<div className="mt-10 grid gap-4 md:grid-cols-2">
 						{otherDocs.map((item: DocSummary) => (
-							<Link
+							<DocumentCardLink
 								key={item.slug}
-								to="/{-$locale}/docs/$slug"
-								params={{ ...localeParams, slug: item.slug }}
-								className="terminal-card p-6 text-sm transition hover:no-underline"
-							>
-								{item.title}
-							</Link>
+								doc={item}
+								localeParams={localeParams}
+								variant="compact"
+							/>
 						))}
 					</div>
 				) : null}
