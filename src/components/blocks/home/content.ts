@@ -41,7 +41,6 @@ export function buildHomeContent(
 			description: t((t) => t.home.testimonialsSection.description),
 		},
 		methodSection: {
-			label: t((t) => t.home.method.label),
 			title: t((t) => t.home.method.title),
 			description: t((t) => t.home.method.description),
 		},

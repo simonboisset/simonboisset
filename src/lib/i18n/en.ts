@@ -277,7 +277,6 @@ export const en = {
 			},
 		},
 		method: {
-			label: "Migration method",
 			title: "From your current app to an Expo release",
 			description:
 				"You keep the product moving. I remove the Expo blockers, prove the release path, then hand the workflow back to your team.",

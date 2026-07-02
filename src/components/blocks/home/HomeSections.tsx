@@ -191,7 +191,6 @@ export function HomeMethodSection({
 			<div className="mx-auto w-full max-w-6xl px-6">
 				<div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
 					<div>
-						<p className="terminal-label">{content.methodSection.label}</p>
 						<h2 className="terminal-heading text-3xl md:text-4xl">
 							{content.methodSection.title}
 						</h2>
