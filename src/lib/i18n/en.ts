@@ -190,7 +190,6 @@ export const en = {
 	},
 	home: {
 		hero: {
-			eyebrow: "For React Native CTOs and lead techs",
 			title: "React Native to Expo migration.",
 			intro:
 				"I help your team migrate to Expo/EAS without blocking releases or losing ownership.",

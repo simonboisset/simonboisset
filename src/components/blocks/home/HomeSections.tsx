@@ -32,9 +32,6 @@ export function HomeHeroSection({
 		<section className="section-hero">
 			<div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-[1.1fr_0.9fr]">
 				<div className="space-y-8">
-					<p className="text-kicker motion-safe:animate-boot-line">
-						{content.eyebrow}
-					</p>
 					<h1 className="text-heading text-cursor motion-safe:animate-boot-line text-4xl md:text-6xl">
 						{content.title}
 					</h1>

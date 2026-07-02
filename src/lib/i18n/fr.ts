@@ -197,7 +197,6 @@ export const fr: Translations = {
 	},
 	home: {
 		hero: {
-			eyebrow: "Pour CTO et lead tech React Native",
 			title: "Migration React Native vers Expo.",
 			intro:
 				"J'aide votre équipe à migrer vers Expo/EAS sans bloquer les releases ni perdre la main.",

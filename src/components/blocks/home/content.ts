@@ -21,7 +21,6 @@ export function buildHomeContent(
 ): HomeContent {
 	return {
 		hero: {
-			eyebrow: t((t) => t.home.hero.eyebrow),
 			title: t((t) => t.home.hero.title),
 			intro: t((t) => t.home.hero.intro),
 			ctaPrimary: t((t) => t.home.hero.ctaPrimary),
