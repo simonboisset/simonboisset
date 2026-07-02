@@ -14,7 +14,9 @@ export function buildHomeContent(
 	t: Translator,
 	assets: Pick<
 		HomeAssets,
-		"legacyServiceIllustrationUrl" | "workflowServiceIllustrationUrl"
+		| "legacyServiceIllustrationUrl"
+		| "risksIllustrationUrl"
+		| "workflowServiceIllustrationUrl"
 	>,
 ): HomeContent {
 	return {
@@ -91,7 +93,7 @@ export function buildHomeContent(
 				title: t((t) => t.home.risks.stores.title),
 				description: t((t) => t.home.risks.stores.description),
 				bullet: t((t) => t.home.risks.stores.bullet),
-				illustrationUrl: null,
+				illustrationUrl: assets.risksIllustrationUrl,
 			},
 			{
 				title: t((t) => t.home.risks.handoff.title),
