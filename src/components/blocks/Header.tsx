@@ -80,8 +80,8 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 	return (
 		<header className="sticky top-0 z-50 border-b-2 border-secondary/50 bg-background/92 backdrop-blur">
 			<div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
-				<div className="flex items-center justify-between gap-4 md:contents">
-					<div className="flex min-w-0 items-center gap-6">
+				<div className="relative flex items-center justify-between gap-4 md:contents">
+					<div className="relative z-10 flex min-w-0 items-center gap-6">
 						<Link
 							to="/{-$locale}"
 							params={localeParams}
@@ -93,9 +93,9 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 							{t((t) => t.nav.tagline)}
 						</span>
 					</div>
-					<nav className="flex shrink-0 items-center gap-4 text-sm text-muted-foreground md:gap-6">
-						<NavigationMenu className="max-w-max flex-none justify-start">
-							<NavigationMenuList className="flex flex-nowrap justify-start gap-2">
+					<nav className="pointer-events-none absolute inset-x-0 flex items-center justify-center text-sm text-muted-foreground md:pointer-events-auto md:static md:inset-auto md:shrink-0 md:items-center md:gap-6">
+						<NavigationMenu className="pointer-events-auto w-[calc(100vw-3rem)] max-w-[calc(100vw-3rem)] flex-none justify-center md:w-auto md:max-w-max md:justify-start">
+							<NavigationMenuList className="flex flex-nowrap justify-center gap-2 md:justify-start">
 								<NavigationMenuItem>
 									<NavigationMenuTrigger className={triggerClassName}>
 										{t((t) => t.nav.about)}
