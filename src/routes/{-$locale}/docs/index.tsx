@@ -37,7 +37,7 @@ function DocsIndexPage() {
 		: {};
 
 	return (
-		<div className="terminal-page">
+		<>
 			<ContentHero
 				label={t((t) => t.docs.heroLabel)}
 				title={t((t) => t.docs.heroTitle)}
@@ -47,7 +47,7 @@ function DocsIndexPage() {
 				descriptionClassName="mt-4"
 			/>
 
-			<section className="terminal-section mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
+			<section className="section-divider mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
 				{docs.length === 0 ? (
 					<ContentEmptyState>{t((t) => t.docs.empty)}</ContentEmptyState>
 				) : (
@@ -58,7 +58,7 @@ function DocsIndexPage() {
 					</div>
 				)}
 			</section>
-		</div>
+		</>
 	);
 }
 

@@ -30,34 +30,32 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 		});
 	},
 	pendingComponent: () => (
-		<div className="terminal-page">
-			<div className="py-24 md:py-28 px-6 max-w-6xl mx-auto">
-				<div className="text-center mb-16">
-					<Skeleton className="h-10 w-32 mx-auto mb-4" />
-					<Skeleton className="h-5 w-80 mx-auto" />
-				</div>
-				<div className="mb-16">
-					<div className="flex flex-col md:flex-row gap-8 md:items-center">
-						<Skeleton className="flex-1 aspect-[16/10]" />
-						<div className="flex-1">
-							<Skeleton className="h-10 w-3/4 mb-4" />
-							<Skeleton className="h-4 w-40" />
-						</div>
+		<div className="py-24 md:py-28 px-6 max-w-6xl mx-auto">
+			<div className="text-center mb-16">
+				<Skeleton className="h-10 w-32 mx-auto mb-4" />
+				<Skeleton className="h-5 w-80 mx-auto" />
+			</div>
+			<div className="mb-16">
+				<div className="flex flex-col md:flex-row gap-8 md:items-center">
+					<Skeleton className="flex-1 aspect-[16/10]" />
+					<div className="flex-1">
+						<Skeleton className="h-10 w-3/4 mb-4" />
+						<Skeleton className="h-4 w-40" />
 					</div>
 				</div>
-				<div>
-					<Skeleton className="h-7 w-40 mb-8" />
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-						{[...Array(6)].map((_, i) => (
-							<div key={i} className="rounded-xl overflow-hidden">
-								<Skeleton className="aspect-[16/10] w-full" />
-								<div className="p-6">
-									<Skeleton className="h-4 w-28 mb-3" />
-									<Skeleton className="h-5 w-3/4" />
-								</div>
+			</div>
+			<div>
+				<Skeleton className="h-7 w-40 mb-8" />
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+					{[...Array(6)].map((_, i) => (
+						<div key={i} className="overflow-hidden rounded-lg">
+							<Skeleton className="aspect-[16/10] w-full" />
+							<div className="p-6">
+								<Skeleton className="h-4 w-28 mb-3" />
+								<Skeleton className="h-5 w-3/4" />
 							</div>
-						))}
-					</div>
+						</div>
+					))}
 				</div>
 			</div>
 		</div>
@@ -74,7 +72,7 @@ function BlogListPage() {
 	const [featuredArticle, ...otherArticles] = posts;
 
 	return (
-		<div className="terminal-page">
+		<>
 			<ContentHero
 				label={t((t) => t.blog.heroLabel)}
 				title={t((t) => t.blog.heroTitle)}
@@ -83,7 +81,7 @@ function BlogListPage() {
 				descriptionClassName="mx-auto max-w-2xl"
 			/>
 
-			<section className="terminal-section mx-auto w-full max-w-6xl px-6 pb-20 pt-12">
+			<section className="section-divider mx-auto w-full max-w-6xl px-6 pb-20 pt-12">
 				{posts.length === 0 ? (
 					<ContentEmptyState>{t((t) => t.blog.empty)}</ContentEmptyState>
 				) : (
@@ -102,7 +100,7 @@ function BlogListPage() {
 
 						{otherArticles.length > 0 ? (
 							<div>
-								<h3 className="terminal-heading mb-8 text-2xl">
+								<h3 className="text-heading mb-8 text-2xl">
 									{t((t) => t.blog.latest)}
 								</h3>
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -119,7 +117,7 @@ function BlogListPage() {
 					</>
 				)}
 			</section>
-		</div>
+		</>
 	);
 }
 

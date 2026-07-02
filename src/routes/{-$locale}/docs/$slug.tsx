@@ -2,6 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { marked } from "marked";
 import { ContentHero, DocumentCardLink } from "@/components/blocks/editorial";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
+import { Card } from "@/components/ui/card";
 import { useContentReadTracking } from "@/lib/analytics";
 import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
@@ -60,7 +61,7 @@ function DocsDetailPage() {
 	});
 
 	return (
-		<div className="terminal-page">
+		<>
 			<ContentHero
 				label={t((t) => t.docs.heroLabel)}
 				title={doc.title}
@@ -68,16 +69,16 @@ function DocsDetailPage() {
 				titleClassName="mt-4"
 			>
 				{doc.updatedAtLabel ? (
-					<p className="terminal-label mt-4 text-sm">
+					<p className="text-kicker mt-4 text-sm">
 						{t((t) => t.docs.effectiveDate)}: {doc.updatedAtLabel}
 					</p>
 				) : null}
 			</ContentHero>
 
-			<section className="terminal-section mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
-				<div className="terminal-card p-8">
+			<section className="section-divider mx-auto w-full max-w-4xl px-6 pb-20 pt-12">
+				<Card showPin={false} className="p-8">
 					<MarkdownContent contentHtml={contentHtml} />
-				</div>
+				</Card>
 
 				{otherDocs.length > 0 ? (
 					<div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -92,6 +93,6 @@ function DocsDetailPage() {
 					</div>
 				) : null}
 			</section>
-		</div>
+		</>
 	);
 }

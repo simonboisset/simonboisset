@@ -30,8 +30,8 @@ export function CvDocument({
 	const { cv, experience, projects, education } = content;
 
 	return (
-		<div className="cv-page bg-[#f6f1ea] px-4 py-8 text-slate-900 md:px-6 md:py-10">
-			<article className="cv-sheet mx-auto w-full max-w-[210mm] rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+		<div className="bg-[#f6f1ea] px-4 py-8 text-slate-900 print:bg-white print:p-0 md:px-6 md:py-10">
+			<article className="mx-auto w-full max-w-[210mm] rounded-2xl border border-slate-200 bg-white p-6 shadow-sm print:m-0 print:min-h-[297mm] print:w-[210mm] print:max-w-[210mm] print:rounded-none print:border-0 print:p-0 print:shadow-none md:p-10">
 				<CvHeader cv={cv} heroPhotoUrl={heroPhotoUrl} />
 
 				<CvSection title={cv.sections.experience}>
@@ -41,9 +41,12 @@ export function CvDocument({
 							title={`${item.role} · ${item.company}`}
 							right={[item.period]}
 						>
-							<ul className="cv-detail-list mt-2 grid gap-1 pl-4 text-sm text-slate-700">
+							<ul className="mt-2 grid gap-1 pl-4 text-sm text-slate-700 print:mt-[0.3rem] print:gap-[0.1rem] print:pl-[0.9rem]">
 								{item.bullets.map((bullet) => (
-									<li key={bullet} className="list-disc">
+									<li
+										key={bullet}
+										className="list-disc print:text-[11.5px] print:leading-[1.2]"
+									>
 										{bullet}
 									</li>
 								))}
@@ -59,12 +62,15 @@ export function CvDocument({
 							title={project.name}
 							right={project.stack.split(",").map((tech) => tech.trim())}
 						>
-							<p className="cv-detail-text mt-2 text-sm text-slate-700">
+							<p className="mt-2 text-sm text-slate-700 print:mt-0 print:text-xs print:leading-[1.25]">
 								{project.context}
 							</p>
-							<ul className="cv-detail-list mt-2 grid gap-1 pl-4 text-sm text-slate-700">
+							<ul className="mt-2 grid gap-1 pl-4 text-sm text-slate-700 print:mt-[0.3rem] print:gap-[0.1rem] print:pl-[0.9rem]">
 								{project.highlights.map((highlight) => (
-									<li key={highlight} className="list-disc">
+									<li
+										key={highlight}
+										className="list-disc print:text-[11.5px] print:leading-[1.2]"
+									>
 										{highlight}
 									</li>
 								))}
@@ -80,10 +86,10 @@ export function CvDocument({
 							title={item.degree}
 							right={[item.period]}
 						>
-							<p className="cv-detail-text mt-1 text-sm text-slate-700">
+							<p className="mt-1 text-sm text-slate-700 print:text-xs print:leading-[1.25]">
 								{item.school}
 							</p>
-							<p className="cv-detail-text mt-1 text-sm text-slate-700">
+							<p className="mt-1 text-sm text-slate-700 print:text-xs print:leading-[1.25]">
 								{item.details}
 							</p>
 						</CvListItem>
@@ -102,8 +108,8 @@ function CvHeader({
 	heroPhotoUrl: string;
 }) {
 	return (
-		<header className="cv-avoid-break border-b border-slate-200 pb-6">
-			<div className="cv-header-grid grid gap-5 md:grid-cols-[1.45fr_0.75fr] md:items-start">
+		<header className="print:break-inside-avoid border-b border-slate-200 pb-6">
+			<div className="grid gap-5 print:grid-cols-[1.45fr_0.75fr] print:items-start md:grid-cols-[1.45fr_0.75fr] md:items-start">
 				<div>
 					<h1 className="text-3xl font-semibold tracking-tight text-slate-900">
 						{cv.header.name}
@@ -114,8 +120,8 @@ function CvHeader({
 						{cv.summary}
 					</p>
 				</div>
-				<div className="cv-header-aside cv-avoid-break mx-auto w-full max-w-[170px] md:justify-self-end">
-					<div className="cv-avatar mx-auto aspect-square w-[132px] overflow-hidden rounded-full border-4 border-teal-100 bg-amber-50 shadow-sm">
+				<div className="print:break-inside-avoid mx-auto w-full max-w-[170px] print:justify-self-end md:justify-self-end">
+					<div className="mx-auto aspect-square w-[132px] overflow-hidden rounded-full border-4 border-teal-100 bg-amber-50 shadow-sm print:overflow-hidden print:rounded-full print:shadow-none">
 						<img
 							src={heroPhotoUrl}
 							alt={cv.header.name}
@@ -123,7 +129,7 @@ function CvHeader({
 							loading="eager"
 						/>
 					</div>
-					<ul className="cv-contact-icons mt-4 flex flex-nowrap items-center justify-center gap-2 md:justify-end">
+					<ul className="mt-4 flex flex-nowrap items-center justify-center gap-2 print:justify-end md:justify-end">
 						<li>
 							<IconBadgeLink
 								href={`mailto:${cv.header.email}`}
@@ -167,8 +173,10 @@ function CvSection({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className="cv-section mt-6">
-			<h2 className="cv-section-title">{title}</h2>
+		<section className="mt-6 print:mt-3">
+			<h2 className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-600">
+				{title}
+			</h2>
 			<div className="mt-3 grid gap-4">{children}</div>
 		</section>
 	);
@@ -190,7 +198,7 @@ function IconBadgeLink({
 			rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
 			aria-label={label}
 			title={label}
-			className="cv-icon-badge inline-flex size-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-700"
+			className="inline-flex size-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-teal-300 hover:text-teal-700 print:rounded-full print:shadow-none print:no-underline"
 		>
 			<span aria-hidden="true">{icon}</span>
 			<span className="sr-only">{label}</span>
@@ -216,7 +224,7 @@ function CvListItem({
 	children: React.ReactNode;
 }) {
 	return (
-		<article className="cv-list-item cv-avoid-break border-b border-slate-100 pb-4 last:border-b-0 last:pb-0">
+		<article className="print:break-inside-avoid border-b border-slate-100 pb-4 last:border-b-0 last:pb-0 print:pb-[0.45rem]">
 			<div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
 				<h3 className="text-sm font-semibold text-slate-900">{title}</h3>
 				{right && right.length > 0 ? (

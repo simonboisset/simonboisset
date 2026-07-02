@@ -75,13 +75,13 @@ const Char123LocaleChar125BlogSlugRoute =
 export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
-  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
-  '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
-  '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
+  '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
+  '/{-$locale}/docs/': typeof Char123LocaleChar125DocsIndexRoute
 }
 export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -111,13 +111,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/sitemap.xml'
     | '/{-$locale}/cv'
-    | '/{-$locale}'
+    | '/{-$locale}/'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
-    | '/{-$locale}/blog'
-    | '/{-$locale}/docs'
+    | '/{-$locale}/blog/'
+    | '/{-$locale}/docs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/sitemap.xml'
@@ -166,7 +166,7 @@ declare module '@tanstack/react-router' {
     '/{-$locale}/': {
       id: '/{-$locale}/'
       path: '/{-$locale}'
-      fullPath: '/{-$locale}'
+      fullPath: '/{-$locale}/'
       preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -180,14 +180,14 @@ declare module '@tanstack/react-router' {
     '/{-$locale}/docs/': {
       id: '/{-$locale}/docs/'
       path: '/{-$locale}/docs'
-      fullPath: '/{-$locale}/docs'
+      fullPath: '/{-$locale}/docs/'
       preLoaderRoute: typeof Char123LocaleChar125DocsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/blog/': {
       id: '/{-$locale}/blog/'
       path: '/{-$locale}/blog'
-      fullPath: '/{-$locale}/blog'
+      fullPath: '/{-$locale}/blog/'
       preLoaderRoute: typeof Char123LocaleChar125BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
