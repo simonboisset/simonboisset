@@ -80,94 +80,99 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 	return (
 		<header className="sticky top-0 z-50 border-b-2 border-secondary/50 bg-background/92 backdrop-blur">
 			<div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-4 md:flex-row md:items-center md:justify-between">
-				<div className="flex items-center justify-between gap-6">
-					<Link
-						to="/{-$locale}"
-						params={localeParams}
-						className="terminal-cursor text-lg font-semibold tracking-tight text-foreground hover:text-secondary"
-					>
-						{t((t) => t.nav.brand)}
-					</Link>
-					<span className="terminal-label hidden md:inline">
-						{t((t) => t.nav.tagline)}
-					</span>
-				</div>
-				<nav className="flex w-full flex-wrap items-center gap-4 text-sm text-muted-foreground md:w-auto md:gap-6">
-					<NavigationMenu className="w-full max-w-full flex-none justify-start md:w-auto md:max-w-max">
-						<NavigationMenuList className="flex w-full flex-wrap justify-start gap-2 md:w-auto md:flex-nowrap">
-							<NavigationMenuItem>
-								<NavigationMenuTrigger className={triggerClassName}>
-									{t((t) => t.nav.about)}
-								</NavigationMenuTrigger>
-								<NavigationMenuContent className="w-[calc(100vw-3rem)] max-w-[420px] p-4 md:w-[420px]">
-									<ul className="grid gap-3">
-										{aboutItems.map((item) => (
-											<HeaderMenuLink
-												key={item.hash}
-												title={item.title}
-												description={item.description}
-												to="/{-$locale}"
-												params={localeParams}
-												hash={item.hash}
-											/>
-										))}
-										<HeaderMenuExternalLink
-											title={t((t) => t.footer.github)}
-											description={t((t) => t.nav.aboutItems.github)}
-											href={GITHUB_URL}
-											variant="brand"
-											icon={<Github className="h-4 w-4" aria-hidden="true" />}
-											onClick={() =>
-												capture(ANALYTICS_EVENTS.ctaClick, {
-													cta: "github",
-													placement: "header_menu",
-													href: GITHUB_URL,
-												})
-											}
-										/>
-									</ul>
-								</NavigationMenuContent>
-							</NavigationMenuItem>
-							<NavigationMenuItem>
-								<NavigationMenuTrigger
-									className={cn(
-										triggerClassName,
-										isBlogActive && "border-secondary bg-muted text-secondary",
-									)}
-								>
-									{t((t) => t.nav.blog)}
-								</NavigationMenuTrigger>
-								<NavigationMenuContent className="w-[calc(100vw-3rem)] max-w-[480px] p-4 md:w-[480px]">
-									<div className="flex items-center justify-between px-1 pb-2">
-										<p className="terminal-label">{t((t) => t.blog.latest)}</p>
-										<Link
-											to="/{-$locale}/blog"
-											params={localeParams}
-											className="text-xs font-semibold uppercase tracking-[0.08em] text-secondary hover:text-accent"
-										>
-											{t((t) => t.nav.blogAll)}
-										</Link>
-									</div>
-									{blogPreview.length === 0 ? (
-										<p className="terminal-card p-4 text-sm">
-											{t((t) => t.blog.empty)}
-										</p>
-									) : (
-										<ul className="grid gap-3 md:grid-cols-2">
-											{blogPreview.map((post) => (
-												<HeaderBlogPreviewLink
-													key={post.slug}
-													post={post}
-													localeParams={localeParams}
+				<div className="flex items-center justify-between gap-4 md:contents">
+					<div className="flex min-w-0 items-center gap-6">
+						<Link
+							to="/{-$locale}"
+							params={localeParams}
+							className="terminal-cursor truncate text-lg font-semibold tracking-tight text-foreground hover:text-secondary"
+						>
+							{t((t) => t.nav.brand)}
+						</Link>
+						<span className="terminal-label hidden md:inline">
+							{t((t) => t.nav.tagline)}
+						</span>
+					</div>
+					<nav className="flex shrink-0 items-center gap-4 text-sm text-muted-foreground md:gap-6">
+						<NavigationMenu className="max-w-max flex-none justify-start">
+							<NavigationMenuList className="flex flex-nowrap justify-start gap-2">
+								<NavigationMenuItem>
+									<NavigationMenuTrigger className={triggerClassName}>
+										{t((t) => t.nav.about)}
+									</NavigationMenuTrigger>
+									<NavigationMenuContent className="w-[calc(100vw-3rem)] max-w-[420px] p-4 md:w-[420px]">
+										<ul className="grid gap-3">
+											{aboutItems.map((item) => (
+												<HeaderMenuLink
+													key={item.hash}
+													title={item.title}
+													description={item.description}
+													to="/{-$locale}"
+													params={localeParams}
+													hash={item.hash}
 												/>
 											))}
+											<HeaderMenuExternalLink
+												title={t((t) => t.footer.github)}
+												description={t((t) => t.nav.aboutItems.github)}
+												href={GITHUB_URL}
+												variant="brand"
+												icon={<Github className="h-4 w-4" aria-hidden="true" />}
+												onClick={() =>
+													capture(ANALYTICS_EVENTS.ctaClick, {
+														cta: "github",
+														placement: "header_menu",
+														href: GITHUB_URL,
+													})
+												}
+											/>
 										</ul>
-									)}
-								</NavigationMenuContent>
-							</NavigationMenuItem>
-						</NavigationMenuList>
-					</NavigationMenu>
-				</nav>
+									</NavigationMenuContent>
+								</NavigationMenuItem>
+								<NavigationMenuItem>
+									<NavigationMenuTrigger
+										className={cn(
+											triggerClassName,
+											isBlogActive &&
+												"border-secondary bg-muted text-secondary",
+										)}
+									>
+										{t((t) => t.nav.blog)}
+									</NavigationMenuTrigger>
+									<NavigationMenuContent className="w-[calc(100vw-3rem)] max-w-[480px] p-4 md:w-[480px]">
+										<div className="flex items-center justify-between px-1 pb-2">
+											<p className="terminal-label">
+												{t((t) => t.blog.latest)}
+											</p>
+											<Link
+												to="/{-$locale}/blog"
+												params={localeParams}
+												className="text-xs font-semibold uppercase tracking-[0.08em] text-secondary hover:text-accent"
+											>
+												{t((t) => t.nav.blogAll)}
+											</Link>
+										</div>
+										{blogPreview.length === 0 ? (
+											<p className="terminal-card p-4 text-sm">
+												{t((t) => t.blog.empty)}
+											</p>
+										) : (
+											<ul className="grid gap-3 md:grid-cols-2">
+												{blogPreview.map((post) => (
+													<HeaderBlogPreviewLink
+														key={post.slug}
+														post={post}
+														localeParams={localeParams}
+													/>
+												))}
+											</ul>
+										)}
+									</NavigationMenuContent>
+								</NavigationMenuItem>
+							</NavigationMenuList>
+						</NavigationMenu>
+					</nav>
+				</div>
 				<div className="flex flex-wrap items-center gap-3">
 					<Button asChild size="sm">
 						<a
