@@ -209,22 +209,6 @@ export const fr: Translations = {
 				performance: "Passation équipe",
 			},
 		},
-		availability: {
-			label: "Diagnostic migration",
-			status: "Risque release d'abord",
-			badge: "Avant le code",
-			items: {
-				item1: "Modules natifs et config plugins",
-				item2: "EAS, CI, stores et chemins OTA",
-				item3: "Stratégie hotfix et rollback",
-			},
-		},
-		signature: {
-			label: "Mode d'intervention",
-			title: "Audit, roadmap, migration",
-			description:
-				"L'objectif n'est pas de tout déplacer d'un coup : on identifie la surface native risquée, on protège la roadmap produit et on rend les releases prévisibles.",
-		},
 		testimonialsSection: {
 			label: "Ils m'ont fait confiance",
 			title: "Retours de mission",
@@ -264,11 +248,10 @@ export const fr: Translations = {
 			},
 		},
 		servicesSection: {
-			label: "Risques couverts",
-			title: "Ce qui bloque une migration Expo",
+			label: "Périmètre Expo",
+			title: "Un accompagnement Expo complet.",
 			description:
-				"Dépendances natives, CI, stores, OTA : on clarifie les risques avant de migrer.",
-			cta: "Voir le périmètre migration",
+				"La plupart des migrations bloquent aux mêmes endroits : compatibilité native et déploiements EAS/stores. Je traite les deux dans le même diagnostic.",
 		},
 		risks: {
 			native: {
@@ -279,18 +262,18 @@ export const fr: Translations = {
 					"Vous obtenez une carte de compatibilité et des options claires de remplacement ou de repli.",
 			},
 			delivery: {
-				title: "Workflow de livraison",
+				title: "Déploiements EAS et QA",
 				description:
 					"EAS Build, Submit, Update, channels, CI et distribution QA.",
 				bullet:
-					"L'équipe sait quels changements demandent un build natif et lesquels peuvent partir en OTA.",
+					"Je conseille l'équipe sur les options applicables au projet pour optimiser les phases de déploiement.",
 			},
 			stores: {
-				title: "Stores et hotfix",
+				title: "Accompagnement sur mesure",
 				description:
-					"Versioning, fingerprints, règles de rollback et contraintes App Store / Play Store.",
+					"Arbitrages selon votre stack, vos contraintes stores et votre cadence produit.",
 				bullet:
-					"Les chemins de hotfix sont documentés avant le prochain incident de production.",
+					"On choisit les options utiles au projet, sans appliquer un workflow Expo générique.",
 			},
 			handoff: {
 				title: "Autonomie équipe",
@@ -300,30 +283,79 @@ export const fr: Translations = {
 					"La migration se termine avec un workflow que votre équipe peut opérer sans moi.",
 			},
 		},
+		offerTracks: {
+			migration: {
+				label: "Chantier 01",
+				title: "React Native legacy vers Expo",
+				description:
+					"Auditer la surface native, mettre à niveau React Native et Expo, puis remplacer ou isoler les modules qui peuvent bloquer la migration.",
+				bullets: {
+					item1: "Cartographie des dépendances natives et plan de remplacement",
+					item2: "Chemin RN/Expo avec contraintes stores intégrées",
+					item3: "Roadmap de migration livrable pour l'équipe",
+				},
+			},
+			workflow: {
+				label: "Chantier 02",
+				title: "Workflow EAS et releases",
+				description:
+					"Transformer vos déploiements Expo en chemin maîtrisé : QA, builds natifs, versioning, hotfix et passation.",
+				bullets: {
+					item1: "EAS Build, Submit, Update et canaux QA",
+					item2: "Versioning, fingerprints et règles de rollback",
+					item3: "Guide QA vers production documenté",
+				},
+			},
+		},
 		method: {
 			label: "Méthode migration",
-			title: "Comment se passe la migration",
+			title: "De votre app actuelle à une release Expo",
 			description:
-				"Audit, migration progressive, releases EAS, puis passation à l'équipe.",
-			audit: {
-				title: "Auditer la surface native",
+				"Votre produit continue d'avancer. On retire les blocages Expo, on prouve le chemin de release, puis l'équipe reprend la main.",
+			start: {
+				label: "Départ",
+				title: "Votre app React Native aujourd'hui",
 				description:
-					"Cartographier dépendances, app config, CI, contraintes stores, frictions de livraison et compatibilité Expo avant de toucher à la roadmap.",
+					"Versions, modules natifs, CI, stores et points de release qui ralentissent déjà l'équipe.",
+			},
+			audit: {
+				eyebrow: "Cartographier",
+				title: "Repérer ce qui bloque Expo",
+				description:
+					"On vérifie les modules natifs, la config app, la CI et les contraintes stores avant de toucher au code.",
+				outcome: "Carte des risques et ordre de traitement",
 			},
 			migration: {
-				title: "Migrer par incréments",
+				eyebrow: "Débloquer",
+				title: "Remplacer ce qui coince",
 				description:
-					"Mettre à jour React Native et Expo par étapes, remplacer les modules incompatibles et garder la branche produit livrable.",
+					"On garde le produit stable pendant l'adaptation de la config, des builds et des librairies incompatibles.",
+				outcome: "App Expo qui build proprement",
 			},
 			release: {
-				title: "Stabiliser les livraisons",
+				eyebrow: "Prouver",
+				title: "Tester une vraie sortie",
 				description:
-					"Configurer EAS Build, Submit, Update, channels, fingerprints et règles de distribution QA adaptées à l'équipe.",
+					"On valide EAS, les canaux QA, les versions et les règles store sur une release que l'équipe peut inspecter.",
+				outcome: "Chemin QA vers store prêt",
 			},
 			handoff: {
-				title: "Transférer la main",
+				eyebrow: "Transmettre",
+				title: "Passer la main à l'équipe",
 				description:
-					"Documenter décisions, playbooks et options de repli pour que l'équipe interne puisse continuer sans consultant en permanence.",
+					"On documente les commandes, les choix et les options de rollback utilisés pendant la migration.",
+				outcome: "Équipe prête pour les prochaines releases",
+			},
+			end: {
+				label: "Arrivée",
+				title: "Un workflow Expo que l'équipe peut opérer",
+				description:
+					"Builds, QA, stores et options de repli sont assez clairs pour continuer sans moi.",
+			},
+			status: {
+				pending: "En attente",
+				current: "En cours",
+				done: "Validé",
 			},
 		},
 		cta: {
@@ -332,201 +364,6 @@ export const fr: Translations = {
 			description:
 				"Envoyez-moi vos versions RN/Expo, dépendances natives et points bloquants. Je vous réponds avec les prochaines étapes.",
 			button: "Planifier un appel",
-		},
-	},
-	services: {
-		common: {
-			productizedLabel: "Service packagé",
-			backHome: "Retour à l'accueil",
-			outcomesLabel: "Résultats",
-			focusAreasLabel: "Axes de travail",
-			processLabel: "Processus",
-			deliverablesLabel: "Livrables",
-			faqLabel: "FAQ",
-		},
-		legacy: {
-			title: "Migration React Native vers Expo",
-			intro:
-				"Accompagnement forfaitaire pour migrer une app React Native vers Expo, moderniser la stack et sécuriser les sorties stores. Le forfait couvre l'audit natif, la compatibilité Expo et la stratégie EAS.",
-			cta: "Planifier un accompagnement",
-			highlights: {
-				stackAlignment: {
-					title: "Stack modernisée",
-					description:
-						"Mise à niveau React Native + Expo, audit des modules natifs et compatibilité durable.",
-				},
-				predictableReleases: {
-					title: "Livraisons maîtrisées",
-					description:
-						"Stratégie EAS Build/Submit, OTA updates, versioning et gestion des hotfix.",
-				},
-				handoff: {
-					title: "Conformité + autonomie",
-					description:
-						"Conformité stores, documentation et transfert de compétences à l'équipe.",
-				},
-			},
-			outcomesTitle: "Ce que la migration débloque",
-			outcomesDescription:
-				"Une app à jour, conforme aux stores, avec un circuit Expo que l'équipe maîtrise.",
-			outcomes: {
-				item1: "Stack React Native + Expo à jour et supportée",
-				item2: "Dépendances natives compatibles Expo ou remplacées",
-				item3: "Distribution QA rapide via OTA et canaux dédiés",
-				item4: "Stratégie de sortie et hotfix claire, conforme aux stores",
-			},
-			deliverablesIntroTitle: "Ce qui est inclus dans le forfait",
-			deliverablesIntroDescription:
-				"Audit complet, migration guidée et workflows Expo opérationnels.",
-			deliverables: {
-				item1: "Audit React Native + cartographie des dépendances natives",
-				item2:
-					"Roadmap de migration avec mise à jour RN/Expo et conformité stores",
-				item3: "Remplacement des modules incompatibles + options de repli",
-				item4: "Workflows Expo (EAS Build/Submit/Update) + versioning",
-				item5: "Guide QA, sortie store, hotfix et prise en main équipe",
-			},
-			processTitle: "Une migration en trois étapes, cadrée",
-			processDescription:
-				"Une migration progressive pour continuer à livrer sans rupture.",
-			phases: {
-				discovery: {
-					title: "Cadrage + audit",
-					description:
-						"Revue du codebase, cartographie des dépendances et conformité stores.",
-				},
-				migration: {
-					title: "Exécution de la migration",
-					description:
-						"Mises à jour incrémentales, compatibilité Expo et mise à niveau RN/SDK.",
-				},
-				launch: {
-					title: "Lancement + prise en main",
-					description:
-						"EAS Build/Submit/Update, stabilisation et documentation équipe.",
-				},
-			},
-			faqTitle: "FAQ migration",
-			faqDescription: "Les réponses essentielles avant de lancer la migration.",
-			faq: {
-				item1: {
-					question: "Combien de temps dure la migration ?",
-					answer:
-						"Après l'audit, vous obtenez un planning par phases avec des jalons clairs. La durée dépend du périmètre et des dépendances natives.",
-				},
-				item2: {
-					question: "Que faites-vous des dépendances natives non compatibles ?",
-					answer:
-						"Chaque module est audité, remplacé ou adapté avec une alternative Expo, avec des options de repli documentées.",
-				},
-				item3: {
-					question: "Peut-on continuer à livrer pendant la migration ?",
-					answer:
-						"Oui. La migration est progressive pour préserver la cadence et limiter les risques.",
-				},
-				item4: {
-					question: "L'optimisation du workflow Expo est-elle incluse ?",
-					answer:
-						"Oui. EAS Build/Submit/Update, versioning et distribution QA font partie du forfait.",
-				},
-			},
-		},
-		workflow: {
-			title: "Optimisation du workflow Expo",
-			intro:
-				"Audit livraison + versioning pour transformer votre circuit Expo en système rapide et maîtrisé. Objectif : livrer des builds QA en minutes via OTA et gouverner les builds natifs avec des règles de hotfix et de fingerprints.",
-			cta: "Optimiser mon workflow Expo",
-			highlights: {
-				releaseVelocity: {
-					title: "Tests en minutes",
-					description:
-						"OTA updates et canaux QA pour partager une version en moins de 5 minutes.",
-				},
-				confidence: {
-					title: "Versioning maîtrisé",
-					description:
-						"Gestion claire des hotfix, des channels et des fingerprints.",
-				},
-				handoff: {
-					title: "Déploiements fiables",
-					description:
-						"Builds natifs contrôlés et processus de livraison stable pour l'équipe.",
-				},
-			},
-			outcomesTitle: "Résultats attendus",
-			outcomesDescription:
-				"Des livraisons plus fluides du commit à la production.",
-			outcomes: {
-				item1: "OTA updates partagées à la QA en moins de 5 minutes",
-				item2: "Versioning + canaux de release clairs pour les hotfix",
-				item3: "Builds natifs maîtrisés par profils et fingerprints",
-				item4: "Process QA → prod documenté et reproductible",
-			},
-			focusTitle: "Périmètre d'optimisation",
-			focusDescription:
-				"Les leviers qui accélèrent les tests et sécurisent la production.",
-			focusAreas: {
-				area1: {
-					title: "Audit livraison + versioning",
-					description:
-						"Convention de version, tags, changelog et règles de livraison.",
-				},
-				area2: {
-					title: "EAS Update et canaux QA",
-					description:
-						"OTA updates rapides, branches de tests et distribution interne.",
-				},
-				area3: {
-					title: "Builds natifs + hotfix",
-					description:
-						"Profils EAS, fingerprints et contrôle fin des sorties hotfix.",
-				},
-			},
-			processTitle: "Un déroulé court et efficace",
-			processDescription:
-				"Audit, mise en place, puis transmission pour rendre l'équipe autonome.",
-			phases: {
-				discovery: {
-					title: "Audit + diagnostic",
-					description:
-						"Analyse des livraisons, versioning, OTA et distribution interne.",
-				},
-				migration: {
-					title: "Mise en place",
-					description:
-						"Configuration EAS, canaux QA, règles de livraison et hotfix.",
-				},
-				launch: {
-					title: "Transmission + mesure",
-					description:
-						"Guide de livraison, documentation et indicateurs de suivi.",
-				},
-			},
-			faqTitle: "FAQ workflow",
-			faqDescription:
-				"Les questions clés avant d'optimiser votre circuit Expo.",
-			faq: {
-				item1: {
-					question: "En combien de temps la QA reçoit une version ?",
-					answer:
-						"OTA updates et channels QA livrent une build en quelques minutes après un commit.",
-				},
-				item2: {
-					question: "Comment gérez-vous les hotfix ?",
-					answer:
-						"Règles de versioning, channels et fingerprints pour des hotfix isolés et prévisibles.",
-				},
-				item3: {
-					question: "Faut-il remplacer notre CI existante ?",
-					answer:
-						"Non. On aligne EAS avec votre CI actuelle et on réduit les étapes manuelles.",
-				},
-				item4: {
-					question: "Que livrez-vous à la fin ?",
-					answer:
-						"Audit, configurations à jour et guide de livraison pour l'équipe.",
-				},
-			},
 		},
 	},
 };

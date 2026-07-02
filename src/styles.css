@@ -219,6 +219,32 @@ code {
   }
 }
 
+@keyframes migration-frame-trace {
+  0% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%;
+  }
+  100% {
+    background-position:
+      100% 0%,
+      100% 100%,
+      0% 100%,
+      0% 0%;
+  }
+}
+
+@keyframes migration-spinner {
+  0% {
+    transform: rotate(0turn);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
 @layer utilities {
   .animate-fade-up {
     animation: fade-up 0.8s ease both;
@@ -404,6 +430,235 @@ code {
   .terminal-card-light .terminal-chip {
     background: var(--terminal-navy);
     color: var(--terminal-phosphor);
+  }
+
+  .migration-progress-board {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .migration-progress-grid {
+    --migration-progress: 0;
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    padding-left: 1.15rem;
+  }
+
+  .migration-progress-grid::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.55rem;
+    width: 2px;
+    background: linear-gradient(
+      var(--terminal-phosphor),
+      var(--terminal-amber),
+      var(--terminal-phosphor)
+    );
+    opacity: 0.38;
+  }
+
+  .migration-progress-path {
+    display: none;
+  }
+
+  .migration-progress-card {
+    z-index: 1;
+    min-height: 17rem;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--terminal-panel) 98%, black);
+  }
+
+  .migration-progress-card::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: 2;
+    border-radius: calc(var(--radius) + 2px);
+    background:
+      linear-gradient(90deg, transparent, var(--terminal-amber), transparent)
+      0 0 / 48% 3px no-repeat,
+      linear-gradient(180deg, transparent, var(--terminal-phosphor), transparent)
+      100% 0 / 3px 48% no-repeat,
+      linear-gradient(270deg, transparent, var(--terminal-amber), transparent)
+      100% 100% / 48% 3px no-repeat,
+      linear-gradient(0deg, transparent, var(--terminal-phosphor), transparent)
+      0 100% / 3px 48% no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms steps(2, end);
+  }
+
+  .migration-progress-card[data-state="pending"] {
+    border-color: color-mix(in srgb, var(--terminal-paper) 28%, transparent);
+  }
+
+  .migration-progress-card[data-state="current"] {
+    border-color: var(--terminal-amber);
+    box-shadow:
+      8px 8px 0 var(--terminal-shadow),
+      0 0 0 1px color-mix(in srgb, var(--terminal-amber) 44%, transparent);
+  }
+
+  .migration-progress-card[data-state="current"]::after {
+    opacity: 1;
+    animation: migration-frame-trace 1.3s linear infinite;
+  }
+
+  .migration-progress-card[data-state="done"] {
+    border-color: var(--terminal-phosphor);
+  }
+
+  .migration-progress-node {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    place-items: center;
+    border: 2px solid currentColor;
+    border-radius: var(--radius);
+    background: var(--terminal-navy);
+    color: var(--terminal-phosphor);
+    box-shadow: 4px 4px 0 var(--terminal-shadow);
+  }
+
+  .migration-progress-card[data-state="pending"] .migration-progress-node {
+    color: color-mix(in srgb, var(--terminal-paper) 46%, transparent);
+  }
+
+  .migration-progress-card[data-state="current"] .migration-progress-node {
+    color: var(--terminal-amber);
+  }
+
+  .migration-progress-status {
+    display: inline-flex;
+    min-width: 7.4rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    border: 2px solid currentColor;
+    border-radius: var(--radius);
+    padding: 0.32rem 0.6rem;
+    background: var(--terminal-navy);
+    color: color-mix(in srgb, var(--terminal-paper) 68%, transparent);
+    font-size: 0.72rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0 var(--terminal-shadow);
+  }
+
+  .migration-progress-status[data-state="current"] {
+    color: var(--terminal-amber);
+  }
+
+  .migration-progress-status[data-state="done"] {
+    color: var(--terminal-phosphor);
+  }
+
+  .migration-progress-spinner {
+    display: none;
+    width: 0.82rem;
+    height: 0.82rem;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 999px;
+  }
+
+  .migration-progress-status[data-state="current"] .migration-progress-spinner {
+    display: inline-block;
+    animation: migration-spinner 0.85s linear infinite;
+  }
+
+  .migration-progress-output {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--terminal-phosphor) 26%, transparent);
+    padding-top: 1rem;
+    color: var(--terminal-phosphor);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 1024px) {
+    .migration-progress-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(17rem, auto));
+      gap: 6rem 4rem;
+      min-height: 42rem;
+      padding: 2.5rem 0;
+    }
+
+    .migration-progress-grid::before {
+      display: none;
+    }
+
+    .migration-progress-path {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .migration-progress-path-track,
+    .migration-progress-path-progress {
+      fill: none;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+    }
+
+    .migration-progress-path-track {
+      stroke: color-mix(in srgb, var(--terminal-phosphor) 34%, transparent);
+      stroke-width: 4;
+    }
+
+    .migration-progress-path-progress {
+      stroke: var(--terminal-amber);
+      stroke-width: 5;
+      stroke-dasharray: var(--migration-progress) 1;
+      filter: drop-shadow(4px 4px 0 var(--terminal-shadow));
+      transition: stroke-dasharray 820ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .migration-progress-card {
+      min-height: 18rem;
+    }
+
+    .migration-progress-card-1 {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .migration-progress-card-2 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .migration-progress-card-3 {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .migration-progress-card-4 {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
+    .migration-progress-card-5 {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .migration-progress-card-6 {
+      grid-column: 1;
+      grid-row: 2;
+    }
   }
 
   .terminal-image-frame {

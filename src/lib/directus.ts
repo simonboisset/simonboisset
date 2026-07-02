@@ -39,10 +39,53 @@ export type PostDetails = z.infer<typeof PostDetailsSchema>;
 export type DocSummary = z.infer<typeof DocSummarySchema>;
 export type DocDetails = z.infer<typeof DocDetailsSchema>;
 
-const assetUrl = (assetId: string | null): string | null => {
+const DirectusAssetOptionsSchema = z.object({
+	assetId: z.string().min(1),
+	width: z.number().int().positive().optional(),
+	height: z.number().int().positive().optional(),
+	fit: z.enum(["cover", "contain", "inside", "outside"]).optional(),
+	format: z.enum(["webp", "jpg", "png", "avif"]).optional(),
+	quality: z.number().int().min(1).max(100).optional(),
+	withoutEnlargement: z.boolean().optional(),
+});
+
+const DirectusAssetInputSchema = z.union([
+	z.string().min(1),
+	DirectusAssetOptionsSchema,
+]);
+
+type DirectusAssetOptions = z.infer<typeof DirectusAssetOptionsSchema>;
+
+function assetUrl(
+	assetId: string,
+	options?: Omit<DirectusAssetOptions, "assetId">,
+): string;
+function assetUrl(
+	assetId: null,
+	options?: Omit<DirectusAssetOptions, "assetId">,
+): null;
+function assetUrl(
+	assetId: string | null,
+	options?: Omit<DirectusAssetOptions, "assetId">,
+): string | null;
+function assetUrl(
+	assetId: string | null,
+	options?: Omit<DirectusAssetOptions, "assetId">,
+): string | null {
 	if (!assetId) return null;
-	return `${env.DIRECTUS_URL}/assets/${assetId}`;
-};
+
+	const url = new URL(`/assets/${assetId}`, env.DIRECTUS_URL);
+
+	if (options) {
+		for (const [key, value] of Object.entries(options)) {
+			if (value !== undefined) {
+				url.searchParams.set(key, String(value));
+			}
+		}
+	}
+
+	return url.toString();
+}
 
 const safeApiCall = async <I, T>(
 	url: string,
@@ -219,8 +262,15 @@ const getDoc = createServerFn({ method: "GET" })
 	});
 
 const getAssetUrl = createServerFn({ method: "GET" })
-	.inputValidator(z.string().min(1))
-	.handler(({ data: assetId }) => `${env.DIRECTUS_URL}/assets/${assetId}`);
+	.inputValidator(DirectusAssetInputSchema)
+	.handler(({ data }) => {
+		if (typeof data === "string") {
+			return assetUrl(data);
+		}
+
+		const { assetId, ...options } = data;
+		return assetUrl(assetId, options);
+	});
 
 export const directus = {
 	getPosts,

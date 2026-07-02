@@ -34,9 +34,7 @@ describe("analytics helpers", () => {
 			slug: "privacy",
 		});
 		expect(getPageContext("/services/expo-workflow-optimization")).toEqual({
-			pageType: "service",
-			contentType: "service",
-			slug: "expo-workflow-optimization",
+			pageType: "other",
 		});
 	});
 

@@ -31,11 +31,10 @@ export type PageType =
 	| "blog_post"
 	| "docs_index"
 	| "doc"
-	| "service"
 	| "product"
 	| "other";
 
-export type ContentType = "blog" | "doc" | "service" | "product";
+export type ContentType = "blog" | "doc" | "product";
 
 const consentStateSchema = z.enum(["pending", "granted", "denied"]);
 export type ConsentState = z.infer<typeof consentStateSchema>;
@@ -176,13 +175,6 @@ export const getPageContext = (pathname: string) => {
 			pageType: "doc",
 			contentType: "doc",
 			slug: normalized.replace("/docs/", ""),
-		} as const;
-	}
-	if (normalized.startsWith("/services/")) {
-		return {
-			pageType: "service",
-			contentType: "service",
-			slug: normalized.replace("/services/", ""),
 		} as const;
 	}
 	if (normalized.startsWith("/products/")) {

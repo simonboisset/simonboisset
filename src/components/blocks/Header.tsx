@@ -56,18 +56,6 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 			hash: "process",
 		},
 	];
-	const serviceItems = [
-		{
-			title: t((t) => t.services.legacy.title),
-			description: t((t) => t.services.legacy.intro),
-			to: "/{-$locale}/services/react-native-legacy-to-expo",
-		},
-		{
-			title: t((t) => t.services.workflow.title),
-			description: t((t) => t.services.workflow.intro),
-			to: "/{-$locale}/services/expo-workflow-optimization",
-		},
-	];
 	const switchLocale = (nextLocale: Locale) => {
 		if (nextLocale === locale) return;
 		capture(ANALYTICS_EVENTS.localeSwitch, {
@@ -133,25 +121,6 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 												})
 											}
 										/>
-									</ul>
-								</NavigationMenuContent>
-							</NavigationMenuItem>
-							<NavigationMenuItem>
-								<NavigationMenuTrigger className={triggerClassName}>
-									{t((t) => t.nav.services)}
-								</NavigationMenuTrigger>
-								<NavigationMenuContent className="w-[calc(100vw-3rem)] max-w-[560px] p-4 md:w-[560px]">
-									<ul className="grid gap-3 md:grid-cols-2">
-										{serviceItems.map((item) => (
-											<HeaderMenuLink
-												key={item.to}
-												title={item.title}
-												description={item.description}
-												to={item.to}
-												params={localeParams}
-												className="h-full"
-											/>
-										))}
 									</ul>
 								</NavigationMenuContent>
 							</NavigationMenuItem>

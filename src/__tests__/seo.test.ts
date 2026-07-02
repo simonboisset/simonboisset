@@ -9,30 +9,30 @@ import {
 describe("seo helpers", () => {
 	it("builds canonical and alternate locale links", () => {
 		const seo = buildSeo({
-			title: "React Native legacy to Expo migration",
+			title: "React Native to Expo migration",
 			description: "Migration support for Expo apps.",
-			path: "/services/react-native-legacy-to-expo",
+			path: "/",
 			locale: "en-US",
 		});
 
 		expect(seo.links).toContainEqual({
 			rel: "canonical",
-			href: "https://simonboisset.com/en/services/react-native-legacy-to-expo",
+			href: "https://simonboisset.com/en",
 		});
 		expect(seo.links).toContainEqual({
 			rel: "alternate",
 			hrefLang: "fr",
-			href: "https://simonboisset.com/services/react-native-legacy-to-expo",
+			href: "https://simonboisset.com/",
 		});
 		expect(seo.links).toContainEqual({
 			rel: "alternate",
 			hrefLang: "en",
-			href: "https://simonboisset.com/en/services/react-native-legacy-to-expo",
+			href: "https://simonboisset.com/en",
 		});
 		expect(seo.links).toContainEqual({
 			rel: "alternate",
 			hrefLang: "x-default",
-			href: "https://simonboisset.com/services/react-native-legacy-to-expo",
+			href: "https://simonboisset.com/",
 		});
 	});
 

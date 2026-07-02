@@ -14,8 +14,6 @@ import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$local
 import { Route as Char123LocaleChar125CvRouteImport } from './routes/{-$locale}/cv'
 import { Route as Char123LocaleChar125DocsIndexRouteImport } from './routes/{-$locale}/docs/index'
 import { Route as Char123LocaleChar125BlogIndexRouteImport } from './routes/{-$locale}/blog/index'
-import { Route as Char123LocaleChar125ServicesReactNativeLegacyToExpoRouteImport } from './routes/{-$locale}/services/react-native-legacy-to-expo'
-import { Route as Char123LocaleChar125ServicesExpoWorkflowOptimizationRouteImport } from './routes/{-$locale}/services/expo-workflow-optimization'
 import { Route as Char123LocaleChar125DocsPolitiqueConfidentialiteRouteImport } from './routes/{-$locale}/docs/politique-confidentialite'
 import { Route as Char123LocaleChar125DocsMentionsLegalesRouteImport } from './routes/{-$locale}/docs/mentions-legales'
 import { Route as Char123LocaleChar125DocsSlugRouteImport } from './routes/{-$locale}/docs/$slug'
@@ -47,18 +45,6 @@ const Char123LocaleChar125BlogIndexRoute =
   Char123LocaleChar125BlogIndexRouteImport.update({
     id: '/{-$locale}/blog/',
     path: '/{-$locale}/blog/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute =
-  Char123LocaleChar125ServicesReactNativeLegacyToExpoRouteImport.update({
-    id: '/{-$locale}/services/react-native-legacy-to-expo',
-    path: '/{-$locale}/services/react-native-legacy-to-expo',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute =
-  Char123LocaleChar125ServicesExpoWorkflowOptimizationRouteImport.update({
-    id: '/{-$locale}/services/expo-workflow-optimization',
-    path: '/{-$locale}/services/expo-workflow-optimization',
     getParentRoute: () => rootRouteImport,
   } as any)
 const Char123LocaleChar125DocsPolitiqueConfidentialiteRoute =
@@ -94,8 +80,6 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
-  '/{-$locale}/services/expo-workflow-optimization': typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
-  '/{-$locale}/services/react-native-legacy-to-expo': typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
   '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
 }
@@ -107,8 +91,6 @@ export interface FileRoutesByTo {
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
-  '/{-$locale}/services/expo-workflow-optimization': typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
-  '/{-$locale}/services/react-native-legacy-to-expo': typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
   '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
 }
@@ -121,8 +103,6 @@ export interface FileRoutesById {
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
-  '/{-$locale}/services/expo-workflow-optimization': typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
-  '/{-$locale}/services/react-native-legacy-to-expo': typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
   '/{-$locale}/docs/': typeof Char123LocaleChar125DocsIndexRoute
 }
@@ -136,8 +116,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
-    | '/{-$locale}/services/expo-workflow-optimization'
-    | '/{-$locale}/services/react-native-legacy-to-expo'
     | '/{-$locale}/blog'
     | '/{-$locale}/docs'
   fileRoutesByTo: FileRoutesByTo
@@ -149,8 +127,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
-    | '/{-$locale}/services/expo-workflow-optimization'
-    | '/{-$locale}/services/react-native-legacy-to-expo'
     | '/{-$locale}/blog'
     | '/{-$locale}/docs'
   id:
@@ -162,8 +138,6 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
-    | '/{-$locale}/services/expo-workflow-optimization'
-    | '/{-$locale}/services/react-native-legacy-to-expo'
     | '/{-$locale}/blog/'
     | '/{-$locale}/docs/'
   fileRoutesById: FileRoutesById
@@ -176,8 +150,6 @@ export interface RootRouteChildren {
   Char123LocaleChar125DocsSlugRoute: typeof Char123LocaleChar125DocsSlugRoute
   Char123LocaleChar125DocsMentionsLegalesRoute: typeof Char123LocaleChar125DocsMentionsLegalesRoute
   Char123LocaleChar125DocsPolitiqueConfidentialiteRoute: typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
-  Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute: typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute
-  Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute: typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute
   Char123LocaleChar125BlogIndexRoute: typeof Char123LocaleChar125BlogIndexRoute
   Char123LocaleChar125DocsIndexRoute: typeof Char123LocaleChar125DocsIndexRoute
 }
@@ -217,20 +189,6 @@ declare module '@tanstack/react-router' {
       path: '/{-$locale}/blog'
       fullPath: '/{-$locale}/blog'
       preLoaderRoute: typeof Char123LocaleChar125BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/{-$locale}/services/react-native-legacy-to-expo': {
-      id: '/{-$locale}/services/react-native-legacy-to-expo'
-      path: '/{-$locale}/services/react-native-legacy-to-expo'
-      fullPath: '/{-$locale}/services/react-native-legacy-to-expo'
-      preLoaderRoute: typeof Char123LocaleChar125ServicesReactNativeLegacyToExpoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/{-$locale}/services/expo-workflow-optimization': {
-      id: '/{-$locale}/services/expo-workflow-optimization'
-      path: '/{-$locale}/services/expo-workflow-optimization'
-      fullPath: '/{-$locale}/services/expo-workflow-optimization'
-      preLoaderRoute: typeof Char123LocaleChar125ServicesExpoWorkflowOptimizationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/docs/politique-confidentialite': {
@@ -274,10 +232,6 @@ const rootRouteChildren: RootRouteChildren = {
     Char123LocaleChar125DocsMentionsLegalesRoute,
   Char123LocaleChar125DocsPolitiqueConfidentialiteRoute:
     Char123LocaleChar125DocsPolitiqueConfidentialiteRoute,
-  Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute:
-    Char123LocaleChar125ServicesExpoWorkflowOptimizationRoute,
-  Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute:
-    Char123LocaleChar125ServicesReactNativeLegacyToExpoRoute,
   Char123LocaleChar125BlogIndexRoute: Char123LocaleChar125BlogIndexRoute,
   Char123LocaleChar125DocsIndexRoute: Char123LocaleChar125DocsIndexRoute,
 }
