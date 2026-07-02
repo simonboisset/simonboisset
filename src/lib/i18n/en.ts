@@ -17,14 +17,14 @@ export const en = {
 		home: "Home",
 		about: "About",
 		services: "Services",
-		projects: "Field proof",
+		projects: "Testimonials",
 		method: "Method",
 		blog: "Blog",
 		blogAll: "View all posts",
 		bookCall: "Book a call",
 		aboutItems: {
 			services: "Risks covered during a React Native to Expo migration.",
-			projects: "Client and product proof around mobile delivery.",
+			projects: "Anonymized notes on collaboration and handoff.",
 			method: "Audit, migration, release, and team handoff.",
 			github: "Open-source work, experiments, and code samples.",
 		},
@@ -191,11 +191,11 @@ export const en = {
 	home: {
 		hero: {
 			eyebrow: "For React Native CTOs and lead techs",
-			title: "Make your React Native app safer to ship with Expo.",
+			title: "React Native to Expo migration.",
 			intro:
-				"When native dependencies, store releases, and CI make every update risky, I help you audit the app, migrate incrementally to Expo/EAS, and leave the workflow in your team's hands.",
+				"I help your team migrate to Expo/EAS without blocking releases or losing ownership.",
 			ctaPrimary: "Discuss an Expo migration",
-			ctaSecondary: "See field proof",
+			ctaSecondary: "Read client notes",
 			highlights: {
 				expertise: "Native dependency audit",
 				delivery: "EAS/store releases",
@@ -218,114 +218,49 @@ export const en = {
 			description:
 				"The goal is not to move everything at once: we identify the risky native surface, preserve the product roadmap, and make releases predictable.",
 		},
-		projectsSection: {
-			label: "Field proof",
-			title: "Proofs tied to CTO objections",
+		testimonialsSection: {
+			label: "They trusted me",
+			title: "Mission feedback",
 			description:
-				"Concrete contexts where the work addressed migration risk, mobile delivery, architecture, or team ownership.",
-			contextLabel: "Context",
-			impactLabel: "What it proves",
-			testimonialLabel: "Client wording to validate",
+				"Concrete notes from React Native, Expo, and legacy mobile missions.",
 		},
-		projects: {
-			campingCarPark: {
-				name: "CAMPING-CAR PARK - Mobile app modernization",
-				category: "Client mission - Expo migration",
-				context: {
-					line1: "Consumer mobile app to book and manage campervan stays.",
-				},
-				impact: {
-					line1:
-						"Mobile redesign + migration from legacy React Native to Expo.",
-					line2: "Mobile lead for project structure and team enablement.",
-					line3:
-						"Strongest proof for CTOs facing native debt and release friction.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Expo",
-					item3: "Mobile",
-					item4: "Architecture",
-				},
+		testimonials: {
+			eric: {
+				name: "Eric",
+				quote:
+					"We started from a fairly complex legacy codebase. Simon took over the project, brought structure back to the whole stack, and still supports us day to day.",
 			},
-			linote: {
-				name: "LiNote - Mobile app for social connection",
-				category: "Client mission - React Native mobile",
-				context: {
-					line1: "Mobile app to stay connected with elderly relatives.",
-				},
-				impact: {
-					line1: "React Native build from scratch aligned with the web app.",
-					line2:
-						"Proof of clean mobile delivery across reminders, messaging, photo sharing, and video calls.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Mobile",
-					item3: "iOS",
-					item4: "Android",
-				},
-				testimonial: {
-					quote:
-						"Simon combined easy communication, clean code, and fast delivery on our React Native app. The collaboration was reliable enough that we trusted him with another mission.",
-					name: "Anthony",
-					role: "CEO, LiNote",
-				},
+			julie: {
+				name: "Julie",
+				quote:
+					"Simon built our React Native app from scratch while keeping it aligned with the existing web app. In a few weeks, we had reminders, messaging, photo sharing, and video calls.",
 			},
-			silbo: {
-				name: "Silbo - Health: web + field apps",
-				category: "CTO proof - architecture and delivery",
-				context: {
-					line1:
-						"Healthcare startup: web app for patient flow optimization + field apps.",
-				},
-				impact: {
-					line1:
-						"Ability to move across mobile, backend, UI, infrastructure, and CI/CD.",
-					line2:
-						"Useful for migrations where architecture and release workflow are tightly linked.",
-				},
-				stack: {
-					item1: "Mobile",
-					item2: "Architecture",
-					item3: "CI/CD",
-					item4: "Production",
-				},
-				testimonial: {
-					quote:
-						"Simon can move across UI, backend, mobile, cloud infrastructure, and CI/CD without losing the architecture thread. He brings pragmatic technical decisions and gets up to speed quickly on complex systems.",
-					name: "Thomas",
-					role: "CTO, Silbo",
-				},
+			matthieu: {
+				name: "Matthieu",
+				quote:
+					"We had been dragging this Expo migration for more than a year. Simon reassured us, delivered it in two weeks, and we were able to publish a clean version afterwards.",
 			},
-			fieldExpo: {
-				name: "Questovery + Mon Pont Chaban - Expo products in the field",
-				category: "Personal product proof",
-				context: {
-					line1:
-						"Questovery: geolocated treasure hunt platform with a participant mobile app.",
-					line2:
-						"Mon Pont Chaban: Expo app for push alerts around Bordeaux bridge lift schedules.",
-				},
-				impact: {
-					line1:
-						"Expo in production with geolocation, maps/offline constraints, push notifications, and store releases.",
-					line2:
-						"Daily product ownership: not just migration advice, but mobile release tradeoffs I live with.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Expo",
-					item3: "Geolocation",
-					item4: "Push",
-				},
+			thomas: {
+				name: "Thomas",
+				quote:
+					"Simon joined a project where frontend, backend, mobile, and infrastructure were all tied together. He quickly understood how everything fit together, which saved us a lot of back and forth.",
+			},
+			julien: {
+				name: "Romuald",
+				quote:
+					"Simon migrated three of our React Native apps to Expo after more than 9 years of maintenance. The migration went smoothly, and we are already seeing the benefits: much faster upgrades and finally reliable builds.",
+			},
+			antoine: {
+				name: "Antoine",
+				quote:
+					"Our mobile codebase had become too complex: too many special cases, too many dependencies, and not much certainty left. Simon helped us regain control and put a clear structure back in place.",
 			},
 		},
 		servicesSection: {
 			label: "Risks covered",
-			title: "What I secure during the migration",
+			title: "What blocks an Expo migration",
 			description:
-				"A migration is not just an SDK upgrade. The key is to reduce release risk before touching the product roadmap.",
+				"Native dependencies, CI, stores, OTA: we clarify the risks before migrating.",
 			cta: "See the migration scope",
 		},
 		risks: {
@@ -360,9 +295,9 @@ export const en = {
 		},
 		method: {
 			label: "Migration method",
-			title: "A migration plan your roadmap can survive",
+			title: "How the migration works",
 			description:
-				"We reduce release risk first, then move step by step toward an Expo workflow the team can maintain.",
+				"Audit, progressive migration, EAS releases, then handoff to the team.",
 			audit: {
 				title: "Audit the native surface",
 				description:
@@ -386,9 +321,9 @@ export const en = {
 		},
 		cta: {
 			label: "Migration diagnosis",
-			title: "Let's review your React Native migration risk.",
+			title: "Let's talk about your Expo migration.",
 			description:
-				"Share your current RN/Expo versions, native dependencies, CI/store setup, and release pain points. I will come back within 48 hours with clear next steps.",
+				"Send me your RN/Expo versions, native dependencies, and blockers. I will reply with the next steps.",
 			button: "Schedule a call",
 		},
 	},

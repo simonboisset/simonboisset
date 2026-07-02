@@ -8,7 +8,7 @@ import {
 	Smartphone,
 	Sparkles,
 } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -52,21 +52,9 @@ export const Route = createFileRoute("/{-$locale}/")({
 	},
 });
 
-type ProofCase = {
-	name: string;
-	category: string;
-	context: string[];
-	impact: string[];
-	stack: string[];
-	url?: string;
-	proofType?: "client" | "field";
-	testimonial?: Testimonial;
-};
-
 type Testimonial = {
 	quote: string;
 	name: string;
-	role: string;
 };
 
 type RiskCard = {
@@ -90,7 +78,7 @@ function App() {
 	const sectionTracking = useMemo(
 		() => [
 			{ id: "services", label: "risks" },
-			{ id: "projects", label: "proofs" },
+			{ id: "testimonials", label: "testimonials" },
 			{ id: "process", label: "process" },
 		],
 		[],
@@ -98,84 +86,30 @@ function App() {
 
 	useSectionViewTracking(sectionTracking, { pageType: "home", locale });
 
-	const proofCases: ProofCase[] = [
+	const testimonials: Testimonial[] = [
 		{
-			name: t((t) => t.home.projects.campingCarPark.name),
-			category: t((t) => t.home.projects.campingCarPark.category),
-			context: [t((t) => t.home.projects.campingCarPark.context.line1)],
-			impact: [
-				t((t) => t.home.projects.campingCarPark.impact.line1),
-				t((t) => t.home.projects.campingCarPark.impact.line2),
-				t((t) => t.home.projects.campingCarPark.impact.line3),
-			],
-			stack: [
-				t((t) => t.home.projects.campingCarPark.stack.item1),
-				t((t) => t.home.projects.campingCarPark.stack.item2),
-				t((t) => t.home.projects.campingCarPark.stack.item3),
-				t((t) => t.home.projects.campingCarPark.stack.item4),
-			],
-			url: "https://www.campingcarpark.com/fr_FR",
+			name: t((t) => t.home.testimonials.eric.name),
+			quote: t((t) => t.home.testimonials.eric.quote),
 		},
 		{
-			name: t((t) => t.home.projects.linote.name),
-			category: t((t) => t.home.projects.linote.category),
-			context: [t((t) => t.home.projects.linote.context.line1)],
-			impact: [
-				t((t) => t.home.projects.linote.impact.line1),
-				t((t) => t.home.projects.linote.impact.line2),
-			],
-			stack: [
-				t((t) => t.home.projects.linote.stack.item1),
-				t((t) => t.home.projects.linote.stack.item2),
-				t((t) => t.home.projects.linote.stack.item3),
-				t((t) => t.home.projects.linote.stack.item4),
-			],
-			url: "https://linote.fr",
-			testimonial: {
-				quote: t((t) => t.home.projects.linote.testimonial.quote),
-				name: t((t) => t.home.projects.linote.testimonial.name),
-				role: t((t) => t.home.projects.linote.testimonial.role),
-			},
+			name: t((t) => t.home.testimonials.julie.name),
+			quote: t((t) => t.home.testimonials.julie.quote),
 		},
 		{
-			name: t((t) => t.home.projects.silbo.name),
-			category: t((t) => t.home.projects.silbo.category),
-			context: [t((t) => t.home.projects.silbo.context.line1)],
-			impact: [
-				t((t) => t.home.projects.silbo.impact.line1),
-				t((t) => t.home.projects.silbo.impact.line2),
-			],
-			stack: [
-				t((t) => t.home.projects.silbo.stack.item1),
-				t((t) => t.home.projects.silbo.stack.item2),
-				t((t) => t.home.projects.silbo.stack.item3),
-				t((t) => t.home.projects.silbo.stack.item4),
-			],
-			testimonial: {
-				quote: t((t) => t.home.projects.silbo.testimonial.quote),
-				name: t((t) => t.home.projects.silbo.testimonial.name),
-				role: t((t) => t.home.projects.silbo.testimonial.role),
-			},
+			name: t((t) => t.home.testimonials.matthieu.name),
+			quote: t((t) => t.home.testimonials.matthieu.quote),
 		},
 		{
-			name: t((t) => t.home.projects.fieldExpo.name),
-			category: t((t) => t.home.projects.fieldExpo.category),
-			context: [
-				t((t) => t.home.projects.fieldExpo.context.line1),
-				t((t) => t.home.projects.fieldExpo.context.line2),
-			],
-			impact: [
-				t((t) => t.home.projects.fieldExpo.impact.line1),
-				t((t) => t.home.projects.fieldExpo.impact.line2),
-			],
-			stack: [
-				t((t) => t.home.projects.fieldExpo.stack.item1),
-				t((t) => t.home.projects.fieldExpo.stack.item2),
-				t((t) => t.home.projects.fieldExpo.stack.item3),
-				t((t) => t.home.projects.fieldExpo.stack.item4),
-			],
-			url: "https://questovery.com/fr",
-			proofType: "field",
+			name: t((t) => t.home.testimonials.thomas.name),
+			quote: t((t) => t.home.testimonials.thomas.quote),
+		},
+		{
+			name: t((t) => t.home.testimonials.julien.name),
+			quote: t((t) => t.home.testimonials.julien.quote),
+		},
+		{
+			name: t((t) => t.home.testimonials.antoine.name),
+			quote: t((t) => t.home.testimonials.antoine.quote),
 		},
 	];
 
@@ -259,12 +193,12 @@ function App() {
 								<Link
 									to="/{-$locale}"
 									params={localeParams}
-									hash="projects"
+									hash="testimonials"
 									onClick={() =>
 										capture(ANALYTICS_EVENTS.ctaClick, {
-											cta: "proofs",
+											cta: "testimonials",
 											placement: "home_hero",
-											href: "#projects",
+											href: "#testimonials",
 										})
 									}
 								>
@@ -352,10 +286,7 @@ function App() {
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 						<div>
-							<p className="terminal-label">
-								{t((t) => t.home.servicesSection.label)}
-							</p>
-							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
+							<h2 className="terminal-heading text-3xl md:text-4xl">
 								{t((t) => t.home.servicesSection.title)}
 							</h2>
 						</div>
@@ -388,26 +319,19 @@ function App() {
 			</section>
 
 			{/* biome-ignore lint/correctness/useUniqueElementIds: anchor targets */}
-			<section id="projects" className="terminal-section py-16 md:py-20">
+			<section id="testimonials" className="terminal-section py-16 md:py-20">
 				<div className="mx-auto w-full max-w-6xl px-6">
-					<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+					<div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
 						<div>
-							<p className="terminal-label">
-								{t((t) => t.home.projectsSection.label)}
-							</p>
-							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
-								{t((t) => t.home.projectsSection.title)}
+							<h2 className="terminal-heading text-3xl md:text-4xl">
+								{t((t) => t.home.testimonialsSection.title)}
 							</h2>
 						</div>
-						<p className="terminal-muted max-w-xl">
-							{t((t) => t.home.projectsSection.description)}
+						<p className="terminal-muted lg:max-w-2xl">
+							{t((t) => t.home.testimonialsSection.description)}
 						</p>
 					</div>
-					<div className="mt-10 grid gap-6 lg:grid-cols-2">
-						{proofCases.map((proof, index) => (
-							<ProofCard key={proof.name} index={index} proof={proof} />
-						))}
-					</div>
+					<TestimonialConsole testimonials={testimonials} />
 				</div>
 			</section>
 
@@ -419,8 +343,7 @@ function App() {
 				<div className="mx-auto w-full max-w-6xl px-6">
 					<div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
 						<div>
-							<p className="terminal-label">{t((t) => t.home.method.label)}</p>
-							<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
+							<h2 className="terminal-heading text-3xl md:text-4xl">
 								{t((t) => t.home.method.title)}
 							</h2>
 							<p className="terminal-muted mt-4">
@@ -453,8 +376,7 @@ function App() {
 			<section className="terminal-section terminal-section-alt py-16">
 				<div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-center md:justify-between">
 					<div>
-						<p className="terminal-label">{t((t) => t.home.cta.label)}</p>
-						<h2 className="terminal-heading mt-3 text-3xl md:text-4xl">
+						<h2 className="terminal-heading text-3xl md:text-4xl">
 							{t((t) => t.home.cta.title)}
 						</h2>
 						<p className="terminal-muted mt-3">
@@ -483,87 +405,91 @@ function App() {
 	);
 }
 
-function ProofCard({ proof, index }: { proof: ProofCase; index: number }) {
-	const { t } = useI18n();
-	const { capture } = useAnalytics();
-	const isFieldProof = proof.proofType === "field";
+function TestimonialConsole({ testimonials }: { testimonials: Testimonial[] }) {
+	const [activeIndex, setActiveIndex] = useState(0);
+	const [visibleWords, setVisibleWords] = useState(1);
+	const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+	const activeTestimonial = testimonials[activeIndex] ??
+		testimonials[0] ?? {
+			name: "",
+			quote: "",
+		};
+	const activeWords = activeTestimonial.quote.split(" ");
+	const visibleQuote = prefersReducedMotion
+		? activeTestimonial.quote
+		: activeWords.slice(0, visibleWords).join(" ");
+
+	useEffect(() => {
+		const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+		const updateMotionPreference = () =>
+			setPrefersReducedMotion(mediaQuery.matches);
+
+		updateMotionPreference();
+		mediaQuery.addEventListener("change", updateMotionPreference);
+
+		return () =>
+			mediaQuery.removeEventListener("change", updateMotionPreference);
+	}, []);
+
+	useEffect(() => {
+		if (prefersReducedMotion || testimonials.length <= 1) {
+			setVisibleWords(activeWords.length);
+			return;
+		}
+
+		const hasWrittenQuote = visibleWords >= activeWords.length;
+		const hasClearedQuote = visibleWords === 0;
+		const delay = hasWrittenQuote ? 2400 : hasClearedQuote ? 420 : 90;
+		const timeout = window.setTimeout(() => {
+			if (hasWrittenQuote) {
+				setVisibleWords(0);
+				return;
+			}
+
+			if (hasClearedQuote) {
+				setActiveIndex((index) => (index + 1) % testimonials.length);
+				setVisibleWords(1);
+				return;
+			}
+
+			setVisibleWords((count) =>
+				Math.max(1, Math.min(activeWords.length, count + 1)),
+			);
+		}, delay);
+
+		return () => window.clearTimeout(timeout);
+	}, [
+		activeWords.length,
+		prefersReducedMotion,
+		testimonials.length,
+		visibleWords,
+	]);
 
 	return (
-		<div
-			className={`terminal-card motion-safe:animate-fade-up p-6 ${
-				isFieldProof ? "border-dashed border-accent/70" : ""
-			}`}
-			style={{ animationDelay: `${index * 120}ms` }}
-		>
-			<p className="terminal-label mb-3">{proof.category}</p>
-			<div className="flex items-center justify-between">
-				<h3 className="terminal-heading pr-8 text-lg">
-					{proof.url ? (
-						<a
-							href={proof.url}
-							target="_blank"
-							rel="noreferrer"
-							className="underline-offset-4 transition hover:text-accent hover:underline"
-							onClick={() =>
-								capture(ANALYTICS_EVENTS.ctaClick, {
-									cta: "proof_link",
-									placement: "home_proofs",
-									href: proof.url,
-									project: proof.name,
-								})
-							}
-						>
-							{proof.name}
-							<ArrowUpRight className="ml-1 inline-block size-3.5 align-baseline" />
-						</a>
-					) : (
-						proof.name
-					)}
-				</h3>
+		<div className="testimonial-console terminal-card mt-10 overflow-hidden p-0 motion-safe:animate-fade-up">
+			<div className="testimonial-console-bar">
+				<span>feedback.recv</span>
+				<span>
+					{String(activeIndex + 1).padStart(2, "0")} /{" "}
+					{String(testimonials.length).padStart(2, "0")}
+				</span>
 			</div>
-			<div className="mt-4 space-y-3">
-				<p className="terminal-label">
-					{t((t) => t.home.projectsSection.contextLabel)}
-				</p>
-				{proof.context.map((line) => (
-					<p key={line} className="terminal-muted text-sm">
-						{line}
-					</p>
-				))}
-			</div>
-			<div className="mt-4 space-y-3">
-				<p className="terminal-label">
-					{t((t) => t.home.projectsSection.impactLabel)}
-				</p>
-				{proof.impact.map((line) => (
-					<p key={line} className="terminal-muted text-sm">
-						{line}
-					</p>
-				))}
-			</div>
-			<div className="mt-4 flex flex-wrap gap-2">
-				{proof.stack.map((item) => (
-					<span key={item} className="terminal-chip">
-						{item}
-					</span>
-				))}
-			</div>
-			{proof.testimonial ? (
-				<figure className="terminal-divider mt-6 border-t pt-4">
-					<p className="terminal-label">
-						{t((t) => t.home.projectsSection.testimonialLabel)}
-					</p>
-					<blockquote className="terminal-muted mt-3 text-sm">
-						"{proof.testimonial.quote}"
-					</blockquote>
-					<figcaption className="mt-4">
-						<p className="text-sm font-semibold text-foreground">
-							{proof.testimonial.name}
-						</p>
-						<p className="terminal-label mt-1">{proof.testimonial.role}</p>
+			<div className="testimonial-console-body p-6 md:p-8 lg:p-10">
+				<figure
+					className="testimonial-console-screen"
+					aria-label={`${activeTestimonial.name}: ${activeTestimonial.quote}`}
+				>
+					<figcaption className="testimonial-console-name">
+						{activeTestimonial.name}
 					</figcaption>
+					<blockquote className="testimonial-console-quote">
+						<span>{visibleQuote}</span>
+						{prefersReducedMotion ? null : (
+							<span className="testimonial-console-caret" aria-hidden="true" />
+						)}
+					</blockquote>
 				</figure>
-			) : null}
+			</div>
 		</div>
 	);
 }

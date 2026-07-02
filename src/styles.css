@@ -467,6 +467,90 @@ code {
     border-color: color-mix(in srgb, var(--terminal-phosphor) 26%, transparent);
   }
 
+  .testimonial-console {
+    isolation: isolate;
+  }
+
+  .testimonial-console-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 2px solid color-mix(in srgb, var(--terminal-phosphor) 42%, transparent);
+    background: color-mix(in srgb, var(--terminal-navy) 72%, var(--terminal-panel));
+    color: var(--terminal-amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    padding: 0.85rem 1rem;
+    text-transform: uppercase;
+  }
+
+  .testimonial-console-body {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-console-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+          color-mix(in srgb, var(--terminal-phosphor) 7%, transparent) 50%,
+          transparent 50%
+        )
+        0 0 / 100% 8px,
+      radial-gradient(
+        circle at 8% 8%,
+        color-mix(in srgb, var(--terminal-amber) 16%, transparent),
+        transparent 18rem
+      );
+    opacity: 0.36;
+  }
+
+  .testimonial-console-body > * {
+    position: relative;
+  }
+
+  .testimonial-console-screen {
+    position: relative;
+    display: flex;
+    min-height: 16rem;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .testimonial-console-name {
+    position: relative;
+    color: var(--terminal-phosphor);
+    font-size: 1rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .testimonial-console-quote {
+    position: relative;
+    margin-top: 2rem;
+    color: var(--terminal-paper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .testimonial-console-caret {
+    display: inline-block;
+    width: 0.55ch;
+    height: 1em;
+    margin-left: 0.16rem;
+    background: var(--terminal-amber);
+    vertical-align: -0.12em;
+    animation: cursor-blink 1s steps(2, end) infinite;
+  }
+
   .terminal-prose {
     font-family: 'IBM Plex Mono', monospace;
   }
@@ -476,6 +560,18 @@ code {
   .terminal-prose h3,
   .terminal-prose h4 {
     font-family: 'Share Tech Mono', 'IBM Plex Mono', monospace;
+  }
+}
+
+@media (min-width: 768px) {
+  .testimonial-console-quote {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonial-console-screen {
+    min-height: 18rem;
   }
 }
 

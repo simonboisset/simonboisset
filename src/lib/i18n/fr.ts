@@ -17,7 +17,7 @@ export const fr: Translations = {
 		home: "Accueil",
 		about: "À propos",
 		services: "Services",
-		projects: "Preuves terrain",
+		projects: "Témoignages",
 		method: "Méthode",
 		blog: "Blog",
 		blogAll: "Voir tous les articles",
@@ -25,7 +25,7 @@ export const fr: Translations = {
 		aboutItems: {
 			services:
 				"Risques couverts pendant une migration React Native vers Expo.",
-			projects: "Preuves client et produit autour de la livraison mobile.",
+			projects: "Retours anonymisés sur la collaboration et la passation.",
 			method: "Audit, migration, release et passation équipe.",
 			github: "Open source, prototypes et exemples de code.",
 		},
@@ -198,11 +198,11 @@ export const fr: Translations = {
 	home: {
 		hero: {
 			eyebrow: "Pour CTO et lead tech React Native",
-			title: "Rendez votre app React Native plus sûre à livrer avec Expo.",
+			title: "Migration React Native vers Expo.",
 			intro:
-				"Quand les dépendances natives, les sorties stores et la CI rendent chaque release risquée, j'audite l'app, je migre par étapes vers Expo/EAS et je laisse un workflow que votre équipe peut garder en main.",
+				"J'aide votre équipe à migrer vers Expo/EAS sans bloquer les releases ni perdre la main.",
 			ctaPrimary: "Parler d'une migration Expo",
-			ctaSecondary: "Voir les preuves terrain",
+			ctaSecondary: "Lire les retours clients",
 			highlights: {
 				expertise: "Audit dépendances natives",
 				delivery: "Releases EAS/stores",
@@ -225,115 +225,49 @@ export const fr: Translations = {
 			description:
 				"L'objectif n'est pas de tout déplacer d'un coup : on identifie la surface native risquée, on protège la roadmap produit et on rend les releases prévisibles.",
 		},
-		projectsSection: {
-			label: "Preuves terrain",
-			title: "Des preuves liées aux objections CTO",
+		testimonialsSection: {
+			label: "Ils m'ont fait confiance",
+			title: "Retours de mission",
 			description:
-				"Des contextes concrets où le sujet était le risque de migration, la livraison mobile, l'architecture ou l'autonomie équipe.",
-			contextLabel: "Contexte",
-			impactLabel: "Ce que ça prouve",
-			testimonialLabel: "Formulation client à valider",
+				"Quelques retours concrets de missions React Native, Expo et mobile legacy.",
 		},
-		projects: {
-			campingCarPark: {
-				name: "CAMPING-CAR PARK - Modernisation app mobile",
-				category: "Mission client - migration Expo",
-				context: {
-					line1:
-						"App mobile grand public pour réserver et gérer des séjours en camping-car.",
-				},
-				impact: {
-					line1: "Refonte mobile + migration React Native legacy vers Expo.",
-					line2:
-						"Référent mobile pour structuration du projet et autonomisation équipe.",
-					line3:
-						"Preuve la plus directe pour une CTO confrontée à de la dette native et à des releases fragiles.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Expo",
-					item3: "Mobile",
-					item4: "Architecture",
-				},
+		testimonials: {
+			eric: {
+				name: "Eric",
+				quote:
+					"On partait d'un legacy assez complexe. Simon a repris le projet, remis de l'ordre dans toute la stack et continue de nous accompagner au quotidien.",
 			},
-			linote: {
-				name: 'LiNote - App mobile "lien social"',
-				category: "Mission client - mobile React Native",
-				context: {
-					line1: "App mobile pour garder le lien avec des proches âgés.",
-				},
-				impact: {
-					line1: "Développement React Native from scratch aligné à l'app web.",
-					line2:
-						"Preuve de livraison mobile propre sur rappels, messagerie, partage photo et appels vidéo.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Mobile",
-					item3: "iOS",
-					item4: "Android",
-				},
-				testimonial: {
-					quote:
-						"Simon a combiné communication simple, code propre et livraison rapide sur notre app React Native. La collaboration était assez fiable pour que nous lui confiions une nouvelle mission.",
-					name: "Anthony",
-					role: "CEO, LiNote",
-				},
+			julie: {
+				name: "Julie",
+				quote:
+					"Simon a construit notre app React Native depuis zéro, en restant aligné avec l'app web. En quelques semaines, on avait les rappels, les messages, le partage de photos et les appels vidéo.",
 			},
-			silbo: {
-				name: "Silbo - Santé : web + apps terrain",
-				category: "Preuve CTO - architecture et livraison",
-				context: {
-					line1:
-						"Startup santé : web d'optimisation des flux patients + apps terrain.",
-				},
-				impact: {
-					line1:
-						"Capacité à naviguer entre mobile, backend, UI, infrastructure et CI/CD.",
-					line2:
-						"Utile pour les migrations où architecture et workflow de release sont liés.",
-				},
-				stack: {
-					item1: "Mobile",
-					item2: "Architecture",
-					item3: "CI/CD",
-					item4: "Production",
-				},
-				testimonial: {
-					quote:
-						"Simon sait passer de l'UI au backend, au mobile, à l'infrastructure cloud et à la CI/CD sans perdre le fil architectural. Il propose des décisions techniques pragmatiques et monte vite sur des systèmes complexes.",
-					name: "Thomas",
-					role: "CTO, Silbo",
-				},
+			matthieu: {
+				name: "Matthieu",
+				quote:
+					"On traînait cette migration Expo depuis plus d'un an. Simon nous a rassurés, l'a livrée en deux semaines, et on a pu publier une version propre derrière.",
 			},
-			fieldExpo: {
-				name: "Questovery + Mon Pont Chaban - Produits Expo en conditions terrain",
-				category: "Preuve produit personnelle",
-				context: {
-					line1:
-						"Questovery : plateforme de jeux de piste géolocalisés avec app mobile participant.",
-					line2:
-						"Mon Pont Chaban : app Expo d'alertes push autour des levées du pont de Bordeaux.",
-				},
-				impact: {
-					line1:
-						"Expo en production avec géolocalisation, contraintes cartes/offline, push notifications et sorties stores.",
-					line2:
-						"Ownership produit quotidien : pas seulement du conseil migration, mais des arbitrages mobile vécus.",
-				},
-				stack: {
-					item1: "React Native",
-					item2: "Expo",
-					item3: "Géolocalisation",
-					item4: "Push",
-				},
+			thomas: {
+				name: "Thomas",
+				quote:
+					"Simon est arrivé sur un projet où le front, le backend, le mobile et l'infra étaient tous liés. Il a vite compris comment tout s'emboîtait, ce qui nous a évité beaucoup d'allers-retours.",
+			},
+			julien: {
+				name: "Romuald",
+				quote:
+					"Simon a migré vers Expo trois de nos apps React Native maintenues depuis plus de 9 ans. La migration s'est faite en douceur, et on en mesure déjà les bénéfices : montées de version bien plus rapides, builds enfin fiables.",
+			},
+			antoine: {
+				name: "Antoine",
+				quote:
+					"Notre codebase mobile était devenue trop complexe : trop de cas particuliers, trop de dépendances, plus beaucoup de certitudes. Simon nous a aidés à reprendre la maîtrise et à remettre une structure claire.",
 			},
 		},
 		servicesSection: {
 			label: "Risques couverts",
-			title: "Ce que je sécurise pendant la migration",
+			title: "Ce qui bloque une migration Expo",
 			description:
-				"Une migration n'est pas seulement une montée de SDK. Le vrai sujet est de réduire le risque de release avant de toucher à la roadmap produit.",
+				"Dépendances natives, CI, stores, OTA : on clarifie les risques avant de migrer.",
 			cta: "Voir le périmètre migration",
 		},
 		risks: {
@@ -368,9 +302,9 @@ export const fr: Translations = {
 		},
 		method: {
 			label: "Méthode migration",
-			title: "Un plan de migration compatible avec votre roadmap",
+			title: "Comment se passe la migration",
 			description:
-				"On commence par réduire le risque de livraison, puis on avance par étapes jusqu'à un workflow Expo maintenable par l'équipe.",
+				"Audit, migration progressive, releases EAS, puis passation à l'équipe.",
 			audit: {
 				title: "Auditer la surface native",
 				description:
@@ -394,9 +328,9 @@ export const fr: Translations = {
 		},
 		cta: {
 			label: "Diagnostic migration",
-			title: "Passons en revue le risque de migration React Native.",
+			title: "Parlons de votre migration Expo.",
 			description:
-				"Partagez vos versions RN/Expo, dépendances natives, setup CI/stores et irritants de release. Je reviens sous 48 h avec des prochaines étapes claires.",
+				"Envoyez-moi vos versions RN/Expo, dépendances natives et points bloquants. Je vous réponds avec les prochaines étapes.",
 			button: "Planifier un appel",
 		},
 	},

@@ -38,7 +38,6 @@ export function HeroIntroCard({
 				</div>
 			</div>
 			<p className="terminal-card terminal-card-light px-4 py-3 text-sm md:text-base">
-				<span className="terminal-label block pb-2">&gt; operator note</span>
 				{intro}
 			</p>
 		</div>
