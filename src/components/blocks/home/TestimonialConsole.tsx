@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Card } from "@/components/ui/card";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 import type { Testimonial } from "./types";
@@ -58,9 +59,10 @@ export function TestimonialConsole({
 	]);
 
 	return (
-		<div
+		<Card
+			showPin={false}
 			className={cn(
-				"testimonial-console terminal-card mt-10 overflow-hidden p-0 motion-safe:animate-fade-up",
+				"testimonial-console mt-10 overflow-hidden p-0 motion-safe:animate-fade-up",
 				className,
 			)}
 		>
@@ -87,6 +89,6 @@ export function TestimonialConsole({
 					</blockquote>
 				</figure>
 			</div>
-		</div>
+		</Card>
 	);
 }

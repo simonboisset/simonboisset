@@ -21,9 +21,9 @@ export function RootShell({
 
 	return (
 		<>
-			<div className="min-h-screen flex flex-col">
+			<div className="flex min-h-screen flex-col">
 				<Header blogPosts={blogPreview} />
-				<main className="flex-1">{children}</main>
+				<main className="site-shell flex-1">{children}</main>
 				<SiteFooter />
 			</div>
 			{env.VITE_POSTHOG_KEY ? <ConsentBanner /> : null}

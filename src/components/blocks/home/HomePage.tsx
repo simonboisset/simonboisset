@@ -30,7 +30,7 @@ export function HomePage({ assets }: { assets: HomeAssets }) {
 	useSectionViewTracking(sectionTracking, { pageType: "home", locale });
 
 	return (
-		<div className="terminal-page">
+		<>
 			<HomeHeroSection
 				assets={assets}
 				content={content.hero}
@@ -42,6 +42,6 @@ export function HomePage({ assets }: { assets: HomeAssets }) {
 			<HomeTestimonialsSection assets={assets} content={content} />
 			<HomeMethodSection content={content} />
 			<HomeFinalCta content={content.cta} capture={capture} />
-		</div>
+		</>
 	);
 }

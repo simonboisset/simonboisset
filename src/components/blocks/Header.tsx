@@ -7,6 +7,7 @@ import {
 	HeaderMenuLink,
 } from "@/components/blocks/header-links";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -85,11 +86,11 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 						<Link
 							to="/{-$locale}"
 							params={localeParams}
-							className="terminal-cursor truncate text-lg font-semibold tracking-tight text-foreground hover:text-secondary"
+							className="text-cursor truncate text-lg font-semibold tracking-tight text-foreground hover:text-secondary"
 						>
 							{t((t) => t.nav.brand)}
 						</Link>
-						<span className="terminal-label hidden md:inline">
+						<span className="text-kicker hidden md:inline">
 							{t((t) => t.nav.tagline)}
 						</span>
 					</div>
@@ -141,9 +142,7 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 									</NavigationMenuTrigger>
 									<NavigationMenuContent className="w-[calc(100vw-3rem)] max-w-[480px] p-4 md:w-[480px]">
 										<div className="flex items-center justify-between px-1 pb-2">
-											<p className="terminal-label">
-												{t((t) => t.blog.latest)}
-											</p>
+											<p className="text-kicker">{t((t) => t.blog.latest)}</p>
 											<Link
 												to="/{-$locale}/blog"
 												params={localeParams}
@@ -153,9 +152,9 @@ export default function Header({ blogPosts = [] }: HeaderProps) {
 											</Link>
 										</div>
 										{blogPreview.length === 0 ? (
-											<p className="terminal-card p-4 text-sm">
+											<Card showPin={false} className="p-4 text-sm">
 												{t((t) => t.blog.empty)}
-											</p>
+											</Card>
 										) : (
 											<ul className="grid gap-3 md:grid-cols-2">
 												{blogPreview.map((post) => (
