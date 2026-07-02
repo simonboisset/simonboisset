@@ -5,6 +5,7 @@ export type HomeAssets = {
 	heroPhotoUrl: string | null;
 	legacyServiceIllustrationUrl: string | null;
 	proofIllustrationUrl: string | null;
+	risksIllustrationUrl: string | null;
 	workflowServiceIllustrationUrl: string | null;
 };
 

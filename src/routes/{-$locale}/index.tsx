@@ -20,6 +20,7 @@ export const Route = createFileRoute("/{-$locale}/")({
 		const [
 			heroPhotoUrl,
 			heroIllustrationUrl,
+			risksIllustrationUrl,
 			proofIllustrationUrl,
 			legacyServiceIllustrationUrl,
 			workflowServiceIllustrationUrl,
@@ -32,6 +33,16 @@ export const Route = createFileRoute("/{-$locale}/")({
 					assetId: SITE_ILLUSTRATION_ASSET_IDS.hero,
 					width: 960,
 					height: 640,
+					fit: "cover",
+					format: "webp",
+					quality: 82,
+				},
+			}),
+			directus.getAssetUrl({
+				data: {
+					assetId: SITE_ILLUSTRATION_ASSET_IDS.risks,
+					width: 800,
+					height: 600,
 					fit: "cover",
 					format: "webp",
 					quality: 82,
@@ -74,6 +85,7 @@ export const Route = createFileRoute("/{-$locale}/")({
 			legacyServiceIllustrationUrl,
 			locale,
 			proofIllustrationUrl,
+			risksIllustrationUrl,
 			workflowServiceIllustrationUrl,
 		};
 	},
@@ -99,6 +111,7 @@ function App() {
 		heroPhotoUrl,
 		legacyServiceIllustrationUrl,
 		proofIllustrationUrl,
+		risksIllustrationUrl,
 		workflowServiceIllustrationUrl,
 	} = Route.useLoaderData();
 
@@ -109,6 +122,7 @@ function App() {
 				heroPhotoUrl,
 				legacyServiceIllustrationUrl,
 				proofIllustrationUrl,
+				risksIllustrationUrl,
 				workflowServiceIllustrationUrl,
 			}}
 		/>
