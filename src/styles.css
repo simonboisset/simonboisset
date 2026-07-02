@@ -484,11 +484,39 @@
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
-    border-top: 1px solid color-mix(in srgb, var(--secondary) 26%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--foreground) 20%, transparent);
     padding-top: 1rem;
-    color: var(--secondary);
+    color: color-mix(in srgb, var(--foreground) 46%, transparent);
     font-size: 0.875rem;
     line-height: 1.5;
+    transition:
+      color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .migration-progress-output[data-state="current"] {
+    border-top-color: color-mix(in srgb, var(--accent) 44%, transparent);
+    color: var(--accent);
+  }
+
+  .migration-progress-output[data-state="done"] {
+    border-top-color: color-mix(in srgb, var(--secondary) 26%, transparent);
+    color: var(--secondary);
+  }
+
+  .migration-progress-output-icon {
+    display: inline-flex;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.125rem;
+  }
+
+  .migration-progress-output[data-state="current"] .migration-progress-spinner {
+    display: inline-block;
+    animation: migration-spinner 0.85s linear infinite;
   }
 
   @media (min-width: 1024px) {

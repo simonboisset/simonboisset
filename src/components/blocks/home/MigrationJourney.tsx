@@ -145,8 +145,19 @@ export function MigrationJourney({
 							<h3 className="text-heading mt-3 text-xl">{item.title}</h3>
 							<p className="text-body-muted mt-3 text-sm">{item.description}</p>
 							{"outcome" in item && item.outcome ? (
-								<p className="migration-progress-output mt-5">
-									<CheckCircle2 className="mt-0.5 size-4 shrink-0" />
+								<p
+									className="migration-progress-output mt-5"
+									data-state={status}
+								>
+									<span
+										className="migration-progress-output-icon"
+										aria-hidden="true"
+									>
+										<span className="migration-progress-spinner" />
+										{status === "done" ? (
+											<CheckCircle2 className="size-4" />
+										) : null}
+									</span>
 									<span>{item.outcome}</span>
 								</p>
 							) : null}
