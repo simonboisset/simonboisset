@@ -5,7 +5,7 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] border-2 border-current text-sm font-medium uppercase tracking-[0.08em] shadow-[4px_4px_0_var(--terminal-shadow)] outline-none transition-[color,background-color,box-shadow,transform] duration-150 ease-linear hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--terminal-shadow)] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-[3px] focus-visible:ring-ring/60 aria-invalid:border-destructive aria-invalid:ring-destructive/20 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+	"inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-lg border-2 border-current text-sm font-medium uppercase tracking-[0.08em] shadow-hard-button outline-none transition-[color,background-color,box-shadow,transform] duration-150 ease-linear hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_var(--shadow-hard)] active:translate-x-1 active:translate-y-1 active:shadow-none disabled:pointer-events-none disabled:opacity-50 focus-visible:ring-[3px] focus-visible:ring-ring/60 aria-invalid:border-destructive aria-invalid:ring-destructive/20 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 	{
 		variants: {
 			variant: {

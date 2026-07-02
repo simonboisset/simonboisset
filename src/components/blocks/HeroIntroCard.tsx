@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 type HeroIntroCardProps = {
@@ -15,7 +16,7 @@ export function HeroIntroCard({
 }: HeroIntroCardProps) {
 	if (!heroPhotoUrl) {
 		return (
-			<p className={cn("terminal-muted text-lg md:text-xl", className)}>
+			<p className={cn("text-body-muted text-lg md:text-xl", className)}>
 				{intro}
 			</p>
 		);
@@ -28,18 +29,23 @@ export function HeroIntroCard({
 				className,
 			)}
 		>
-			<div className="terminal-image-frame inline-flex shrink-0 self-center p-2 sm:self-start">
-				<div className="size-20 shrink-0 overflow-hidden bg-muted md:size-24">
+			<div className="image-frame inline-flex shrink-0 self-center p-2 sm:self-start">
+				<span className="image-frame-overlay" aria-hidden="true" />
+				<div className="relative size-20 shrink-0 overflow-hidden bg-muted md:size-24">
 					<img
 						src={heroPhotoUrl}
 						alt={alt}
-						className="terminal-image h-full w-full object-cover"
+						className="image-treated h-full w-full object-cover"
 					/>
 				</div>
 			</div>
-			<p className="terminal-card terminal-card-light px-4 py-3 text-sm md:text-base">
+			<Card
+				variant="light"
+				showPin={false}
+				className="px-4 py-3 text-sm md:text-base"
+			>
 				{intro}
-			</p>
+			</Card>
 		</div>
 	);
 }

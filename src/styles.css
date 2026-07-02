@@ -8,25 +8,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-  @apply m-0;
-  font-family: 'Share Tech Mono', 'IBM Plex Mono', monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Share Tech Mono', 'IBM Plex Mono', monospace;
-}
-
-code {
-  font-family:
-    'IBM Plex Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
 :root {
   --background: #10141f;
   --foreground: #f8f2dc;
@@ -42,8 +23,8 @@ code {
   --muted-foreground: #ccefd8;
   --accent: #ffd166;
   --accent-foreground: #10141f;
-  --destructive: #ff6b4a;
-  --destructive-foreground: #10141f;
+  --destructive: #e53e3e;
+  --destructive-foreground: #f8f2dc;
   --border: #a8ffcc;
   --input: #243047;
   --ring: #ffd166;
@@ -53,49 +34,7 @@ code {
   --chart-4: #f8f2dc;
   --chart-5: #7fd7ff;
   --radius: 0.25rem;
-  --terminal-navy: #10141f;
-  --terminal-panel: #1c2433;
-  --terminal-panel-2: #243047;
-  --terminal-phosphor: #a8ffcc;
-  --terminal-amber: #ffd166;
-  --terminal-coral: #ff6b4a;
-  --terminal-paper: #f8f2dc;
-  --terminal-shadow: #03060c;
-  --sidebar: #1c2433;
-  --sidebar-foreground: #f8f2dc;
-  --sidebar-primary: #ff6b4a;
-  --sidebar-primary-foreground: #10141f;
-  --sidebar-accent: #243047;
-  --sidebar-accent-foreground: #a8ffcc;
-  --sidebar-border: #a8ffcc;
-  --sidebar-ring: #ffd166;
-}
-
-.dark {
-  --background: #10141f;
-  --foreground: #f8f2dc;
-  --card: #1c2433;
-  --card-foreground: #f8f2dc;
-  --popover: #1c2433;
-  --popover-foreground: #f8f2dc;
-  --primary: #ff6b4a;
-  --primary-foreground: #10141f;
-  --secondary: #a8ffcc;
-  --secondary-foreground: #10141f;
-  --muted: #243047;
-  --muted-foreground: #ccefd8;
-  --accent: #ffd166;
-  --accent-foreground: #10141f;
-  --destructive: #ff6b4a;
-  --destructive-foreground: #10141f;
-  --border: #a8ffcc;
-  --input: #243047;
-  --ring: #ffd166;
-  --chart-1: #a8ffcc;
-  --chart-2: #ffd166;
-  --chart-3: #ff6b4a;
-  --chart-4: #f8f2dc;
-  --chart-5: #7fd7ff;
+  --shadow-hard: #03060c;
   --sidebar: #1c2433;
   --sidebar-foreground: #f8f2dc;
   --sidebar-primary: #ff6b4a;
@@ -131,10 +70,24 @@ code {
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --color-shadow-hard: var(--shadow-hard);
+  --font-display: 'Share Tech Mono', 'IBM Plex Mono', monospace;
+  --font-mono: 'IBM Plex Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --shadow-hard-sm: 3px 3px 0 var(--shadow-hard);
+  --shadow-hard-md: 6px 6px 0 var(--shadow-hard);
+  --shadow-hard-lg: 8px 8px 0 var(--shadow-hard);
+  --shadow-hard-button: 4px 4px 0 var(--shadow-hard);
+  --animate-boot-line: boot-line 0.72s steps(8, end) both;
+  --animate-cursor-blink: cursor-blink 1s steps(2, end) infinite;
+  --animate-fade-up: fade-up 0.8s ease both;
+  --animate-float: float-slow 12s ease-in-out infinite;
+  --animate-terminal-reveal: terminal-reveal 0.6s steps(5, end) both;
+  --animate-crt-scan: crt-scan 4s steps(8, end) infinite alternate;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -149,8 +102,20 @@ code {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply m-0 bg-background font-display text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  code {
+    @apply font-mono;
   }
 }
 
@@ -160,6 +125,7 @@ code {
     transform: translateY(10px);
     clip-path: inset(0 100% 0 0);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -172,6 +138,7 @@ code {
   45% {
     opacity: 1;
   }
+
   46%,
   100% {
     opacity: 0;
@@ -183,6 +150,7 @@ code {
     opacity: 0;
     transform: translateY(12px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -194,6 +162,7 @@ code {
     opacity: 0;
     transform: translateY(16px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -205,6 +174,7 @@ code {
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-14px);
   }
@@ -214,6 +184,7 @@ code {
   0% {
     transform: translateY(-8px);
   }
+
   100% {
     transform: translateY(8px);
   }
@@ -227,6 +198,7 @@ code {
       100% 100%,
       0% 100%;
   }
+
   100% {
     background-position:
       100% 0%,
@@ -240,60 +212,134 @@ code {
   0% {
     transform: rotate(0turn);
   }
+
   100% {
     transform: rotate(1turn);
   }
 }
 
-@layer utilities {
-  .animate-fade-up {
-    animation: fade-up 0.8s ease both;
-  }
+@utility text-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
 
-  .animate-float {
-    animation: float-slow 12s ease-in-out infinite;
-  }
+@utility text-heading {
+  color: var(--foreground);
+  font-weight: 400;
+  line-height: 0.98;
+  text-wrap: balance;
+}
 
-  .animate-terminal-reveal {
-    animation: terminal-reveal 0.6s steps(5, end) both;
+@utility text-body-muted {
+  color: color-mix(in srgb, var(--foreground) 78%, var(--secondary));
+  line-height: 1.65;
+}
+
+@utility section-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid color-mix(in srgb, var(--secondary) 50%, transparent);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--secondary) 6%, transparent) 1px,
+      transparent 1px
+    )
+    0 0 / 22px 22px,
+    linear-gradient(
+      color-mix(in srgb, var(--secondary) 4%, transparent) 1px,
+      transparent 1px
+    )
+    0 0 / 22px 22px;
+}
+
+@utility section-divider {
+  border-top: 2px solid color-mix(in srgb, var(--secondary) 24%, transparent);
+}
+
+@utility section-muted {
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+}
+
+@utility text-cursor {
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0.55ch;
+    height: 0.78em;
+    margin-left: 0.08em;
+    background: var(--accent);
+    vertical-align: -0.08em;
+    animation: cursor-blink 1s steps(2, end) infinite;
   }
 }
 
+@utility image-frame {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--secondary);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow-hard-md);
+}
+
+@utility image-frame-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(color-mix(in srgb, white 12%, transparent) 50%, transparent 50%)
+      0 0 / 100% 6px,
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--secondary) 22%, transparent),
+      transparent 44%
+    );
+  mix-blend-mode: screen;
+  opacity: 0.34;
+}
+
+@utility image-treated {
+  filter: saturate(0.78) contrast(1.18);
+  transition:
+    transform 240ms steps(4, end),
+    filter 240ms steps(4, end);
+}
+
 @layer components {
-  .terminal-page {
+  .site-shell {
     position: relative;
     min-height: 100%;
     overflow: hidden;
     background:
       radial-gradient(
         circle at top right,
-        color-mix(in srgb, var(--terminal-amber) 16%, transparent),
+        color-mix(in srgb, var(--accent) 16%, transparent),
         transparent 34rem
       ),
       radial-gradient(
         circle at bottom left,
-        color-mix(in srgb, var(--terminal-phosphor) 12%, transparent),
+        color-mix(in srgb, var(--secondary) 12%, transparent),
         transparent 32rem
       ),
-      linear-gradient(180deg, var(--terminal-navy), #0c1019 64%, #090d15);
-    color: var(--terminal-paper);
+      linear-gradient(180deg, var(--background), #0c1019 64%, #090d15);
+    color: var(--foreground);
   }
 
-  .terminal-page::before {
+  .site-shell::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     background:
-      linear-gradient(
-          color-mix(in srgb, white 6%, transparent) 50%,
-          transparent 50%
-        )
+      linear-gradient(color-mix(in srgb, white 6%, transparent) 50%, transparent 50%)
         0 0 / 100% 6px,
       linear-gradient(
         90deg,
-        color-mix(in srgb, var(--terminal-phosphor) 5%, transparent),
+        color-mix(in srgb, var(--secondary) 5%, transparent),
         transparent 18%,
         color-mix(in srgb, black 12%, transparent)
       );
@@ -301,135 +347,9 @@ code {
     animation: crt-scan 4s steps(8, end) infinite alternate;
   }
 
-  .terminal-page > * {
+  .site-shell > * {
     position: relative;
     z-index: 1;
-  }
-
-  .terminal-hero {
-    position: relative;
-    overflow: hidden;
-    border-bottom: 2px solid color-mix(in srgb, var(--terminal-phosphor) 50%, transparent);
-    background:
-      linear-gradient(
-        90deg,
-        color-mix(in srgb, var(--terminal-phosphor) 6%, transparent) 1px,
-        transparent 1px
-      )
-      0 0 / 22px 22px,
-      linear-gradient(
-        color-mix(in srgb, var(--terminal-phosphor) 4%, transparent) 1px,
-        transparent 1px
-      )
-      0 0 / 22px 22px;
-  }
-
-  .terminal-section {
-    border-top: 2px solid color-mix(in srgb, var(--terminal-phosphor) 24%, transparent);
-  }
-
-  .terminal-section-alt {
-    background: color-mix(in srgb, var(--terminal-panel) 70%, transparent);
-  }
-
-  .terminal-card {
-    position: relative;
-    border: 2px solid color-mix(in srgb, var(--terminal-phosphor) 58%, transparent);
-    border-radius: var(--radius);
-    background: color-mix(in srgb, var(--terminal-panel) 92%, transparent);
-    box-shadow: 6px 6px 0 var(--terminal-shadow);
-    color: var(--terminal-paper);
-    transition:
-      transform 160ms steps(2, end),
-      box-shadow 160ms steps(2, end),
-      border-color 160ms steps(2, end),
-      background-color 160ms steps(2, end);
-  }
-
-  .terminal-card::before {
-    content: "";
-    position: absolute;
-    top: 0.9rem;
-    right: 1rem;
-    width: 0.65rem;
-    height: 0.9rem;
-    background:
-      linear-gradient(var(--terminal-amber) 0 0) 0 0.35rem / 0.65rem 0.16rem,
-      linear-gradient(var(--terminal-amber) 0 0) 0.45rem 0.2rem / 0.16rem
-      0.16rem,
-      linear-gradient(var(--terminal-amber) 0 0) 0.45rem 0.5rem / 0.16rem
-      0.16rem;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 160ms steps(2, end);
-  }
-
-  .terminal-card:hover,
-  .terminal-card:focus-within {
-    transform: translate(-2px, -2px);
-    border-color: var(--terminal-phosphor);
-    box-shadow: 8px 8px 0 var(--terminal-shadow);
-  }
-
-  .terminal-card:hover::before,
-  .terminal-card:focus-within::before {
-    opacity: 1;
-  }
-
-  .terminal-card-light {
-    border-color: var(--terminal-amber);
-    background: var(--terminal-paper);
-    color: var(--terminal-navy);
-  }
-
-  .terminal-label {
-    color: var(--terminal-amber);
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .terminal-heading {
-    color: var(--terminal-paper);
-    font-weight: 400;
-    line-height: 0.98;
-    letter-spacing: 0;
-    text-wrap: balance;
-  }
-
-  .terminal-card-light .terminal-heading,
-  .terminal-heading-dark {
-    color: var(--terminal-navy);
-  }
-
-  .terminal-muted {
-    color: color-mix(in srgb, var(--terminal-paper) 78%, var(--terminal-phosphor));
-    line-height: 1.65;
-  }
-
-  .terminal-card-light .terminal-muted,
-  .terminal-muted-dark {
-    color: color-mix(in srgb, var(--terminal-navy) 78%, black);
-  }
-
-  .terminal-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    border: 2px solid currentColor;
-    border-radius: var(--radius);
-    padding: 0.25rem 0.55rem;
-    background: color-mix(in srgb, var(--terminal-panel) 84%, transparent);
-    color: var(--terminal-phosphor);
-    font-size: 0.75rem;
-    line-height: 1.2;
-    text-transform: uppercase;
-    box-shadow: 3px 3px 0 var(--terminal-shadow);
-  }
-
-  .terminal-card-light .terminal-chip {
-    background: var(--terminal-navy);
-    color: var(--terminal-phosphor);
   }
 
   .migration-progress-board {
@@ -456,7 +376,7 @@ code {
     z-index: 1;
     min-height: 17rem;
     overflow: hidden;
-    background: color-mix(in srgb, var(--terminal-panel) 98%, black);
+    background: color-mix(in srgb, var(--card) 98%, black);
     width: 100%;
   }
 
@@ -467,28 +387,28 @@ code {
     z-index: 2;
     border-radius: calc(var(--radius) + 2px);
     background:
-      linear-gradient(90deg, transparent, var(--terminal-amber), transparent)
-      0 0 / 48% 3px no-repeat,
-      linear-gradient(180deg, transparent, var(--terminal-phosphor), transparent)
-      100% 0 / 3px 48% no-repeat,
-      linear-gradient(270deg, transparent, var(--terminal-amber), transparent)
-      100% 100% / 48% 3px no-repeat,
-      linear-gradient(0deg, transparent, var(--terminal-phosphor), transparent)
-      0 100% / 3px 48% no-repeat;
+      linear-gradient(90deg, transparent, var(--accent), transparent) 0 0 / 48% 3px
+        no-repeat,
+      linear-gradient(180deg, transparent, var(--secondary), transparent) 100% 0 /
+        3px 48% no-repeat,
+      linear-gradient(270deg, transparent, var(--accent), transparent) 100% 100% /
+        48% 3px no-repeat,
+      linear-gradient(0deg, transparent, var(--secondary), transparent) 0 100% /
+        3px 48% no-repeat;
     opacity: 0;
     pointer-events: none;
     transition: opacity 180ms steps(2, end);
   }
 
   .migration-progress-card[data-state="pending"] {
-    border-color: color-mix(in srgb, var(--terminal-paper) 28%, transparent);
+    border-color: color-mix(in srgb, var(--foreground) 28%, transparent);
   }
 
   .migration-progress-card[data-state="current"] {
-    border-color: var(--terminal-amber);
+    border-color: var(--accent);
     box-shadow:
-      8px 8px 0 var(--terminal-shadow),
-      0 0 0 1px color-mix(in srgb, var(--terminal-amber) 44%, transparent);
+      var(--shadow-hard-lg),
+      0 0 0 1px color-mix(in srgb, var(--accent) 44%, transparent);
   }
 
   .migration-progress-card[data-state="current"]::after {
@@ -497,7 +417,7 @@ code {
   }
 
   .migration-progress-card[data-state="done"] {
-    border-color: var(--terminal-phosphor);
+    border-color: var(--secondary);
   }
 
   .migration-progress-node {
@@ -508,17 +428,17 @@ code {
     place-items: center;
     border: 2px solid currentColor;
     border-radius: var(--radius);
-    background: var(--terminal-navy);
-    color: var(--terminal-phosphor);
-    box-shadow: 4px 4px 0 var(--terminal-shadow);
+    background: var(--background);
+    color: var(--secondary);
+    box-shadow: var(--shadow-hard-button);
   }
 
   .migration-progress-card[data-state="pending"] .migration-progress-node {
-    color: color-mix(in srgb, var(--terminal-paper) 46%, transparent);
+    color: color-mix(in srgb, var(--foreground) 46%, transparent);
   }
 
   .migration-progress-card[data-state="current"] .migration-progress-node {
-    color: var(--terminal-amber);
+    color: var(--accent);
   }
 
   .migration-progress-status {
@@ -530,20 +450,20 @@ code {
     border: 2px solid currentColor;
     border-radius: var(--radius);
     padding: 0.32rem 0.6rem;
-    background: var(--terminal-navy);
-    color: color-mix(in srgb, var(--terminal-paper) 68%, transparent);
+    background: var(--background);
+    color: color-mix(in srgb, var(--foreground) 68%, transparent);
     font-size: 0.72rem;
     line-height: 1.1;
     text-transform: uppercase;
-    box-shadow: 3px 3px 0 var(--terminal-shadow);
+    box-shadow: var(--shadow-hard-sm);
   }
 
   .migration-progress-status[data-state="current"] {
-    color: var(--terminal-amber);
+    color: var(--accent);
   }
 
   .migration-progress-status[data-state="done"] {
-    color: var(--terminal-phosphor);
+    color: var(--secondary);
   }
 
   .migration-progress-spinner {
@@ -564,9 +484,9 @@ code {
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
-    border-top: 1px solid color-mix(in srgb, var(--terminal-phosphor) 26%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--secondary) 26%, transparent);
     padding-top: 1rem;
-    color: var(--terminal-phosphor);
+    color: var(--secondary);
     font-size: 0.875rem;
     line-height: 1.5;
   }
@@ -578,10 +498,6 @@ code {
       gap: 6rem 4rem;
       min-height: 42rem;
       padding: 2.5rem 0;
-    }
-
-    .migration-progress-grid::before {
-      display: none;
     }
 
     .migration-progress-path {
@@ -603,15 +519,15 @@ code {
     }
 
     .migration-progress-path-track {
-      stroke: color-mix(in srgb, var(--terminal-phosphor) 34%, transparent);
+      stroke: color-mix(in srgb, var(--secondary) 34%, transparent);
       stroke-width: 4;
     }
 
     .migration-progress-path-progress {
-      stroke: var(--terminal-amber);
+      stroke: var(--accent);
       stroke-width: 5;
       stroke-dasharray: var(--migration-progress) 1;
-      filter: drop-shadow(4px 4px 0 var(--terminal-shadow));
+      filter: drop-shadow(4px 4px 0 var(--shadow-hard));
       transition: stroke-dasharray 820ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -652,67 +568,6 @@ code {
     }
   }
 
-  .terminal-image-frame {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--terminal-phosphor);
-    border-radius: var(--radius);
-    background: var(--terminal-panel);
-    box-shadow: 6px 6px 0 var(--terminal-shadow);
-  }
-
-  .terminal-image-frame::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(
-          color-mix(in srgb, white 12%, transparent) 50%,
-          transparent 50%
-        )
-        0 0 / 100% 6px,
-      linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--terminal-phosphor) 22%, transparent),
-        transparent 44%
-      );
-    mix-blend-mode: screen;
-    opacity: 0.34;
-  }
-
-  .terminal-image {
-    filter: saturate(0.78) contrast(1.18);
-    image-rendering: auto;
-    transition:
-      transform 240ms steps(4, end),
-      filter 240ms steps(4, end);
-  }
-
-  .group:hover .terminal-image {
-    transform: scale(1.025);
-    filter: saturate(0.95) contrast(1.28);
-  }
-
-  .terminal-boot-line {
-    animation: boot-line 0.72s steps(8, end) both;
-  }
-
-  .terminal-cursor::after {
-    content: "";
-    display: inline-block;
-    width: 0.55ch;
-    height: 0.78em;
-    margin-left: 0.08em;
-    background: var(--terminal-amber);
-    vertical-align: -0.08em;
-    animation: cursor-blink 1s steps(2, end) infinite;
-  }
-
-  .terminal-divider {
-    border-color: color-mix(in srgb, var(--terminal-phosphor) 26%, transparent);
-  }
-
   .testimonial-console {
     isolation: isolate;
   }
@@ -722,9 +577,9 @@ code {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    border-bottom: 2px solid color-mix(in srgb, var(--terminal-phosphor) 42%, transparent);
-    background: color-mix(in srgb, var(--terminal-navy) 72%, var(--terminal-panel));
-    color: var(--terminal-amber);
+    border-bottom: 2px solid color-mix(in srgb, var(--secondary) 42%, transparent);
+    background: color-mix(in srgb, var(--background) 72%, var(--card));
+    color: var(--accent);
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     line-height: 1.4;
@@ -743,14 +598,11 @@ code {
     inset: 0;
     pointer-events: none;
     background:
-      linear-gradient(
-          color-mix(in srgb, var(--terminal-phosphor) 7%, transparent) 50%,
-          transparent 50%
-        )
+      linear-gradient(color-mix(in srgb, var(--secondary) 7%, transparent) 50%, transparent 50%)
         0 0 / 100% 8px,
       radial-gradient(
         circle at 8% 8%,
-        color-mix(in srgb, var(--terminal-amber) 16%, transparent),
+        color-mix(in srgb, var(--accent) 16%, transparent),
         transparent 18rem
       );
     opacity: 0.36;
@@ -771,7 +623,7 @@ code {
 
   .testimonial-console-name {
     position: relative;
-    color: var(--terminal-phosphor);
+    color: var(--secondary);
     font-size: 1rem;
     line-height: 1.2;
     text-transform: uppercase;
@@ -780,8 +632,8 @@ code {
   .testimonial-console-quote {
     position: relative;
     margin-top: 2rem;
-    color: var(--terminal-paper);
-    font-family: 'IBM Plex Mono', monospace;
+    color: var(--foreground);
+    font-family: var(--font-mono);
     font-size: 1.05rem;
     line-height: 1.75;
     text-wrap: pretty;
@@ -792,20 +644,9 @@ code {
     width: 0.55ch;
     height: 1em;
     margin-left: 0.16rem;
-    background: var(--terminal-amber);
+    background: var(--accent);
     vertical-align: -0.12em;
     animation: cursor-blink 1s steps(2, end) infinite;
-  }
-
-  .terminal-prose {
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .terminal-prose h1,
-  .terminal-prose h2,
-  .terminal-prose h3,
-  .terminal-prose h4 {
-    font-family: 'Share Tech Mono', 'IBM Plex Mono', monospace;
   }
 }
 
@@ -832,19 +673,6 @@ code {
   }
 }
 
-.cv-section-title {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #475569;
-}
-
-.cv-avoid-break {
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
 @page {
   size: A4;
   margin: 0;
@@ -857,78 +685,5 @@ code {
     color: #0f172a !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-  }
-
-  .cv-page {
-    background: #ffffff !important;
-    padding: 0 !important;
-  }
-
-  .cv-sheet {
-    width: 210mm !important;
-    max-width: 210mm !important;
-    min-height: 297mm;
-    margin: 0 !important;
-    border: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-  }
-
-  .cv-sheet a {
-    color: #0f172a !important;
-    text-decoration: underline !important;
-  }
-
-  .cv-header-grid {
-    grid-template-columns: 1.45fr 0.75fr !important;
-    align-items: start !important;
-  }
-
-  .cv-header-aside {
-    justify-self: end !important;
-  }
-
-  .cv-contact-icons {
-    justify-content: flex-end !important;
-  }
-
-  .cv-avatar,
-  .cv-icon-badge {
-    box-shadow: none !important;
-    outline: none !important;
-  }
-
-  .cv-avatar {
-    border-radius: 9999px !important;
-    overflow: hidden !important;
-  }
-
-  .cv-icon-badge {
-    border-radius: 9999px !important;
-    text-decoration: none !important;
-  }
-
-  .cv-section {
-    margin-top: 0.75rem !important;
-  }
-
-  .cv-list-item {
-    padding-bottom: 0.45rem !important;
-  }
-
-  .cv-detail-list {
-    margin-top: 0.3rem !important;
-    gap: 0.1rem !important;
-    padding-left: 0.9rem !important;
-  }
-
-  .cv-detail-list li {
-    font-size: 11.5px !important;
-    line-height: 1.2 !important;
-  }
-
-  .cv-detail-text {
-    font-size: 12px !important;
-    line-height: 1.25 !important;
   }
 }

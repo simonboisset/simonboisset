@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Gauge, Rocket, ShieldCheck, Smartphone } from "lucide-react";
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import { SiteIllustration } from "@/components/blocks/SiteIllustration";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ANALYTICS_EVENTS, type useAnalytics } from "@/lib/analytics";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
@@ -28,10 +29,10 @@ export function HomeHeroSection({
 	brandAlt: string;
 }) {
 	return (
-		<section className="terminal-hero">
+		<section className="section-hero">
 			<div className="relative mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-[1.1fr_0.9fr]">
 				<div className="space-y-8">
-					<h1 className="terminal-heading terminal-boot-line terminal-cursor text-4xl md:text-6xl">
+					<h1 className="text-heading text-cursor motion-safe:animate-boot-line text-4xl md:text-6xl">
 						{content.title}
 					</h1>
 					<HeroIntroCard
@@ -75,18 +76,18 @@ export function HomeHeroSection({
 						</Button>
 					</div>
 					<div className="flex flex-wrap items-center gap-3 text-sm">
-						<div className="terminal-chip">
+						<Badge>
 							<Smartphone className="size-4" />
 							<span>{content.highlights.expertise}</span>
-						</div>
-						<div className="terminal-chip text-accent">
+						</Badge>
+						<Badge variant="accent">
 							<ShieldCheck className="size-4" />
 							<span>{content.highlights.delivery}</span>
-						</div>
-						<div className="terminal-chip text-foreground">
+						</Badge>
+						<Badge variant="foreground">
 							<Gauge className="size-4" />
 							<span>{content.highlights.performance}</span>
-						</div>
+						</Badge>
 					</div>
 				</div>
 				<div className="h-full">
@@ -110,16 +111,16 @@ export function HomeServicesSection({
 		// biome-ignore lint/correctness/useUniqueElementIds: anchor targets
 		<section
 			id="services"
-			className="terminal-section terminal-section-alt py-16 md:py-20"
+			className="section-divider section-muted py-16 md:py-20"
 		>
 			<div className="mx-auto w-full max-w-6xl px-6">
 				<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
-						<h2 className="terminal-heading text-3xl md:text-4xl">
+						<h2 className="text-heading text-3xl md:text-4xl">
 							{content.servicesSection.title}
 						</h2>
 					</div>
-					<p className="terminal-muted max-w-xl">
+					<p className="text-body-muted max-w-xl">
 						{content.servicesSection.description}
 					</p>
 				</div>
@@ -142,15 +143,15 @@ export function HomeTestimonialsSection({
 }) {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: anchor targets
-		<section id="testimonials" className="terminal-section py-16 md:py-20">
+		<section id="testimonials" className="section-divider py-16 md:py-20">
 			<div className="mx-auto w-full max-w-6xl px-6">
 				<div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
 					<div>
-						<h2 className="terminal-heading text-3xl md:text-4xl">
+						<h2 className="text-heading text-3xl md:text-4xl">
 							{content.testimonialsSection.title}
 						</h2>
 					</div>
-					<p className="terminal-muted lg:max-w-2xl">
+					<p className="text-body-muted lg:max-w-2xl">
 						{content.testimonialsSection.description}
 					</p>
 				</div>
@@ -185,16 +186,16 @@ export function HomeMethodSection({
 		// biome-ignore lint/correctness/useUniqueElementIds: anchor targets
 		<section
 			id="process"
-			className="terminal-section terminal-section-alt py-16 md:py-20"
+			className="section-divider section-muted py-16 md:py-20"
 		>
 			<div className="mx-auto w-full max-w-6xl px-6">
 				<div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
 					<div>
-						<h2 className="terminal-heading text-3xl md:text-4xl">
+						<h2 className="text-heading text-3xl md:text-4xl">
 							{content.methodSection.title}
 						</h2>
 					</div>
-					<p className="terminal-muted lg:max-w-2xl">
+					<p className="text-body-muted lg:max-w-2xl">
 						{content.methodSection.description}
 					</p>
 				</div>
@@ -217,13 +218,11 @@ export function HomeFinalCta({
 	capture: AnalyticsCapture;
 }) {
 	return (
-		<section className="terminal-section terminal-section-alt py-16">
+		<section className="section-divider section-muted py-16">
 			<div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-center md:justify-between">
 				<div>
-					<h2 className="terminal-heading text-3xl md:text-4xl">
-						{content.title}
-					</h2>
-					<p className="terminal-muted mt-3">{content.description}</p>
+					<h2 className="text-heading text-3xl md:text-4xl">{content.title}</h2>
+					<p className="text-body-muted mt-3">{content.description}</p>
 				</div>
 				<Button asChild size="lg">
 					<a

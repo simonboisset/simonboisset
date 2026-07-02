@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { ANALYTICS_CONSENT_EVENT, useAnalyticsConsent } from "@/lib/analytics";
 import { useI18n } from "@/lib/i18n/use-i18n";
 
@@ -52,16 +53,14 @@ export default function ConsentBanner({ enabled = true }: ConsentBannerProps) {
 
 	return (
 		<div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-6 md:max-w-lg">
-			<div className="terminal-card p-6">
-				<h2 className="terminal-heading text-lg">
-					{t((t) => t.consent.title)}
-				</h2>
-				<p className="terminal-muted mt-2 text-sm">
+			<Card className="p-6">
+				<h2 className="text-heading text-lg">{t((t) => t.consent.title)}</h2>
+				<p className="text-body-muted mt-2 text-sm">
 					{t((t) => t.consent.description)}
 				</p>
 
 				{showDetails ? (
-					<div className="terminal-muted mt-4 space-y-4 text-sm">
+					<div className="text-body-muted mt-4 space-y-4 text-sm">
 						<div>
 							<p className="font-semibold text-foreground">
 								{t((t) => t.consent.essentialTitle)}
@@ -106,7 +105,7 @@ export default function ConsentBanner({ enabled = true }: ConsentBannerProps) {
 						{t((t) => t.consent.accept)}
 					</Button>
 				</div>
-			</div>
+			</Card>
 		</div>
 	);
 }
