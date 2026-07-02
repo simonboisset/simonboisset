@@ -79,45 +79,25 @@ export function buildHomeContent(
 				title: t((t) => t.home.risks.native.title),
 				description: t((t) => t.home.risks.native.description),
 				bullet: t((t) => t.home.risks.native.bullet),
+				illustrationUrl: assets.legacyServiceIllustrationUrl,
 			},
 			{
 				title: t((t) => t.home.risks.delivery.title),
 				description: t((t) => t.home.risks.delivery.description),
 				bullet: t((t) => t.home.risks.delivery.bullet),
+				illustrationUrl: assets.workflowServiceIllustrationUrl,
 			},
 			{
 				title: t((t) => t.home.risks.stores.title),
 				description: t((t) => t.home.risks.stores.description),
 				bullet: t((t) => t.home.risks.stores.bullet),
+				illustrationUrl: null,
 			},
 			{
 				title: t((t) => t.home.risks.handoff.title),
 				description: t((t) => t.home.risks.handoff.description),
 				bullet: t((t) => t.home.risks.handoff.bullet),
-			},
-		],
-		offerTracks: [
-			{
-				label: t((t) => t.home.offerTracks.migration.label),
-				title: t((t) => t.home.offerTracks.migration.title),
-				description: t((t) => t.home.offerTracks.migration.description),
-				bullets: [
-					t((t) => t.home.offerTracks.migration.bullets.item1),
-					t((t) => t.home.offerTracks.migration.bullets.item2),
-					t((t) => t.home.offerTracks.migration.bullets.item3),
-				],
-				illustrationUrl: assets.legacyServiceIllustrationUrl,
-			},
-			{
-				label: t((t) => t.home.offerTracks.workflow.label),
-				title: t((t) => t.home.offerTracks.workflow.title),
-				description: t((t) => t.home.offerTracks.workflow.description),
-				bullets: [
-					t((t) => t.home.offerTracks.workflow.bullets.item1),
-					t((t) => t.home.offerTracks.workflow.bullets.item2),
-					t((t) => t.home.offerTracks.workflow.bullets.item3),
-				],
-				illustrationUrl: assets.workflowServiceIllustrationUrl,
+				illustrationUrl: null,
 			},
 		],
 		migrationPhases: [

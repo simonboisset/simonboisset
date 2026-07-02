@@ -276,30 +276,6 @@ export const en = {
 					"The migration ends with a workflow your team can operate without me.",
 			},
 		},
-		offerTracks: {
-			migration: {
-				label: "Track 01",
-				title: "Legacy React Native -> Expo",
-				description:
-					"I audit the native surface, upgrade React Native and Expo, then replace or isolate the modules that can block the migration.",
-				bullets: {
-					item1: "Native dependency map and replacement plan",
-					item2: "RN/Expo upgrade path with store constraints",
-					item3: "Release-safe migration roadmap for the team",
-				},
-			},
-			workflow: {
-				label: "Track 02",
-				title: "EAS workflow and releases",
-				description:
-					"I turn Expo deployments into a controlled path: QA updates, native builds, versioning, hotfixes, and handoff.",
-				bullets: {
-					item1: "EAS Build, Submit, Update, and QA channels",
-					item2: "Versioning, fingerprints, and rollback rules",
-					item3: "Documented QA to production playbook",
-				},
-			},
-		},
 		method: {
 			label: "Migration method",
 			title: "From your current app to an Expo release",

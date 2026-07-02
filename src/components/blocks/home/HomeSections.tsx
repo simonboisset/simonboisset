@@ -5,7 +5,7 @@ import { SiteIllustration } from "@/components/blocks/SiteIllustration";
 import { Button } from "@/components/ui/button";
 import { ANALYTICS_EVENTS, type useAnalytics } from "@/lib/analytics";
 import { SCHEDULE_VISIO_URL } from "@/lib/constants";
-import { OfferTrackCard, RiskCard } from "./HomeCards";
+import { RiskCard } from "./HomeCards";
 import { MigrationJourney } from "./MigrationJourney";
 import { TestimonialConsole } from "./TestimonialConsole";
 import type { HomeAssets, HomeContent } from "./types";
@@ -103,11 +103,9 @@ export function HomeHeroSection({
 }
 
 export function HomeServicesSection({
-	assets,
 	content,
 }: {
-	assets: Pick<HomeAssets, "risksIllustrationUrl">;
-	content: Pick<HomeContent, "servicesSection" | "riskCards" | "offerTracks">;
+	content: Pick<HomeContent, "servicesSection" | "riskCards">;
 }) {
 	return (
 		// biome-ignore lint/correctness/useUniqueElementIds: anchor targets
@@ -126,20 +124,9 @@ export function HomeServicesSection({
 						{content.servicesSection.description}
 					</p>
 				</div>
-				<div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-					<SiteIllustration
-						src={assets.risksIllustrationUrl}
-						className="aspect-[4/3] lg:aspect-auto"
-					/>
-					<div className="grid gap-6 md:grid-cols-2">
-						{content.riskCards.map((risk, index) => (
-							<RiskCard key={risk.title} index={index} risk={risk} />
-						))}
-					</div>
-				</div>
-				<div className="mt-10 grid gap-6 lg:grid-cols-2">
-					{content.offerTracks.map((track, index) => (
-						<OfferTrackCard key={track.title} track={track} index={index} />
+				<div className="mt-10 grid gap-6 md:grid-cols-2">
+					{content.riskCards.map((risk, index) => (
+						<RiskCard key={risk.title} index={index} risk={risk} />
 					))}
 				</div>
 			</div>

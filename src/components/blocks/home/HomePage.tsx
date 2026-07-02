@@ -38,7 +38,7 @@ export function HomePage({ assets }: { assets: HomeAssets }) {
 				capture={capture}
 				brandAlt={t((t) => t.nav.brand)}
 			/>
-			<HomeServicesSection assets={assets} content={content} />
+			<HomeServicesSection content={content} />
 			<HomeTestimonialsSection assets={assets} content={content} />
 			<HomeMethodSection content={content} />
 			<HomeFinalCta content={content.cta} capture={capture} />

@@ -5,7 +5,6 @@ export type HomeAssets = {
 	heroPhotoUrl: string | null;
 	legacyServiceIllustrationUrl: string | null;
 	proofIllustrationUrl: string | null;
-	risksIllustrationUrl: string | null;
 	workflowServiceIllustrationUrl: string | null;
 };
 
@@ -18,6 +17,7 @@ export type RiskCard = {
 	title: string;
 	description: string;
 	bullet: string;
+	illustrationUrl: string | null;
 };
 
 export type MigrationPhase = {
@@ -46,14 +46,6 @@ export type MigrationProgressItem = {
 	icon: LucideIcon;
 	step?: string;
 	outcome?: string;
-};
-
-export type OfferTrack = {
-	label: string;
-	title: string;
-	description: string;
-	bullets: string[];
-	illustrationUrl: string | null;
 };
 
 export type HomeContent = {
@@ -89,7 +81,6 @@ export type HomeContent = {
 	};
 	testimonials: Testimonial[];
 	riskCards: RiskCard[];
-	offerTracks: OfferTrack[];
 	migrationPhases: MigrationPhase[];
 	migrationStart: MigrationGate;
 	migrationEnd: MigrationGate;
