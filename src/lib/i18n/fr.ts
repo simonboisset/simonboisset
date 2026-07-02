@@ -5,7 +5,7 @@ export const fr: Translations = {
 	seo: {
 		homeTitle: "Migration React Native vers Expo - Simon Boisset",
 		homeDescription:
-			"Consultant React Native et Expo pour CTO et lead tech : migration d'apps legacy, livraisons EAS fiables et passation à l'équipe.",
+			"J'accompagne les CTO et lead tech React Native dans leurs migrations Expo : apps legacy, releases EAS fiables et passation à l'équipe.",
 		blogTitle: "Blog",
 		cvTitle: "CV",
 		cvDescription:
@@ -24,15 +24,15 @@ export const fr: Translations = {
 		bookCall: "Réserver un appel",
 		aboutItems: {
 			services:
-				"Risques couverts pendant une migration React Native vers Expo.",
+				"Ce que je sécurise pendant une migration React Native vers Expo.",
 			projects: "Retours anonymisés sur la collaboration et la passation.",
-			method: "Audit, migration, release et passation équipe.",
+			method: "Ma méthode d'audit, migration, release et passation équipe.",
 			github: "Open source, prototypes et exemples de code.",
 		},
 	},
 	footer: {
 		description:
-			"Consultant React Native et Expo pour équipes mobiles qui veulent livrer plus sereinement.",
+			"J'accompagne les équipes React Native vers Expo avec des releases plus sereines.",
 		scheduleCall: "Planifier un appel",
 		blog: "Blog",
 		docs: "Docs",
@@ -42,7 +42,7 @@ export const fr: Translations = {
 	consent: {
 		title: "Consentement analytics",
 		description:
-			"Nous utilisons PostHog pour mesurer l'audience et améliorer l'expérience. Vous pouvez accepter ou refuser.",
+			"J'utilise PostHog pour mesurer l'audience et améliorer l'expérience. Vous pouvez accepter ou refuser.",
 		essentialTitle: "Essentiel",
 		essentialDescription:
 			"Stockage de votre choix de consentement dans le navigateur.",
@@ -219,17 +219,17 @@ export const fr: Translations = {
 			eric: {
 				name: "Eric",
 				quote:
-					"On partait d'un legacy assez complexe. Simon a repris le projet, remis de l'ordre dans toute la stack et continue de nous accompagner au quotidien.",
+					"Nous partions d'un legacy assez complexe. Simon a repris le projet, remis de l'ordre dans toute la stack et continue de nous accompagner au quotidien.",
 			},
 			julie: {
 				name: "Julie",
 				quote:
-					"Simon a construit notre app React Native depuis zéro, en restant aligné avec l'app web. En quelques semaines, on avait les rappels, les messages, le partage de photos et les appels vidéo.",
+					"Simon a construit notre app React Native depuis zéro, en restant aligné avec l'app web. En quelques semaines, nous avions les rappels, les messages, le partage de photos et les appels vidéo.",
 			},
 			matthieu: {
 				name: "Matthieu",
 				quote:
-					"On traînait cette migration Expo depuis plus d'un an. Simon nous a rassurés, l'a livrée en deux semaines, et on a pu publier une version propre derrière.",
+					"Nous traînions cette migration Expo depuis plus d'un an. Simon nous a rassurés, l'a livrée en deux semaines, et nous avons pu publier une version propre derrière.",
 			},
 			thomas: {
 				name: "Thomas",
@@ -239,7 +239,7 @@ export const fr: Translations = {
 			julien: {
 				name: "Romuald",
 				quote:
-					"Simon a migré vers Expo trois de nos apps React Native maintenues depuis plus de 9 ans. La migration s'est faite en douceur, et on en mesure déjà les bénéfices : montées de version bien plus rapides, builds enfin fiables.",
+					"Simon a migré vers Expo trois de nos apps React Native maintenues depuis plus de 9 ans. La migration s'est faite en douceur, et nous en mesurons déjà les bénéfices : montées de version bien plus rapides, builds enfin fiables.",
 			},
 			antoine: {
 				name: "Antoine",
@@ -249,7 +249,7 @@ export const fr: Translations = {
 		},
 		servicesSection: {
 			label: "Périmètre Expo",
-			title: "Un accompagnement Expo complet.",
+			title: "Ce que je sécurise pendant la migration Expo.",
 			description:
 				"La plupart des migrations bloquent aux mêmes endroits : compatibilité native et déploiements EAS/stores. Je traite les deux dans le même diagnostic.",
 		},
@@ -266,14 +266,14 @@ export const fr: Translations = {
 				description:
 					"EAS Build, Submit, Update, channels, CI et distribution QA.",
 				bullet:
-					"Je conseille l'équipe sur les options applicables au projet pour optimiser les phases de déploiement.",
+					"Je conseille votre équipe sur les options applicables au projet pour optimiser les phases de déploiement.",
 			},
 			stores: {
 				title: "Accompagnement sur mesure",
 				description:
 					"Arbitrages selon votre stack, vos contraintes stores et votre cadence produit.",
 				bullet:
-					"On choisit les options utiles au projet, sans appliquer un workflow Expo générique.",
+					"Je choisis avec vous les options utiles au projet, sans appliquer un workflow Expo générique.",
 			},
 			handoff: {
 				title: "Autonomie équipe",
@@ -288,7 +288,7 @@ export const fr: Translations = {
 				label: "Chantier 01",
 				title: "React Native legacy vers Expo",
 				description:
-					"Auditer la surface native, mettre à niveau React Native et Expo, puis remplacer ou isoler les modules qui peuvent bloquer la migration.",
+					"J'audite la surface native, je mets à niveau React Native et Expo, puis je remplace ou j'isole les modules qui peuvent bloquer la migration.",
 				bullets: {
 					item1: "Cartographie des dépendances natives et plan de remplacement",
 					item2: "Chemin RN/Expo avec contraintes stores intégrées",
@@ -299,7 +299,7 @@ export const fr: Translations = {
 				label: "Chantier 02",
 				title: "Workflow EAS et releases",
 				description:
-					"Transformer vos déploiements Expo en chemin maîtrisé : QA, builds natifs, versioning, hotfix et passation.",
+					"Je transforme vos déploiements Expo en chemin maîtrisé : QA, builds natifs, versioning, hotfix et passation.",
 				bullets: {
 					item1: "EAS Build, Submit, Update et canaux QA",
 					item2: "Versioning, fingerprints et règles de rollback",
@@ -311,7 +311,7 @@ export const fr: Translations = {
 			label: "Méthode migration",
 			title: "De votre app actuelle à une release Expo",
 			description:
-				"Votre produit continue d'avancer. On retire les blocages Expo, on prouve le chemin de release, puis l'équipe reprend la main.",
+				"Votre produit continue d'avancer. Je retire les blocages Expo, je prouve le chemin de release, puis l'équipe reprend la main.",
 			start: {
 				label: "Départ",
 				title: "Votre app React Native aujourd'hui",
@@ -322,28 +322,28 @@ export const fr: Translations = {
 				eyebrow: "Cartographier",
 				title: "Repérer ce qui bloque Expo",
 				description:
-					"On vérifie les modules natifs, la config app, la CI et les contraintes stores avant de toucher au code.",
+					"Je vérifie les modules natifs, la config app, la CI et les contraintes stores avant de toucher au code.",
 				outcome: "Carte des risques et ordre de traitement",
 			},
 			migration: {
 				eyebrow: "Débloquer",
 				title: "Remplacer ce qui coince",
 				description:
-					"On garde le produit stable pendant l'adaptation de la config, des builds et des librairies incompatibles.",
+					"Je garde le produit stable pendant l'adaptation de la config, des builds et des librairies incompatibles.",
 				outcome: "App Expo qui build proprement",
 			},
 			release: {
 				eyebrow: "Prouver",
 				title: "Tester une vraie sortie",
 				description:
-					"On valide EAS, les canaux QA, les versions et les règles store sur une release que l'équipe peut inspecter.",
+					"Je valide EAS, les canaux QA, les versions et les règles store sur une release que l'équipe peut inspecter.",
 				outcome: "Chemin QA vers store prêt",
 			},
 			handoff: {
 				eyebrow: "Transmettre",
 				title: "Passer la main à l'équipe",
 				description:
-					"On documente les commandes, les choix et les options de rollback utilisés pendant la migration.",
+					"Je documente les commandes, les choix et les options de rollback utilisés pendant la migration.",
 				outcome: "Équipe prête pour les prochaines releases",
 			},
 			end: {

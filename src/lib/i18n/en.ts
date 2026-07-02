@@ -5,7 +5,7 @@ export const en = {
 	seo: {
 		homeTitle: "React Native to Expo migration - Simon Boisset",
 		homeDescription:
-			"React Native and Expo consultant helping CTOs migrate legacy mobile apps, secure EAS releases, and hand off the workflow to their team.",
+			"I help CTOs and lead techs migrate legacy React Native apps to Expo, secure EAS releases, and hand the workflow back to their team.",
 		blogTitle: "Blog",
 		cvTitle: "Resume",
 		cvDescription:
@@ -23,15 +23,15 @@ export const en = {
 		blogAll: "View all posts",
 		bookCall: "Book a call",
 		aboutItems: {
-			services: "Risks covered during a React Native to Expo migration.",
+			services: "What I secure during a React Native to Expo migration.",
 			projects: "Anonymized notes on collaboration and handoff.",
-			method: "Audit, migration, release, and team handoff.",
+			method: "My audit, migration, release, and team handoff approach.",
 			github: "Open-source work, experiments, and code samples.",
 		},
 	},
 	footer: {
 		description:
-			"React Native and Expo consultant for mobile teams migrating toward safer releases.",
+			"I help React Native teams migrate to Expo and make releases safer.",
 		scheduleCall: "Schedule a call",
 		blog: "Blog",
 		docs: "Docs",
@@ -41,7 +41,7 @@ export const en = {
 	consent: {
 		title: "Analytics consent",
 		description:
-			"We use PostHog to measure audience and improve the experience. You can accept or decline.",
+			"I use PostHog to measure audience and improve the experience. You can accept or decline.",
 		essentialTitle: "Essential",
 		essentialDescription: "Store your consent choice in the browser.",
 		analyticsTitle: "Analytics",
@@ -242,7 +242,7 @@ export const en = {
 		},
 		servicesSection: {
 			label: "Expo scope",
-			title: "A complete Expo engagement.",
+			title: "What I secure during an Expo migration.",
 			description:
 				"Most migrations get stuck in the same places: native compatibility and EAS/store deployments. I handle both in the same diagnosis.",
 		},
@@ -259,14 +259,14 @@ export const en = {
 				description:
 					"EAS Build, Submit, Update, channels, CI, and QA distribution.",
 				bullet:
-					"I advise the team on the options that actually fit the project to optimize deployment phases.",
+					"I advise your team on the options that actually fit the project to optimize deployment phases.",
 			},
 			stores: {
 				title: "Tailored guidance",
 				description:
 					"Tradeoffs matched to your stack, store constraints, and product cadence.",
 				bullet:
-					"We choose the useful Expo options for the project instead of applying a generic workflow.",
+					"I choose the useful Expo options with you instead of applying a generic workflow.",
 			},
 			handoff: {
 				title: "Team ownership",
@@ -281,7 +281,7 @@ export const en = {
 				label: "Track 01",
 				title: "Legacy React Native -> Expo",
 				description:
-					"Audit the native surface, upgrade React Native and Expo, then replace or isolate the modules that can block the migration.",
+					"I audit the native surface, upgrade React Native and Expo, then replace or isolate the modules that can block the migration.",
 				bullets: {
 					item1: "Native dependency map and replacement plan",
 					item2: "RN/Expo upgrade path with store constraints",
@@ -292,7 +292,7 @@ export const en = {
 				label: "Track 02",
 				title: "EAS workflow and releases",
 				description:
-					"Turn Expo deployments into a controlled path: QA updates, native builds, versioning, hotfixes, and handoff.",
+					"I turn Expo deployments into a controlled path: QA updates, native builds, versioning, hotfixes, and handoff.",
 				bullets: {
 					item1: "EAS Build, Submit, Update, and QA channels",
 					item2: "Versioning, fingerprints, and rollback rules",
@@ -304,7 +304,7 @@ export const en = {
 			label: "Migration method",
 			title: "From your current app to an Expo release",
 			description:
-				"You keep the product moving. We remove the Expo blockers, prove the release path, then hand the workflow back to your team.",
+				"You keep the product moving. I remove the Expo blockers, prove the release path, then hand the workflow back to your team.",
 			start: {
 				label: "Start",
 				title: "Your React Native app today",
@@ -315,28 +315,28 @@ export const en = {
 				eyebrow: "Map",
 				title: "Find what blocks Expo",
 				description:
-					"We review the native modules, app config, CI, and store constraints before changing the code.",
+					"I review the native modules, app config, CI, and store constraints before changing the code.",
 				outcome: "Risk map and treatment order",
 			},
 			migration: {
 				eyebrow: "Fix",
 				title: "Replace what gets in the way",
 				description:
-					"We keep the product stable while adapting config, builds, and incompatible libraries.",
+					"I keep the product stable while adapting config, builds, and incompatible libraries.",
 				outcome: "Expo app that can build cleanly",
 			},
 			release: {
 				eyebrow: "Prove",
 				title: "Run a real release path",
 				description:
-					"We validate EAS, QA channels, versions, and store rules on a release your team can inspect.",
+					"I validate EAS, QA channels, versions, and store rules on a release your team can inspect.",
 				outcome: "QA to store path ready",
 			},
 			handoff: {
 				eyebrow: "Transfer",
 				title: "Give the team control",
 				description:
-					"We document the commands, decisions, and rollback options used during the migration.",
+					"I document the commands, decisions, and rollback options used during the migration.",
 				outcome: "Team ready for the next releases",
 			},
 			end: {
