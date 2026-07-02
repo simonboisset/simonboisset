@@ -9,6 +9,7 @@ import {
 import { HeroIntroCard } from "@/components/blocks/HeroIntroCard";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
 	ANALYTICS_EVENTS,
@@ -89,16 +90,14 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 		});
 	},
 	pendingComponent: () => (
-		<div className="terminal-page">
-			<div className="mx-auto w-full max-w-4xl">
-				<div className="flex flex-col gap-8 px-6 py-16">
-					<Skeleton className="h-10 w-3/4 mx-auto" />
-					<Skeleton className="w-full aspect-video" />
-					<div className="space-y-4">
-						<Skeleton className="h-4 w-full" />
-						<Skeleton className="h-4 w-full" />
-						<Skeleton className="h-4 w-3/4" />
-					</div>
+		<div className="mx-auto w-full max-w-4xl">
+			<div className="flex flex-col gap-8 px-6 py-16">
+				<Skeleton className="h-10 w-3/4 mx-auto" />
+				<Skeleton className="w-full aspect-video" />
+				<div className="space-y-4">
+					<Skeleton className="h-4 w-full" />
+					<Skeleton className="h-4 w-full" />
+					<Skeleton className="h-4 w-3/4" />
 				</div>
 			</div>
 		</div>
@@ -125,75 +124,74 @@ function BlogDetailPage() {
 	});
 
 	return (
-		<div className="terminal-page">
-			<article className="mx-auto w-full max-w-4xl">
-				<div className="flex flex-col gap-8 px-6 py-16">
-					<Link
-						to="/{-$locale}/blog"
-						params={localeParams}
-						className="terminal-label hover:text-secondary"
-					>
-						{t((t) => t.blog.back)}
-					</Link>
-					<h1 className="terminal-heading text-center text-3xl md:text-5xl">
-						{displayTitle}
-					</h1>
-					<p className="terminal-label text-center text-sm">
-						{post.publishedAtLabel}
-					</p>
-					<div className="terminal-image-frame w-full aspect-video">
-						<ArticleImage
-							src={post.imageUrl}
-							alt={displayTitle}
-							className="terminal-image w-full h-full object-cover"
-						/>
-					</div>
-					<MarkdownContent contentHtml={contentHtml} />
-					{seoOverride ? <SeoInsightSection override={seoOverride} /> : null}
-					<div className="mt-16 space-y-4">
-						<HeroIntroCard
-							heroPhotoUrl={heroPhotoUrl}
-							intro={t((t) => t.home.hero.intro)}
-							alt={t((t) => t.nav.brand)}
-						/>
-						<Button asChild>
-							<a
-								href={SCHEDULE_VISIO_URL}
-								target="_blank"
-								rel="noreferrer"
-								onClick={() =>
-									capture(ANALYTICS_EVENTS.ctaClick, {
-										cta: "schedule_call",
-										placement: "blog_post",
-										href: SCHEDULE_VISIO_URL,
-									})
-								}
-							>
-								{t((t) => t.blog.bookCtaButton)}
-								<ArrowUpRight className="size-4" />
-							</a>
-						</Button>
-					</div>
-
-					{suggestedArticles.length > 0 ? (
-						<div className="terminal-divider mt-16 border-t pt-16">
-							<h3 className="terminal-heading mb-8 text-center text-2xl">
-								{t((t) => t.blog.other)}
-							</h3>
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-								{suggestedArticles.map((article) => (
-									<SuggestedArticleCard
-										key={article.slug}
-										article={article}
-										localeParams={localeParams}
-									/>
-								))}
-							</div>
-						</div>
-					) : null}
+		<article className="mx-auto w-full max-w-4xl">
+			<div className="flex flex-col gap-8 px-6 py-16">
+				<Link
+					to="/{-$locale}/blog"
+					params={localeParams}
+					className="text-kicker hover:text-secondary"
+				>
+					{t((t) => t.blog.back)}
+				</Link>
+				<h1 className="text-heading text-center text-3xl md:text-5xl">
+					{displayTitle}
+				</h1>
+				<p className="text-kicker text-center text-sm">
+					{post.publishedAtLabel}
+				</p>
+				<div className="image-frame w-full aspect-video">
+					<span className="image-frame-overlay" aria-hidden="true" />
+					<ArticleImage
+						src={post.imageUrl}
+						alt={displayTitle}
+						className="image-treated relative h-full w-full object-cover"
+					/>
 				</div>
-			</article>
-		</div>
+				<MarkdownContent contentHtml={contentHtml} />
+				{seoOverride ? <SeoInsightSection override={seoOverride} /> : null}
+				<div className="mt-16 space-y-4">
+					<HeroIntroCard
+						heroPhotoUrl={heroPhotoUrl}
+						intro={t((t) => t.home.hero.intro)}
+						alt={t((t) => t.nav.brand)}
+					/>
+					<Button asChild>
+						<a
+							href={SCHEDULE_VISIO_URL}
+							target="_blank"
+							rel="noreferrer"
+							onClick={() =>
+								capture(ANALYTICS_EVENTS.ctaClick, {
+									cta: "schedule_call",
+									placement: "blog_post",
+									href: SCHEDULE_VISIO_URL,
+								})
+							}
+						>
+							{t((t) => t.blog.bookCtaButton)}
+							<ArrowUpRight className="size-4" />
+						</a>
+					</Button>
+				</div>
+
+				{suggestedArticles.length > 0 ? (
+					<div className="mt-16 border-t border-secondary/25 pt-16">
+						<h3 className="text-heading mb-8 text-center text-2xl">
+							{t((t) => t.blog.other)}
+						</h3>
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+							{suggestedArticles.map((article) => (
+								<SuggestedArticleCard
+									key={article.slug}
+									article={article}
+									localeParams={localeParams}
+								/>
+							))}
+						</div>
+					</div>
+				) : null}
+			</div>
+		</article>
 	);
 }
 
@@ -209,10 +207,10 @@ function SeoInsightSection({
 			: { takeaways: "Key takeaways", faq: "Quick FAQ" };
 
 	return (
-		<section className="terminal-card mt-12 p-6">
-			<p className="terminal-label">{labels.takeaways}</p>
-			<p className="terminal-muted mt-3">{override.summary}</p>
-			<ul className="terminal-muted mt-5 space-y-3 text-sm">
+		<Card showPin={false} className="mt-12 p-6">
+			<p className="text-kicker">{labels.takeaways}</p>
+			<p className="text-body-muted mt-3">{override.summary}</p>
+			<ul className="text-body-muted mt-5 space-y-3 text-sm">
 				{override.keyPoints.map((point) => (
 					<li key={point} className="flex gap-3">
 						<span className="mt-1.5 shrink-0 text-secondary">&gt;</span>
@@ -221,17 +219,20 @@ function SeoInsightSection({
 				))}
 			</ul>
 			<div className="mt-8 space-y-4">
-				<h2 className="terminal-heading text-xl">{labels.faq}</h2>
+				<h2 className="text-heading text-xl">{labels.faq}</h2>
 				{override.faq.map((item) => (
-					<div key={item.question} className="terminal-divider border-t pt-4">
+					<div
+						key={item.question}
+						className="border-t border-secondary/25 pt-4"
+					>
 						<h3 className="text-base font-semibold text-foreground">
 							{item.question}
 						</h3>
-						<p className="terminal-muted mt-2 text-sm">{item.answer}</p>
+						<p className="text-body-muted mt-2 text-sm">{item.answer}</p>
 					</div>
 				))}
 			</div>
-		</section>
+		</Card>
 	);
 }
 

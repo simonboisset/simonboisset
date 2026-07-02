@@ -1,5 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 import { type CSSProperties, useEffect, useMemo, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { cardVariants } from "@/components/ui/card";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { cn } from "@/lib/utils";
 import type {
@@ -109,7 +111,8 @@ export function MigrationJourney({
 						<article
 							aria-current={status === "current" ? "step" : undefined}
 							className={cn(
-								"migration-progress-card terminal-card p-5 motion-safe:animate-fade-up",
+								cardVariants(),
+								"migration-progress-card p-5 motion-safe:animate-fade-up",
 								`migration-progress-card-${index + 1}`,
 							)}
 							data-state={status}
@@ -133,14 +136,14 @@ export function MigrationJourney({
 							</div>
 							<div className="mt-5 flex items-center gap-3">
 								{item.step ? (
-									<span className="terminal-chip flex h-9 w-12 items-center justify-center p-0">
+									<Badge className="flex h-9 w-12 items-center justify-center p-0">
 										{item.step}
-									</span>
+									</Badge>
 								) : null}
-								<p className="terminal-label">{item.label}</p>
+								<p className="text-kicker">{item.label}</p>
 							</div>
-							<h3 className="terminal-heading mt-3 text-xl">{item.title}</h3>
-							<p className="terminal-muted mt-3 text-sm">{item.description}</p>
+							<h3 className="text-heading mt-3 text-xl">{item.title}</h3>
+							<p className="text-body-muted mt-3 text-sm">{item.description}</p>
 							{"outcome" in item && item.outcome ? (
 								<p className="migration-progress-output mt-5">
 									<CheckCircle2 className="mt-0.5 size-4 shrink-0" />

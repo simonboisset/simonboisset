@@ -59,7 +59,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-	"group inline-flex h-9 w-max items-center justify-center rounded-[var(--radius)] border-2 border-transparent bg-transparent px-4 py-2 text-sm font-medium uppercase tracking-[0.08em] text-secondary outline-none transition-[color,background-color,border-color,box-shadow] duration-150 ease-linear hover:border-secondary hover:bg-muted hover:text-secondary focus:border-ring focus:bg-muted focus:text-secondary disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-secondary data-[state=open]:bg-muted data-[state=open]:text-secondary focus-visible:ring-[3px] focus-visible:ring-ring/60",
+	"group inline-flex h-9 w-max items-center justify-center rounded-lg border-2 border-transparent bg-transparent px-4 py-2 text-sm font-medium uppercase tracking-[0.08em] text-secondary outline-none transition-[color,background-color,border-color,box-shadow] duration-150 ease-linear hover:border-secondary hover:bg-muted hover:text-secondary focus:border-ring focus:bg-muted focus:text-secondary disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-secondary data-[state=open]:bg-muted data-[state=open]:text-secondary focus-visible:ring-[3px] focus-visible:ring-ring/60",
 );
 
 function NavigationMenuTrigger({
@@ -91,7 +91,7 @@ function NavigationMenuContent({
 			data-slot="navigation-menu-content"
 			className={cn(
 				"data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 top-0 left-0 w-full p-2 pr-2.5 md:absolute md:w-auto",
-				"group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:zoom-in-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0 group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0 group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-[var(--radius)] group-data-[viewport=false]/navigation-menu:border-2 group-data-[viewport=false]/navigation-menu:border-secondary group-data-[viewport=false]/navigation-menu:shadow-[6px_6px_0_var(--terminal-shadow)] group-data-[viewport=false]/navigation-menu:duration-200 **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none",
+				"group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:zoom-in-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0 group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0 group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-lg group-data-[viewport=false]/navigation-menu:border-2 group-data-[viewport=false]/navigation-menu:border-secondary group-data-[viewport=false]/navigation-menu:shadow-hard-md group-data-[viewport=false]/navigation-menu:duration-200 **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none",
 				className,
 			)}
 			{...props}
@@ -112,7 +112,7 @@ function NavigationMenuViewport({
 			<NavigationMenuPrimitive.Viewport
 				data-slot="navigation-menu-viewport"
 				className={cn(
-					"origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-[var(--radius)] border-2 border-secondary bg-popover text-popover-foreground shadow-[6px_6px_0_var(--terminal-shadow)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
+					"origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-lg border-2 border-secondary bg-popover text-popover-foreground shadow-hard-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
 					className,
 				)}
 				{...props}
@@ -129,7 +129,7 @@ function NavigationMenuLink({
 		<NavigationMenuPrimitive.Link
 			data-slot="navigation-menu-link"
 			className={cn(
-				"flex flex-col gap-1 rounded-[var(--radius)] border-2 border-transparent p-2 text-sm text-muted-foreground outline-none transition-all duration-150 ease-linear hover:border-secondary hover:bg-muted hover:text-secondary focus:border-ring focus:bg-muted focus:text-secondary focus-visible:ring-[3px] focus-visible:ring-ring/60 data-[active=true]:border-secondary data-[active=true]:bg-muted data-[active=true]:text-secondary [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4",
+				"flex flex-col gap-1 rounded-lg border-2 border-transparent p-2 text-sm text-muted-foreground outline-none transition-all duration-150 ease-linear hover:border-secondary hover:bg-muted hover:text-secondary focus:border-ring focus:bg-muted focus:text-secondary focus-visible:ring-[3px] focus-visible:ring-ring/60 data-[active=true]:border-secondary data-[active=true]:bg-muted data-[active=true]:text-secondary [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg:not([class*='size-'])]:size-4",
 				className,
 			)}
 			{...props}
