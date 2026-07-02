@@ -70,7 +70,6 @@ export type HomeContent = {
 		description: string;
 	};
 	methodSection: {
-		label: string;
 		title: string;
 		description: string;
 	};

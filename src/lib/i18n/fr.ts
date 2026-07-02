@@ -284,7 +284,6 @@ export const fr: Translations = {
 			},
 		},
 		method: {
-			label: "Méthode migration",
 			title: "De votre app actuelle à une release Expo",
 			description:
 				"Votre produit continue d'avancer. Je retire les blocages Expo, je prouve le chemin de release, puis l'équipe reprend la main.",
