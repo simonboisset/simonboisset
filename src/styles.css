@@ -6,8 +6,6 @@
 
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --background: #10141f;
   --foreground: #f8f2dc;
@@ -85,9 +83,9 @@
   --animate-boot-line: boot-line 0.72s steps(8, end) both;
   --animate-cursor-blink: cursor-blink 1s steps(2, end) infinite;
   --animate-fade-up: fade-up 0.8s ease both;
-  --animate-float: float-slow 12s ease-in-out infinite;
-  --animate-terminal-reveal: terminal-reveal 0.6s steps(5, end) both;
   --animate-crt-scan: crt-scan 4s steps(8, end) infinite alternate;
+  --animate-migration-frame-trace: migration-frame-trace 1.3s linear infinite;
+  --animate-migration-spinner: migration-spinner 0.85s linear infinite;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -145,18 +143,6 @@
   }
 }
 
-@keyframes terminal-reveal {
-  0% {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fade-up {
   0% {
     opacity: 0;
@@ -166,17 +152,6 @@
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-14px);
   }
 }
 
@@ -272,7 +247,7 @@
     margin-left: 0.08em;
     background: var(--accent);
     vertical-align: -0.08em;
-    animation: cursor-blink 1s steps(2, end) infinite;
+    animation: var(--animate-cursor-blink);
   }
 }
 
@@ -342,42 +317,14 @@
         color-mix(in srgb, var(--secondary) 5%, transparent),
         transparent 18%,
         color-mix(in srgb, black 12%, transparent)
-      );
+    );
     opacity: 0.42;
-    animation: crt-scan 4s steps(8, end) infinite alternate;
+    animation: var(--animate-crt-scan);
   }
 
   .site-shell > * {
     position: relative;
     z-index: 1;
-  }
-
-  .migration-progress-board {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .migration-progress-grid {
-    --migration-progress: 0;
-    position: relative;
-    display: grid;
-    gap: 2rem;
-  }
-
-  .migration-progress-grid::before {
-    display: none;
-  }
-
-  .migration-progress-path {
-    display: none;
-  }
-
-  .migration-progress-card {
-    z-index: 1;
-    min-height: 17rem;
-    overflow: hidden;
-    background: color-mix(in srgb, var(--card) 98%, black);
-    width: 100%;
   }
 
   .migration-progress-card::after {
@@ -400,293 +347,9 @@
     transition: opacity 180ms steps(2, end);
   }
 
-  .migration-progress-card[data-state="pending"] {
-    border-color: color-mix(in srgb, var(--foreground) 28%, transparent);
-  }
-
-  .migration-progress-card[data-state="current"] {
-    border-color: var(--accent);
-    box-shadow:
-      var(--shadow-hard-lg),
-      0 0 0 1px color-mix(in srgb, var(--accent) 44%, transparent);
-  }
-
   .migration-progress-card[data-state="current"]::after {
     opacity: 1;
-    animation: migration-frame-trace 1.3s linear infinite;
-  }
-
-  .migration-progress-card[data-state="done"] {
-    border-color: var(--secondary);
-  }
-
-  .migration-progress-node {
-    display: grid;
-    width: 3rem;
-    height: 3rem;
-    flex-shrink: 0;
-    place-items: center;
-    border: 2px solid currentColor;
-    border-radius: var(--radius);
-    background: var(--background);
-    color: var(--secondary);
-    box-shadow: var(--shadow-hard-button);
-  }
-
-  .migration-progress-card[data-state="pending"] .migration-progress-node {
-    color: color-mix(in srgb, var(--foreground) 46%, transparent);
-  }
-
-  .migration-progress-card[data-state="current"] .migration-progress-node {
-    color: var(--accent);
-  }
-
-  .migration-progress-status {
-    display: inline-flex;
-    min-width: 7.4rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    border: 2px solid currentColor;
-    border-radius: var(--radius);
-    padding: 0.32rem 0.6rem;
-    background: var(--background);
-    color: color-mix(in srgb, var(--foreground) 68%, transparent);
-    font-size: 0.72rem;
-    line-height: 1.1;
-    text-transform: uppercase;
-    box-shadow: var(--shadow-hard-sm);
-  }
-
-  .migration-progress-status[data-state="current"] {
-    color: var(--accent);
-  }
-
-  .migration-progress-status[data-state="done"] {
-    color: var(--secondary);
-  }
-
-  .migration-progress-spinner {
-    display: none;
-    width: 0.82rem;
-    height: 0.82rem;
-    border: 2px solid currentColor;
-    border-top-color: transparent;
-    border-radius: 999px;
-  }
-
-  .migration-progress-status[data-state="current"] .migration-progress-spinner {
-    display: inline-block;
-    animation: migration-spinner 0.85s linear infinite;
-  }
-
-  .migration-progress-output {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    border-top: 1px solid color-mix(in srgb, var(--foreground) 20%, transparent);
-    padding-top: 1rem;
-    color: color-mix(in srgb, var(--foreground) 46%, transparent);
-    font-size: 0.875rem;
-    line-height: 1.5;
-    transition:
-      color 280ms cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .migration-progress-output[data-state="current"] {
-    border-top-color: color-mix(in srgb, var(--accent) 44%, transparent);
-    color: var(--accent);
-  }
-
-  .migration-progress-output[data-state="done"] {
-    border-top-color: color-mix(in srgb, var(--secondary) 26%, transparent);
-    color: var(--secondary);
-  }
-
-  .migration-progress-output-icon {
-    display: inline-flex;
-    width: 1rem;
-    height: 1rem;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    margin-top: 0.125rem;
-  }
-
-  .migration-progress-output[data-state="current"] .migration-progress-spinner {
-    display: inline-block;
-    animation: migration-spinner 0.85s linear infinite;
-  }
-
-  @media (min-width: 1024px) {
-    .migration-progress-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: repeat(2, minmax(17rem, auto));
-      gap: 6rem 4rem;
-      min-height: 42rem;
-      padding: 2.5rem 0;
-    }
-
-    .migration-progress-path {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      pointer-events: none;
-    }
-
-    .migration-progress-path-track,
-    .migration-progress-path-progress {
-      fill: none;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-    }
-
-    .migration-progress-path-track {
-      stroke: color-mix(in srgb, var(--secondary) 34%, transparent);
-      stroke-width: 4;
-    }
-
-    .migration-progress-path-progress {
-      stroke: var(--accent);
-      stroke-width: 5;
-      stroke-dasharray: var(--migration-progress) 1;
-      filter: drop-shadow(4px 4px 0 var(--shadow-hard));
-      transition: stroke-dasharray 820ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .migration-progress-card {
-      min-height: 18rem;
-      margin-left: 0;
-      width: 100%;
-    }
-
-    .migration-progress-card-1 {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .migration-progress-card-2 {
-      grid-column: 2;
-      grid-row: 1;
-    }
-
-    .migration-progress-card-3 {
-      grid-column: 3;
-      grid-row: 1;
-    }
-
-    .migration-progress-card-4 {
-      grid-column: 3;
-      grid-row: 2;
-    }
-
-    .migration-progress-card-5 {
-      grid-column: 2;
-      grid-row: 2;
-    }
-
-    .migration-progress-card-6 {
-      grid-column: 1;
-      grid-row: 2;
-    }
-  }
-
-  .testimonial-console {
-    isolation: isolate;
-  }
-
-  .testimonial-console-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border-bottom: 2px solid color-mix(in srgb, var(--secondary) 42%, transparent);
-    background: color-mix(in srgb, var(--background) 72%, var(--card));
-    color: var(--accent);
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    line-height: 1.4;
-    padding: 0.85rem 1rem;
-    text-transform: uppercase;
-  }
-
-  .testimonial-console-body {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .testimonial-console-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      linear-gradient(color-mix(in srgb, var(--secondary) 7%, transparent) 50%, transparent 50%)
-        0 0 / 100% 8px,
-      radial-gradient(
-        circle at 8% 8%,
-        color-mix(in srgb, var(--accent) 16%, transparent),
-        transparent 18rem
-      );
-    opacity: 0.36;
-  }
-
-  .testimonial-console-body > * {
-    position: relative;
-  }
-
-  .testimonial-console-screen {
-    position: relative;
-    display: flex;
-    min-height: 16rem;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .testimonial-console-name {
-    position: relative;
-    color: var(--secondary);
-    font-size: 1rem;
-    line-height: 1.2;
-    text-transform: uppercase;
-  }
-
-  .testimonial-console-quote {
-    position: relative;
-    margin-top: 2rem;
-    color: var(--foreground);
-    font-family: var(--font-mono);
-    font-size: 1.05rem;
-    line-height: 1.75;
-    text-wrap: pretty;
-  }
-
-  .testimonial-console-caret {
-    display: inline-block;
-    width: 0.55ch;
-    height: 1em;
-    margin-left: 0.16rem;
-    background: var(--accent);
-    vertical-align: -0.12em;
-    animation: cursor-blink 1s steps(2, end) infinite;
-  }
-}
-
-@media (min-width: 768px) {
-  .testimonial-console-quote {
-    font-size: 1.25rem;
-  }
-}
-
-@media (max-width: 767px) {
-  .testimonial-console-screen {
-    min-height: 18rem;
+    animation: var(--animate-migration-frame-trace);
   }
 }
 

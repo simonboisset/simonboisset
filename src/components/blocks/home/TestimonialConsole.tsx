@@ -62,29 +62,36 @@ export function TestimonialConsole({
 		<Card
 			showPin={false}
 			className={cn(
-				"testimonial-console mt-10 overflow-hidden p-0 motion-safe:animate-fade-up",
+				"isolate mt-10 overflow-hidden p-0 motion-safe:animate-fade-up",
 				className,
 			)}
 		>
-			<div className="testimonial-console-bar">
+			<div className="flex items-center justify-between gap-4 border-b-2 border-b-[color:color-mix(in_srgb,var(--secondary)_42%,transparent)] bg-[color-mix(in_srgb,var(--background)_72%,var(--card))] px-4 py-[0.85rem] text-[0.72rem] leading-[1.4] tracking-[0.16em] text-accent uppercase">
 				<span>feedback.recv</span>
 				<span>
 					{String(activeIndex + 1).padStart(2, "0")} /{" "}
 					{String(testimonials.length).padStart(2, "0")}
 				</span>
 			</div>
-			<div className="testimonial-console-body p-6 md:p-8 lg:p-10">
+			<div className="relative overflow-hidden p-6 md:p-8 lg:p-10">
+				<span
+					className="pointer-events-none absolute inset-0 opacity-35 [background:linear-gradient(color-mix(in_srgb,var(--secondary)_7%,transparent)_50%,transparent_50%)_0_0/100%_8px,radial-gradient(circle_at_8%_8%,color-mix(in_srgb,var(--accent)_16%,transparent),transparent_18rem)]"
+					aria-hidden="true"
+				/>
 				<figure
-					className="testimonial-console-screen"
+					className="relative flex min-h-72 flex-col justify-center overflow-hidden md:min-h-64"
 					aria-label={`${activeTestimonial.name}: ${activeTestimonial.quote}`}
 				>
-					<figcaption className="testimonial-console-name">
+					<figcaption className="relative text-base leading-[1.2] text-secondary uppercase">
 						{activeTestimonial.name}
 					</figcaption>
-					<blockquote className="testimonial-console-quote">
+					<blockquote className="relative mt-8 font-mono text-[1.05rem] leading-[1.75] text-pretty text-foreground md:text-xl">
 						<span>{visibleQuote}</span>
 						{prefersReducedMotion ? null : (
-							<span className="testimonial-console-caret" aria-hidden="true" />
+							<span
+								className="ml-[0.16rem] inline-block h-[1em] w-[0.55ch] animate-cursor-blink bg-accent align-[-0.12em]"
+								aria-hidden="true"
+							/>
 						)}
 					</blockquote>
 				</figure>
