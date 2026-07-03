@@ -60,6 +60,19 @@ const DirectusAssetInputSchema = z.union([
 
 type DirectusAssetOptions = z.infer<typeof DirectusAssetOptionsSchema>;
 
+export const buildDirectusItemsUrl = (
+	collection: "blogposts" | "documents",
+	params: Record<string, string>,
+) => {
+	const url = new URL(`/items/${collection}`, env.DIRECTUS_URL);
+
+	for (const [key, value] of Object.entries(params)) {
+		url.searchParams.set(key, value);
+	}
+
+	return url.toString();
+};
+
 function assetUrl(
 	assetId: string,
 	options?: Omit<DirectusAssetOptions, "assetId">,
@@ -96,6 +109,8 @@ const safeApiCall = async <I, T>(
 	map: (data: I) => T,
 	schema: z.ZodSchema<T>,
 ): Promise<T | null> => {
+	let rawData: unknown;
+
 	try {
 		const response = await fetch(url, {
 			headers: {
@@ -104,23 +119,23 @@ const safeApiCall = async <I, T>(
 		});
 
 		if (!response.ok) {
-			console.error(`API error: ${response.status} - ${response.statusText}`);
-			return null;
+			throw new Error(`Directus API error: ${response.status}`);
 		}
 
-		const rawData = await response.json();
-		const parseResult = schema.safeParse(map(rawData));
-
-		if (!parseResult.success) {
-			console.error("Data validation error:", parseResult.error);
-			return null;
-		}
-
-		return parseResult.data;
+		rawData = await response.json();
 	} catch (error) {
 		console.error("Directus API error:", error);
+		throw error;
+	}
+
+	const parseResult = schema.safeParse(map(rawData as I));
+
+	if (!parseResult.success) {
+		console.error("Data validation error:", parseResult.error);
 		return null;
 	}
+
+	return parseResult.data;
 };
 
 const formatDate = (date: string, locale: Locale): string =>
@@ -166,7 +181,7 @@ type DirectusDocSummaryResponse = {
 type DirectusDocDetailsResponse = {
 	data: {
 		slug: string;
-		updated_at: string;
+		updated_at?: string | null;
 		translations: { title: string; content: string }[];
 	}[];
 };
@@ -176,7 +191,13 @@ const getPosts = createServerFn({ method: "GET" })
 	.handler(async ({ data }) => {
 		const locale = data.locale;
 		const localeCode = getDirectusLocale(locale);
-		const url = `${env.DIRECTUS_URL}/items/blogposts?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&filter[translations][languages_code][_eq]=${localeCode}&fields=slug,illustration,translations.title,published_at,updated_at&deep[translations][_filter][languages_code][_eq]=${localeCode}&sort=-published_at`;
+		const url = buildDirectusItemsUrl("blogposts", {
+			"filter[application][_eq]": env.DIRECTUS_APPLICATION_ID,
+			"filter[translations][languages_code][_eq]": localeCode,
+			fields: "slug,illustration,translations.title,published_at",
+			"deep[translations][_filter][languages_code][_eq]": localeCode,
+			sort: "-published_at",
+		});
 
 		const result = await safeApiCall(
 			url,
@@ -204,7 +225,14 @@ const getPostDetails = createServerFn({ method: "GET" })
 	)
 	.handler(async ({ data }) => {
 		const localeCode = getDirectusLocale(data.locale);
-		const url = `${env.DIRECTUS_URL}/items/blogposts?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&fields=slug,published_at,updated_at,illustration,translations.title,translations.content&filter[slug][_eq]=${data.slug}&deep[translations][_filter][languages_code][_eq]=${localeCode}`;
+		const url = buildDirectusItemsUrl("blogposts", {
+			"filter[application][_eq]": env.DIRECTUS_APPLICATION_ID,
+			"filter[slug][_eq]": data.slug,
+			"filter[translations][languages_code][_eq]": localeCode,
+			fields:
+				"slug,published_at,illustration,translations.title,translations.content",
+			"deep[translations][_filter][languages_code][_eq]": localeCode,
+		});
 
 		const result = await safeApiCall(
 			url,
@@ -229,7 +257,12 @@ const getDocs = createServerFn({ method: "GET" })
 	.inputValidator(z.object({ locale: localeSchema }))
 	.handler(async ({ data }) => {
 		const localeCode = getDirectusLocale(data.locale);
-		const url = `${env.DIRECTUS_URL}/items/documents?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&deep[translations][_filter][languages_code][_eq]=${localeCode}&fields=slug,updated_at,translations.title`;
+		const url = buildDirectusItemsUrl("documents", {
+			"filter[application][_eq]": env.DIRECTUS_APPLICATION_ID,
+			"filter[translations][languages_code][_eq]": localeCode,
+			"deep[translations][_filter][languages_code][_eq]": localeCode,
+			fields: "slug,translations.title",
+		});
 
 		const result = await safeApiCall(
 			url,
@@ -254,7 +287,13 @@ const getDoc = createServerFn({ method: "GET" })
 	)
 	.handler(async ({ data }) => {
 		const localeCode = getDirectusLocale(data.locale);
-		const url = `${env.DIRECTUS_URL}/items/documents?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&filter[slug][_eq]=${data.slug}&deep[translations][_filter][languages_code][_eq]=${localeCode}&fields=slug,updated_at,translations.title,translations.content`;
+		const url = buildDirectusItemsUrl("documents", {
+			"filter[application][_eq]": env.DIRECTUS_APPLICATION_ID,
+			"filter[slug][_eq]": data.slug,
+			"filter[translations][languages_code][_eq]": localeCode,
+			"deep[translations][_filter][languages_code][_eq]": localeCode,
+			fields: "slug,translations.title,translations.content",
+		});
 
 		const result = await safeApiCall(
 			url,
@@ -264,7 +303,9 @@ const getDoc = createServerFn({ method: "GET" })
 					title: doc.translations[0]?.title || "",
 					content: doc.translations[0]?.content || "",
 					updatedAt: doc.updated_at ?? null,
-					updatedAtLabel: formatDate(doc.updated_at, data.locale),
+					updatedAtLabel: doc.updated_at
+						? formatDate(doc.updated_at, data.locale)
+						: "",
 				}))[0],
 			DocDetailsSchema,
 		);

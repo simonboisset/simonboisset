@@ -81,7 +81,12 @@ export const Route = createRootRoute({
 	},
 	loader: async ({ location, serverContext }) => {
 		const locale = resolveLocaleForPath(location.pathname, serverContext);
-		const posts = await directus.getPosts({ data: { locale } });
+		const posts = await directus
+			.getPosts({ data: { locale } })
+			.catch((error) => {
+				console.error("Unable to load blog preview:", error);
+				return [];
+			});
 		return { blogPreview: posts.slice(0, 2) };
 	},
 	head: () => ({
