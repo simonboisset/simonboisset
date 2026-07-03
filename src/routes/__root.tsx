@@ -45,7 +45,14 @@ export const Route = createRootRoute({
 		const basePathname = segment
 			? stripLocaleFromPathname(location.pathname)
 			: location.pathname;
-		if (basePathname === "/sitemap.xml" || basePathname === "/robots.txt") {
+		const isPublicResourcePath =
+			basePathname === "/sitemap.xml" ||
+			basePathname === "/robots.txt" ||
+			basePathname === "/llms.txt" ||
+			basePathname === "/llms-full.txt" ||
+			basePathname.startsWith("/content/");
+
+		if (isPublicResourcePath) {
 			if (segment) {
 				throw redirect({
 					href: buildPath(basePathname, location.searchStr, location.hash),

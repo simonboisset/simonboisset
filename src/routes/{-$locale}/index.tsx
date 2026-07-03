@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HomePage } from "@/components/blocks/home/HomePage";
+import { getAgentContentUrls } from "@/lib/ai-content";
 import {
 	HERO_PHOTO_ASSET_ID,
 	SITE_ILLUSTRATION_ASSET_IDS,
@@ -109,6 +110,7 @@ export const Route = createFileRoute("/{-$locale}/")({
 			description: t((t) => t.seo.homeDescription),
 			path: "/",
 			locale: loaderData.locale,
+			agentReadable: getAgentContentUrls("/", loaderData.locale),
 			structuredData: [
 				buildPersonStructuredData(),
 				buildProfessionalServiceStructuredData(loaderData.locale),

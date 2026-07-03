@@ -4,11 +4,12 @@ import {
 	ContentHero,
 	DocumentCardLink,
 } from "@/components/blocks/editorial";
+import { getCanonicalPageUrl } from "@/lib/ai-content";
 import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo } from "@/lib/seo";
+import { buildItemListStructuredData, buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/docs/")({
 	component: DocsIndexPage,
@@ -25,6 +26,12 @@ export const Route = createFileRoute("/{-$locale}/docs/")({
 			description: t((t) => t.docs.heroDescription),
 			path: "/docs",
 			locale: loaderData.locale,
+			structuredData: buildItemListStructuredData(
+				loaderData.docs.map((doc) => ({
+					name: doc.title,
+					url: getCanonicalPageUrl(`/docs/${doc.slug}`, loaderData.locale),
+				})),
+			),
 		});
 	},
 });

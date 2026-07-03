@@ -11,6 +11,7 @@ import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getAgentContentUrls, getCanonicalPageUrl } from "@/lib/ai-content";
 import {
 	ANALYTICS_EVENTS,
 	useAnalytics,
@@ -25,6 +26,7 @@ import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import {
 	buildArticleStructuredData,
+	buildBreadcrumbStructuredData,
 	buildFaqStructuredData,
 	buildSeo,
 	type StructuredData,
@@ -72,7 +74,22 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 				locale: loaderData.locale,
 				imageUrl: loaderData.post.imageUrl,
 				publishedAt: loaderData.post.publishedAt,
+				modifiedAt: loaderData.post.updatedAt,
 			}),
+			buildBreadcrumbStructuredData([
+				{
+					name: t((t) => t.nav.home),
+					url: getCanonicalPageUrl("/", loaderData.locale),
+				},
+				{
+					name: t((t) => t.nav.blog),
+					url: getCanonicalPageUrl("/blog", loaderData.locale),
+				},
+				{
+					name: title,
+					url: getCanonicalPageUrl(path, loaderData.locale),
+				},
+			]),
 		];
 
 		if (seoOverride?.faq.length) {
@@ -86,6 +103,7 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 			locale: loaderData.locale,
 			imageUrl: loaderData.post.imageUrl,
 			type: "article",
+			agentReadable: getAgentContentUrls(path, loaderData.locale),
 			structuredData,
 		});
 	},

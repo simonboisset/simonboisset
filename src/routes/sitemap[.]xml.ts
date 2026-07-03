@@ -50,10 +50,11 @@ type UrlEntryOptions = {
 	lastmod?: string | null;
 	changefreq?: Changefreq;
 	priority?: number;
+	alternates?: { hrefLang: string; href: string }[];
 };
 
 const buildUrlEntry = (loc: string, options: UrlEntryOptions = {}) => {
-	const { lastmod, changefreq, priority } = options;
+	const { lastmod, changefreq, priority, alternates = [] } = options;
 	const lastmodTag = lastmod
 		? `\n    <lastmod>${escapeXml(lastmod)}</lastmod>`
 		: "";
@@ -64,16 +65,46 @@ const buildUrlEntry = (loc: string, options: UrlEntryOptions = {}) => {
 		priority !== undefined
 			? `\n    <priority>${escapeXml(priority.toFixed(1))}</priority>`
 			: "";
+	const alternatesTags = alternates
+		.map(
+			(alternate) =>
+				`\n    <xhtml:link rel="alternate" hreflang="${escapeXml(
+					alternate.hrefLang,
+				)}" href="${escapeXml(alternate.href)}" />`,
+		)
+		.join("");
 
-	return `  <url>\n    <loc>${escapeXml(loc)}</loc>${lastmodTag}${changefreqTag}${priorityTag}\n  </url>`;
+	return `  <url>\n    <loc>${escapeXml(loc)}</loc>${alternatesTags}${lastmodTag}${changefreqTag}${priorityTag}\n  </url>`;
 };
 
 const buildSitemapXml = (
 	entries: string[],
 ) => `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries.join("\n")}
 </urlset>`;
+
+const buildLocalizedAlternates = (
+	path: string,
+	availableLocales: Locale[] = locales,
+) => {
+	const alternates = availableLocales.map((locale) => ({
+		hrefLang: locale.startsWith("fr") ? "fr" : "en",
+		href: buildUrl(path, locale),
+	}));
+	const defaultLocale = availableLocales.includes("fr-FR")
+		? "fr-FR"
+		: availableLocales[0];
+
+	if (defaultLocale) {
+		alternates.push({
+			hrefLang: "x-default",
+			href: buildUrl(path, defaultLocale),
+		});
+	}
+
+	return alternates;
+};
 
 const groupBySlug = <T extends { slug: string }>(
 	itemsByLocale: { locale: Locale; items: T[] }[],
@@ -96,6 +127,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 				const staticEntries = locales.flatMap((locale) =>
 					staticPaths.map((entry) =>
 						buildUrlEntry(buildUrl(entry.path, locale), {
+							alternates: buildLocalizedAlternates(entry.path),
 							changefreq: entry.changefreq,
 							priority: entry.priority,
 						}),
@@ -120,9 +152,14 @@ export const Route = createFileRoute("/sitemap.xml")({
 
 				const postEntries = Array.from(groupedPosts.values()).flatMap(
 					(group) => {
+						const availableLocales = group.map(({ locale }) => locale);
 						return group.map(({ locale, item }) =>
 							buildUrlEntry(buildUrl(`/blog/${item.slug}`, locale), {
-								lastmod: toLastMod(item.publishedAt),
+								alternates: buildLocalizedAlternates(
+									`/blog/${item.slug}`,
+									availableLocales,
+								),
+								lastmod: toLastMod(item.updatedAt ?? item.publishedAt),
 								changefreq: "monthly",
 								priority: 0.6,
 							}),
@@ -138,8 +175,14 @@ export const Route = createFileRoute("/sitemap.xml")({
 				);
 
 				const docEntries = Array.from(groupedDocs.values()).flatMap((group) => {
+					const availableLocales = group.map(({ locale }) => locale);
 					return group.map(({ locale, item }) =>
 						buildUrlEntry(buildUrl(`/docs/${item.slug}`, locale), {
+							alternates: buildLocalizedAlternates(
+								`/docs/${item.slug}`,
+								availableLocales,
+							),
+							lastmod: toLastMod(item.updatedAt),
 							changefreq: "yearly",
 							priority: 0.3,
 						}),

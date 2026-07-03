@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
 import { Route as Char123LocaleChar125CvRouteImport } from './routes/{-$locale}/cv'
 import { Route as Char123LocaleChar125DocsIndexRouteImport } from './routes/{-$locale}/docs/index'
@@ -18,10 +20,24 @@ import { Route as Char123LocaleChar125DocsPolitiqueConfidentialiteRouteImport } 
 import { Route as Char123LocaleChar125DocsMentionsLegalesRouteImport } from './routes/{-$locale}/docs/mentions-legales'
 import { Route as Char123LocaleChar125DocsSlugRouteImport } from './routes/{-$locale}/docs/$slug'
 import { Route as Char123LocaleChar125BlogSlugRouteImport } from './routes/{-$locale}/blog/$slug'
+import { Route as ContentContentLocaleHomeDottxtRouteImport } from './routes/content/$contentLocale/home[.]txt'
+import { Route as ContentContentLocaleHomeDotmdRouteImport } from './routes/content/$contentLocale/home[.]md'
+import { Route as ContentContentLocaleDocsSplatRouteImport } from './routes/content/$contentLocale/docs/$'
+import { Route as ContentContentLocaleBlogSplatRouteImport } from './routes/content/$contentLocale/blog/$'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Char123LocaleChar125IndexRoute =
@@ -71,87 +87,153 @@ const Char123LocaleChar125BlogSlugRoute =
     path: '/{-$locale}/blog/$slug',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ContentContentLocaleHomeDottxtRoute =
+  ContentContentLocaleHomeDottxtRouteImport.update({
+    id: '/content/$contentLocale/home.txt',
+    path: '/content/$contentLocale/home.txt',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ContentContentLocaleHomeDotmdRoute =
+  ContentContentLocaleHomeDotmdRouteImport.update({
+    id: '/content/$contentLocale/home.md',
+    path: '/content/$contentLocale/home.md',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ContentContentLocaleDocsSplatRoute =
+  ContentContentLocaleDocsSplatRouteImport.update({
+    id: '/content/$contentLocale/docs/$',
+    path: '/content/$contentLocale/docs/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ContentContentLocaleBlogSplatRoute =
+  ContentContentLocaleBlogSplatRouteImport.update({
+    id: '/content/$contentLocale/blog/$',
+    path: '/content/$contentLocale/blog/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
-  '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
-  '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
-  '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
-  '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
-  '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
-  '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
-  '/{-$locale}/docs/': typeof Char123LocaleChar125DocsIndexRoute
-}
-export interface FileRoutesByTo {
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/content/$contentLocale/home.md': typeof ContentContentLocaleHomeDotmdRoute
+  '/content/$contentLocale/home.txt': typeof ContentContentLocaleHomeDottxtRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
   '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
   '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
+  '/content/$contentLocale/blog/$': typeof ContentContentLocaleBlogSplatRoute
+  '/content/$contentLocale/docs/$': typeof ContentContentLocaleDocsSplatRoute
+}
+export interface FileRoutesByTo {
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
+  '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/content/$contentLocale/home.md': typeof ContentContentLocaleHomeDotmdRoute
+  '/content/$contentLocale/home.txt': typeof ContentContentLocaleHomeDottxtRoute
+  '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
+  '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
+  '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
+  '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
+  '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
+  '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
+  '/content/$contentLocale/blog/$': typeof ContentContentLocaleBlogSplatRoute
+  '/content/$contentLocale/docs/$': typeof ContentContentLocaleDocsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/{-$locale}/cv': typeof Char123LocaleChar125CvRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/content/$contentLocale/home.md': typeof ContentContentLocaleHomeDotmdRoute
+  '/content/$contentLocale/home.txt': typeof ContentContentLocaleHomeDottxtRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
   '/{-$locale}/docs/$slug': typeof Char123LocaleChar125DocsSlugRoute
   '/{-$locale}/docs/mentions-legales': typeof Char123LocaleChar125DocsMentionsLegalesRoute
   '/{-$locale}/docs/politique-confidentialite': typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
   '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
   '/{-$locale}/docs/': typeof Char123LocaleChar125DocsIndexRoute
+  '/content/$contentLocale/blog/$': typeof ContentContentLocaleBlogSplatRoute
+  '/content/$contentLocale/docs/$': typeof ContentContentLocaleDocsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/sitemap.xml'
-    | '/{-$locale}/cv'
-    | '/{-$locale}/'
-    | '/{-$locale}/blog/$slug'
-    | '/{-$locale}/docs/$slug'
-    | '/{-$locale}/docs/mentions-legales'
-    | '/{-$locale}/docs/politique-confidentialite'
-    | '/{-$locale}/blog/'
-    | '/{-$locale}/docs/'
-  fileRoutesByTo: FileRoutesByTo
-  to:
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/sitemap.xml'
     | '/{-$locale}/cv'
     | '/{-$locale}'
+    | '/content/$contentLocale/home.md'
+    | '/content/$contentLocale/home.txt'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
     | '/{-$locale}/blog'
     | '/{-$locale}/docs'
+    | '/content/$contentLocale/blog/$'
+    | '/content/$contentLocale/docs/$'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/llms-full.txt'
+    | '/llms.txt'
+    | '/sitemap.xml'
+    | '/{-$locale}/cv'
+    | '/{-$locale}'
+    | '/content/$contentLocale/home.md'
+    | '/content/$contentLocale/home.txt'
+    | '/{-$locale}/blog/$slug'
+    | '/{-$locale}/docs/$slug'
+    | '/{-$locale}/docs/mentions-legales'
+    | '/{-$locale}/docs/politique-confidentialite'
+    | '/{-$locale}/blog'
+    | '/{-$locale}/docs'
+    | '/content/$contentLocale/blog/$'
+    | '/content/$contentLocale/docs/$'
   id:
     | '__root__'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/sitemap.xml'
     | '/{-$locale}/cv'
     | '/{-$locale}/'
+    | '/content/$contentLocale/home.md'
+    | '/content/$contentLocale/home.txt'
     | '/{-$locale}/blog/$slug'
     | '/{-$locale}/docs/$slug'
     | '/{-$locale}/docs/mentions-legales'
     | '/{-$locale}/docs/politique-confidentialite'
     | '/{-$locale}/blog/'
     | '/{-$locale}/docs/'
+    | '/content/$contentLocale/blog/$'
+    | '/content/$contentLocale/docs/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   Char123LocaleChar125CvRoute: typeof Char123LocaleChar125CvRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
+  ContentContentLocaleHomeDotmdRoute: typeof ContentContentLocaleHomeDotmdRoute
+  ContentContentLocaleHomeDottxtRoute: typeof ContentContentLocaleHomeDottxtRoute
   Char123LocaleChar125BlogSlugRoute: typeof Char123LocaleChar125BlogSlugRoute
   Char123LocaleChar125DocsSlugRoute: typeof Char123LocaleChar125DocsSlugRoute
   Char123LocaleChar125DocsMentionsLegalesRoute: typeof Char123LocaleChar125DocsMentionsLegalesRoute
   Char123LocaleChar125DocsPolitiqueConfidentialiteRoute: typeof Char123LocaleChar125DocsPolitiqueConfidentialiteRoute
   Char123LocaleChar125BlogIndexRoute: typeof Char123LocaleChar125BlogIndexRoute
   Char123LocaleChar125DocsIndexRoute: typeof Char123LocaleChar125DocsIndexRoute
+  ContentContentLocaleBlogSplatRoute: typeof ContentContentLocaleBlogSplatRoute
+  ContentContentLocaleDocsSplatRoute: typeof ContentContentLocaleDocsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -163,10 +245,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/{-$locale}/': {
       id: '/{-$locale}/'
       path: '/{-$locale}'
-      fullPath: '/{-$locale}/'
+      fullPath: '/{-$locale}'
       preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -180,14 +276,14 @@ declare module '@tanstack/react-router' {
     '/{-$locale}/docs/': {
       id: '/{-$locale}/docs/'
       path: '/{-$locale}/docs'
-      fullPath: '/{-$locale}/docs/'
+      fullPath: '/{-$locale}/docs'
       preLoaderRoute: typeof Char123LocaleChar125DocsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/blog/': {
       id: '/{-$locale}/blog/'
       path: '/{-$locale}/blog'
-      fullPath: '/{-$locale}/blog/'
+      fullPath: '/{-$locale}/blog'
       preLoaderRoute: typeof Char123LocaleChar125BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -219,13 +315,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/content/$contentLocale/home.txt': {
+      id: '/content/$contentLocale/home.txt'
+      path: '/content/$contentLocale/home.txt'
+      fullPath: '/content/$contentLocale/home.txt'
+      preLoaderRoute: typeof ContentContentLocaleHomeDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content/$contentLocale/home.md': {
+      id: '/content/$contentLocale/home.md'
+      path: '/content/$contentLocale/home.md'
+      fullPath: '/content/$contentLocale/home.md'
+      preLoaderRoute: typeof ContentContentLocaleHomeDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content/$contentLocale/docs/$': {
+      id: '/content/$contentLocale/docs/$'
+      path: '/content/$contentLocale/docs/$'
+      fullPath: '/content/$contentLocale/docs/$'
+      preLoaderRoute: typeof ContentContentLocaleDocsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content/$contentLocale/blog/$': {
+      id: '/content/$contentLocale/blog/$'
+      path: '/content/$contentLocale/blog/$'
+      fullPath: '/content/$contentLocale/blog/$'
+      preLoaderRoute: typeof ContentContentLocaleBlogSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   Char123LocaleChar125CvRoute: Char123LocaleChar125CvRoute,
   Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
+  ContentContentLocaleHomeDotmdRoute: ContentContentLocaleHomeDotmdRoute,
+  ContentContentLocaleHomeDottxtRoute: ContentContentLocaleHomeDottxtRoute,
   Char123LocaleChar125BlogSlugRoute: Char123LocaleChar125BlogSlugRoute,
   Char123LocaleChar125DocsSlugRoute: Char123LocaleChar125DocsSlugRoute,
   Char123LocaleChar125DocsMentionsLegalesRoute:
@@ -234,6 +362,8 @@ const rootRouteChildren: RootRouteChildren = {
     Char123LocaleChar125DocsPolitiqueConfidentialiteRoute,
   Char123LocaleChar125BlogIndexRoute: Char123LocaleChar125BlogIndexRoute,
   Char123LocaleChar125DocsIndexRoute: Char123LocaleChar125DocsIndexRoute,
+  ContentContentLocaleBlogSplatRoute: ContentContentLocaleBlogSplatRoute,
+  ContentContentLocaleDocsSplatRoute: ContentContentLocaleDocsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

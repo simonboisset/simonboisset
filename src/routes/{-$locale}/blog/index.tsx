@@ -6,11 +6,12 @@ import {
 	ContentHero,
 } from "@/components/blocks/editorial";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getCanonicalPageUrl } from "@/lib/ai-content";
 import { directus, type PostSummary } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo } from "@/lib/seo";
+import { buildItemListStructuredData, buildSeo } from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/blog/")({
 	component: BlogListPage,
@@ -27,6 +28,12 @@ export const Route = createFileRoute("/{-$locale}/blog/")({
 			description: t((t) => t.blog.description),
 			path: "/blog",
 			locale: loaderData.locale,
+			structuredData: buildItemListStructuredData(
+				loaderData.posts.map((post) => ({
+					name: post.title,
+					url: getCanonicalPageUrl(`/blog/${post.slug}`, loaderData.locale),
+				})),
+			),
 		});
 	},
 	pendingComponent: () => (

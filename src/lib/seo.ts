@@ -12,6 +12,10 @@ type SeoInput = {
 	imageUrl?: string | null;
 	type?: "website" | "article";
 	structuredData?: StructuredData | StructuredData[];
+	agentReadable?: {
+		markdownUrl: string;
+		textUrl: string;
+	};
 };
 
 export type StructuredData = Record<string, unknown>;
@@ -19,7 +23,7 @@ export type StructuredData = Record<string, unknown>;
 const ensureLeadingSlash = (path: string) =>
 	path.startsWith("/") ? path : `/${path}`;
 
-const buildCanonicalUrl = (path: string, locale: Locale) => {
+export const buildCanonicalUrl = (path: string, locale: Locale) => {
 	const normalizedPath = ensureLeadingSlash(path);
 	const localizedPath = buildLocalizedPath(
 		normalizedPath,
@@ -93,6 +97,7 @@ export const buildSeo = ({
 	imageUrl,
 	type = "website",
 	structuredData,
+	agentReadable,
 }: SeoInput) => {
 	const canonicalUrl = buildCanonicalUrl(path, locale);
 	const pageTitle = buildTitle(title);
@@ -117,9 +122,29 @@ export const buildSeo = ({
 		meta.push({ name: "twitter:image", content: imageUrl });
 	}
 
+	const links: {
+		rel: string;
+		href: string;
+		hrefLang?: string;
+		type?: string;
+	}[] = [{ rel: "canonical", href: canonicalUrl }, ...buildAlternates(path)];
+
+	if (agentReadable) {
+		links.push({
+			rel: "alternate",
+			type: "text/markdown",
+			href: agentReadable.markdownUrl,
+		});
+		links.push({
+			rel: "alternate",
+			type: "text/plain",
+			href: agentReadable.textUrl,
+		});
+	}
+
 	return {
 		meta,
-		links: [{ rel: "canonical", href: canonicalUrl }, ...buildAlternates(path)],
+		links,
 		scripts: buildStructuredDataScripts(structuredData),
 	};
 };
@@ -163,13 +188,15 @@ export const buildArticleStructuredData = ({
 	locale,
 	imageUrl,
 	publishedAt,
+	modifiedAt,
 }: {
 	title: string;
 	description: string;
 	path: string;
 	locale: Locale;
 	imageUrl?: string | null;
-	publishedAt: string;
+	publishedAt?: string;
+	modifiedAt?: string | null;
 }) => ({
 	"@context": "https://schema.org",
 	"@type": "Article",
@@ -178,6 +205,7 @@ export const buildArticleStructuredData = ({
 	url: buildLocalizedUrl(path, locale),
 	inLanguage: locale,
 	datePublished: publishedAt,
+	dateModified: modifiedAt ?? publishedAt,
 	image: imageUrl || undefined,
 	author: {
 		"@type": "Person",
@@ -189,6 +217,32 @@ export const buildArticleStructuredData = ({
 		name: SITE_AUTHOR,
 		url: SITE_URL,
 	},
+});
+
+export const buildBreadcrumbStructuredData = (
+	items: { name: string; url: string }[],
+) => ({
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: items.map((item, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		name: item.name,
+		item: item.url,
+	})),
+});
+
+export const buildItemListStructuredData = (
+	items: { name: string; url: string }[],
+) => ({
+	"@context": "https://schema.org",
+	"@type": "ItemList",
+	itemListElement: items.map((item, index) => ({
+		"@type": "ListItem",
+		position: index + 1,
+		name: item.name,
+		url: item.url,
+	})),
 });
 
 export const buildFaqStructuredData = (

@@ -60,6 +60,30 @@ describe("seo helpers", () => {
 		});
 	});
 
+	it("emits agent-readable alternate links when provided", () => {
+		const seo = buildSeo({
+			title: "React Native to Expo migration",
+			description: "Migration support for Expo apps.",
+			path: "/",
+			locale: "en-US",
+			agentReadable: {
+				markdownUrl: "https://simonboisset.com/content/en/home.md",
+				textUrl: "https://simonboisset.com/content/en/home.txt",
+			},
+		});
+
+		expect(seo.links).toContainEqual({
+			rel: "alternate",
+			type: "text/markdown",
+			href: "https://simonboisset.com/content/en/home.md",
+		});
+		expect(seo.links).toContainEqual({
+			rel: "alternate",
+			type: "text/plain",
+			href: "https://simonboisset.com/content/en/home.txt",
+		});
+	});
+
 	it("strips HTML and decodes common entities for snippets", () => {
 		expect(stripHtml("<p>Build &amp; publish l&#39;app</p>")).toBe(
 			"Build & publish l'app",

@@ -3,12 +3,19 @@ import { marked } from "marked";
 import { ContentHero, DocumentCardLink } from "@/components/blocks/editorial";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Card } from "@/components/ui/card";
+import { getAgentContentUrls, getCanonicalPageUrl } from "@/lib/ai-content";
 import { useContentReadTracking } from "@/lib/analytics";
 import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
 import { resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
-import { buildSeo, stripHtml, toExcerpt } from "@/lib/seo";
+import {
+	buildArticleStructuredData,
+	buildBreadcrumbStructuredData,
+	buildSeo,
+	stripHtml,
+	toExcerpt,
+} from "@/lib/seo";
 
 export const Route = createFileRoute("/{-$locale}/docs/$slug")({
 	component: DocsDetailPage,
@@ -34,13 +41,39 @@ export const Route = createFileRoute("/{-$locale}/docs/$slug")({
 		const description = contentText
 			? toExcerpt(contentText)
 			: descriptionFallback;
+		const path = `/docs/${loaderData.doc.slug}`;
 
 		return buildSeo({
 			title: loaderData.doc.title,
 			description,
-			path: `/docs/${loaderData.doc.slug}`,
+			path,
 			locale: loaderData.locale,
 			type: "article",
+			agentReadable: getAgentContentUrls(path, loaderData.locale),
+			structuredData: [
+				buildArticleStructuredData({
+					title: loaderData.doc.title,
+					description,
+					path,
+					locale: loaderData.locale,
+					publishedAt: loaderData.doc.updatedAt ?? undefined,
+					modifiedAt: loaderData.doc.updatedAt,
+				}),
+				buildBreadcrumbStructuredData([
+					{
+						name: t((t) => t.nav.home),
+						url: getCanonicalPageUrl("/", loaderData.locale),
+					},
+					{
+						name: t((t) => t.footer.docs),
+						url: getCanonicalPageUrl("/docs", loaderData.locale),
+					},
+					{
+						name: loaderData.doc.title,
+						url: getCanonicalPageUrl(path, loaderData.locale),
+					},
+				]),
+			],
 		});
 	},
 });

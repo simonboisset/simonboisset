@@ -10,6 +10,7 @@ const PostSummarySchema = z.object({
 	title: z.string(),
 	publishedAt: z.string(),
 	publishedAtLabel: z.string(),
+	updatedAt: z.string().nullable().optional(),
 });
 
 const PostDetailsSchema = z.object({
@@ -20,17 +21,20 @@ const PostDetailsSchema = z.object({
 	imageUrl: z.string().nullable(),
 	title: z.string(),
 	content: z.string(),
+	updatedAt: z.string().nullable().optional(),
 });
 
 const DocSummarySchema = z.object({
 	slug: z.string(),
 	title: z.string(),
+	updatedAt: z.string().nullable().optional(),
 });
 
 const DocDetailsSchema = z.object({
 	slug: z.string(),
 	title: z.string(),
 	content: z.string(),
+	updatedAt: z.string().nullable().optional(),
 	updatedAtLabel: z.string(),
 });
 
@@ -136,6 +140,7 @@ type DirectusBlogPostSummaryResponse = {
 		slug: string;
 		illustration: string | null;
 		published_at: string;
+		updated_at?: string | null;
 		translations: { title: string }[];
 	}[];
 };
@@ -144,6 +149,7 @@ type DirectusBlogPostDetailsResponse = {
 	data: {
 		slug: string;
 		published_at: string;
+		updated_at?: string | null;
 		illustration: string | null;
 		translations: { title: string; content: string }[];
 	}[];
@@ -152,6 +158,7 @@ type DirectusBlogPostDetailsResponse = {
 type DirectusDocSummaryResponse = {
 	data: {
 		slug: string;
+		updated_at?: string | null;
 		translations: { title: string }[];
 	}[];
 };
@@ -169,7 +176,7 @@ const getPosts = createServerFn({ method: "GET" })
 	.handler(async ({ data }) => {
 		const locale = data.locale;
 		const localeCode = getDirectusLocale(locale);
-		const url = `${env.DIRECTUS_URL}/items/blogposts?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&filter[translations][languages_code][_eq]=${localeCode}&fields=slug,illustration,translations.title,published_at&deep[translations][_filter][languages_code][_eq]=${localeCode}&sort=-published_at`;
+		const url = `${env.DIRECTUS_URL}/items/blogposts?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&filter[translations][languages_code][_eq]=${localeCode}&fields=slug,illustration,translations.title,published_at,updated_at&deep[translations][_filter][languages_code][_eq]=${localeCode}&sort=-published_at`;
 
 		const result = await safeApiCall(
 			url,
@@ -181,6 +188,7 @@ const getPosts = createServerFn({ method: "GET" })
 					title: post.translations[0]?.title || "",
 					publishedAt: post.published_at,
 					publishedAtLabel: formatDate(post.published_at, locale),
+					updatedAt: post.updated_at ?? null,
 				})),
 			z.array(PostSummarySchema),
 		);
@@ -196,7 +204,7 @@ const getPostDetails = createServerFn({ method: "GET" })
 	)
 	.handler(async ({ data }) => {
 		const localeCode = getDirectusLocale(data.locale);
-		const url = `${env.DIRECTUS_URL}/items/blogposts?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&fields=slug,published_at,illustration,translations.title,translations.content&filter[slug][_eq]=${data.slug}&deep[translations][_filter][languages_code][_eq]=${localeCode}`;
+		const url = `${env.DIRECTUS_URL}/items/blogposts?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&fields=slug,published_at,updated_at,illustration,translations.title,translations.content&filter[slug][_eq]=${data.slug}&deep[translations][_filter][languages_code][_eq]=${localeCode}`;
 
 		const result = await safeApiCall(
 			url,
@@ -205,6 +213,7 @@ const getPostDetails = createServerFn({ method: "GET" })
 					slug: post.slug,
 					publishedAt: post.published_at,
 					publishedAtLabel: formatDate(post.published_at, data.locale),
+					updatedAt: post.updated_at ?? null,
 					illustration: post.illustration,
 					imageUrl: assetUrl(post.illustration),
 					title: post.translations[0]?.title || "",
@@ -220,7 +229,7 @@ const getDocs = createServerFn({ method: "GET" })
 	.inputValidator(z.object({ locale: localeSchema }))
 	.handler(async ({ data }) => {
 		const localeCode = getDirectusLocale(data.locale);
-		const url = `${env.DIRECTUS_URL}/items/documents?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&deep[translations][_filter][languages_code][_eq]=${localeCode}&fields=slug,translations.title`;
+		const url = `${env.DIRECTUS_URL}/items/documents?filter[application][_eq]=${env.DIRECTUS_APPLICATION_ID}&deep[translations][_filter][languages_code][_eq]=${localeCode}&fields=slug,updated_at,translations.title`;
 
 		const result = await safeApiCall(
 			url,
@@ -228,6 +237,7 @@ const getDocs = createServerFn({ method: "GET" })
 				d.data.map((doc) => ({
 					slug: doc.slug,
 					title: doc.translations[0]?.title || "",
+					updatedAt: doc.updated_at ?? null,
 				})),
 			z.array(DocSummarySchema),
 		);
@@ -253,6 +263,7 @@ const getDoc = createServerFn({ method: "GET" })
 					slug: doc.slug,
 					title: doc.translations[0]?.title || "",
 					content: doc.translations[0]?.content || "",
+					updatedAt: doc.updated_at ?? null,
 					updatedAtLabel: formatDate(doc.updated_at, data.locale),
 				}))[0],
 			DocDetailsSchema,
