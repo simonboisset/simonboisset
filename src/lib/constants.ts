@@ -8,4 +8,5 @@ export const SITE_ILLUSTRATION_ASSET_IDS = {
 	proof: "9e6052c6-4654-4db5-94dc-d21dccae8b43",
 	legacyService: "568d2276-c8f5-4e77-be40-2f07b0f3b787",
 	workflowService: "0e74f678-9442-4682-b767-347db8a2ec21",
+	handoffService: "b6d46ba3-ee44-49f6-baa6-48c9a9a8b31b",
 } as const;

@@ -290,13 +290,13 @@ export const en = {
 				title: "Find what blocks Expo",
 				description:
 					"I review the native modules, app config, CI, and store constraints before changing the code.",
-				outcome: "Risk map and treatment order",
+				outcome: "Risk map, treatment order, and service quote",
 			},
 			migration: {
-				eyebrow: "Fix",
-				title: "Replace what gets in the way",
+				eyebrow: "Migrate",
+				title: "Project migration",
 				description:
-					"I keep the product stable while adapting config, builds, and incompatible libraries.",
+					"I set up the Expo project and config files, replace libraries that conflict with the ecosystem, then secure the builds.",
 				outcome: "Expo app that can build cleanly",
 			},
 			release: {

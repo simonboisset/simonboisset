@@ -24,6 +24,7 @@ export const Route = createFileRoute("/{-$locale}/")({
 			proofIllustrationUrl,
 			legacyServiceIllustrationUrl,
 			workflowServiceIllustrationUrl,
+			handoffServiceIllustrationUrl,
 		] = await Promise.all([
 			directus.getAssetUrl({
 				data: HERO_PHOTO_ASSET_ID,
@@ -78,12 +79,23 @@ export const Route = createFileRoute("/{-$locale}/")({
 					quality: 82,
 				},
 			}),
+			directus.getAssetUrl({
+				data: {
+					assetId: SITE_ILLUSTRATION_ASSET_IDS.handoffService,
+					width: 760,
+					height: 500,
+					fit: "cover",
+					format: "webp",
+					quality: 82,
+				},
+			}),
 		]);
 		return {
 			heroIllustrationUrl,
 			heroPhotoUrl,
-			legacyServiceIllustrationUrl,
 			locale,
+			handoffServiceIllustrationUrl,
+			legacyServiceIllustrationUrl,
 			proofIllustrationUrl,
 			risksIllustrationUrl,
 			workflowServiceIllustrationUrl,
@@ -109,6 +121,7 @@ function App() {
 	const {
 		heroIllustrationUrl,
 		heroPhotoUrl,
+		handoffServiceIllustrationUrl,
 		legacyServiceIllustrationUrl,
 		proofIllustrationUrl,
 		risksIllustrationUrl,
@@ -118,6 +131,7 @@ function App() {
 	return (
 		<HomePage
 			assets={{
+				handoffServiceIllustrationUrl,
 				heroIllustrationUrl,
 				heroPhotoUrl,
 				legacyServiceIllustrationUrl,

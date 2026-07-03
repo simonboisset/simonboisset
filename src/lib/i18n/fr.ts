@@ -297,13 +297,14 @@ export const fr: Translations = {
 				title: "Repérer ce qui bloque Expo",
 				description:
 					"Je vérifie les modules natifs, la config app, la CI et les contraintes stores avant de toucher au code.",
-				outcome: "Carte des risques et ordre de traitement",
+				outcome:
+					"Carte des risques, ordre de traitement et devis de prestation",
 			},
 			migration: {
-				eyebrow: "Débloquer",
-				title: "Remplacer ce qui coince",
+				eyebrow: "Migrer",
+				title: "Migration du projet",
 				description:
-					"Je garde le produit stable pendant l'adaptation de la config, des builds et des librairies incompatibles.",
+					"Je configure le projet et les fichiers Expo, remplace les librairies incompatibles avec l'écosystème, puis sécurise les builds.",
 				outcome: "App Expo qui build proprement",
 			},
 			release: {

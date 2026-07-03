@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 
 export type HomeAssets = {
+	handoffServiceIllustrationUrl: string | null;
 	heroIllustrationUrl: string | null;
 	heroPhotoUrl: string | null;
 	legacyServiceIllustrationUrl: string | null;

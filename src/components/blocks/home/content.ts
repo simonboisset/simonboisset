@@ -16,6 +16,7 @@ export function buildHomeContent(
 		HomeAssets,
 		| "legacyServiceIllustrationUrl"
 		| "risksIllustrationUrl"
+		| "handoffServiceIllustrationUrl"
 		| "workflowServiceIllustrationUrl"
 	>,
 ): HomeContent {
@@ -97,7 +98,7 @@ export function buildHomeContent(
 				title: t((t) => t.home.risks.handoff.title),
 				description: t((t) => t.home.risks.handoff.description),
 				bullet: t((t) => t.home.risks.handoff.bullet),
-				illustrationUrl: null,
+				illustrationUrl: assets.handoffServiceIllustrationUrl,
 			},
 		],
 		migrationPhases: [
