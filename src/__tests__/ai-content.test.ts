@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
 	buildAgentContentResponse,
 	getAgentContentUrls,
+	getAgentReadableRedirectPath,
 	renderDocText,
 	renderHomeMarkdown,
 	renderHomeText,
@@ -99,6 +100,21 @@ describe("agent-readable content", () => {
 			markdownUrl: "https://simonboisset.com/content/en/blog/expo-migration.md",
 			textUrl: "https://simonboisset.com/content/en/blog/expo-migration.txt",
 		});
+	});
+
+	it("maps page-level Markdown and text aliases to content endpoints", () => {
+		expect(
+			getAgentReadableRedirectPath(
+				"/blog/expo-white-label-on-premise-apps.md",
+				"fr-FR",
+			),
+		).toBe("/content/fr/blog/expo-white-label-on-premise-apps.md");
+		expect(getAgentReadableRedirectPath("/docs/privacy.txt", "en-US")).toBe(
+			"/content/en/docs/privacy.txt",
+		);
+		expect(
+			getAgentReadableRedirectPath("/blog/expo-migration", "fr-FR"),
+		).toBeNull();
 	});
 
 	it("builds noindex responses with canonical Link headers", () => {

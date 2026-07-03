@@ -10,6 +10,7 @@ import {
 	type Locale,
 	type LocaleSegment,
 	localeToPathSegment,
+	stripLocaleFromPathname,
 } from "./i18n/locale";
 import {
 	buildCanonicalUrl,
@@ -111,6 +112,22 @@ export const getAgentContentUrls = (path: string, locale: Locale) => {
 		markdownUrl: `${SITE_URL}/content/${segment}/${contentPath}.md`,
 		textUrl: `${SITE_URL}/content/${segment}/${contentPath}.txt`,
 	};
+};
+
+export const getAgentReadableRedirectPath = (
+	pathname: string,
+	locale: Locale,
+) => {
+	const contentPath = stripLocaleFromPathname(pathname);
+	const match = contentPath.match(/^\/(blog|docs)\/(.+)\.(md|txt)$/);
+	if (!match) return null;
+
+	const [, section, slug, extension] = match;
+	if (!section || !slug || !extension) return null;
+
+	return `/content/${localeToPathSegment(locale)}/${section}/${encodeURIComponent(
+		slug,
+	)}.${extension}`;
 };
 
 export const buildAgentContentResponse = ({

@@ -1,4 +1,9 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import {
+	createFileRoute,
+	Link,
+	notFound,
+	redirect,
+} from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { marked } from "marked";
 import {
@@ -11,7 +16,11 @@ import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getAgentContentUrls, getCanonicalPageUrl } from "@/lib/ai-content";
+import {
+	getAgentContentUrls,
+	getAgentReadableRedirectPath,
+	getCanonicalPageUrl,
+} from "@/lib/ai-content";
 import {
 	ANALYTICS_EVENTS,
 	useAnalytics,
@@ -22,7 +31,7 @@ import { getBlogSeoOverride } from "@/lib/blog-seo";
 import { HERO_PHOTO_ASSET_ID, SCHEDULE_VISIO_URL } from "@/lib/constants";
 import { directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
-import { resolveLocaleForPath } from "@/lib/i18n/locale";
+import { buildPath, resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import {
 	buildArticleStructuredData,
@@ -38,6 +47,20 @@ export const Route = createFileRoute("/{-$locale}/blog/$slug")({
 	component: BlogDetailPage,
 	loader: async ({ params, location, serverContext }) => {
 		const locale = resolveLocaleForPath(location.pathname, serverContext);
+		const agentReadableRedirectPath = getAgentReadableRedirectPath(
+			location.pathname,
+			locale,
+		);
+		if (agentReadableRedirectPath) {
+			throw redirect({
+				href: buildPath(
+					agentReadableRedirectPath,
+					location.searchStr,
+					location.hash,
+				),
+			});
+		}
+
 		const [post, posts, heroPhotoUrl] = await Promise.all([
 			directus.getPostDetails({ data: { slug: params.slug, locale } }),
 			directus.getPosts({ data: { locale } }),

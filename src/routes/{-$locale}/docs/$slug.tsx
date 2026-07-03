@@ -1,13 +1,17 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { marked } from "marked";
 import { ContentHero, DocumentCardLink } from "@/components/blocks/editorial";
 import MarkdownContent from "@/components/blocks/MarkdownContent";
 import { Card } from "@/components/ui/card";
-import { getAgentContentUrls, getCanonicalPageUrl } from "@/lib/ai-content";
+import {
+	getAgentContentUrls,
+	getAgentReadableRedirectPath,
+	getCanonicalPageUrl,
+} from "@/lib/ai-content";
 import { useContentReadTracking } from "@/lib/analytics";
 import { type DocSummary, directus } from "@/lib/directus";
 import { getTranslator } from "@/lib/i18n";
-import { resolveLocaleForPath } from "@/lib/i18n/locale";
+import { buildPath, resolveLocaleForPath } from "@/lib/i18n/locale";
 import { useI18n } from "@/lib/i18n/use-i18n";
 import {
 	buildArticleStructuredData,
@@ -21,6 +25,20 @@ export const Route = createFileRoute("/{-$locale}/docs/$slug")({
 	component: DocsDetailPage,
 	loader: async ({ params, location, serverContext }) => {
 		const locale = resolveLocaleForPath(location.pathname, serverContext);
+		const agentReadableRedirectPath = getAgentReadableRedirectPath(
+			location.pathname,
+			locale,
+		);
+		if (agentReadableRedirectPath) {
+			throw redirect({
+				href: buildPath(
+					agentReadableRedirectPath,
+					location.searchStr,
+					location.hash,
+				),
+			});
+		}
+
 		const [doc, docs] = await Promise.all([
 			directus.getDoc({ data: { slug: params.slug, locale } }),
 			directus.getDocs({ data: { locale } }),
